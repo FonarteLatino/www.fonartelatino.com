@@ -47,6 +47,22 @@ if (!((isset($_SESSION['MM_Username_Panel'])) && (isAuthorized("",$MM_authorized
   ?><script type="text/javascript">window.location="<?php echo $MM_restrictGoTo; ?>";</script><?php
   exit;
 }
+
+if ($_SESSION['USUARIO']['nivel'] != 2) {
+  $logoutGoTo = "login.php?alerta=4";
+
+  $_SESSION['MM_Username_Panel'] = NULL;
+  $_SESSION['MM_UserGroup_Panel'] = NULL;
+  $_SESSION['USUARIO'] = NULL;
+
+  unset($_SESSION['MM_Username_Panel']);
+  unset($_SESSION['MM_UserGroup_Panel']);
+  unset($_SESSION['USUARIO']);
+
+  if ($logoutGoTo != "") {header("Location: $logoutGoTo");
+  exit;
+  }
+}
 ?>
 <?php
 if (!function_exists("GetSQLValueString")) {

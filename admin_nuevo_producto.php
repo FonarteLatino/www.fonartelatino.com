@@ -150,7 +150,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 		$ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus, video, play, firelink) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -164,6 +164,13 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	GetSQLValueString($_POST['itunes'], "text"),
 	GetSQLValueString($_POST['amazon'], "text"),
 	GetSQLValueString($_POST['google'], "text"),
+  GetSQLValueString($_POST['claro'], "text"),
+  GetSQLValueString($_POST['youtube'], "text"),
+  GetSQLValueString($_POST['deezer'], "text"),
+  GetSQLValueString($_POST['tidal'], "text"),
+  GetSQLValueString($_POST['video'], "text"),
+  GetSQLValueString($_POST['play'], "text"),
+  GetSQLValueString($_POST['firelink'], "text"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
 	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
@@ -399,6 +406,34 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     
 </div>
 
+<div class="form-group">
+ <!-- *********************************************** -->
+    <label class="control-label col-sm-2" for="">Claro Music:</label>
+    <div class="col-sm-4">
+    <input type="url" name="claro" class="form-control" id="" value="" >
+    </div>
+    <!-- *********************************************** -->
+    <label class="control-label col-sm-2" for="">YouTube:</label>
+    <div class="col-sm-4">
+      <input type="url" name="youtube" class="form-control" id="" value="" >
+    </div>
+    
+</div>
+
+<div class="form-group">
+ <!-- *********************************************** -->
+    <label class="control-label col-sm-2" for="">Deezer:</label>
+    <div class="col-sm-4">
+    <input type="url" name="deezer" class="form-control" id="" value="" >
+    </div>
+    <!-- *********************************************** -->
+    <label class="control-label col-sm-2" for="">Tidal:</label>
+    <div class="col-sm-4">
+      <input type="url" name="tidal" class="form-control" id="" value="" >
+    </div>
+    
+</div>
+
   <div class="form-group">
  <!-- *********************************************** -->
     <label class="control-label col-sm-2" for="" >Categor&iacute;a:</label>
@@ -444,7 +479,12 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 
 <div class="form-group">
 <!-- *********************************************** -->
-     <label class="control-label col-sm-2" for="">Estatus:</label>
+     <label class="control-label col-sm-2" for="">Video:</label>
+    <div class="col-sm-4">
+      <input type="url" name="video" class="form-control" id="" value="" >
+    </div>
+    <!-- *********************************************** -->  
+    <label class="control-label col-sm-2" for="">Estatus:</label>
     <div class="col-sm-4">
         <select class="form-control" id="" name="estatus">
             <option value="ACTIVO">ACTIVO</option>
@@ -452,7 +492,26 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
             <option value="DIGITAL">DIGITAL</option>
         </select>
     </div>
+
+</div>
+
+<div class="form-group">
+<!-- *********************************************** -->
+     <label class="control-label col-sm-2" for="">Activar player de Spotify:</label>
+    <div class="col-sm-4">
+        <select class="form-control" id="" name="play">
+            <option value="No">No</option>
+            <option value="Si">Si</option>
+        </select>
+    </div>
     <!-- *********************************************** -->  
+    <label class="control-label col-sm-2" for="">Activar Firelink:</label>
+    <div class="col-sm-4">
+        <select class="form-control" id="" name="firelink">
+            <option value="No">No</option>
+            <option value="Si">Si</option>
+        </select>
+    </div>
 
 </div>
 

@@ -20,6 +20,7 @@
 | <a href="fonarte_latino.php" class="tipografia_pie">Fonarte Latino</a>
 | <a href="catalogo.php"  class="tipografia_pie">Cat&aacute;logo</a>
 | <a href="contacto.php" class="tipografia_pie">Contacto</a>
+| <a href="contacto.php" class="tipografia_pie">Firelink</a>
 <!--
 | <a href="#" class="tipografia_pie">Pol&iacute;ticas de Env&iacute;o</a>
 | <a href="#" class="tipografia_pie">Pagos Bancarios</a>-->

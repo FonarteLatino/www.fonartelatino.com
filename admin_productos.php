@@ -88,13 +88,16 @@ productos.id_fonarte,
 productos.artista,
 productos.album,
 productos.genero,
-
 productos.categoria,
 categoria.nombre AS cat_nombre,
 productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
 productos.ruta_img,
 productos.clave_precio,
 productos.fecha_alta,
@@ -190,6 +193,10 @@ $totalRows_Productos = mysql_num_rows($Productos);
    <td><i class="fa fa-apple fa-1x" aria-hidden="true"></i></td>
    <td><i class="fa fa-font fa-1x" aria-hidden="true"></i></td>  
    <td><i class="fa fa-google fa-1x" aria-hidden="true"></i></td>
+   <td><i class="fa fa-copyright fa-1x" aria-hidden="true"></i></td>
+   <td><i class="fa fa-youtube-play fa-1x" aria-hidden="true"></i></td>
+   <td><i class="fa fa-delicious fa-1x" aria-hidden="true"></i></td>
+   <td><i class="fa fa-tumblr fa-1x" aria-hidden="true"></i></td>
    <td>&nbsp;</td>
    <td>&nbsp;</td>
 </tr>
@@ -231,12 +238,28 @@ $totalRows_Productos = mysql_num_rows($Productos);
 	 //si tiene link de amazon, pone una palomita, de lo contrario no pone nada
 	 if($row_Productos['google']!=''){ $goo="<i class='fa fa-check' aria-hidden='true'></i>"; }
 	 else { $goo=''; }
+
+   if($row_Productos['claro']!=''){ $cla="<i class='fa fa-check' aria-hidden='true'></i>"; }
+   else { $cla=''; }
+
+   if($row_Productos['youtube']!=''){ $you="<i class='fa fa-check' aria-hidden='true'></i>"; }
+   else { $you=''; }
+
+   if($row_Productos['deezer']!=''){ $dee="<i class='fa fa-check' aria-hidden='true'></i>"; }
+   else { $dee=''; }
+
+   if($row_Productos['tidal']!=''){ $tid="<i class='fa fa-check' aria-hidden='true'></i>"; }
+   else { $tid=''; }
 	 
 	 ?>
      <td><?php echo $spo; ?></td>
      <td><?php echo $itu; ?></td>
      <td><?php echo $ama; ?></td>
      <td><?php echo $goo; ?></td>
+     <td><?php echo $cla; ?></td>
+     <td><?php echo $you; ?></td>
+     <td><?php echo $dee; ?></td>
+     <td><?php echo $tid; ?></td>
  
      <td  style="cursor:pointer"  onclick="window.open('admin_ver_producto.php?id_producto=<?php echo $row_Productos['id_tabla']; ?>','_blank')";><i class="fa fa-eye" aria-hidden="true"></i></td>
      

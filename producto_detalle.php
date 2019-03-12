@@ -270,10 +270,34 @@ if(!isset($_SESSION['CARRITO_TEMP']))
                     <?php
 				}
 				else
-				{
+				{   
+                    if (count(explode("?si=", $row_DetalleProducto['spotify'])) == 1) {
+                        
+                    
 					?>
                     <center><iframe src="<?php echo $row_DetalleProducto['spotify']; ?>" class="size_spoty"  frameborder="0" allowtransparency="true"></iframe></center>
                     <?php
+                    }
+                    else
+                    {
+                        $saux = explode("?si=", $row_DetalleProducto['spotify']);
+                        if (count(explode("/album/", $row_DetalleProducto['spotify'])) == 1) {
+                            $ssaux = explode("/track/", $saux[0]);
+                            $ssaux[1] = "track/".$ssaux[1];
+                            echo "<div class=\"row\">
+                                    <center><iframe src=\"https://open.spotify.com/embed/".$ssaux[1]."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\" ></iframe></center>
+                                </div>";
+                        }
+                        else{
+                            $ssaux = explode("/album/", $saux[0]);
+                            $ssaux[1] = "album/".$ssaux[1];
+
+                            echo "<div class=\"row\">
+                                    <center><iframe src=\"https://open.spotify.com/embed/".$ssaux[1]."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\" ></iframe></center>
+                                </div>";
+                        }
+                        
+                    }
 				}
 				?>
             	

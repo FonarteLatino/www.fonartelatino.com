@@ -1,0 +1,30 @@
+RewriteEngine on
+
+RewriteRule ^index?$ index.php
+
+RewriteRule ^otros?$ otros.php
+
+RewriteRule ^catalogo?$ catalogo.php
+
+RewriteRule ^fonarte_latino?$ fonarte_latino.php
+
+
+RewriteRule ^contacto?$ contacto.php
+
+RewriteRule ^panel-admin?$ login.php
+
+RewriteRule ^analytic?$ login.php
+
+
+
+RewriteRule ^producto_detalle/([0-9]+) producto_detalle.php?id_producto=$1
+
+RewriteRule ^producto_detalle_otro/([0-9]+) producto_detalle_otro.php?id_producto_otro=$1
+
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+ 
+
+
+

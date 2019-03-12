@@ -131,18 +131,25 @@ genero.nombre AS gen_nombre,
 productos.genero2,
 productos.genero3,
 productos.categoria,
+productos.play,
 categoria.nombre AS cat_nombre,
 productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
 productos.ruta_img,
 productos.ruta_img_2,
+productos.video,
 productos.descripcion,
 productos.clave_precio,
 productos.fecha_alta,
 productos.hora_alta,
 productos.estatus,
+productos.firelink,
 productos.prendido,
 precios.precio,
 precios.id
@@ -192,7 +199,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 		$ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-		$updateSQL = sprintf("UPDATE productos SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, album=%s, genero=%s, genero2=%s, genero3=%s, categoria=%s, spotify=%s, itunes=%s, amazon=%s, google=%s, ruta_img=%s, ruta_img_2=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s WHERE id=%s",
+		$updateSQL = sprintf("UPDATE productos SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, album=%s, genero=%s, genero2=%s, genero3=%s, categoria=%s, play=%s, spotify=%s, itunes=%s, amazon=%s, google=%s, claro=%s, youtube=%s, deezer=%s, tidal=%s, ruta_img=%s, ruta_img_2=%s, video=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s, firelink=%s WHERE id=%s",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -202,10 +209,16 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 	GetSQLValueString(utf8_decode($_POST['genero2']), "int"),
 	GetSQLValueString(utf8_decode($_POST['genero3']), "int"),
 	GetSQLValueString(utf8_decode($_POST['categoria']), "int"),
+  GetSQLValueString($_POST['play'], "text"),
 	GetSQLValueString($_POST['spotify'], "text"),
 	GetSQLValueString($_POST['itunes'], "text"),
 	GetSQLValueString($_POST['amazon'], "text"),
 	GetSQLValueString($_POST['google'], "text"),
+  GetSQLValueString($_POST['claro'], "text"),
+  GetSQLValueString($_POST['youtube'], "text"),
+  GetSQLValueString($_POST['deezer'], "text"),
+  GetSQLValueString($_POST['tidal'], "text"),
+  GetSQLValueString($_POST['video'], "text"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
 	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
@@ -213,6 +226,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 	GetSQLValueString($_POST['hora_alta'], "date"),
 	GetSQLValueString($_POST['prendido'], "int"),
 	GetSQLValueString($_POST['estatus'], "text"),
+  GetSQLValueString($_POST['firelink'], "text"),
 	GetSQLValueString($_POST['id'], "int"));
 	
 	mysql_select_db($database_conexion, $conexion);
@@ -493,6 +507,34 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
       <input type="text" name="google" class="form-control" id="" value="<?php echo $row_DetalleProducto['google']; ?>" >
     </div>
   </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Claro Music:</label>
+    <div class="col-sm-10">
+      <input type="text" name="claro" class="form-control" id="" value="<?php echo $row_DetalleProducto['claro']; ?>" >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">YouTube:</label>
+    <div class="col-sm-10">
+      <input type="text" name="youtube" class="form-control" id="" value="<?php echo $row_DetalleProducto['youtube']; ?>" >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Deezer:</label>
+    <div class="col-sm-10">
+      <input type="text" name="deezer" class="form-control" id="" value="<?php echo $row_DetalleProducto['deezer']; ?>" >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Tidal:</label>
+    <div class="col-sm-10">
+      <input type="text" name="tidal" class="form-control" id="" value="<?php echo $row_DetalleProducto['tidal']; ?>" >
+    </div>
+  </div>
   
   <div class="form-group">
     <label class="control-label col-sm-2" for="">Descripcion:</label>
@@ -515,6 +557,13 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
     <label class="control-label col-sm-2" for="">Imagen Secundaria:</label>
     <div class="col-sm-10">
       <input type="file" name="ruta_img_2" class="form-control" id="id_ruta_img_2" value="" >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Video:</label>
+    <div class="col-sm-10">
+      <input type="text" name="video" class="form-control" id="" value="<?php echo $row_DetalleProducto['video']; ?>" >
     </div>
   </div>
   
@@ -549,6 +598,78 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 			?>
            
         </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Activar player de Spotify:</label>
+    <div class="col-sm-10">
+      
+      <select class="form-control" id="" name="play">
+        <option value="<?php echo $row_DetalleProducto['play']; ?>"><?php echo $row_DetalleProducto['play']; ?></option>
+                <?php
+                  if($row_DetalleProducto['play']=='Si')
+                  {
+                    ?>
+                            <option value="No">No</option>
+                            
+                            <?php
+                  }
+                  else if($row_DetalleProducto['play']=='No')
+                  {
+                    ?>
+                            <option value="Si">Si</option>
+                            
+                            <?php
+                  }
+                  else
+                  {
+                  
+                ?>
+                  <option value="No">No</option>
+                  <option value="Si">Si</option>
+                            
+                            <?php
+                  }
+                 ?>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Activar Firelink:</label>
+    <div class="col-sm-10">
+      
+      <select class="form-control" id="" name="firelink">
+        <option value="<?php echo $row_DetalleProducto['firelink']; ?>"><?php echo $row_DetalleProducto['firelink']; ?></option>
+                <?php
+                  if($row_DetalleProducto['firelink']=='Si')
+                  {
+                    ?>
+                            <option value="No">No</option>
+                            
+                            <?php
+                  }
+                  else if($row_DetalleProducto['firelink']=='No')
+                  {
+                    ?>
+                            <option value="Si">Si</option>
+                            
+                            <?php
+                  }
+                  else
+                  {
+                  
+                ?>
+                  <option value="No">No</option>
+                  <option value="Si">Si</option>
+                            
+                            <?php
+                  }
+                 ?>
+                
+      </select>
     </div>
   </div>
   
