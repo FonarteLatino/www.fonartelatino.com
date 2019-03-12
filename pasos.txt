@@ -1,0 +1,4 @@
+1.- Crear la nueva BD en PHPMyAdmin
+2.- Cambiar el nombre de la base de datos en el archivo de conexion
+3.- Importar el archivo script_BD/proyectoeventos.sql
+
