@@ -62,6 +62,10 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
 productos.ruta_img,
 productos.ruta_img_2,
 productos.descripcion,
@@ -98,6 +102,10 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
 productos.ruta_img,
 productos.clave_precio,
 productos.fecha_alta,
@@ -338,6 +346,22 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 					{
 						?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_amazon.png" width="" height="" alt="amazon"></a></center></div><?php
 					}
+                    if($row_DetalleProducto['claro']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_claro.png" width="" height="" alt="amazon"></a></center></div><?php
+                    }
+                    if($row_DetalleProducto['youtube']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_amazon.png" width="" height="" alt="amazon"></a></center></div><?php
+                    }
+                    if($row_DetalleProducto['deezer']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_deezer.png" width="" height="" alt="amazon"></a></center></div><?php
+                    }
+                    if($row_DetalleProducto['tidal']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_tidal.png" width="" height="" alt="amazon"></a></center></div><?php
+                    }
 				?>           
                 </div>
                 <?php
