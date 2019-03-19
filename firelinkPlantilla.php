@@ -51,69 +51,45 @@ $query_DetalleProducto = "SELECT
 productos.id,
 productos.sku,
 productos.id_fonarte,
+productos.clave_precio,
 productos.artista,
 productos.album,
 productos.genero,
 genero.nombre AS gen_nombre,
 productos.categoria,
 categoria.nombre AS cat_nombre,
+productos.play,
 productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
 productos.ruta_img,
 productos.ruta_img_2,
+productos.video,
 productos.descripcion,
-productos.clave_precio,
 productos.fecha_alta,
 productos.hora_alta,
 productos.estatus,
 productos.prendido,
+productos.estatus,
+productos.firelink,
 precios.precio,
 precios.id
 FROM
 productos
 INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
-INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.id=".$id_producto;
+INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.estatus != \"INACTIVO\" and productos.firelink = \"Si\" and productos.id=".$id_producto;
 $DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
 $row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
-$totalRows_DetalleProducto = mysql_num_rows($DetalleProducto);
 
 
-/* ******************** inicio de te puede interesar *************************** */
-mysql_select_db($database_conexion, $conexion);
-$query_TePuedeInteresar = "SELECT
-productos.id as id_prod,
-productos.sku,
-productos.id_fonarte,
-productos.artista,
-productos.album,
-productos.genero,
-genero.nombre as gen_nombre,
-productos.categoria,
-categoria.nombre as cat_nombre,
-productos.spotify,
-productos.itunes,
-productos.amazon,
-productos.google,
-productos.ruta_img,
-productos.clave_precio,
-productos.fecha_alta,
-productos.hora_alta,
-productos.estatus,
-productos.prendido
-FROM
-productos
-INNER JOIN categoria ON categoria.id = productos.categoria
-INNER JOIN genero ON genero.id = productos.genero
-WHERE productos.prendido=1 and productos.genero=".$row_DetalleProducto['genero']."
-ORDER BY RAND()
-limit 7";
-$TePuedeInteresar = mysql_query($query_TePuedeInteresar, $conexion) or die(mysql_error());
-$row_TePuedeInteresar = mysql_fetch_assoc($TePuedeInteresar);
-$totalRows_TePuedeInteresar = mysql_num_rows($TePuedeInteresar);
-/* ******************** fin de te puede interesar *************************** */
+
+
 
 
 /* ******************** inicio de agrega al carrito *************************** */
@@ -131,13 +107,32 @@ $google = "";
 $claro = ""; 
 $amazon = "";
 $deezer = ""; 
+$tidal = "";
 $video = "";
 $play = 0;
+if (($row_DetalleProducto['estatus']) == "ACTIVO" || ($row_DetalleProducto['estatus']) == "DIGITAL") {
+    $tipo = 2;
+}
 
-if($row_DetalleProducto['ruta_img']==''){ $ruta_imagen=$ruta_absoluta."img/caratulas/muestra.jpg"; }
-else{ $ruta_imagen=$ruta_absoluta.$row_DetalleProducto['ruta_img']; }
+if ($tipo == 0) {
+    $ruta_imagen = "../img/artistas/";  
+} 
+elseif ($tipo == 1) {
+    $ruta_imagen = "../img/playlist/";
+}
+else
+{
+    if($row_DetalleProducto['ruta_img']==''){ $ruta_imagen=$ruta_absoluta."img/caratulas/muestra.jpg"; }
+
+    else{ $ruta_imagen=$ruta_absoluta.$row_DetalleProducto['ruta_img']; }
+}
+
+
+
 $nombreArtista = utf8_encode($row_DetalleProducto['artista']);
+
 $Album = utf8_encode($row_DetalleProducto['artista']);
+
 if($row_DetalleProducto['spotify']!='')
 {
   $spotify = $row_DetalleProducto['spotify']; 
@@ -148,24 +143,57 @@ if($row_DetalleProducto['estatus']!='DIGITAL')
   $fi = explode("fire", $_SERVER["REQUEST_URI"]);
   $fonarte = "https://www.fonartelatino.com/producto_detalle".$fi[1];
 } 
+else {$fonarte = "";}
 
 if($row_DetalleProducto['itunes']!='')//tiene link de itunes
 {
   $appleItunes = $row_DetalleProducto['itunes']; 
 }
-$youtube = ""; 
-if($row_DetalleProducto['google']!='')//tiene link de google
-{ 
+
+if($row_DetalleProducto['youtube']!='')//tiene link de itunes
+{
+  $youtube = $row_DetalleProducto['youtube']; 
+}
+
+if($row_DetalleProducto['google']!='')//tiene link de itunes
+{
   $google = $row_DetalleProducto['google']; 
 }
 
-$claro = ""; 
-if($row_DetalleProducto['amazon']!='')//tiene link de amazon
+if($row_DetalleProducto['claro']!='')//tiene link de itunes
 {
-  $amazon = $row_DetalleProducto['amazon'];
+  $claro = $row_DetalleProducto['claro']; 
 }
-$deezer = ""; 
-$video = "";
+
+if($row_DetalleProducto['amazon']!='')//tiene link de itunes
+{
+  $amazon = $row_DetalleProducto['amazon']; 
+}
+
+if($row_DetalleProducto['deezer']!='')//tiene link de itunes
+{
+  $deezer = $row_DetalleProducto['deezer']; 
+}
+
+if($row_DetalleProducto['tidal']!='')//tiene link de itunes
+{
+  $tidal = $row_DetalleProducto['tidal']; 
+}
+
+if($row_DetalleProducto['video']!='')//tiene link de itunes
+{
+  $video = $row_DetalleProducto['video']; 
+}
+
+if($row_DetalleProducto['play']!='')//tiene link de itunes
+{
+  if ($row_DetalleProducto['play']=='Si') {
+      $play = 1; 
+  }
+  else{
+      $play = 0; 
+  }
+}
 
 ?>
 <!DOCTYPE html>
@@ -385,7 +413,16 @@ $video = "";
                     <?php if ($deezer != "") {
                         echo "<div class=\"row div-img\">
                         <center><a class=\"img-btn redirect\" href=\"".$deezer."\" target=\"_blank\" data-player=\"deezer\" data-servicetype=\"play\" data-apptype=\"manual\">
-                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"../img/deezer.jpeg\" alt=\"deezer\"></span>
+                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/deezer.jpeg\" alt=\"deezer\"></span>
+                        
+                        </a></center>
+                    </div>";
+                    } ?>
+
+                    <?php if ($tidal != "") {
+                        echo "<div class=\"row div-img\">
+                        <center><a class=\"img-btn redirect\" href=\"".$tidal."\" target=\"_blank\" data-player=\"tidal\" data-servicetype=\"play\" data-apptype=\"manual\">
+                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/tidal.jpeg\" alt=\"tidal\"></span>
                         
                         </a></center>
                     </div>";
@@ -405,21 +442,24 @@ $video = "";
                           }
                           elseif ($tipo == 2) {
                             $saux = explode("?si=", $spotify);
-                            $ssaux = explode("/album/", $saux[0]);
-                            $ssaux[1] = "album/".$ssaux[1];
-                          }
-                          else
-                          {
-                            $saux = explode("?si=", $spotify);
-                            $ssaux = explode("/track/", $saux[0]);
-                            $ssaux[1] = "track/".$ssaux[1];
+                            if (count(explode("/album/", $spotify)) == 1) {
+                                $ssaux = explode("/track/", $saux[0]);
+                                $ssaux[1] = "track/".$ssaux[1];
+                                
+                            }
+                            else{
+                                $ssaux = explode("/album/", $saux[0]);
+                                $ssaux[1] = "album/".$ssaux[1];
+
+                                
+                            }
                           }
                         
                         
                         
                         
                         echo "<div class=\"row\">
-                                <center><iframe src=\"https://open.spotify.com/embed/".$ssaux[1]."\" width=\"250\" height=\"100\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe></center>
+                                <center><iframe src=\"https://open.spotify.com/embed/".$ssaux[1]."\" width=\"250\" height=\"243\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe></center>
                             </div>";
                     } ?>
                     <br>

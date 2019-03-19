@@ -43,7 +43,7 @@ if(isset($_GET['letra']))
 {
 	// paso 1/7 generas query
 	mysql_select_db($database_conexion, $conexion);
-	$query_ProductosPagination = "SELECT * FROM productos where prendido=1 and artista like '".$_GET['letra']."%'";
+	$query_ProductosPagination = "SELECT * FROM productos where firelink = \"Si\" and prendido=1 and artista like '".$_GET['letra']."%'";
 	$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
 	$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
 	$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
@@ -63,36 +63,21 @@ if(isset($_GET['letra']))
 	mysql_select_db($database_conexion, $conexion);
 	$query_Productos = "SELECT
 	productos.id,
-	productos.sku,
-	productos.id_fonarte,
 	productos.artista,
 	productos.album,
-	productos.genero,
-	genero.nombre as gen_nombre,
-	productos.categoria,
-	categoria.nombre as cat_nombre,
-	productos.spotify,
-	productos.itunes,
-	productos.amazon,
-	productos.google,
-	productos.ruta_img,
-	productos.clave_precio,
-	productos.fecha_alta,
-	productos.hora_alta,
-	productos.estatus,
-	productos.prendido
+	productos.ruta_img
 	FROM
 	productos
 	INNER JOIN categoria ON categoria.id = productos.categoria
 	INNER JOIN genero ON genero.id = productos.genero
-	WHERE productos.prendido=1 and artista like '".$_GET['letra']."%'
+	WHERE productos.firelink = \"Si\" and productos.prendido=1 and artista like '".$_GET['letra']."%'
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;
 	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
 	$row_Productos = mysql_fetch_assoc($Productos);
 	$totalRows_Productos = mysql_num_rows($Productos);
 }
-if(isset($_GET['categoria']) or $_GET['letra']==1)
+else if(!isset($_GET['categoria']) or $_GET['letra']==1)
 {
 	   if(!isset($_GET['categoria']))
        {
@@ -100,7 +85,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
        }
 		// paso 1/7 generas query
 		mysql_select_db($database_conexion, $conexion);
-		$query_ProductosPagination = "SELECT * FROM productos where categoria=".$_GET['categoria']." and prendido=1";
+		$query_ProductosPagination = "SELECT * FROM productos where firelink = \"Si\" and categoria=".$_GET['categoria']." and prendido=1";
 		$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
 		$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
 		$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
@@ -120,29 +105,14 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 	mysql_select_db($database_conexion, $conexion);
 	$query_Productos = "SELECT
 	productos.id,
-	productos.sku,
-	productos.id_fonarte,
 	productos.artista,
 	productos.album,
-	productos.genero,
-	genero.nombre as gen_nombre,
-	productos.categoria,
-	categoria.nombre as cat_nombre,
-	productos.spotify,
-	productos.itunes,
-	productos.amazon,
-	productos.google,
-	productos.ruta_img,
-	productos.clave_precio,
-	productos.fecha_alta,
-	productos.hora_alta,
-	productos.estatus,
-	productos.prendido
+	productos.ruta_img
 	FROM
 	productos
 	INNER JOIN categoria ON categoria.id = productos.categoria
 	INNER JOIN genero ON genero.id = productos.genero
-	WHERE productos.categoria=".$_GET['categoria']." and productos.prendido=1
+	WHERE productos.firelink = \"Si\" and productos.categoria=".$_GET['categoria']." and productos.prendido=1
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;  
 	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
@@ -207,12 +177,8 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 				else
 				{
 					//muestra categoria correspondiente
-					mysql_select_db($database_conexion, $conexion);
-					$query_CategoriaSub = "SELECT * FROM categoria WHERE id=".$_GET['categoria'];
-					$CategoriaSub = mysql_query($query_CategoriaSub, $conexion) or die(mysql_error());
-					$row_CategoriaSub = mysql_fetch_assoc($CategoriaSub);
-					$totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
-					?><p class="page-header">FireLink&nbsp;&nbsp;&nbsp;<small><i><?php echo $row_CategoriaSub['nombre']; ?></i></small></p><?php
+					
+					?><p class="page-header">FireLink&nbsp;&nbsp;&nbsp;<small><i></i></small></p><?php
 				}
 				
 				?>
@@ -282,7 +248,7 @@ do
 						
 	?>
     
-    <a href="fire/<?php echo $row_Productos['id'] ?>/<?php echo $url_seo_final; ?>"> <img class="img-responsive img-hover img-rounded" src="<?php echo $ruta_caratula; ?>"   alt="" ></a>
+    <a href="firelink/<?php echo $row_Productos['id'] ?>/<?php echo $url_seo_final; ?>"> <img class="img-responsive img-hover img-rounded" src="<?php echo $ruta_caratula; ?>"   alt="" ></a>
 	 <!--a href="producto_detalle.php?id_producto=<?php echo $row_Productos['id'] ?>&url=<?php echo $url_seo_final; ?>"> <img class="img-responsive img-hover img-rounded" src="<?php echo $ruta_caratula; ?>"   alt="" ></a-->
     	
     <!-- muestra la descripcion del producto -->

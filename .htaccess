@@ -16,6 +16,7 @@ RewriteRule ^panel-admin?$ login.php
 RewriteRule ^analytic?$ login.php
 
 
+RewriteRule ^firelink/([0-9]+) firelinkPlantilla.php?id_producto=$1
 
 RewriteRule ^producto_detalle/([0-9]+) producto_detalle.php?id_producto=$1
 
