@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
-     $tipo = 0;
+     $tipo = 2;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  
       } 
@@ -12,29 +12,23 @@
       {
         $ruta_imagen = "../img/caratulas/";
       }
-     $ruta_imagen = $ruta_imagen."losfolkloristas.jpg";
-     $nombreArtista = "Los Folkloristas";
-     $Album = "";
-     $description = "Los Folkloristas es una agrupación de músicos mexicanos, pioneros en su país en la difusión de la música tradicional latinoamericana. El grupo nació en la ciudad de México en 1966, con el objetivo de difundir la música folklórica y la nueva canción de México y Amèrica Latina.";
+     $ruta_imagen = $ruta_imagen."2017_10_30_11_44_25__7509841274685.jpg";
+     $nombreArtista = "Miguel Inzunza";
+     $Album = "Al Alcance de Los Peces";
+     $description = "";
      $fonarte = ""; 
-     $spotify = "https://open.spotify.com/artist/2iALv7pTGUwcobl2VPoJPU?si=zNScd705SAyqBe_a7ynDLg"; 
-     $appleItunes = ""; 
-     $youtube = ""; 
-     $google = ""; 
-     $claro = ""; 
-     $amazon = "";
-     $deezer = ""; 
+     $spotify = "https://open.spotify.com/album/3bHhVO90186yIcblBpuqA4?si=Tp33Fe_jRfi2kjR1JBNgjA"; 
+     $appleItunes = "https://itunes.apple.com/mx/album/al-alcance-de-los-peces/id1300334437"; 
+     $youtube = "https://music.youtube.com/playlist?list=OLAK5uy_lYsGL-CrLZHvdXhmmuoVL2j6JA5UeKud0"; 
+     $google = "https://play.google.com/store/music/album/Miguel_Inzunza_Al_Alcance_de_los_Peces?id=Biuglayjt5qpk4hp5tjmyvyetui"; 
+     $claro = "https://www.claromusica.com/album/3804753"; 
+     $amazon = "https://www.amazon.com/Alcance-los-Peces-Miguel-Inzunza/dp/B076VH6WHM/ref=sr_1_1?ie=UTF8&qid=1512411443&sr=8-1&keywords=miguel+inzunza+al+alcance";
+     $deezer = "https://www.deezer.com/album/50549242?utm_source=deezer&utm_content=album-50549242&utm_term=2582078102_1553015709&utm_medium=web"; 
+     $tidal = "https://tidal.com/album/80466940";
      $video = "";
-     $tidal = "";
      $play = 0?>
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TJHSKZK');</script>
-    <!-- End Google Tag Manager -->
+    
     <link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
     <meta charset="ISO-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -71,10 +65,7 @@
 </head>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJHSKZK"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    
     
     <div style="background: url(<?php echo $ruta_imagen; ?>); 
  
