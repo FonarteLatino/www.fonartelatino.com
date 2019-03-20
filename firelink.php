@@ -43,7 +43,7 @@ if(isset($_GET['letra']))
 {
 	// paso 1/7 generas query
 	mysql_select_db($database_conexion, $conexion);
-	$query_ProductosPagination = "SELECT * FROM productos where firelink = \"Si\" and prendido=1 and artista like '".$_GET['letra']."%'";
+	$query_ProductosPagination = "SELECT * FROM productos where categoria = 5 or firelink = \"Si\" and prendido=1 and artista like '".$_GET['letra']."%'";
 	$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
 	$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
 	$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
@@ -70,7 +70,7 @@ if(isset($_GET['letra']))
 	productos
 	INNER JOIN categoria ON categoria.id = productos.categoria
 	INNER JOIN genero ON genero.id = productos.genero
-	WHERE productos.firelink = \"Si\" and productos.prendido=1 and artista like '".$_GET['letra']."%'
+	WHERE productos.categoria = 5 or productos.firelink = \"Si\" and productos.prendido=1 and artista like '".$_GET['letra']."%'
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;
 	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
@@ -112,7 +112,7 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
 	productos
 	INNER JOIN categoria ON categoria.id = productos.categoria
 	INNER JOIN genero ON genero.id = productos.genero
-	WHERE productos.firelink = \"Si\" and productos.categoria=".$_GET['categoria']." and productos.prendido=1
+	WHERE productos.categoria = 5 or productos.firelink = \"Si\" and productos.categoria=".$_GET['categoria']." and productos.prendido=1
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;  
 	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());

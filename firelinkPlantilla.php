@@ -114,6 +114,10 @@ if (($row_DetalleProducto['estatus']) == "ACTIVO" || ($row_DetalleProducto['esta
     $tipo = 2;
 }
 
+if ($row_DetalleProducto['categoria'] == 5) {
+    $tipo = 1;
+}
+
 if ($tipo == 0) {
     $ruta_imagen = "../img/artistas/";  
 } 
@@ -460,18 +464,19 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                         
                         echo "<div class=\"row\">
                                 <center><iframe src=\"https://open.spotify.com/embed/".$ssaux[1]."\" width=\"250\" height=\"243\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe></center>
+                            </div> <br>";
+                    } ?>
+                   
+
+                    <?php if ($video != "") {
+                        $aux = explode("?v=", $video);
+                        
+                        echo "<div class=\"row\">
+                                <center><iframe width=\"250\" height=\"150\" src=\"https://www.youtube.com/embed/".$aux[1]."\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></center>
                             </div>";
                     } ?>
                     <br>
                 </div>
-                <br>
-                <?php if ($video != "") {
-                    $aux = explode("?v=", $video);
-                    
-                    echo "<div class=\"row\">
-                            <center><iframe width=\"250\" height=\"150\" src=\"https://www.youtube.com/embed/".$aux[1]."\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></center>
-                        </div>";
-                } ?>
                 
                 <div class="row" style="background-color: #000">
                    <div class="col-sm-6" style="color:#FFF; ">

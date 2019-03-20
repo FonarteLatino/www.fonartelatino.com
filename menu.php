@@ -208,7 +208,11 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
     <?php
         do
         {
+          if ($row_CategoriaSub['nombre'] != "Firelink") {
+            
+          
             ?><li><a href="<?php echo $ruta_absoluta; ?>catalogo.php?categoria=<?php echo $row_CategoriaSub['id']; ?>"><?php echo $row_CategoriaSub['nombre'];  ?></a></li><?php
+          }
         }while($row_CategoriaSub = mysql_fetch_assoc($CategoriaSub) );
     ?>
     
