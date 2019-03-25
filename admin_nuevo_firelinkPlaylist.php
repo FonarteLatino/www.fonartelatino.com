@@ -86,32 +86,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 
-mysql_select_db($database_conexion, $conexion);
-$query_Precios = "SELECT * FROM precios order by clave ASC";
-$Precios = mysql_query($query_Precios, $conexion) or die(mysql_error());
-$row_Precios = mysql_fetch_assoc($Precios);
-$totalRows_Precios = mysql_num_rows($Precios);
-
-mysql_select_db($database_conexion, $conexion);
-$query_Generos = "SELECT * FROM genero order by nombre ASC";
-$Generos = mysql_query($query_Generos, $conexion) or die(mysql_error());
-$row_Generos = mysql_fetch_assoc($Generos);
-$totalRows_Generos = mysql_num_rows($Generos);
 
 
-//muestra todas las categorias que no sean merchandisign 
-mysql_select_db($database_conexion, $conexion);
-$query_Categoria = "SELECT * FROM categoria WHERE id!=4  order by nombre ASC";
-$Categoria = mysql_query($query_Categoria, $conexion) or die(mysql_error());
-$row_Categoria = mysql_fetch_assoc($Categoria);
-$totalRows_Categoria = mysql_num_rows($Categoria);
 
-//muestra todas las categorias que no sean merchandisign  PARA EL SUBTITULO
-mysql_select_db($database_conexion, $conexion);
-$query_CategoriaSub = "SELECT * FROM categoria WHERE id!=4  order by nombre ASC";
-$CategoriaSub = mysql_query($query_CategoriaSub, $conexion) or die(mysql_error());
-$row_CategoriaSub = mysql_fetch_assoc($CategoriaSub);
-$totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
+
+
 
 
 if(isset($_POST['inserta']) and ($_POST['inserta']==1))
@@ -133,8 +112,8 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	/* si agrego imagen de portada, se la asigna a la variable*/
 	else
 	{
-		include_once("sube_foto_portada.php");
-		$ruta_img="img/caratulas/".$nuevo_nombre_ruta_img;//esta variable viene del archivo sube_foto_portada.php
+		include_once("sube_foto_portada_play.php");
+		$ruta_img="img/playlist/".$nuevo_nombre_ruta_img;//esta variable viene del archivo sube_foto_portada.php
 	}
 	
 	
@@ -146,11 +125,11 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	/* si agrego imagen secundaria, se la asigna a la variable*/
 	else
 	{
-		include_once("sube_foto_secundaria.php");
-		$ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
+		include_once("sube_foto_secundaria_play.php");
+		$ruta_img_2="img/playlist/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus, video, play, firelink) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, video, play, firelink, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -168,16 +147,16 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
   GetSQLValueString($_POST['youtube'], "text"),
   GetSQLValueString($_POST['deezer'], "text"),
   GetSQLValueString($_POST['tidal'], "text"),
+  GetSQLValueString($_POST['video'], "text"),
+  GetSQLValueString($_POST['play'], "text"),
+  GetSQLValueString($_POST['firelink'], "text"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
 	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
 	GetSQLValueString($_POST['fecha_alta'], "date"),
 	GetSQLValueString($_POST['hora_alta'], "date"),
 	GetSQLValueString($_POST['prendido'], "int"),
-	GetSQLValueString($_POST['estatus'], "text"),
-  GetSQLValueString($_POST['video'], "text"),
-  GetSQLValueString($_POST['play'], "text"),
-  GetSQLValueString($_POST['firelink'], "text"));
+	GetSQLValueString($_POST['estatus'], "text"));
 	
 	
 	mysql_select_db($database_conexion, $conexion);
@@ -232,12 +211,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header tipografia2"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Nuevo
-                    <small><?php 
-					do
-					{
-						echo " - ".$row_CategoriaSub['nombre'];
-					}while($row_CategoriaSub = mysql_fetch_assoc($CategoriaSub));
-					?></small>
+                    <small>Playlist</small>
             </div>
         </div>
         <!-- Fin de titulo de la pagina -->
@@ -252,125 +226,25 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
          <br>      
 
 <form class="form-horizontal tipografia_form_admin"  enctype="multipart/form-data"  method="post" action="" name="form1" >
-  
-
-
-<div class="form-group">
-	<!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">SKU:</label>
-    <div class="col-sm-4">
-    <input type="text" name="sku" class="form-control" id="" value=""  required>
-    </div>
-    <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">Clave:</label>
-    <div class="col-sm-4">
-    <input type="text" name="id_fonarte" class="form-control" id="" value=""  required>
-    </div>
-   
-</div>
-
-
-<div class="form-group">
- <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">Clave Precio:</label>
-    <div class="col-sm-4">
-    <select class="form-control"  name="clave_precio" id="sel1">
-    <?php
-    do {  
-    ?>
-    <option value="<?php echo $row_Precios['clave']?>"><?php echo $row_Precios['clave']." - $".$row_Precios['precio'].".00"?></option>
-    <?php
-    } while ($row_Precios = mysql_fetch_assoc($Precios));
-    $rows = mysql_num_rows($Precios);
-    if($rows > 0) {
-    mysql_data_seek($Precios, 0);
-    $row_Precios = mysql_fetch_assoc($Precios);
-    }
-    ?>
-    </select>
-    </div>
-	<!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">G&eacute;nero 1:</label>
-    <div class="col-sm-4">
-    <select class="form-control" id="sel1" name="genero">
-    <?php
-    do {  
-    ?>
-    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
-    <?php
-    } while ($row_Generos = mysql_fetch_assoc($Generos));
-    $rows = mysql_num_rows($Generos);
-    if($rows > 0) {
-    mysql_data_seek($Generos, 0);
-    $row_Generos = mysql_fetch_assoc($Generos);
-    }
-    ?>
-    </select>
-    </div>
-
-   
-</div>
-        
-
-
- 
-<div class="form-group">
- <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">G&eacute;nero 2:</label>
-    <div class="col-sm-4">
-    <select class="form-control" id="sel1" name="genero2">
-    <option value="49">Ninguno</option>
-    <?php
-    do {  
-    ?>
-    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
-    <?php
-    } while ($row_Generos = mysql_fetch_assoc($Generos));
-    $rows = mysql_num_rows($Generos);
-    if($rows > 0) {
-    mysql_data_seek($Generos, 0);
-    $row_Generos = mysql_fetch_assoc($Generos);
-    }
-    ?>
-    </select>
-    </div>
-
-    <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">G&eacute;nero 3:</label>
-    <div class="col-sm-4">
-    <select class="form-control" id="sel1" name="genero3">
-    <option value="49">Ninguno</option> 
-    <?php
-    do {  
-    ?>
-    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
-    <?php
-    } while ($row_Generos = mysql_fetch_assoc($Generos));
-    $rows = mysql_num_rows($Generos);
-    if($rows > 0) {
-    mysql_data_seek($Generos, 0);
-    $row_Generos = mysql_fetch_assoc($Generos);
-    }
-    ?>
-    </select>
-    </div>
-   
-  
-</div>
-  
-  
-  
+    
+<input type="hidden" name="sku" id="sku" value="1">
+<input type="hidden" name="id_fonarte" id="id_fonarte" value="1">
+<input type="hidden" name="clave_precio" id="clave_precio" value="CDDR">
+<input type="hidden" name="artista" id="artista" value="Playlist">
+<input type="hidden" name="genero" id="genero" value="49">
+<input type="hidden" name="genero2" id="genero2" value="49">
+<input type="hidden" name="genero3" id="genero3" value="49">
+<input type="hidden" name="categoria" id="categoria" value="5">
+<input type="hidden" name="descripcion" id="descripcion" value="Es Playlist">
+<input type="hidden" name="estatus" id="estatus" value="DIGITAL">
    
 <div class="form-group">
   <!-- *********************************************** -->
-      <label class="control-label col-sm-2" for="">Artista:</label>
-    <div class="col-sm-4">
-      <input type="text" name="artista" class="form-control" id="" value=""  required>
-    </div>
+    
     <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">Album:</label>
+    <label class="control-label col-sm-2" for="">Nombre Playlist:</label>
     <div class="col-sm-4">
-      <input type="text" name="album" class="form-control" id="" value="" required>
+      <input type="text" name="album" class="form-control" id="album" value="" required>
     </div>
    
 </div>
@@ -434,31 +308,6 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     
 </div>
 
-  <div class="form-group">
- <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="" >Categor&iacute;a:</label>
-    <div class="col-sm-4">
-    
-    <select class="form-control" id="id_categoria" name="categoria" >
-    <?php
-    do {  
-    ?><option value="<?php echo $row_Categoria['id']?>"><?php echo $row_Categoria['nombre']?></option><?php
-    } while ($row_Categoria = mysql_fetch_assoc($Categoria));
-    $rows = mysql_num_rows($Categoria);
-    if($rows > 0) 
-    {
-    mysql_data_seek($Categoria, 0);
-    $row_Categoria = mysql_fetch_assoc($Categoria);
-    }
-    ?>
-    </select>
-    </div>
-    <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">Descripci&oacute;n:</label>
-    <div class="col-sm-4">
-    <textarea class="form-control" rows="3" id="comment" name="descripcion" ></textarea>
-    </div>
-</div>
   
 
 
@@ -484,14 +333,8 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
       <input type="url" name="video" class="form-control" id="" value="" >
     </div>
     <!-- *********************************************** -->  
-    <label class="control-label col-sm-2" for="">Estatus:</label>
-    <div class="col-sm-4">
-        <select class="form-control" id="estatus" name="estatus">
-            <option value="ACTIVO">ACTIVO</option>
-            <option value="INACTIVO">INACTIVO</option>
-            <option value="DIGITAL">DIGITAL</option>
-        </select>
-    </div>
+    
+    
 
 </div>
 
@@ -505,29 +348,17 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
         </select>
     </div>
     <!-- *********************************************** -->  
-    <label class="control-label col-sm-2" for="">Activar Firelink:</label>
-    <div class="col-sm-4">
-        <select class="form-control" id="firelink" name="firelink">
-            <option value="No">No</option>
-            <option value="Si">Si</option>
-        </select>
-    </div>
+    <input type="hidden" name="firelink" id="firelink" value="Si">
+    
 
 </div>
 
-
   
+    <input type="hidden" name="fecha_alta" id="fecha_alta" value="<?php echo date("Y-m-d");  ?>" >
+    <input type="hidden" name="hora_alta" id="hora_alta" value="<?php echo date("H:i:s");  ?>" >
 
-
-
-
-  
-  
-    <input type="hidden" name="fecha_alta" value="<?php echo date("Y-m-d");  ?>" >
-    <input type="hidden" name="hora_alta" value="<?php echo date("H:i:s");  ?>" >
-
-    <input type="hidden" name="prendido" value="1" >
-    <input type="hidden" name="inserta" value="1" >
+    <input type="hidden" name="prendido" id="prendido" value="1" >
+    <input type="hidden" name="inserta" id="inserta" value="1" >
 
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
@@ -577,10 +408,3 @@ j.garcia.e1987@gmail.com
 </body>
 
 </html>
-<?php
-mysql_free_result($Precios);
-
-mysql_free_result($Generos);
-
-mysql_free_result($Categoria);
-?>

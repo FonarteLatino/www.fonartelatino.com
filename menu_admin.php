@@ -114,7 +114,10 @@ $totalRows_Merch = mysql_num_rows($Merch);
                         <a href="admin_nuevo_producto.php"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;<?php
 						do
 						{
-							echo $row_Categorias['nombre']." - ";
+							if ($row_Categorias['nombre'] != "Firelink") {
+                                
+                                echo $row_Categorias['nombre']." - ";
+                            }
 						}while($row_Categorias = mysql_fetch_assoc($Categorias));
 						 ?></a>
                     </li>
@@ -122,6 +125,10 @@ $totalRows_Merch = mysql_num_rows($Merch);
                   
                     <li>
                         <a href="admin_nuevo_otro.php"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;<?php echo $row_Merch['nombre']; ?></a>
+                    </li>
+
+                    <li>
+                        <a href="admin_nuevo_firelinkPlaylist.php"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Firelink Playlist</a>
                     </li>
 
                 </ul>
@@ -138,6 +145,9 @@ $totalRows_Merch = mysql_num_rows($Merch);
                     </li>
                     <li>
                     <a href="admin_productos_otros.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Lista <?php echo $row_Merch['nombre']; ?></a>
+                    </li>
+                    <li>
+                    <a href="admin_firelinkPlaylist.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Lista Playlist</a>
                     </li>
         
                 </ul>

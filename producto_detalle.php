@@ -62,6 +62,10 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
 productos.ruta_img,
 productos.ruta_img_2,
 productos.descripcion,
@@ -98,6 +102,10 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
 productos.ruta_img,
 productos.clave_precio,
 productos.fecha_alta,
@@ -322,22 +330,38 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 						//fin de genera URL SEO
 
 						
-						?><div class="col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle.php?add_carrito=1&id_producto=<?php echo $id_producto; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode($row_DetalleProducto['artista']); ?>&album=<?php echo utf8_encode($row_DetalleProducto['album']); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; border:#244e58; background-color:#244e58; color:#ffffff; font-size:11px;">Agregar al carrito</button></center></div> <?php
+						?><div class="col-xs-6 col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle.php?add_carrito=1&id_producto=<?php echo $id_producto; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode($row_DetalleProducto['artista']); ?>&album=<?php echo utf8_encode($row_DetalleProducto['album']); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; margin-left: -14px; border:#000000;   font-size:11px;"><img src="<?php echo $ruta_absoluta; ?>img/carrito.jpeg" width="100" height="31" alt="carrito"></button></center></div> <?php
 						
 					}
 					if($row_DetalleProducto['itunes']!='')//tiene link de itunes
 					{
-						?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['itunes'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_itunes.png" width="" height="" alt="itunes"></a></center></div>
+						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['itunes'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/apple-mini.jpeg" width="100" height="31" alt="itunes"></a></center></div>
 <?php
 					}
 					if($row_DetalleProducto['google']!='')//tiene link de google
 					{
-						?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['google'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_google.png" width="" height="" alt="google"></a></center></div>    <?php
+						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['google'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/google-mini.jpeg" width="100" height="31" alt="google"></a></center></div>    <?php
 					}
 					if($row_DetalleProducto['amazon']!='')//tiene link de amazon
 					{
-						?><div class="col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tienda_amazon.png" width="" height="" alt="amazon"></a></center></div><?php
+						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/amazon-mini.jpeg" width="100" height="31" alt="amazon"></a></center></div><?php
 					}
+                    if($row_DetalleProducto['claro']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['claro'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/claro-mini.jpeg" width="100" height="31" alt="claro"></a></center></div><?php
+                    }
+                    if($row_DetalleProducto['youtube']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['youtube'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/you-mini.jpeg" width="100" height="31" alt="youtube"></a></center></div><?php
+                    }
+                    if($row_DetalleProducto['deezer']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['deezer'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/deezer-mini.jpeg" width="100" height="31" alt="deezer"></a></center></div><?php
+                    }
+                    if($row_DetalleProducto['tidal']!='')//tiene link de amazon
+                    {
+                        ?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['tidal'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/tidal-mini.jpeg" width="100" height="31" alt="tidal"></a></center></div><?php
+                    }
 				?>           
                 </div>
                 <?php

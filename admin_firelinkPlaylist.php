@@ -111,7 +111,7 @@ productos
 LEFT JOIN categoria ON categoria.id = productos.categoria
 
 LEFT JOIN precios ON precios.clave = productos.clave_precio
-WHERE productos.prendido=1 and productos.categoria != 5
+WHERE productos.prendido=1 and productos.categoria = 5
 
 ";
 $Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
@@ -130,7 +130,7 @@ $totalRows_Productos = mysql_num_rows($Productos);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Fonarte Latino | Productos</title>
+    <title>Fonarte Latino | Playlist</title>
   
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

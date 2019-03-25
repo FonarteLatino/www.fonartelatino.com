@@ -16,11 +16,11 @@
 
 
 <p>
-<a href="index.php" class="tipografia_pie">Home </a>
-| <a href="fonarte_latino.php" class="tipografia_pie">Fonarte Latino</a>
-| <a href="catalogo.php"  class="tipografia_pie">Cat&aacute;logo</a>
-| <a href="contacto.php" class="tipografia_pie">Contacto</a>
-| <a href="contacto.php" class="tipografia_pie">Firelink</a>
+<a href="https://www.fonartelatino.com/index.php" class="tipografia_pie">Home </a>
+| <a href="https://www.fonartelatino.com/fonarte_latino.php" class="tipografia_pie">Fonarte Latino</a>
+| <a href="https://www.fonartelatino.com/catalogo.php"  class="tipografia_pie">Cat&aacute;logo</a>
+| <a href="https://www.fonartelatino.com/contacto.php" class="tipografia_pie">Contacto</a>
+| <a href="https://www.fonartelatino.com/firelink.php" class="tipografia_pie">Firelink</a>
 <!--
 | <a href="#" class="tipografia_pie">Pol&iacute;ticas de Env&iacute;o</a>
 | <a href="#" class="tipografia_pie">Pagos Bancarios</a>-->
