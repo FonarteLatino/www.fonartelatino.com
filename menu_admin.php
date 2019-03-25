@@ -146,6 +146,9 @@ $totalRows_Merch = mysql_num_rows($Merch);
                     <li>
                     <a href="admin_productos_otros.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Lista <?php echo $row_Merch['nombre']; ?></a>
                     </li>
+                    <li>
+                    <a href="admin_firelinkPlaylist.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Lista Playlist</a>
+                    </li>
         
                 </ul>
             </li>
