@@ -129,7 +129,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 		$ruta_img_2="img/playlist/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus, video, play, firelink) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, video, play, firelink, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -230,13 +230,13 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 <input type="hidden" name="sku" id="sku" value="1">
 <input type="hidden" name="id_fonarte" id="id_fonarte" value="1">
 <input type="hidden" name="clave_precio" id="clave_precio" value="CDDR">
-<input type="hidden" name="artista" id="artista" value="ninguno">
+<input type="hidden" name="artista" id="artista" value="Playlist">
 <input type="hidden" name="genero" id="genero" value="49">
 <input type="hidden" name="genero2" id="genero2" value="49">
 <input type="hidden" name="genero3" id="genero3" value="49">
 <input type="hidden" name="categoria" id="categoria" value="5">
 <input type="hidden" name="descripcion" id="descripcion" value="Es Playlist">
-<input type="hidden" name="estatus" id="estatus" value="INACTIVO">
+<input type="hidden" name="estatus" id="estatus" value="DIGITAL">
    
 <div class="form-group">
   <!-- *********************************************** -->
@@ -308,11 +308,6 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     
 </div>
 
-  <div class="form-group">
- 
-    <input type="hidden" name="categoria" id="id_categoria" value="5">
-    
-</div>
   
 
 

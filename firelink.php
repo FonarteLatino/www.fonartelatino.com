@@ -85,7 +85,7 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
        }
 		// paso 1/7 generas query
 		mysql_select_db($database_conexion, $conexion);
-		$query_ProductosPagination = "SELECT * FROM productos where firelink = \"Si\" and categoria=".$_GET['categoria']." and prendido=1";
+		$query_ProductosPagination = "SELECT * FROM productos where categoria = 5 or firelink = \"Si\" and categoria=".$_GET['categoria']." and prendido=1";
 		$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
 		$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
 		$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);

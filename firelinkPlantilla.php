@@ -118,24 +118,18 @@ if ($row_DetalleProducto['categoria'] == 5) {
     $tipo = 1;
 }
 
-if ($tipo == 0) {
-    $ruta_imagen = "../img/artistas/";  
-} 
-elseif ($tipo == 1) {
-    $ruta_imagen = "../img/playlist/";
-}
-else
-{
+
+
     if($row_DetalleProducto['ruta_img']==''){ $ruta_imagen=$ruta_absoluta."img/caratulas/muestra.jpg"; }
 
     else{ $ruta_imagen=$ruta_absoluta.$row_DetalleProducto['ruta_img']; }
-}
+
 
 
 
 $nombreArtista = utf8_encode($row_DetalleProducto['artista']);
 
-$Album = utf8_encode($row_DetalleProducto['artista']);
+$Album = utf8_encode($row_DetalleProducto['album']);
 
 if($row_DetalleProducto['spotify']!='')
 {
@@ -144,7 +138,7 @@ if($row_DetalleProducto['spotify']!='')
 
 if($row_DetalleProducto['estatus']!='DIGITAL')
 {
-  $fi = explode("fire", $_SERVER["REQUEST_URI"]);
+  $fi = explode("firelink", $_SERVER["REQUEST_URI"]);
   $fonarte = "https://www.fonartelatino.com/producto_detalle".$fi[1];
 } 
 else {$fonarte = "";}
@@ -212,9 +206,19 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <?php if ($tipo == 2) { ?>
     <title><?php echo utf8_encode($row_DetalleProducto['artista']); ?> | <?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
-  
+    <?php
+    }
+    else if ($tipo == 1) { 
+    ?>
+    <title><?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
+    <?php
+    }
+    else if ($tipo == 0) { 
+    ?>
+    <title><?php echo utf8_encode($row_DetalleProducto['artista']); ?> | Fonarte Latino</title>
+    <?php } ?>
     <link href="<?php echo $ruta_absoluta; ?>css/estilo.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo $ruta_absoluta; ?>css/bootstrap.min.css" rel="stylesheet">
@@ -232,7 +236,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i, 900" rel="stylesheet">
-<!-- <script>
+ <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -241,7 +245,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
       ga('create', 'UA-57590021-2', 'auto');
       ga('send', 'pageview');
 
-    </script> -->
+    </script>
 </head>
 
 <body  >
@@ -308,6 +312,13 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                                     <center><h4>".$nombreArtista."</h4></center>
                                     
                                 </div>
+                                <div class=\"col-xs-12 col-md-12\">
+                                    <center><img class=\"img-rounded\" width=\"270\" height=\"270\" class=\"img-responsive  \" src=".$ruta_imagen."></center>
+                                    <br>
+                                </div> ";
+                            }
+                            else if ($tipo == 1) {
+                               echo "
                                 <div class=\"col-xs-12 col-md-12\">
                                     <center><img class=\"img-rounded\" width=\"270\" height=\"270\" class=\"img-responsive  \" src=".$ruta_imagen."></center>
                                     <br>

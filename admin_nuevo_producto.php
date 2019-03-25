@@ -168,16 +168,16 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
   GetSQLValueString($_POST['youtube'], "text"),
   GetSQLValueString($_POST['deezer'], "text"),
   GetSQLValueString($_POST['tidal'], "text"),
-  GetSQLValueString($_POST['video'], "text"),
-  GetSQLValueString($_POST['play'], "text"),
-  GetSQLValueString($_POST['firelink'], "text"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
 	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
 	GetSQLValueString($_POST['fecha_alta'], "date"),
 	GetSQLValueString($_POST['hora_alta'], "date"),
 	GetSQLValueString($_POST['prendido'], "int"),
-	GetSQLValueString($_POST['estatus'], "text"));
+	GetSQLValueString($_POST['estatus'], "text"),
+  GetSQLValueString($_POST['video'], "text"),
+  GetSQLValueString($_POST['play'], "text"),
+  GetSQLValueString($_POST['firelink'], "text"));
 	
 	
 	mysql_select_db($database_conexion, $conexion);
