@@ -330,7 +330,7 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 						//fin de genera URL SEO
 
 						
-						?><div class="col-xs-6 col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle.php?add_carrito=1&id_producto=<?php echo $id_producto; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode($row_DetalleProducto['artista']); ?>&album=<?php echo utf8_encode($row_DetalleProducto['album']); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; margin-left: -14px; border:#000000;   font-size:11px;"><img src="<?php echo $ruta_absoluta; ?>img/carrito.jpeg" width="100" height="31" alt="carrito"></button></center></div> <?php
+						?><div class="col-xs-6 col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle.php?add_carrito=1&id_producto=<?php echo $id_producto; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode($row_DetalleProducto['artista']); ?>&album=<?php echo utf8_encode($row_DetalleProducto['album']); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; margin-left: -14px; background-color:transparent; border:#ffffff;   font-size:11px;"><img src="<?php echo $ruta_absoluta; ?>img/carrito.jpeg" width="100" height="31" alt="carrito"></button></center></div> <?php
 						
 					}
 					if($row_DetalleProducto['itunes']!='')//tiene link de itunes
