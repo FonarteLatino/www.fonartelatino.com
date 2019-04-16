@@ -29,13 +29,26 @@
      $play = 0?>
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <!--<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TJHSKZK');</script>
+    })(window,document,'script','dataLayer','GTM-TJHSKZK');</script> -->
     <!-- End Google Tag Manager -->
-    <link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
+
+     <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-57590021-2', 'auto');
+      ga('send', 'pageview');
+      ga('send', 'event', 'clic', 'enviar', 'firelink', 0);
+
+    </script>
+
+    <link rel="icon" type="image/png" href="https://www.fonartelatino.com/img/favicon.png" />
     <meta charset="ISO-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,23 +70,14 @@
         dataLayer = [];
     </script>
 
-   <!-- <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-57590021-2', 'auto');
-      ga('send', 'pageview');
-
-    </script> -->
+   
     
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJHSKZK"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJHSKZK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
     <!-- End Google Tag Manager (noscript) -->
     
     <div style="background: url(<?php echo $ruta_imagen; ?>); 
@@ -180,7 +184,7 @@
                     <br>
                     <?php if ($spotify != "") {
                         echo "<div class=\"row div-img\">
-                                <center><a class=\"img-btn redirect\" href=\"".$spotify."\" target=\"_blank\" data-player=\"spotify\" data-servicetype=\"play\" data-apptype=\"manual\">
+                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Spotify', 'LinkSpotify');\" class=\"img-btn redirect\" href=\"".$spotify."\" target=\"_blank\" data-player=\"spotify\" data-servicetype=\"play\" data-apptype=\"manual\">
                                 <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=../img/spoti.jpeg alt=\"spotify\"></span>
                                 
                                 </a></center>
