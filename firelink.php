@@ -43,7 +43,8 @@ if(isset($_GET['letra']))
 {
 	// paso 1/7 generas query
 	mysql_select_db($database_conexion, $conexion);
-	$query_ProductosPagination = "SELECT * FROM productos where categoria = 5 or firelink = \"Si\" and prendido=1 and artista like '".$_GET['letra']."%'";
+	$query_ProductosPagination = "SELECT * FROM productos where firelink = \"Si\" and prendido=1 and artista like '".$_GET['letra']."%' UNION SELECT * FROM productos where categoria = 5 and prendido=1 and album like '".$_GET['letra']."%'";
+
 	$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
 	$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
 	$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
@@ -61,7 +62,7 @@ if(isset($_GET['letra']))
 
 
 	mysql_select_db($database_conexion, $conexion);
-	$query_Productos = "SELECT
+	$query_Productos = "(SELECT
 	productos.id,
 	productos.artista,
 	productos.album,
@@ -70,9 +71,17 @@ if(isset($_GET['letra']))
 	productos
 	INNER JOIN categoria ON categoria.id = productos.categoria
 	INNER JOIN genero ON genero.id = productos.genero
-	WHERE productos.categoria = 5 or productos.firelink = \"Si\" and productos.prendido=1 and artista like '".$_GET['letra']."%'
+	WHERE productos.firelink = \"Si\" and productos.prendido=1 and artista like '".$_GET['letra']."%'
 	 ORDER BY `productos`.`artista` ASC
-	limit ".$inicio.",".$fin;
+	limit ".$inicio.",".$fin.") UNION (SELECT productos.id,
+	productos.artista,
+	productos.album,
+	productos.ruta_img
+	FROM
+	productos
+	INNER JOIN categoria ON categoria.id = productos.categoria
+	INNER JOIN genero ON genero.id = productos.genero where categoria = 5 and prendido=1 and album like '".$_GET['letra']."%' ORDER BY `productos`.`album` ASC limit ".$inicio.",".$fin.")";
+	
 	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
 	$row_Productos = mysql_fetch_assoc($Productos);
 	$totalRows_Productos = mysql_num_rows($Productos);
@@ -123,7 +132,7 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
  <?php include("alertas.php"); ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
  	<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />

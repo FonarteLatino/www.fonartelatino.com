@@ -195,7 +195,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 <link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />

@@ -153,7 +153,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
  <?php include("alertas.php"); ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
  	<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
