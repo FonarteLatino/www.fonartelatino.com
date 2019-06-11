@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/2019_02_12_12_16_06__7509841275842.jpeg";
+    <?php
+    header('Location: https://www.fonartelatino.com/firelink/1177/Liran_Roll-Teatro_Metrop%EF%BF%BDlitan_2018_(un_Vivo)');
+     $ruta_imagen = "../img/caratulas/2019_02_12_12_16_06__7509841275842.jpeg";
      $nombreArtista = "Liran Roll";
      $Album = "En vivo Teatro Metropolitan";
      $fonarte = ""; 

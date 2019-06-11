@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
+    header('Location: https://www.fonartelatino.com/firelink/315/Fernando_Delgadillo-Con_Cierto_aire_a_Ti');
      $tipo = 2;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  

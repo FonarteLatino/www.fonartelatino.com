@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/2017_05_26_11_09_52__7509841317702.jpg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/1017/Human_Drama-Broken_Songs_for_Broken_People');
+    $ruta_imagen = "../img/caratulas/2017_05_26_11_09_52__7509841317702.jpg";
      $nombreArtista = "Human Drama";
      $Album = "Broken Songs for Broken People";
      $fonarte = "https://www.fonartelatino.com/producto_detalle/1017/human_drama-broken_songs_for_broken_people"; 

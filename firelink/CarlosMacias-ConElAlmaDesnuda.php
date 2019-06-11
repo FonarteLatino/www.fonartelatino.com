@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
+    header('Location: https://www.fonartelatino.com/firelink/144/Carlos_Mac%EF%BF%BDas-Con_el_alma_Desnuda');
      $tipo = 2;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  

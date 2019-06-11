@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/CDDP-3027.jpg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/938/Violeta_Parra-Cantos_de_Chile');
+    $ruta_imagen = "../img/caratulas/CDDP-3027.jpg";
      $nombreArtista = "Violeta Parra";
      $Album = "Cantos de Chile";
      $fonarte = ""; 

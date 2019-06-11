@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
+    header('Location: https://www.fonartelatino.com/firelink/808/Santa_Sabina-XV_aniversario_en_Vivo_(2CD+DVD)');
      $tipo = 2;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  

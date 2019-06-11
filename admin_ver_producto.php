@@ -141,6 +141,8 @@ productos.claro,
 productos.youtube,
 productos.deezer,
 productos.tidal,
+productos.promo,
+productos.p,
 productos.ruta_img,
 productos.ruta_img_2,
 productos.descripcion,
@@ -199,7 +201,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 		$ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-		$updateSQL = sprintf("UPDATE productos SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, album=%s, genero=%s, genero2=%s, genero3=%s, categoria=%s, play=%s, spotify=%s, itunes=%s, amazon=%s, google=%s, claro=%s, youtube=%s, deezer=%s, tidal=%s, ruta_img=%s, ruta_img_2=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s, video=%s, firelink=%s WHERE id=%s",
+		$updateSQL = sprintf("UPDATE productos SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, album=%s, genero=%s, genero2=%s, genero3=%s, categoria=%s, play=%s, spotify=%s, itunes=%s, amazon=%s, google=%s, claro=%s, youtube=%s, deezer=%s, tidal=%s, promo=%s, p=%s, ruta_img=%s, ruta_img_2=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s, video=%s, firelink=%s WHERE id=%s",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -218,6 +220,8 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   GetSQLValueString($_POST['youtube'], "text"),
   GetSQLValueString($_POST['deezer'], "text"),
   GetSQLValueString($_POST['tidal'], "text"),
+  GetSQLValueString(utf8_decode($_POST['promo']), "text"),
+  GetSQLValueString(utf8_decode($_POST['p']), "text"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
 	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
@@ -672,9 +676,49 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
     </div>
   </div>
 
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Activar Promocional:</label>
+    <div class="col-sm-10">
+      
+      <select class="form-control" id="" name="p">
+        <option value="<?php echo $row_DetalleProducto['p']; ?>"><?php echo $row_DetalleProducto['p']; ?></option>
+                <?php
+                  if($row_DetalleProducto['p']=='Si')
+                  {
+                    ?>
+                            <option value="No">No</option>
+                            
+                            <?php
+                  }
+                  else if($row_DetalleProducto['p']=='No')
+                  {
+                    ?>
+                            <option value="Si">Si</option>
+                            
+                            <?php
+                  }
+                  else
+                  {
+                  
+                ?>
+                  <option value="No">No</option>
+                  <option value="Si">Si</option>
+                            
+                            <?php
+                  }
+                 ?>
+      </select>
+    </div>
+  </div>
+
 
   
-  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="">Promocional:</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" rows="5" id="promo" name="promo"><?php echo utf8_encode($row_DetalleProducto['promo']); ?></textarea>
+    </div>
+  </div>
    
   
   

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
+    header('Location: https://www.fonartelatino.com/firelink/1161/Susana_Zabaleta-Para_Darle_Cuerda_al_Mundo_(en_vivo)');
      $tipo = 2;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  

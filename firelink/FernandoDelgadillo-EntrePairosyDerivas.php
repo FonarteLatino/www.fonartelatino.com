@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
+    header('Location: https://www.fonartelatino.com/firelink/321/Fernando_Delgadillo-untre_Pairos_y_Derivas');
      $tipo = 2;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  

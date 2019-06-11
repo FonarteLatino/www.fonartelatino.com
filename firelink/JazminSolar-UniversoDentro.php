@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/CDDP-7310.jpg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/411/Jazm%EF%BF%BDn_Solar-Universo_Dentro');
+    $ruta_imagen = "../img/caratulas/CDDP-7310.jpg";
      $nombreArtista = "Jazmín Solar";
      $Album = "Universo Dentro";
      $fonarte = "https://www.fonartelatino.com/producto_detalle/411/jazmin_solar-universo_dentro"; 

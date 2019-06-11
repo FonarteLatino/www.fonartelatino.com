@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-    <?php $ruta_imagen = "../img/caratulas/2018_05_28_09_31_33__DVDF-5020%20web.jpg";
+    <?php 
+header('Location: https://www.fonartelatino.com/firelink/1045/Carlos_Mac%EF%BF%BDas-Mi_M%EF%BF%BDsica_(un_Vivo)_[Deluxe_udition]_(2CDs+DVD)');
+    $ruta_imagen = "../img/caratulas/2018_05_28_09_31_33__DVDF-5020%20web.jpg";
      $nombreArtista = "Carlos Macías";
      $Album = "Mi Música (En Vivo)";
      $fonarte = "https://www.fonartelatino.com/producto_detalle/1045/carlos_macias-mi_musica_(en_vivo)_[deluxe_edition]_(2cds+dvd)"; 

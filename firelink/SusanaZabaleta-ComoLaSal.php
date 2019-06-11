@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/2018_11_28_13_06_01__7509841275804.jpeg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/1167/Susana_Zabaleta-Como_La_Sal');
+    $ruta_imagen = "../img/caratulas/2018_11_28_13_06_01__7509841275804.jpeg";
      $nombreArtista = "Susana Zabaleta";
      $Album = "Como La Sal";
      $fonarte = ""; 

@@ -166,10 +166,10 @@ if(isset($_GET['add_carrito']) and ($_GET['add_carrito']==1))
 ?>
  <?php include("alertas.php"); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
+<link rel="icon" type="image/png" href="https://www.fonartelatino.com/img/favicon.png" />
 	<?php //include_once("estilos_producto_detalle.php"); 
 	
 	?>  
@@ -279,11 +279,26 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 				}
 				else
 				{   
+                    $saux="";
+                    $ssaux="";
+
                     if (count(explode("?si=", $row_DetalleProducto['spotify'])) == 1) {
+                        $a=explode("embed", $row_DetalleProducto['spotify']);
+                        
+                        if ((count($a[1])) == 0) {
+                             
+                            $b = str_replace("https://open.spotify.com", "https://open.spotify.com/embed", $row_DetalleProducto['spotify']);
+                            echo "<center><iframe src=\"".$b."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\"></iframe></center>";
+                         } 
+                         else
+                         {
+                            echo "<center><iframe src=\"".$row_DetalleProducto['spotify']."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\"></iframe></center>";
+                         }
                         
                     
 					?>
-                    <center><iframe src="<?php echo $row_DetalleProducto['spotify']; ?>" class="size_spoty"  frameborder="0" allowtransparency="true"></iframe></center>
+                    
+                    
                     <?php
                     }
                     else
@@ -291,18 +306,21 @@ if(!isset($_SESSION['CARRITO_TEMP']))
                         $saux = explode("?si=", $row_DetalleProducto['spotify']);
                         if (count(explode("/album/", $row_DetalleProducto['spotify'])) == 1) {
                             $ssaux = explode("/track/", $saux[0]);
-                            $ssaux[1] = "track/".$ssaux[1];
+                            $ssaux[1] = "https://open.spotify.com/embed/track/".$ssaux[1];
                             echo "<div class=\"row\">
-                                    <center><iframe src=\"https://open.spotify.com/embed/".$ssaux[1]."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\" ></iframe></center>
+                                    <center><iframe src=\"".$ssaux[1]."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\" ></iframe></center>
                                 </div>";
                         }
                         else{
                             $ssaux = explode("/album/", $saux[0]);
-                            $ssaux[1] = "album/".$ssaux[1];
-
+                            $ssaux[1] = "https://open.spotify.com/embed/album/".$ssaux[1];
+                            
                             echo "<div class=\"row\">
-                                    <center><iframe src=\"https://open.spotify.com/embed/".$ssaux[1]."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\" ></iframe></center>
-                                </div>";
+                                <center><iframe src=\"".$ssaux[1]."\" class=\"size_spoty\"  frameborder=\"0\" allowtransparency=\"true\" ></iframe></center>
+                            </div>";
+                                
+                            
+                            
                         }
                         
                     }

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/CDDR-4018.jpg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/65/amparo_ochoa-Por_Siempre_-_Lo_Mejor_de_amparo_ochoa_(Remastered)');
+     $ruta_imagen = "../img/caratulas/CDDR-4018.jpg";
      $nombreArtista = "Amparo Ochoa";
      $Album = "Por Siempre";
      $fonarte = "https://www.fonartelatino.com/producto_detalle/65/amparo_ochoa-por_siempre_-_lo_mejor_de_amparo_ochoa_(remastered)"; 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/CDFL-1720.jpg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/565/Los_M%EF%BF%BDsicos_de_Jos%EF%BF%BD-Dilo!_Homenaje_a_Perez_Prado');
+    $ruta_imagen = "../img/caratulas/CDFL-1720.jpg";
      $nombreArtista = "Los Músicos de José";
      $Album = "Dilo! Homenaje a Perez Prado";
      $fonarte = "https://www.fonartelatino.com/producto_detalle/565/los_musicos_de_jose-dilo!_homenaje_a_perez_prado"; 

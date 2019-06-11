@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/2018_05_24_09_00_28__7509841275286.jpg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/1112/Vanessa_aguilera-Cuando_Me_Besas_-_Single');
+    $ruta_imagen = "../img/caratulas/2018_05_24_09_00_28__7509841275286.jpg";
      $nombreArtista = "Vanessa Aguilera";
      $Album = "Cuando Me Besas - Single";
      $fonarte = ""; 

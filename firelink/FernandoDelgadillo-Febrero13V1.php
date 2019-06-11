@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <?php $ruta_imagen = "../img/caratulas/CDDP-1196.jpg";
+    <?php 
+    header('Location: https://www.fonartelatino.com/firelink/323/Fernando_Delgadillo-Febrero_13,_Vol._1');
+    $ruta_imagen = "../img/caratulas/CDDP-1196.jpg";
      $nombreArtista = "Fernando Delgadillo";
      $Album = "Febrero 13, Vol. 1";
      $fonarte = "https://www.fonartelatino.com/producto_detalle/323/fernando_delgadillo-febrero_13,_vol._1"; 

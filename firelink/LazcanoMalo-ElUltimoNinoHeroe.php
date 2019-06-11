@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
+    header('Location: https://www.fonartelatino.com/firelink/474/Lazcano_Malo-ul_%EF%BF%BDltimo_Ni%EF%BF%BDo_H%EF%BF%BDroe');
      $tipo = 2;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <?php
+    header('Location: https://www.fonartelatino.com/firelink/1180/Vanessa_aguilera-Debut_y_Despedida_-_Single');
      $tipo = 3;
       if ($tipo == 0) {
         $ruta_imagen = "../img/artistas/";  

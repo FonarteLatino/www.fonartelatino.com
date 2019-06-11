@@ -67,6 +67,8 @@ productos.claro,
 productos.youtube,
 productos.deezer,
 productos.tidal,
+productos.promo,
+productos.p,
 productos.ruta_img,
 productos.ruta_img_2,
 productos.video,
@@ -110,6 +112,8 @@ $deezer = "";
 $tidal = "";
 $video = "";
 $play = 0;
+$p = utf8_encode($row_DetalleProducto['p']);
+$promo = utf8_encode($row_DetalleProducto['promo']);
 if (($row_DetalleProducto['estatus']) == "ACTIVO" || ($row_DetalleProducto['estatus']) == "DIGITAL") {
     $tipo = 2;
 }
@@ -198,7 +202,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
 <html lang="es">
 
 <head>
-<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
+<link rel="icon" type="image/png" href="https://www.fonartelatino.com/img/favicon.png" />
   
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <meta charset="utf-8">
@@ -478,6 +482,21 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             </div> <br>";
                     } ?>
                    
+
+                    <?php if ($p != "" && $p != "No") {
+                        
+                        
+                        echo "<div class=\"row\" style=\"margin: 1px;\" align=\"justify\">
+                                <div class=\"col-xs-1\"></div>
+                                <div class=\"col-xs-10\">
+                                    <center>
+                                    <h4 style=\"color:#D9221E; line-height:100%; margin-top: 8px;\">".$promo."</h4>
+                                    </center>
+                                </div>
+                                <div class=\"col-xs-1\"></div>
+                            </div>
+                            <br>";
+                    } ?>
 
                     <?php if ($video != "") {
                         $aux = explode("?v=", $video);

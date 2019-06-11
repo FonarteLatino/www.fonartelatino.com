@@ -517,8 +517,22 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 
 
   
+<div class="form-group">
+<!-- *********************************************** -->
+     <label class="control-label col-sm-2" for="">Activar Promocional:</label>
+    <div class="col-sm-4">
+        <select class="form-control" id="p" name="p">
+            <option value="No">No</option>
+            <option value="Si">Si</option>
+        </select>
+    </div>
+    <!-- *********************************************** -->  
+    <label class="control-label col-sm-2" for="">Texto del promocional:</label>
+    <div class="col-sm-4">
+      <textarea class="form-control" rows="3" id="promo" name="promo" ></textarea>
+    </div>
 
-
+</div>
 
 
   
