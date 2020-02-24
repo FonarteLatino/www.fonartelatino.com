@@ -94,7 +94,7 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
-productos.claro,
+productos.amazon_mu,
 productos.youtube,
 productos.deezer,
 productos.tidal,
@@ -114,6 +114,39 @@ LEFT JOIN precios ON precios.clave = productos.clave_precio
 WHERE productos.prendido=1 and productos.categoria != 5
 
 ";
+/*$query_Productos = "SELECT
+productos.id as id_tabla,
+productos.sku,
+productos.id_fonarte,
+productos.artista,
+productos.album,
+productos.genero,
+productos.categoria,
+categoria.nombre AS cat_nombre,
+productos.spotify,
+productos.itunes,
+productos.amazon,
+productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
+productos.ruta_img,
+productos.clave_precio,
+productos.fecha_alta,
+productos.hora_alta,
+productos.estatus,
+productos.prendido,
+precios.precio,
+precios.id
+FROM
+productos
+LEFT JOIN categoria ON categoria.id = productos.categoria
+
+LEFT JOIN precios ON precios.clave = productos.clave_precio
+WHERE productos.prendido=1 and productos.categoria != 5
+
+";*/
 $Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
 $row_Productos = mysql_fetch_assoc($Productos);
 $totalRows_Productos = mysql_num_rows($Productos);
@@ -193,7 +226,8 @@ $totalRows_Productos = mysql_num_rows($Productos);
    <td><i class="fa fa-apple fa-1x" aria-hidden="true"></i></td>
    <td><i class="fa fa-font fa-1x" aria-hidden="true"></i></td>  
    <td><i class="fa fa-google fa-1x" aria-hidden="true"></i></td>
-   <td><i class="fa fa-copyright fa-1x" aria-hidden="true"></i></td>
+   <td><i class="fa fa-font fa-1x" aria-hidden="true"></i></td>
+   <!--td><i class="fa fa-copyright fa-1x" aria-hidden="true"></i></td-->
    <td><i class="fa fa-youtube-play fa-1x" aria-hidden="true"></i></td>
    <td><i class="fa fa-delicious fa-1x" aria-hidden="true"></i></td>
    <td><i class="fa fa-tumblr fa-1x" aria-hidden="true"></i></td>
@@ -239,7 +273,8 @@ $totalRows_Productos = mysql_num_rows($Productos);
 	 if($row_Productos['google']!=''){ $goo="<i class='fa fa-check' aria-hidden='true'></i>"; }
 	 else { $goo=''; }
 
-   if($row_Productos['claro']!=''){ $cla="<i class='fa fa-check' aria-hidden='true'></i>"; }
+   if($row_Productos['amazon_mu']!=''){ $cla="<i class='fa fa-check' aria-hidden='true'></i>"; }
+   //if($row_Productos['claro']!=''){ $cla="<i class='fa fa-check' aria-hidden='true'></i>"; }
    else { $cla=''; }
 
    if($row_Productos['youtube']!=''){ $you="<i class='fa fa-check' aria-hidden='true'></i>"; }
@@ -314,7 +349,8 @@ $totalRows_Productos = mysql_num_rows($Productos);
 Este codigo es propiedad de
 Lic. Javier Alfredo Garcia Espinoza
 j.garcia.e1987@gmail.com
-
+Modificado por: Allan Ulises Zepeda Ibarra
+balaju01@gmail.com
 */
 ?>
 </body>

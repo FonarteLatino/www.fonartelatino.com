@@ -137,7 +137,7 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
-productos.claro,
+productos.amazon_mu,
 productos.youtube,
 productos.deezer,
 productos.tidal,
@@ -160,6 +160,46 @@ productos
 LEFT JOIN categoria ON categoria.id = productos.categoria
 LEFT JOIN genero ON genero.id = productos.genero
 LEFT JOIN precios ON precios.clave = productos.clave_precio WHERE productos.id=".$_GET['id_producto'];
+/*$query_DetalleProducto = "SELECT
+productos.id as id_bd,
+productos.sku,
+productos.id_fonarte,
+productos.artista,
+productos.album,
+productos.genero,
+genero.nombre AS gen_nombre,
+productos.genero2,
+productos.genero3,
+productos.categoria,
+productos.play,
+categoria.nombre AS cat_nombre,
+productos.spotify,
+productos.itunes,
+productos.amazon,
+productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
+productos.promo,
+productos.p,
+productos.ruta_img,
+productos.ruta_img_2,
+productos.descripcion,
+productos.clave_precio,
+productos.fecha_alta,
+productos.hora_alta,
+productos.estatus,
+productos.video,
+productos.firelink,
+productos.prendido,
+precios.precio,
+precios.id
+FROM
+productos
+LEFT JOIN categoria ON categoria.id = productos.categoria
+LEFT JOIN genero ON genero.id = productos.genero
+LEFT JOIN precios ON precios.clave = productos.clave_precio WHERE productos.id=".$_GET['id_producto'];*/
 $DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
 $row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
 $totalRows_DetalleProducto = mysql_num_rows($DetalleProducto);
@@ -201,7 +241,38 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 		$ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-		$updateSQL = sprintf("UPDATE productos SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, album=%s, genero=%s, genero2=%s, genero3=%s, categoria=%s, play=%s, spotify=%s, itunes=%s, amazon=%s, google=%s, claro=%s, youtube=%s, deezer=%s, tidal=%s, promo=%s, p=%s, ruta_img=%s, ruta_img_2=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s, video=%s, firelink=%s WHERE id=%s",
+		$updateSQL = sprintf("UPDATE productos SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, album=%s, genero=%s, genero2=%s, genero3=%s, categoria=%s, play=%s, spotify=%s, itunes=%s, amazon=%s, google=%s, amazon_mu=%s, youtube=%s, deezer=%s, tidal=%s, promo=%s, p=%s, ruta_img=%s, ruta_img_2=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s, video=%s, firelink=%s WHERE id=%s",
+	GetSQLValueString($_POST['sku'], "text"),
+	GetSQLValueString($_POST['id_fonarte'], "text"),
+	GetSQLValueString($_POST['clave_precio'], "text"),
+	GetSQLValueString(utf8_decode($_POST['artista']), "text"),
+	GetSQLValueString(utf8_decode($_POST['album']), "text"),
+	GetSQLValueString(utf8_decode($_POST['genero']), "int"),
+	GetSQLValueString(utf8_decode($_POST['genero2']), "int"),
+	GetSQLValueString(utf8_decode($_POST['genero3']), "int"),
+	GetSQLValueString(utf8_decode($_POST['categoria']), "int"),
+  GetSQLValueString($_POST['play'], "text"),
+	GetSQLValueString($_POST['spotify'], "text"),
+	GetSQLValueString($_POST['itunes'], "text"),
+	GetSQLValueString($_POST['amazon'], "text"),
+	GetSQLValueString($_POST['google'], "text"),
+  GetSQLValueString($_POST['amazon_mu'], "text"),
+  GetSQLValueString($_POST['youtube'], "text"),
+  GetSQLValueString($_POST['deezer'], "text"),
+  GetSQLValueString($_POST['tidal'], "text"),
+  GetSQLValueString(utf8_decode($_POST['promo']), "text"),
+  GetSQLValueString(utf8_decode($_POST['p']), "text"),
+	GetSQLValueString($ruta_img, "text"),
+	GetSQLValueString($ruta_img_2, "text"),
+	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
+	GetSQLValueString($_POST['fecha_alta'], "date"),
+	GetSQLValueString($_POST['hora_alta'], "date"),
+	GetSQLValueString($_POST['prendido'], "int"),
+	GetSQLValueString($_POST['estatus'], "text"),
+  GetSQLValueString($_POST['video'], "text"),
+  GetSQLValueString($_POST['firelink'], "text"),
+	GetSQLValueString($_POST['id'], "int"));
+    /*$updateSQL = sprintf("UPDATE productos SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, album=%s, genero=%s, genero2=%s, genero3=%s, categoria=%s, play=%s, spotify=%s, itunes=%s, amazon=%s, google=%s, claro=%s, youtube=%s, deezer=%s, tidal=%s, promo=%s, p=%s, ruta_img=%s, ruta_img_2=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s, video=%s, firelink=%s WHERE id=%s",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -231,7 +302,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 	GetSQLValueString($_POST['estatus'], "text"),
   GetSQLValueString($_POST['video'], "text"),
   GetSQLValueString($_POST['firelink'], "text"),
-	GetSQLValueString($_POST['id'], "int"));
+	GetSQLValueString($_POST['id'], "int"));*/
 	
 	mysql_select_db($database_conexion, $conexion);
 	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
@@ -513,9 +584,9 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   </div>
 
   <div class="form-group">
-    <label class="control-label col-sm-2" for="">Claro Music:</label>
+    <label class="control-label col-sm-2" for="">Amazon Music:</label>
     <div class="col-sm-10">
-      <input type="text" name="claro" class="form-control" id="" value="<?php echo $row_DetalleProducto['claro']; ?>" >
+      <input type="text" name="amazon_mu" class="form-control" id="" value="<?php echo $row_DetalleProducto['amazon_mu']; ?>" >
     </div>
   </div>
 

@@ -63,7 +63,7 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
-productos.claro,
+productos.amazon_mu,
 productos.youtube,
 productos.deezer,
 productos.tidal,
@@ -86,6 +86,45 @@ productos
 INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
 INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.estatus != \"INACTIVO\" and productos.firelink = \"Si\" and productos.id=".$id_producto;
+/*$query_DetalleProducto = "SELECT
+productos.id,
+productos.sku,
+productos.id_fonarte,
+productos.clave_precio,
+productos.artista,
+productos.album,
+productos.genero,
+genero.nombre AS gen_nombre,
+productos.categoria,
+categoria.nombre AS cat_nombre,
+productos.play,
+productos.spotify,
+productos.itunes,
+productos.amazon,
+productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
+productos.promo,
+productos.p,
+productos.ruta_img,
+productos.ruta_img_2,
+productos.video,
+productos.descripcion,
+productos.fecha_alta,
+productos.hora_alta,
+productos.estatus,
+productos.prendido,
+productos.estatus,
+productos.firelink,
+precios.precio,
+precios.id
+FROM
+productos
+INNER JOIN categoria ON categoria.id = productos.categoria
+INNER JOIN genero ON genero.id = productos.genero
+INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.estatus != \"INACTIVO\" and productos.firelink = \"Si\" and productos.id=".$id_producto;*/
 $DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
 $row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
 
@@ -106,7 +145,8 @@ $spotify = "";
 $appleItunes = ""; 
 $youtube = "";
 $google = ""; 
-$claro = ""; 
+$amazon_mu = ""; 
+//$claro = ""; 
 $amazon = "";
 $deezer = ""; 
 $tidal = "";
@@ -162,10 +202,14 @@ if($row_DetalleProducto['google']!='')//tiene link de itunes
   $google = $row_DetalleProducto['google']; 
 }
 
-if($row_DetalleProducto['claro']!='')//tiene link de itunes
+if($row_DetalleProducto['amazon_mu']!='')//tiene link de itunes
 {
-  $claro = $row_DetalleProducto['claro']; 
+  $amazon_mu = $row_DetalleProducto['amazon_mu']; 
 }
+//if($row_DetalleProducto['claro']!='')//tiene link de itunes
+//{
+  //$claro = $row_DetalleProducto['claro']; 
+//}
 
 if($row_DetalleProducto['amazon']!='')//tiene link de itunes
 {
@@ -377,13 +421,22 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                                 </a></center>
                             </div>";
                     } ?>
+
+                    <?php if ($youtube != "") {
+                        echo "<div class=\"row div-img\">
+                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'YouTube', 'LinkYouTube');\" class=\"img-btn redirect\" href=\"".$youtube."\" target=\"_blank\" data-player=\"youtube\" data-servicetype=\"play\" data-apptype=\"manual\">
+                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/you.jpeg\" alt=\"youtube\"></span>
+                                
+                                </a></center>
+                            </div>";
+                    } ?>
                     
                     <?php if ($appleItunes != "") {
-                        echo "<div class=\"row div-img\">
+                        /*echo "<div class=\"row div-img\">
                                 <center><a onclick=\"ga('send', 'event', 'Firelink', 'Itunes', 'LinkItunes');\" class=\"img-btn redirect\" href=\"".$appleItunes."?app=itunes\" target=\"_blank\" data-player=\"itunes\" data-servicetype=\"play\" data-apptype=\"manual\">
                                     <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/itunes.jpeg\" alt=\"itunes\"></span>
                                 </a></center>
-                            </div>";
+                            </div>";*/
                    
                         echo "<div class=\"row div-img\">
                                 <center><a onclick=\"ga('send', 'event', 'Firelink', 'Apple', 'LinkApple');\" class=\"img-btn redirect\" href=\"".$appleItunes."\" target=\"_blank\" data-player=\"applemusic\" data-servicetype=\"play\" data-apptype=\"manual\">
@@ -393,14 +446,6 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             </div>";
                     } ?>
                     
-                    <?php if ($youtube != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'YouTube', 'LinkYouTube');\" class=\"img-btn redirect\" href=\"".$youtube."\" target=\"_blank\" data-player=\"youtube\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/you.jpeg\" alt=\"youtube\"></span>
-                                
-                                </a></center>
-                            </div>";
-                    } ?>
                     
                     <?php if ($google != "") {
                         echo "<div class=\"row div-img\">
@@ -411,14 +456,22 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             </div>";
                     } ?>
                     
-                    <?php if ($claro != "") {
+                    <?php if ($amazon_mu != "") {
+                        echo "<div class=\"row div-img\">
+                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Amazon_music', 'LinkAmazon_Music');\" class=\"img-btn redirect\" href=\"".$amazon_mu."\" target=\"_blank\" data-player=\"amazonmmusic\" data-servicetype=\"play\" data-apptype=\"manual\">
+                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/amazon_mu.jpeg\" alt=\"amazonmmusic\"></span>
+                                
+                                </a></center>
+                            </div>";
+                    } 
+                    /*if ($claro != "") {
                         echo "<div class=\"row div-img\">
                                 <center><a onclick=\"ga('send', 'event', 'Firelink', 'Claro', 'LinkClaro');\" class=\"img-btn redirect\" href=\"".$claro."\" target=\"_blank\" data-player=\"claromusic\" data-servicetype=\"play\" data-apptype=\"manual\">
                                 <span><img class=\"img img-rounded\" width=\"250\" height=\"63\" src=\"".$ruta_absoluta."img/claro.jpeg\" alt=\"claromusic\"></span>
                                 
                                 </a></center>
                             </div>";
-                    } ?>
+                    } */?>
                     
                     <?php if ($amazon != "") {
                         echo "<div class=\"row div-img\">

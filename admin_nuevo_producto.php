@@ -150,7 +150,35 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 		$ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus, video, play, firelink) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, amazon_mu, youtube, deezer, tidal, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus, video, play, firelink) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+	GetSQLValueString($_POST['sku'], "text"),
+	GetSQLValueString($_POST['id_fonarte'], "text"),
+	GetSQLValueString($_POST['clave_precio'], "text"),
+	GetSQLValueString(utf8_decode($_POST['artista']), "text"),
+	GetSQLValueString(utf8_decode($_POST['album']), "text"),
+	GetSQLValueString(utf8_decode($_POST['genero']), "text"),
+	GetSQLValueString(utf8_decode($_POST['genero2']), "text"),
+	GetSQLValueString(utf8_decode($_POST['genero3']), "text"),
+	GetSQLValueString($_POST['categoria'], "int"),
+	GetSQLValueString($_POST['spotify'], "text"),
+	GetSQLValueString($_POST['itunes'], "text"),
+	GetSQLValueString($_POST['amazon'], "text"),
+	GetSQLValueString($_POST['google'], "text"),
+  GetSQLValueString($_POST['amazon_mu'], "text"),
+  GetSQLValueString($_POST['youtube'], "text"),
+  GetSQLValueString($_POST['deezer'], "text"),
+  GetSQLValueString($_POST['tidal'], "text"),
+	GetSQLValueString($ruta_img, "text"),
+	GetSQLValueString($ruta_img_2, "text"),
+	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
+	GetSQLValueString($_POST['fecha_alta'], "date"),
+	GetSQLValueString($_POST['hora_alta'], "date"),
+	GetSQLValueString($_POST['prendido'], "int"),
+	GetSQLValueString($_POST['estatus'], "text"),
+  GetSQLValueString($_POST['video'], "text"),
+  GetSQLValueString($_POST['play'], "text"),
+  GetSQLValueString($_POST['firelink'], "text"));
+  /*$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus, video, play, firelink) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -177,7 +205,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	GetSQLValueString($_POST['estatus'], "text"),
   GetSQLValueString($_POST['video'], "text"),
   GetSQLValueString($_POST['play'], "text"),
-  GetSQLValueString($_POST['firelink'], "text"));
+  GetSQLValueString($_POST['firelink'], "text"));*/
 	
 	
 	mysql_select_db($database_conexion, $conexion);
@@ -408,9 +436,9 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 
 <div class="form-group">
  <!-- *********************************************** -->
-    <label class="control-label col-sm-2" for="">Claro Music:</label>
+    <label class="control-label col-sm-2" for="">Amazon Music:</label>
     <div class="col-sm-4">
-    <input type="url" name="claro" class="form-control" id="" value="" >
+    <input type="url" name="amazon_mu" class="form-control" id="" value="" >
     </div>
     <!-- *********************************************** -->
     <label class="control-label col-sm-2" for="">YouTube:</label>

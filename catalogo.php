@@ -156,7 +156,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 <html lang="es">
 
 <head>
- 	<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
+ 	<link rel="icon" type="image/png" href="https://www.fonartelatino.com/img/favicon.png" />
     <meta charset="ISO-8859-1" />
 
 
@@ -273,7 +273,7 @@ do
 
 	$url=$row_Productos['artista']."-".$row_Productos['album'];//une las dos con un guion medio
 	
-	$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
+	$para_buscar = " AÃ€ÃÃ‚ÃƒÃ„Ã…Ã Ã¡Ã¢Ã£Ã¤Ã¥OÃ’Ã“Ã”Ã•Ã–Ã˜Ã²Ã³Ã´ÃµÃ¶Ã¸EÃˆÃ‰ÃŠÃ‹Ã¨Ã©ÃªÃ«Ã‡Ã§IÃŒÃÃŽÃÃ¬Ã­Ã®Ã¯UÃ™ÃšÃ›ÃœÃ¹ÃºÃ»Ã¼Ã¿Ã‘Ã±BCDFGHJKLMNPQRSTVWXYZ";
 	$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 	$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 	

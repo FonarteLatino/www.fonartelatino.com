@@ -3,13 +3,13 @@
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
 # HTTP="true"
-/**/
+/*
 $hostname_conexion = "localhost";
-$database_conexion = "fonartecommerce";
+$database_conexion = "fonarte_v2";
 $username_conexion = "root";
-$password_conexion = "";
+$password_conexion = "123";
 $conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysql_error(),E_USER_ERROR); 
-
+*/
 
 # SERVIDOR DE PRUBA
 # FileName="Connection_php_mysql.htm"
@@ -22,7 +22,7 @@ $username_conexion = "usrfonartebjf1nk";
 $password_conexion = "NZojmHb8QyBJf1nk";
 $conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysql_error(),E_USER_ERROR); 
 
-
+*/
 
 
 
@@ -38,4 +38,4 @@ $password_conexion = "NZojmHb8QyBJf1nk";
 $conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysql_error(),E_USER_ERROR); 
 
 
-?> */
+?> 

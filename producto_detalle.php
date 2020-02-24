@@ -62,7 +62,7 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
-productos.claro,
+productos.amazon_mu,
 productos.youtube,
 productos.deezer,
 productos.tidal,
@@ -81,6 +81,39 @@ productos
 INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
 INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.id=".$id_producto;
+/*$query_DetalleProducto = "SELECT
+productos.id,
+productos.sku,
+productos.id_fonarte,
+productos.artista,
+productos.album,
+productos.genero,
+genero.nombre AS gen_nombre,
+productos.categoria,
+categoria.nombre AS cat_nombre,
+productos.spotify,
+productos.itunes,
+productos.amazon,
+productos.google,
+productos.claro,
+productos.youtube,
+productos.deezer,
+productos.tidal,
+productos.ruta_img,
+productos.ruta_img_2,
+productos.descripcion,
+productos.clave_precio,
+productos.fecha_alta,
+productos.hora_alta,
+productos.estatus,
+productos.prendido,
+precios.precio,
+precios.id
+FROM
+productos
+INNER JOIN categoria ON categoria.id = productos.categoria
+INNER JOIN genero ON genero.id = productos.genero
+INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.id=".$id_producto;*/
 $DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
 $row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
 $totalRows_DetalleProducto = mysql_num_rows($DetalleProducto);
@@ -89,6 +122,37 @@ $totalRows_DetalleProducto = mysql_num_rows($DetalleProducto);
 /* ******************** inicio de te puede interesar *************************** */
 mysql_select_db($database_conexion, $conexion);
 $query_TePuedeInteresar = "SELECT
+productos.id as id_prod,
+productos.sku,
+productos.id_fonarte,
+productos.artista,
+productos.album,
+productos.genero,
+genero.nombre as gen_nombre,
+productos.categoria,
+categoria.nombre as cat_nombre,
+productos.spotify,
+productos.itunes,
+productos.amazon,
+productos.google,
+productos.amazon_mu,
+productos.youtube,
+productos.deezer,
+productos.tidal,
+productos.ruta_img,
+productos.clave_precio,
+productos.fecha_alta,
+productos.hora_alta,
+productos.estatus,
+productos.prendido
+FROM
+productos
+INNER JOIN categoria ON categoria.id = productos.categoria
+INNER JOIN genero ON genero.id = productos.genero
+WHERE productos.prendido=1 and productos.genero=".$row_DetalleProducto['genero']."
+ORDER BY RAND()
+limit 7";
+/*$query_TePuedeInteresar = "SELECT
 productos.id as id_prod,
 productos.sku,
 productos.id_fonarte,
@@ -118,7 +182,7 @@ INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
 WHERE productos.prendido=1 and productos.genero=".$row_DetalleProducto['genero']."
 ORDER BY RAND()
-limit 7";
+limit 7";*/
 $TePuedeInteresar = mysql_query($query_TePuedeInteresar, $conexion) or die(mysql_error());
 $row_TePuedeInteresar = mysql_fetch_assoc($TePuedeInteresar);
 $totalRows_TePuedeInteresar = mysql_num_rows($TePuedeInteresar);
@@ -341,7 +405,7 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 
 						$url=$row_DetalleProducto['artista']."-".$row_DetalleProducto['album'];//une las dos con un guion medio
 						
-						$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
+						$para_buscar = " AÃ€ÃÃ‚ÃƒÃ„Ã…Ã Ã¡Ã¢Ã£Ã¤Ã¥OÃ’Ã“Ã”Ã•Ã–Ã˜Ã²Ã³Ã´ÃµÃ¶Ã¸EÃˆÃ‰ÃŠÃ‹Ã¨Ã©ÃªÃ«Ã‡Ã§IÃŒÃÃŽÃÃ¬Ã­Ã®Ã¯UÃ™ÃšÃ›ÃœÃ¹ÃºÃ»Ã¼Ã¿Ã‘Ã±BCDFGHJKLMNPQRSTVWXYZ";
 						$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 						$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 						
@@ -362,11 +426,12 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 					}
 					if($row_DetalleProducto['amazon']!='')//tiene link de amazon
 					{
-						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/amazon-mini.jpeg" width="100" height="31" alt="amazon"></a></center></div><?php
+						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/amazon-mini.png" width="100" height="31" alt="amazon"></a></center></div><?php
 					}
-                    if($row_DetalleProducto['claro']!='')//tiene link de amazon
+                    if($row_DetalleProducto['amazon_mu']!='')//tiene link de amazon
                     {
-                        ?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['claro'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/claro-mini.jpeg" width="100" height="31" alt="claro"></a></center></div><?php
+                        ?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['amazon_mu'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/amazon_mu-mini.png" width="100" height="31" alt="amazon_mu"></a></center></div>
+                        <!--<div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['claro'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/claro-mini.jpeg" width="100" height="31" alt="claro"></a></center></div>--><?php
                     }
                     if($row_DetalleProducto['youtube']!='')//tiene link de amazon
                     {
@@ -445,7 +510,7 @@ do
 
 	$url=$row_TePuedeInteresar['artista']."-".$row_TePuedeInteresar['album'];//une las dos con un guion medio
 	
-	$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
+	$para_buscar = " AÃ€ÃÃ‚ÃƒÃ„Ã…Ã Ã¡Ã¢Ã£Ã¤Ã¥OÃ’Ã“Ã”Ã•Ã–Ã˜Ã²Ã³Ã´ÃµÃ¶Ã¸EÃˆÃ‰ÃŠÃ‹Ã¨Ã©ÃªÃ«Ã‡Ã§IÃŒÃÃŽÃÃ¬Ã­Ã®Ã¯UÃ™ÃšÃ›ÃœÃ¹ÃºÃ»Ã¼Ã¿Ã‘Ã±BCDFGHJKLMNPQRSTVWXYZ";
 	$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 	$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 	
