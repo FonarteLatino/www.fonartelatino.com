@@ -265,7 +265,7 @@ $totalRows_endetalle = mysql_num_rows($endetalle);
 
 </div>
 
-<!-- Left and right controls -->
+<!-- Left and right controls 
 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 <span class="sr-only">Previous</span>
@@ -273,7 +273,7 @@ $totalRows_endetalle = mysql_num_rows($endetalle);
 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 <span class="sr-only">Next</span>
-</a>
+</a> -->
 </div>
    <!-- =============================== fin de slider =================================== -->    
         
@@ -286,7 +286,7 @@ $totalRows_endetalle = mysql_num_rows($endetalle);
                <!-- Inicio 212121212121212121212121212121212121212121212121212121212121 -->
  
  
- <!-- ====================== inicio de botones ====================== -->              
+ <!-- ====================== inicio de botones ======================             
 <div class="container size_contenedor_botones">
 <center>
 <div class="row">
@@ -297,7 +297,7 @@ $totalRows_endetalle = mysql_num_rows($endetalle);
 </div>
 </center>
 </div>  
-   <!-- ====================== fin de botones ====================== -->  
+    ====================== fin de botones ====================== -->  
    
    
    

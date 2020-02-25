@@ -99,12 +99,12 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
 
 <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation" style="background-color: #ffffff;border-color: #ffffff;">
 <!-- **************************** inicio de redes sociales FRANJA NEGRA********************** -->
-<div class="container" style="background-color:#000; width:100%;">
+<div class="container" >
 
     <div class="row espacio_redessociales">
         
         <div class="col-sm-6 tipografia2" style="color:#FFF; ">
-       <p style="text-align:left; color:#000000;"><span class="glyphicon glyphicon-th-large"></span></p>
+       
         
            <?php
 		   
@@ -136,14 +136,14 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
 		?>
 
             
-            
+         <!--   
              
           <a href="https://twitter.com/Fonarte" target="new"  style="color:#FFF"><span class="fa fa-twitter fa-1x"></span></a>
             &nbsp;&nbsp;<a href="https://www.instagram.com/fonarte/" target="new"  style="color:#FFF"><span class="fa fa-instagram fa-1x"></span></a>
             
             &nbsp;&nbsp;<a href="https://www.youtube.com/user/fonartelatino" target="new"  style="color:#FFF"><span class="fa fa-youtube fa-1x"></span></a>
             
-            &nbsp;&nbsp;<a href="https://www.facebook.com/Fonarte/" target="new"  style="color:#FFF"><span class="fa fa-facebook fa-1x"></span></a>   
+            &nbsp;&nbsp;<a href="https://www.facebook.com/Fonarte/" target="new"  style="color:#FFF"><span class="fa fa-facebook fa-1x"></span></a>   -->
             
             
         </div>
