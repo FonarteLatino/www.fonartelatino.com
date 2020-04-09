@@ -32,7 +32,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 /*=============================== INICIO DE LANZAMIENTOS ===========================*/
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion, $database_conexion);
 $query_lanzamientos = "SELECT
 productos.id,
 productos.sku,
@@ -63,9 +63,9 @@ INNER JOIN lanzamientos ON productos.id = lanzamientos.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$lanzamientos = mysql_query($query_lanzamientos, $conexion) or die(mysql_error());
-$row_lanzamientos = mysql_fetch_assoc($lanzamientos);
-$totalRows_lanzamientos = mysql_num_rows($lanzamientos);
+$lanzamientos = mysqli_query($conexion, $query_lanzamientos) or die(mysql_error());
+$row_lanzamientos = mysqli_fetch_assoc($lanzamientos);
+$totalRows_lanzamientos = mysqli_num_rows($lanzamientos);
 /*=============================== FIN DE LANZAMIENTOS ===========================*/
 
 
