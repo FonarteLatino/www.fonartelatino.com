@@ -15,7 +15,7 @@ $conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_con
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
 # HTTP="true"
-/*
+/*.
 $hostname_conexion = "mysql.axiscom.com.mx";
 $database_conexion = "fonarte_v2";
 $username_conexion = "usrfonartebjf1nk";
