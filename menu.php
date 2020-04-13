@@ -51,20 +51,20 @@ $totalRows_Generos = mysql_num_rows($Generos);
 //SI EXISTE LA SESION TEMPORAL
 if(isset($_SESSION['CARRITO_TEMP']))
 {
-	mysql_select_db($database_conexion, $conexion);
-	$query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['CARRITO_TEMP'];
-	$Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-	$row_Carrito = mysql_fetch_assoc($Carrito);
-	$totalRows_Carrito = mysql_num_rows($Carrito);
+  mysql_select_db($database_conexion, $conexion);
+  $query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['CARRITO_TEMP'];
+  $Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
+  $row_Carrito = mysql_fetch_assoc($Carrito);
+  $totalRows_Carrito = mysql_num_rows($Carrito);
 }
 //SI EXISTE LA SESION DEL USUARIO(AL CREARSE ESTA, SE ELIMINA LA TEMPORAL)
 if(isset($_SESSION['USUARIO_ECOMMERCE']))
 {
-	mysql_select_db($database_conexion, $conexion);
-	$query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-	$Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-	$row_Carrito = mysql_fetch_assoc($Carrito);
-	$totalRows_Carrito = mysql_num_rows($Carrito);
+  mysql_select_db($database_conexion, $conexion);
+  $query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
+  $Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
+  $row_Carrito = mysql_fetch_assoc($Carrito);
+  $totalRows_Carrito = mysql_num_rows($Carrito);
 }
 
 
@@ -99,21 +99,21 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
 
 <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation" style="background-color: #ffffff;border-color: #ffffff;">
 <!-- **************************** inicio de redes sociales FRANJA NEGRA********************** -->
-<div class="container" >
+<div class="container" style="background-color:#000; width:100%;">
 
     <div class="row espacio_redessociales">
         
         <div class="col-sm-6 tipografia2" style="color:#FFF; ">
-       
+       <p style="text-align:left; color:#000000;"><span class="glyphicon glyphicon-th-large"></span></p>
         
            <?php
-		   
-		   if(isset($_SESSION['USUARIO_ECOMMERCE']))
-			{
-				//echo "Bienvenido: ".$_SESSION['USUARIO_ECOMMERCE']['nombre'];
-			}
-		   
-		   ?>
+       
+       if(isset($_SESSION['USUARIO_ECOMMERCE']))
+      {
+        //echo "Bienvenido: ".$_SESSION['USUARIO_ECOMMERCE']['nombre'];
+      }
+       
+       ?>
         
         </div>
         
@@ -124,26 +124,26 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
             <!--a href=""  class="tipografia" style="color:#ffffff;"> Mi cuenta </a>
             <span class="glyphicon glyphicon-shopping-cart fa-1x" aria-hidden="true"></span-->
              <?php
-		if(isset($_SESSION['CARRITO_TEMP']) or isset($_SESSION['USUARIO_ECOMMERCE']))
-		{
-			?><a href="<?php echo $ruta_absoluta; ?>carrito.php"  class="tipografia" style="color:#ffffff;"><span class="glyphicon glyphicon-shopping-cart fa-1x" aria-hidden="true"></span> <?php echo "(".$totalRows_Carrito.")" ?></a><?php
-			
-			
+    if(isset($_SESSION['CARRITO_TEMP']) or isset($_SESSION['USUARIO_ECOMMERCE']))
+    {
+      ?><a href="<?php echo $ruta_absoluta; ?>carrito.php"  class="tipografia" style="color:#ffffff;"><span class="glyphicon glyphicon-shopping-cart fa-1x" aria-hidden="true"></span> <?php echo "(".$totalRows_Carrito.")" ?></a><?php
+      
+      
 
-		}
+    }
 
-		
-		?>
+    
+    ?>
 
             
-         <!--   
+            
              
           <a href="https://twitter.com/Fonarte" target="new"  style="color:#FFF"><span class="fa fa-twitter fa-1x"></span></a>
             &nbsp;&nbsp;<a href="https://www.instagram.com/fonarte/" target="new"  style="color:#FFF"><span class="fa fa-instagram fa-1x"></span></a>
             
             &nbsp;&nbsp;<a href="https://www.youtube.com/user/fonartelatino" target="new"  style="color:#FFF"><span class="fa fa-youtube fa-1x"></span></a>
             
-            &nbsp;&nbsp;<a href="https://www.facebook.com/Fonarte/" target="new"  style="color:#FFF"><span class="fa fa-facebook fa-1x"></span></a>   -->
+            &nbsp;&nbsp;<a href="https://www.facebook.com/Fonarte/" target="new"  style="color:#FFF"><span class="fa fa-facebook fa-1x"></span></a>   
             
             
         </div>
@@ -164,7 +164,7 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="" href="<?php echo $ruta_absoluta; ?>index"><img src="<?php echo $ruta_absoluta; ?>img/fonarte-logo.png" width="95" height="80" alt="fonarte" /></a>
+            <a class="" href="<?php echo $ruta_absoluta; ?>index"><img src="<?php echo $ruta_absoluta; ?>img/fonarte-logo.png" width="70" height="70" alt="fonarte" /></a>
             <!--a class="navbar-brand" href="index.php">Fonartelatino</a-->
         </div>
         
@@ -245,7 +245,7 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
              
                 
 <li>
-	<a href="<?php echo $ruta_absoluta; ?>contacto"  class="tipografia_menu">CONTACTO</a>
+  <a href="<?php echo $ruta_absoluta; ?>contacto"  class="tipografia_menu">CONTACTO</a>
 </li>
 
                     
@@ -255,7 +255,7 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
     <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
 </li>           
-				
+        
         
                
                 
@@ -278,7 +278,7 @@ $totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
                 
                 
                 
-              	
+                
                 
 
                <!-- fin de  USUARIO-->
