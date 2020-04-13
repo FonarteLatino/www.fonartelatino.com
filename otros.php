@@ -37,11 +37,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 // paso 1/7 generas query
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_QueryPaginacion = "SELECT * FROM productos_otros where prendido=1";
-$QueryPaginacion = mysql_query($query_QueryPaginacion, $conexion) or die(mysql_error());
-$row_QueryPaginacion = mysql_fetch_assoc($QueryPaginacion);
-$totalRows_QueryPaginacion = mysql_num_rows($QueryPaginacion);
+$QueryPaginacion = mysqli_query($conexion,$query_QueryPaginacion) or die(mysql_error());
+$row_QueryPaginacion = mysqli_fetch_assoc($QueryPaginacion);
+$totalRows_QueryPaginacion = mysqli_num_rows($QueryPaginacion);
 // paso 2/7 asignas cuatos resultados se veran por pagina
 $resultados=12;
 //paso 3/7 creamos una instancia del objeto Zebra_Pagination
@@ -54,7 +54,7 @@ $inicio=(($paginacion->get_page()-1)*$resultados);
 $fin=$resultados;
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Otros = "SELECT
 productos_otros.id,
 productos_otros.sku,
@@ -80,9 +80,9 @@ INNER JOIN cat_otros ON productos_otros.tipo = cat_otros.id
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 
 where productos_otros.prendido=1 limit ".$inicio.",".$fin;
-$Otros = mysql_query($query_Otros, $conexion) or die(mysql_error());
-$row_Otros = mysql_fetch_assoc($Otros);
-$totalRows_Otros = mysql_num_rows($Otros);
+$Otros = mysqli_query($conexion,$query_Otros) or die(mysql_error());
+$row_Otros = mysqli_fetch_assoc($Otros);
+$totalRows_Otros = mysqli_num_rows($Otros);
 ?>
  <?php include("alertas.php"); ?>
 <!DOCTYPE html>
@@ -197,7 +197,7 @@ do
 
 
 <?php	
-}while($row_Otros = mysql_fetch_assoc($Otros));
+}while($row_Otros = mysqli_fetch_assoc($Otros));
 
 ?>
 </div>

@@ -46,7 +46,7 @@ $id_producto=$_GET['id_producto'];
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DetalleProducto = "SELECT
 productos.id,
 productos.sku,
@@ -125,8 +125,8 @@ productos
 INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
 INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.estatus != \"INACTIVO\" and productos.firelink = \"Si\" and productos.id=".$id_producto;*/
-$DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
-$row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
+$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysql_error());
+$row_DetalleProducto = mysqli_fetch_assoc($DetalleProducto);
 
 
 

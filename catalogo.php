@@ -42,11 +42,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 if(isset($_GET['letra']))
 {
 	// paso 1/7 generas query
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosPagination = "SELECT * FROM productos where prendido=1 and artista like '".$_GET['letra']."%'";
-	$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
-	$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
-	$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
+	$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+	$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
+	$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 	// paso 2/7 asignas cuatos resultados se veran por pagina
 	$resultados=30;
 	//paso 3/7 creamos una instancia del objeto Zebra_Pagination
@@ -60,7 +60,7 @@ if(isset($_GET['letra']))
 
 
 
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Productos = "SELECT
 	productos.id,
 	productos.sku,
@@ -88,9 +88,9 @@ if(isset($_GET['letra']))
 	WHERE productos.prendido=1 and artista like '".$_GET['letra']."%'
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;
-	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
-	$row_Productos = mysql_fetch_assoc($Productos);
-	$totalRows_Productos = mysql_num_rows($Productos);
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$row_Productos = mysqli_fetch_assoc($Productos);
+	$totalRows_Productos = mysqli_num_rows($Productos);
 }
 if(isset($_GET['categoria']) or $_GET['letra']==1)
 {
@@ -99,11 +99,11 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
             $_GET['categoria']=1;
        }
 		// paso 1/7 generas query
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_ProductosPagination = "SELECT * FROM productos where categoria=".$_GET['categoria']." and prendido=1";
-		$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
-		$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
-		$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
+		$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+		$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
+		$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 		// paso 2/7 asignas cuatos resultados se veran por pagina
 		$resultados=30;
 		//paso 3/7 creamos una instancia del objeto Zebra_Pagination
@@ -117,7 +117,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 
 
 
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Productos = "SELECT
 	productos.id,
 	productos.sku,
@@ -145,9 +145,9 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 	WHERE productos.categoria=".$_GET['categoria']." and productos.prendido=1
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;  
-	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
-	$row_Productos = mysql_fetch_assoc($Productos);
-	$totalRows_Productos = mysql_num_rows($Productos);
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$row_Productos = mysqli_fetch_assoc($Productos);
+	$totalRows_Productos = mysqli_num_rows($Productos);
 }
 ?>
  <?php include("alertas.php"); ?>
@@ -207,11 +207,11 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 				else
 				{
 					//muestra categoria correspondiente
-					mysql_select_db($database_conexion, $conexion);
+					mysqli_select_db($conexion,$database_conexion);
 					$query_CategoriaSub = "SELECT * FROM categoria WHERE id=".$_GET['categoria'];
-					$CategoriaSub = mysql_query($query_CategoriaSub, $conexion) or die(mysql_error());
-					$row_CategoriaSub = mysql_fetch_assoc($CategoriaSub);
-					$totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
+					$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysql_error());
+					$row_CategoriaSub = mysqli_fetch_assoc($CategoriaSub);
+					$totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 					?><p class="page-header">C&aacute;talogo&nbsp;&nbsp;<small><i><?php echo $row_CategoriaSub['nombre']; ?></i></small></p><?php
 				}
 				
@@ -296,7 +296,7 @@ do
 
 
 <?php	
-}while($row_Productos = mysql_fetch_assoc($Productos));
+}while($row_Productos = mysqli_fetch_assoc($Productos));
 
 ?>
 </div>

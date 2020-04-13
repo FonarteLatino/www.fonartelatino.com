@@ -42,12 +42,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 if(isset($_GET['letra']))
 {
 	// paso 1/7 generas query
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosPagination = "SELECT * FROM productos where firelink = \"Si\" and prendido=1 and artista like '".$_GET['letra']."%' UNION SELECT * FROM productos where categoria = 5 and prendido=1 and album like '".$_GET['letra']."%'";
 
-	$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
-	$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
-	$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
+	$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+	$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
+	$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 	// paso 2/7 asignas cuatos resultados se veran por pagina
 	$resultados=30;
 	//paso 3/7 creamos una instancia del objeto Zebra_Pagination
@@ -61,7 +61,7 @@ if(isset($_GET['letra']))
 
 
 
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Productos = "(SELECT
 	productos.id,
 	productos.artista,
@@ -82,9 +82,9 @@ if(isset($_GET['letra']))
 	INNER JOIN categoria ON categoria.id = productos.categoria
 	INNER JOIN genero ON genero.id = productos.genero where categoria = 5 and prendido=1 and album like '".$_GET['letra']."%' ORDER BY `productos`.`album` ASC limit ".$inicio.",".$fin.")";
 	
-	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
-	$row_Productos = mysql_fetch_assoc($Productos);
-	$totalRows_Productos = mysql_num_rows($Productos);
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$row_Productos = mysqli_fetch_assoc($Productos);
+	$totalRows_Productos = mysqli_num_rows($Productos);
 }
 else if(!isset($_GET['categoria']) or $_GET['letra']==1)
 {
@@ -93,11 +93,11 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
             $_GET['categoria']=1;
        }
 		// paso 1/7 generas query
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_ProductosPagination = "SELECT * FROM productos where categoria = 5 or firelink = \"Si\" and categoria=".$_GET['categoria']." and prendido=1";
-		$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
-		$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
-		$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
+		$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+		$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
+		$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 		// paso 2/7 asignas cuatos resultados se veran por pagina
 		$resultados=30;
 		//paso 3/7 creamos una instancia del objeto Zebra_Pagination
@@ -111,7 +111,7 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
 
 
 
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Productos = "SELECT
 	productos.id,
 	productos.artista,
@@ -124,9 +124,9 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
 	WHERE productos.categoria = 5 or productos.firelink = \"Si\" and productos.categoria=".$_GET['categoria']." and productos.prendido=1
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;  
-	$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
-	$row_Productos = mysql_fetch_assoc($Productos);
-	$totalRows_Productos = mysql_num_rows($Productos);
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$row_Productos = mysqli_fetch_assoc($Productos);
+	$totalRows_Productos = mysqli_num_rows($Productos);
 }
 ?>
  <?php include("alertas.php"); ?>
@@ -271,7 +271,7 @@ do
 
 
 <?php	
-}while($row_Productos = mysql_fetch_assoc($Productos));
+}while($row_Productos = mysqli_fetch_assoc($Productos));
 
 ?>
 </div>
@@ -326,5 +326,5 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($Productos);
+mysqli_free_result($Productos);
 ?>

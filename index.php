@@ -70,7 +70,7 @@ $totalRows_lanzamientos = mysqli_num_rows($lanzamientos);
 
 
 /*=============================== INICIO DE NOVEDADES ===========================*/
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion, $database_conexion);
 $query_novedades = "SELECT
 productos.id,
 productos.sku,
@@ -101,13 +101,13 @@ INNER JOIN novedades ON productos.id = novedades.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$novedades = mysql_query($query_novedades, $conexion) or die(mysql_error());
-$row_novedades = mysql_fetch_assoc($novedades);
-$totalRows_novedades = mysql_num_rows($novedades);
+$novedades = mysqli_query($conexion, $query_novedades) or die(mysql_error());
+$row_novedades = mysqli_fetch_assoc($novedades);
+$totalRows_novedades = mysqli_num_rows($novedades);
 /*=============================== FIN DE NOVEDADES ===========================*/
 
 /*=============================== INICIO DE DISCO DE LA SEMANA ===========================*/
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion, $database_conexion);
 $query_disco_semana = "SELECT
 productos.id,
 productos.sku,
@@ -138,13 +138,13 @@ INNER JOIN d_semana ON productos.id = d_semana.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$disco_semana = mysql_query($query_disco_semana, $conexion) or die(mysql_error());
-$row_disco_semana = mysql_fetch_assoc($disco_semana);
-$totalRows_disco_semana = mysql_num_rows($disco_semana);
+$disco_semana = mysqli_query($conexion,$query_disco_semana) or die(mysql_error());
+$row_disco_semana = mysqli_fetch_assoc($disco_semana);
+$totalRows_disco_semana = mysqli_num_rows($disco_semana);
 /*=============================== FIN DE DISCO DE LA SEMANA ===========================*/
 
 /*=============================== INICIO DE EN DETALLE ===========================*/
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion, $database_conexion);
 $query_endetalle = "SELECT
 productos.id,
 productos.sku,
@@ -175,9 +175,9 @@ INNER JOIN en_detalle ON productos.id = en_detalle.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$endetalle = mysql_query($query_endetalle, $conexion) or die(mysql_error());
-$row_endetalle = mysql_fetch_assoc($endetalle);
-$totalRows_endetalle = mysql_num_rows($endetalle);
+$endetalle = mysqli_query($conexion,$query_endetalle) or die(mysql_error());
+$row_endetalle = mysqli_fetch_assoc($endetalle);
+$totalRows_endetalle = mysqli_num_rows($endetalle);
 /*=============================== FIN DE EN DETALLE ===========================*/
 
 
@@ -348,7 +348,7 @@ do
 </div>
 
 <?php	
-}while($row_lanzamientos = mysql_fetch_assoc($lanzamientos));
+}while($row_lanzamientos = mysqli_fetch_assoc($lanzamientos));
 ?>
 </div>
 
@@ -398,7 +398,7 @@ do
 </div>
 
 <?php	
-}while($row_novedades = mysql_fetch_assoc($novedades));
+}while($row_novedades = mysqli_fetch_assoc($novedades));
 ?>
 </div>
 
@@ -452,7 +452,7 @@ do
 </div>
 
 <?php	
-}while($row_disco_semana = mysql_fetch_assoc($disco_semana))
+}while($row_disco_semana = mysqli_fetch_assoc($disco_semana))
 ?>
 </div>
 
@@ -501,7 +501,7 @@ do
 </div>
 
 <?php	
-}while($row_endetalle = mysql_fetch_assoc($endetalle));
+}while($row_endetalle = mysqli_fetch_assoc($endetalle));
 ?>
 </div>
 

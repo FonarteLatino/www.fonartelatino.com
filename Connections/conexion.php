@@ -36,7 +36,7 @@ $hostname_conexion = "mysql.fonartelatino.com";
 $database_conexion = "fonartecommerce";
 $username_conexion = "usrfonartebjf";
 $password_conexion = "NZojmHb8QyBJf1nk";
-$conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysql_error(),E_USER_ERROR); 
+$conexion = mysqli_connect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysql_error(),E_USER_ERROR);
 */
 
 ?> 

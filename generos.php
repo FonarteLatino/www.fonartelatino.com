@@ -34,20 +34,20 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Genero = "SELECT * FROM genero where id=".$_GET['genero'];
-$Genero = mysql_query($query_Genero, $conexion) or die(mysql_error());
-$row_Genero = mysql_fetch_assoc($Genero);
-$totalRows_Genero = mysql_num_rows($Genero);
+$Genero = mysqli_query($conexion,$query_Genero) or die(mysql_error());
+$row_Genero = mysqli_fetch_assoc($Genero);
+$totalRows_Genero = mysqli_num_rows($Genero);
 
 
 
 // paso 1/7 generas query
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ProductosPagination = "SELECT * FROM productos where genero=".$_GET['genero'];
-$ProductosPagination = mysql_query($query_ProductosPagination, $conexion) or die(mysql_error());
-$row_ProductosPagination = mysql_fetch_assoc($ProductosPagination);
-$totalRows_ProductosPagination = mysql_num_rows($ProductosPagination);
+$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
+$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 // paso 2/7 asignas cuatos resultados se veran por pagina
 $resultados=30;
 //paso 3/7 creamos una instancia del objeto Zebra_Pagination
@@ -60,7 +60,7 @@ $inicio=(($paginacion->get_page()-1)*$resultados);
 $fin=$resultados;
 		
 		
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ProductosPorGeneros = "SELECT
 productos.id,
 productos.sku,
@@ -88,9 +88,9 @@ INNER JOIN genero ON genero.id = productos.genero
 WHERE productos.prendido=1
 AND productos.genero=".$_GET['genero']."  order by productos.artista
 limit ".$inicio.",".$fin;
-$ProductosPorGeneros = mysql_query($query_ProductosPorGeneros, $conexion) or die(mysql_error());
-$row_ProductosPorGeneros = mysql_fetch_assoc($ProductosPorGeneros);
-$totalRows_ProductosPorGeneros = mysql_num_rows($ProductosPorGeneros);
+$ProductosPorGeneros = mysqli_query($conexion,$query_ProductosPorGeneros) or die(mysql_error());
+$row_ProductosPorGeneros = mysqli_fetch_assoc($ProductosPorGeneros);
+$totalRows_ProductosPorGeneros = mysqli_num_rows($ProductosPorGeneros);
 
 
 
@@ -223,7 +223,7 @@ do
 
 
 <?php	
-}while($row_ProductosPorGeneros = mysql_fetch_assoc($ProductosPorGeneros));
+}while($row_ProductosPorGeneros = mysqli_fetch_assoc($ProductosPorGeneros));
 
 ?>
 	
@@ -277,7 +277,7 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($Genero);
+mysqli_free_result($Genero);
 
-mysql_free_result($ProductosPorGeneros);
+mysqli_free_result($ProductosPorGeneros);
 ?>
