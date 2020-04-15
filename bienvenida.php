@@ -96,11 +96,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Pedidos = "SELECT * FROM pedido WHERE estatus>=2 order by id DESC";
-$Pedidos = mysql_query($query_Pedidos, $conexion) or die(mysql_error());
-$row_Pedidos = mysql_fetch_assoc($Pedidos);
-$totalRows_Pedidos = mysql_num_rows($Pedidos);
+$Pedidos = mysqli_query($conexion,$query_Pedidos) or die(mysql_error());
+$row_Pedidos = mysqli_fetch_assoc($Pedidos);
+$totalRows_Pedidos = mysqli_num_rows($Pedidos);
 ?>
 <?php include("alertas.php"); ?>
 <!DOCTYPE html>
@@ -202,7 +202,7 @@ $totalRows_Pedidos = mysql_num_rows($Pedidos);
     </tr>
     <?php 
 	$a=$a+1;
-	} while ($row_Pedidos = mysql_fetch_assoc($Pedidos)); ?>
+	} while ($row_Pedidos = mysqli_fetch_assoc($Pedidos)); ?>
 
 </tbody>
 </table>
@@ -301,5 +301,5 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($Pedidos);
+mysqli_free_result($Pedidos);
 ?>

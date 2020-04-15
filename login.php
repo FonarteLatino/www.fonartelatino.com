@@ -12,7 +12,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -52,15 +52,14 @@ if (isset($_POST['usr'])) {
   $MM_redirectLoginSuccess = "redirecciona.php?alerta=1";
   $MM_redirectLoginFailed = "login.php?alerta=2";
   $MM_redirecttoReferrer = false;
-  mysql_select_db($database_conexion, $conexion);
+  mysqli_select_db($conexion,$database_conexion);
   
-  $LoginRS__query=sprintf("SELECT * FROM usuarios WHERE usr=%s AND psw=%s",
-    GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
+  $LoginRS__query="SELECT * FROM usuarios WHERE usr='".$loginUsername."' AND psw='".$password."'"; 
    
-  $LoginRS = mysql_query($LoginRS__query, $conexion) or die(mysql_error());
-  $loginFoundUser = mysql_num_rows($LoginRS);
+  $LoginRS = mysqli_query($conexion,$LoginRS__query );
+  $loginFoundUser = mysqli_num_rows($LoginRS);
   //********************PASO 2 SESION --- agregamos la siguiente linea para imprimir todo el registro
-  	$row_LoginRS = mysql_fetch_array($LoginRS);
+  	$row_LoginRS = mysqli_fetch_array($LoginRS);
     
   if ($loginFoundUser) {
      $loginStrGroup = "";
