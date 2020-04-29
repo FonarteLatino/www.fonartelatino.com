@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -31,7 +31,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DiscoSemana = "SELECT
 productos.id,
 productos.sku,
@@ -58,17 +58,17 @@ d_semana.id_producto
 FROM
 productos
 INNER JOIN d_semana ON productos.id = d_semana.id_producto";
-$DiscoSemana = mysql_query($query_DiscoSemana, $conexion) or die(mysql_error());
-$row_DiscoSemana = mysql_fetch_assoc($DiscoSemana);
-$totalRows_DiscoSemana = mysql_num_rows($DiscoSemana);
+$DiscoSemana = mysqli_query($conexion,$query_DiscoSemana) or die(mysqli_error());
+$row_DiscoSemana = mysqli_fetch_assoc($DiscoSemana);
+$totalRows_DiscoSemana = mysqli_num_rows($DiscoSemana);
 
 if(isset($_GET['borra']) and $_GET['borra']==1)
 {
 	$deleteSQL = sprintf("DELETE FROM d_semana WHERE id_producto=%s",
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
 
 	?><script type="text/javascript">window.location="admin_home.php?alerta=7&activa=3";</script><?php
 }
@@ -149,7 +149,7 @@ do{
     </tr>
     <?php
 	$x++;
-}while($row_DiscoSemana = mysql_fetch_assoc($DiscoSemana));
+}while($row_DiscoSemana = mysqli_fetch_assoc($DiscoSemana));
 ?>
 
 </tbody>
@@ -164,5 +164,5 @@ do{
 </div>
 
 <?php
-mysql_free_result($DiscoSemana);
+mysqli_free_result($DiscoSemana);
 ?>

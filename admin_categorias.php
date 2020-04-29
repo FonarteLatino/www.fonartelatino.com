@@ -93,8 +93,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	GetSQLValueString(utf8_decode($_POST['nombre']), "text"),
 	GetSQLValueString(1, "int"));
 	/*
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$insertGoTo = "admin_categorias.php?alerta=5";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -105,11 +105,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	*/
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Categoria = "SELECT * FROM categoria";
-$Categoria = mysql_query($query_Categoria, $conexion) or die(mysql_error());
-$row_Categoria = mysql_fetch_assoc($Categoria);
-$totalRows_Categoria = mysql_num_rows($Categoria);
+$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error($conexion));
+$row_Categoria = mysqli_fetch_assoc($Categoria);
+$totalRows_Categoria = mysqli_num_rows($Categoria);
 ?>
 <?php include("alertas.php"); ?>
 <!DOCTYPE html>
@@ -202,11 +202,11 @@ $totalRows_Categoria = mysql_num_rows($Categoria);
 
 	<?php do { 
 	
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosAsignados = "SELECT * FROM productos where categoria=".$row_Categoria['id'];;
-	$ProductosAsignados = mysql_query($query_ProductosAsignados, $conexion) or die(mysql_error());
-	$row_ProductosAsignados = mysql_fetch_assoc($ProductosAsignados);
-	$totalRows_ProductosAsignados = mysql_num_rows($ProductosAsignados);
+	$ProductosAsignados = mysqli_query($conexion,$query_ProductosAsignados) or die(mysqli_error($conexion));
+	$row_ProductosAsignados = mysqli_fetch_assoc($ProductosAsignados);
+	$totalRows_ProductosAsignados = mysqli_num_rows($ProductosAsignados);
 	
 	?>
     <tr class="letra_admin_prod2">
@@ -214,7 +214,7 @@ $totalRows_Categoria = mysql_num_rows($Categoria);
         <td><?php echo "<strong>".$row_Categoria['nombre']."</strong> (".$totalRows_ProductosAsignados." productos asignados)"; ?></td>
         <td data-toggle="modal" data-target="#edita_categoria" onclick="carga_modal_1(<?php echo $row_Categoria['id'] ?>)"><i class="fa fa-pencil" aria-hidden="true" ></i></td>
     </tr>
-    <?php } while ($row_Categoria = mysql_fetch_assoc($Categoria)); ?>
+    <?php } while ($row_Categoria = mysqli_fetch_assoc($Categoria)); ?>
 
 </tbody>
 </table>
@@ -316,5 +316,5 @@ function carga_modal_1(id_cateoria)
 
 </html>
 <?php
-mysql_free_result($Categoria);
+mysqli_free_result($Categoria);
 ?>

@@ -63,7 +63,7 @@ INNER JOIN lanzamientos ON productos.id = lanzamientos.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$lanzamientos = mysqli_query($conexion, $query_lanzamientos) or die(mysql_error());
+$lanzamientos = mysqli_query($conexion, $query_lanzamientos) or die(mysqli_error($conexion));
 $row_lanzamientos = mysqli_fetch_assoc($lanzamientos);
 $totalRows_lanzamientos = mysqli_num_rows($lanzamientos);
 /*=============================== FIN DE LANZAMIENTOS ===========================*/
@@ -101,7 +101,7 @@ INNER JOIN novedades ON productos.id = novedades.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$novedades = mysqli_query($conexion, $query_novedades) or die(mysql_error());
+$novedades = mysqli_query($conexion, $query_novedades) or die(mysqli_error($conexion));
 $row_novedades = mysqli_fetch_assoc($novedades);
 $totalRows_novedades = mysqli_num_rows($novedades);
 /*=============================== FIN DE NOVEDADES ===========================*/
@@ -138,7 +138,7 @@ INNER JOIN d_semana ON productos.id = d_semana.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$disco_semana = mysqli_query($conexion,$query_disco_semana) or die(mysql_error());
+$disco_semana = mysqli_query($conexion,$query_disco_semana) or die(mysqli_error($conexion));
 $row_disco_semana = mysqli_fetch_assoc($disco_semana);
 $totalRows_disco_semana = mysqli_num_rows($disco_semana);
 /*=============================== FIN DE DISCO DE LA SEMANA ===========================*/
@@ -175,7 +175,7 @@ INNER JOIN en_detalle ON productos.id = en_detalle.id_producto
 
 WHERE productos.prendido=1
 ORDER BY RAND()";
-$endetalle = mysqli_query($conexion,$query_endetalle) or die(mysql_error());
+$endetalle = mysqli_query($conexion,$query_endetalle) or die(mysqli_error($conexion));
 $row_endetalle = mysqli_fetch_assoc($endetalle);
 $totalRows_endetalle = mysqli_num_rows($endetalle);
 /*=============================== FIN DE EN DETALLE ===========================*/

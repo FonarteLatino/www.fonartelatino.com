@@ -56,7 +56,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -122,8 +122,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	GetSQLValueString($_POST['clave'], "text"),
 	GetSQLValueString($_POST['precio'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
 	
 	$insertGoTo = "admin_precios.php?alerta=5";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -134,11 +134,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 }
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Precios = "SELECT * FROM precios";
-$Precios = mysql_query($query_Precios, $conexion) or die(mysql_error());
-$row_Precios = mysql_fetch_assoc($Precios);
-$totalRows_Precios = mysql_num_rows($Precios);
+$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error());
+$row_Precios = mysqli_fetch_assoc($Precios);
+$totalRows_Precios = mysqli_num_rows($Precios);
 
 
 ?>
@@ -239,11 +239,11 @@ $totalRows_Precios = mysql_num_rows($Precios);
 
 	<?php do { 
 	
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosAsignados = "SELECT * FROM productos where clave_precio='".$row_Precios['clave']."'";;
-	$ProductosAsignados = mysql_query($query_ProductosAsignados, $conexion) or die(mysql_error());
-	$row_ProductosAsignados = mysql_fetch_assoc($ProductosAsignados);
-	$totalRows_ProductosAsignados = mysql_num_rows($ProductosAsignados);
+	$ProductosAsignados = mysqli_query($conexion,$query_ProductosAsignados) or die(mysqli_error());
+	$row_ProductosAsignados = mysqli_fetch_assoc($ProductosAsignados);
+	$totalRows_ProductosAsignados = mysqli_num_rows($ProductosAsignados);
 		
 	?>
     <tr class="letra_admin_prod2">
@@ -252,7 +252,7 @@ $totalRows_Precios = mysql_num_rows($Precios);
          <td><?php echo "$".$row_Precios['precio'].".00"; ?></td>
         <td data-toggle="modal" data-target="#edita_precio" onclick="carga_modal_1(<?php echo $row_Precios['id'] ?>)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
     </tr>
-    <?php } while ($row_Precios = mysql_fetch_assoc($Precios)); ?>
+    <?php } while ($row_Precios = mysqli_fetch_assoc($Precios)); ?>
 
 </tbody>
 </table>
@@ -358,7 +358,7 @@ function carga_modal_1(id_precio)
 
 </html>
 <?php
-mysql_free_result($Precios);
+mysqli_free_result($Precios);
 
-mysql_free_result($ProductosAsignados);
+mysqli_free_result($ProductosAsignados);
 ?>

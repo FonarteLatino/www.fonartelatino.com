@@ -98,7 +98,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Pedidos = "SELECT * FROM pedido WHERE estatus>=2 order by id DESC";
-$Pedidos = mysqli_query($conexion,$query_Pedidos) or die(mysql_error());
+$Pedidos = mysqli_query($conexion,$query_Pedidos) or die(mysqli_error($conexion));
 $row_Pedidos = mysqli_fetch_assoc($Pedidos);
 $totalRows_Pedidos = mysqli_num_rows($Pedidos);
 ?>

@@ -42,8 +42,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	GetSQLValueString($_POST['precio'], "int"),
 	GetSQLValueString($_POST['id_precio'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error());
 	
 	$updateGoTo = "admin_precios.php?alerta=6";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -55,17 +55,17 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_UpdatePrecio = "SELECT * FROM precios";
-$UpdatePrecio = mysql_query($query_UpdatePrecio, $conexion) or die(mysql_error());
-$row_UpdatePrecio = mysql_fetch_assoc($UpdatePrecio);
-$totalRows_UpdatePrecio = mysql_num_rows($UpdatePrecio);
+$UpdatePrecio = mysqli_query($conexion,$query_UpdatePrecio) or die(mysqli_error());
+$row_UpdatePrecio = mysqli_fetch_assoc($UpdatePrecio);
+$totalRows_UpdatePrecio = mysqli_num_rows($UpdatePrecio);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DatosPrecio = "SELECT * FROM precios where id=".$_GET['id_precio'];
-$DatosPrecio = mysql_query($query_DatosPrecio, $conexion) or die(mysql_error());
-$row_DatosPrecio = mysql_fetch_assoc($DatosPrecio);
-$totalRows_DatosPrecio = mysql_num_rows($DatosPrecio);
+$DatosPrecio = mysqli_query($conexion,$query_DatosPrecio) or die(mysqli_error());
+$row_DatosPrecio = mysqli_fetch_assoc($DatosPrecio);
+$totalRows_DatosPrecio = mysqli_num_rows($DatosPrecio);
 ?>
 
 <div class="modal-header tipografia2">
@@ -102,7 +102,7 @@ $totalRows_DatosPrecio = mysql_num_rows($DatosPrecio);
 
 </div>
 <?php
-mysql_free_result($DatosPrecio);
+mysqli_free_result($DatosPrecio);
 
-mysql_free_result($UpdatePrecio);
+mysqli_free_result($UpdatePrecio);
 ?>

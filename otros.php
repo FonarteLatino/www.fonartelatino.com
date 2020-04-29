@@ -39,7 +39,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 // paso 1/7 generas query
 mysqli_select_db($conexion,$database_conexion);
 $query_QueryPaginacion = "SELECT * FROM productos_otros where prendido=1";
-$QueryPaginacion = mysqli_query($conexion,$query_QueryPaginacion) or die(mysql_error());
+$QueryPaginacion = mysqli_query($conexion,$query_QueryPaginacion) or die(mysqli_error($conexion));
 $row_QueryPaginacion = mysqli_fetch_assoc($QueryPaginacion);
 $totalRows_QueryPaginacion = mysqli_num_rows($QueryPaginacion);
 // paso 2/7 asignas cuatos resultados se veran por pagina
@@ -80,7 +80,7 @@ INNER JOIN cat_otros ON productos_otros.tipo = cat_otros.id
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 
 where productos_otros.prendido=1 limit ".$inicio.",".$fin;
-$Otros = mysqli_query($conexion,$query_Otros) or die(mysql_error());
+$Otros = mysqli_query($conexion,$query_Otros) or die(mysqli_error($conexion));
 $row_Otros = mysqli_fetch_assoc($Otros);
 $totalRows_Otros = mysqli_num_rows($Otros);
 ?>

@@ -125,7 +125,7 @@ productos
 INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
 INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.estatus != \"INACTIVO\" and productos.firelink = \"Si\" and productos.id=".$id_producto;*/
-$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysql_error());
+$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysqli_error($conexion));
 $row_DetalleProducto = mysqli_fetch_assoc($DetalleProducto);
 
 

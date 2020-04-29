@@ -5,7 +5,7 @@
 //quierey categorias todas menos Merchandisign
 mysqli_select_db($conexion,$database_conexion);
 $query_Categorias = "SELECT * FROM categoria where id!=4 order by nombre ASC";
-$Categorias = mysqli_query($conexion,$query_Categorias) or die(mysql_error());
+$Categorias = mysqli_query($conexion,$query_Categorias) or die(mysql_error($database_conexion));
 $row_Categorias = mysqli_fetch_assoc($Categorias);
 $totalRows_Categorias = mysqli_num_rows($Categorias);
 
@@ -14,7 +14,7 @@ $totalRows_Categorias = mysqli_num_rows($Categorias);
 //quierey categorias todas menos Merchandisign
 mysqli_select_db($conexion,$database_conexion);
 $query_CategoriasMerch = "SELECT * FROM categoria where id=4 order by nombre ASC";
-$Merch = mysqli_query($conexion,$query_CategoriasMerch) or die(mysql_error());
+$Merch = mysqli_query($conexion,$query_CategoriasMerch) or die(mysqli_error($conexion));
 $row_Merch = mysqli_fetch_assoc($Merch);
 $totalRows_Merch = mysqli_num_rows($Merch);
 

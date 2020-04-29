@@ -61,7 +61,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -93,33 +93,33 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Precios = "SELECT * FROM precios";
-$Precios = mysql_query($query_Precios, $conexion) or die(mysql_error());
-$row_Precios = mysql_fetch_assoc($Precios);
-$totalRows_Precios = mysql_num_rows($Precios);
+$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error($conexion));
+$row_Precios = mysqli_fetch_assoc($Precios);
+$totalRows_Precios = mysqli_num_rows($Precios);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Generos = "SELECT * FROM genero";
-$Generos = mysql_query($query_Generos, $conexion) or die(mysql_error());
-$row_Generos = mysql_fetch_assoc($Generos);
-$totalRows_Generos = mysql_num_rows($Generos);
+$Generos = mysqli_query($conexion,$query_Generos) or die(mysqli_error($conexion));
+$row_Generos = mysqli_fetch_assoc($Generos);
+$totalRows_Generos = mysqli_num_rows($Generos);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Categoria = "SELECT * FROM categoria";
-$Categoria = mysql_query($query_Categoria, $conexion) or die(mysql_error());
-$row_Categoria = mysql_fetch_assoc($Categoria);
-$totalRows_Categoria = mysql_num_rows($Categoria);
+$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error($conexion));
+$row_Categoria = mysqli_fetch_assoc($Categoria);
+$totalRows_Categoria = mysqli_num_rows($Categoria);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_UpdateProducto = "SELECT * FROM productos";
-$UpdateProducto = mysql_query($query_UpdateProducto, $conexion) or die(mysql_error());
-$row_UpdateProducto = mysql_fetch_assoc($UpdateProducto);
-$totalRows_UpdateProducto = mysql_num_rows($UpdateProducto);
+$UpdateProducto = mysqli_query($conexion,$query_UpdateProducto) or die(mysqli_error($conexion));
+$row_UpdateProducto = mysqli_fetch_assoc($UpdateProducto);
+$totalRows_UpdateProducto = mysqli_num_rows($UpdateProducto);
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DetalleProducto = "SELECT
 productos.id as id_bd,
 productos.sku,
@@ -200,9 +200,9 @@ productos
 LEFT JOIN categoria ON categoria.id = productos.categoria
 LEFT JOIN genero ON genero.id = productos.genero
 LEFT JOIN precios ON precios.clave = productos.clave_precio WHERE productos.id=".$_GET['id_producto'];*/
-$DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
-$row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
-$totalRows_DetalleProducto = mysql_num_rows($DetalleProducto);
+$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysqli_error($conexion));
+$row_DetalleProducto = mysqli_fetch_assoc($DetalleProducto);
+$totalRows_DetalleProducto = mysqli_num_rows($DetalleProducto);
 
 
 
@@ -304,8 +304,8 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   GetSQLValueString($_POST['firelink'], "text"),
 	GetSQLValueString($_POST['id'], "int"));*/
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 
 
 	?><script type="text/javascript">window.location="admin_ver_producto.php?alerta=6&id_producto=<?php echo $_POST['id'] ?>";</script><?php
@@ -413,13 +413,13 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 		do 
 		{  
 			?><option value="<?php echo $row_Precios['clave']?>"><?php echo $row_Precios['clave']." - $".$row_Precios['precio'].".00"; ?></option><?php
-        }while ($row_Precios = mysql_fetch_assoc($Precios));
+        }while ($row_Precios = mysqli_fetch_assoc($Precios));
 		
-        $rows = mysql_num_rows($Precios);
+        $rows = mysqli_num_rows($Precios);
         if($rows > 0) 
 		{
-			mysql_data_seek($Precios, 0);
-			$row_Precios = mysql_fetch_assoc($Precios);
+			mysqli_data_seek($Precios, 0);
+			$row_Precios = mysqli_fetch_assoc($Precios);
         }
         ?>
     </select>
@@ -448,22 +448,22 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
         <select class="form-control" id="sel1" name="genero">
         <?php
 		
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_GenerosSelect = "SELECT * FROM genero where id=".$row_DetalleProducto['genero'];
-		$GenerosSelect = mysql_query($query_GenerosSelect, $conexion) or die(mysql_error());
-		$row_GenerosSelect = mysql_fetch_assoc($GenerosSelect);
-		$totalRows_GenerosSelect = mysql_num_rows($GenerosSelect);
+		$GenerosSelect = mysqli_query($conexion,$query_GenerosSelect) or die(mysqli_error($conexion));
+		$row_GenerosSelect = mysqli_fetch_assoc($GenerosSelect);
+		$totalRows_GenerosSelect = mysqli_num_rows($GenerosSelect);
 		?>
             <option value="<?php echo $row_GenerosSelect['id'];?>"><?php echo utf8_encode($row_GenerosSelect['nombre']);?></option>
             <?php
             do {  
             	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option><?php
-            } while ($row_Generos = mysql_fetch_assoc($Generos));
-            $rows = mysql_num_rows($Generos);
+            } while ($row_Generos = mysqli_fetch_assoc($Generos));
+            $rows = mysqli_num_rows($Generos);
             if($rows > 0) 
 			{
-				mysql_data_seek($Generos, 0);
-				$row_Generos = mysql_fetch_assoc($Generos);
+				mysqli_data_seek($Generos, 0);
+				$row_Generos = mysqli_fetch_assoc($Generos);
             }
             ?>
         </select>
@@ -477,22 +477,22 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
         <select class="form-control" id="sel1" name="genero2">
         	 <?php
 		
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_GenerosSelect2 = "SELECT * FROM genero where id=".$row_DetalleProducto['genero2'];
-		$GenerosSelect2 = mysql_query($query_GenerosSelect2, $conexion) or die(mysql_error());
-		$row_GenerosSelect2 = mysql_fetch_assoc($GenerosSelect2);
-		$totalRows_GenerosSelect2 = mysql_num_rows($GenerosSelect2);
+		$GenerosSelect2 = mysqli_query($conexion,$query_GenerosSelect2) or die(mysqli_error($conexion));
+		$row_GenerosSelect2 = mysqli_fetch_assoc($GenerosSelect2);
+		$totalRows_GenerosSelect2 = mysqli_num_rows($GenerosSelect2);
 		?>
             <option value="<?php echo $row_GenerosSelect2['id'];?>"><?php echo utf8_encode($row_GenerosSelect2['nombre']);?></option>
             <?php
             do {  
             	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option><?php
-            } while ($row_Generos = mysql_fetch_assoc($Generos));
-            $rows = mysql_num_rows($Generos);
+            } while ($row_Generos = mysqli_fetch_assoc($Generos));
+            $rows = mysqli_num_rows($Generos);
             if($rows > 0) 
 			{
-				mysql_data_seek($Generos, 0);
-				$row_Generos = mysql_fetch_assoc($Generos);
+				mysqli_data_seek($Generos, 0);
+				$row_Generos = mysqli_fetch_assoc($Generos);
             }
             ?>
 
@@ -508,22 +508,22 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
         <select class="form-control" id="sel1" name="genero3">
         <?php
 		
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_GenerosSelect3 = "SELECT * FROM genero where id=".$row_DetalleProducto['genero3'];
-		$GenerosSelect3 = mysql_query($query_GenerosSelect3, $conexion) or die(mysql_error());
-		$row_GenerosSelect3 = mysql_fetch_assoc($GenerosSelect3);
-		$totalRows_GenerosSelect3 = mysql_num_rows($GenerosSelect3);
+		$GenerosSelect3 = mysqli_query($conexion,$query_GenerosSelect3) or die(mysqli_error($conexion));
+		$row_GenerosSelect3 = mysqli_fetch_assoc($GenerosSelect3);
+		$totalRows_GenerosSelect3 = mysqli_num_rows($GenerosSelect3);
 		?>
             <option value="<?php echo $row_GenerosSelect3['id'];?>"><?php echo utf8_encode($row_GenerosSelect3['nombre']);?></option>
             <?php
             do {  
             	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option><?php
-            } while ($row_Generos = mysql_fetch_assoc($Generos));
-            $rows = mysql_num_rows($Generos);
+            } while ($row_Generos = mysqli_fetch_assoc($Generos));
+            $rows = mysqli_num_rows($Generos);
             if($rows > 0) 
 			{
-				mysql_data_seek($Generos, 0);
-				$row_Generos = mysql_fetch_assoc($Generos);
+				mysqli_data_seek($Generos, 0);
+				$row_Generos = mysqli_fetch_assoc($Generos);
             }
             ?>
 
@@ -540,12 +540,12 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
     <?php
     do {  
     ?><option value="<?php echo $row_Categoria['id']?>"><?php echo $row_Categoria['nombre']?></option><?php
-    } while ($row_Categoria = mysql_fetch_assoc($Categoria));
-    $rows = mysql_num_rows($Categoria);
+    } while ($row_Categoria = mysqli_fetch_assoc($Categoria));
+    $rows = mysqli_num_rows($Categoria);
     if($rows > 0) 
 	{
-		mysql_data_seek($Categoria, 0);
-		$row_Categoria = mysql_fetch_assoc($Categoria);
+		mysqli_data_seek($Categoria, 0);
+		$row_Categoria = mysqli_fetch_assoc($Categoria);
     }
     ?>
 
@@ -853,15 +853,15 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($Precios);
+mysqli_free_result($Precios);
 
-mysql_free_result($Generos);
+mysqli_free_result($Generos);
 
-mysql_free_result($Categoria);
+mysqli_free_result($Categoria);
 
-mysql_free_result($UpdateProducto);
+mysqli_free_result($UpdateProducto);
 
-mysql_free_result($GenerosSelect);
+mysqli_free_result($GenerosSelect);
 
-mysql_free_result($DetalleProducto);
+mysqli_free_result($DetalleProducto);
 ?>

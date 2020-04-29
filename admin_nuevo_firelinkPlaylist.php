@@ -56,7 +56,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -129,7 +129,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 		$ruta_img_2="img/playlist/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
 	}
 	
-	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, claro, youtube, deezer, tidal, video, play, firelink, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL = sprintf("INSERT INTO productos (sku, id_fonarte, clave_precio, artista, album, genero, genero2, genero3, categoria, spotify, itunes, amazon, google, amazon_mu, youtube, deezer, tidal, video, play, firelink, ruta_img, ruta_img_2, descripcion, fecha_alta, hora_alta, prendido, estatus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
@@ -143,7 +143,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	GetSQLValueString($_POST['itunes'], "text"),
 	GetSQLValueString($_POST['amazon'], "text"),
 	GetSQLValueString($_POST['google'], "text"),
-  GetSQLValueString($_POST['claro'], "text"),
+  GetSQLValueString($_POST['amazon_mu'], "text"),
   GetSQLValueString($_POST['youtube'], "text"),
   GetSQLValueString($_POST['deezer'], "text"),
   GetSQLValueString($_POST['tidal'], "text"),
@@ -159,8 +159,8 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	GetSQLValueString($_POST['estatus'], "text"));
 	
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	?><script type="text/javascript">window.location="admin_nuevo_producto.php?alerta=5";</script><?php
 	
@@ -284,7 +284,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
  <!-- *********************************************** -->
     <label class="control-label col-sm-2" for="">Claro Music:</label>
     <div class="col-sm-4">
-    <input type="url" name="claro" class="form-control" id="" value="" >
+    <input type="url" name="amazon_mu" class="form-control" id="" value="" >
     </div>
     <!-- *********************************************** -->
     <label class="control-label col-sm-2" for="">YouTube:</label>

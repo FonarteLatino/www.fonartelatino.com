@@ -42,8 +42,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	GetSQLValueString($_POST['nombre'], "text"),
 	GetSQLValueString($_POST['id'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	$updateGoTo = "admin_generos.php?alerta=6";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -54,17 +54,17 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	?><script type="text/javascript">window.location="<?php echo $updateGoTo; ?>";</script><?php
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_UpdateGenero = "SELECT * FROM genero";
-$UpdateGenero = mysql_query($query_UpdateGenero, $conexion) or die(mysql_error());
-$row_UpdateGenero = mysql_fetch_assoc($UpdateGenero);
-$totalRows_UpdateGenero = mysql_num_rows($UpdateGenero);
+$UpdateGenero = mysqli_query($conexion,$query_UpdateGenero) or die(mysqli_error($conexion));
+$row_UpdateGenero = mysqli_fetch_assoc($UpdateGenero);
+$totalRows_UpdateGenero = mysqli_num_rows($UpdateGenero);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Genero = "SELECT * FROM genero where id=".$_GET['id_genero'];
-$Genero = mysql_query($query_Genero, $conexion) or die(mysql_error());
-$row_Genero = mysql_fetch_assoc($Genero);
-$totalRows_Genero = mysql_num_rows($Genero);
+$Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error($conexion));
+$row_Genero = mysqli_fetch_assoc($Genero);
+$totalRows_Genero = mysqli_num_rows($Genero);
 
 
 
@@ -102,7 +102,7 @@ $totalRows_Genero = mysql_num_rows($Genero);
 </form>
 
 <?php
-mysql_free_result($Genero);
+mysqli_free_result($Genero);
 
-mysql_free_result($UpdateGenero);
+mysqli_free_result($UpdateGenero);
 ?>

@@ -44,7 +44,7 @@ if(isset($_GET['letra']))
 	// paso 1/7 generas query
 	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosPagination = "SELECT * FROM productos where prendido=1 and artista like '".$_GET['letra']."%'";
-	$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+	$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysqli_error($conexion));
 	$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
 	$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 	// paso 2/7 asignas cuatos resultados se veran por pagina
@@ -88,7 +88,7 @@ if(isset($_GET['letra']))
 	WHERE productos.prendido=1 and artista like '".$_GET['letra']."%'
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;
-	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error($conexion));
 	$row_Productos = mysqli_fetch_assoc($Productos);
 	$totalRows_Productos = mysqli_num_rows($Productos);
 }
@@ -101,7 +101,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 		// paso 1/7 generas query
 		mysqli_select_db($conexion,$database_conexion);
 		$query_ProductosPagination = "SELECT * FROM productos where categoria=".$_GET['categoria']." and prendido=1";
-		$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+		$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysqli_error($conexion));
 		$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
 		$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 		// paso 2/7 asignas cuatos resultados se veran por pagina
@@ -145,7 +145,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 	WHERE productos.categoria=".$_GET['categoria']." and productos.prendido=1
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;  
-	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error($conexion));
 	$row_Productos = mysqli_fetch_assoc($Productos);
 	$totalRows_Productos = mysqli_num_rows($Productos);
 }
@@ -209,7 +209,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 					//muestra categoria correspondiente
 					mysqli_select_db($conexion,$database_conexion);
 					$query_CategoriaSub = "SELECT * FROM categoria WHERE id=".$_GET['categoria'];
-					$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysql_error());
+					$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysqli_error($conexion));
 					$row_CategoriaSub = mysqli_fetch_assoc($CategoriaSub);
 					$totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 					?><p class="page-header">C&aacute;talogo&nbsp;&nbsp;<small><i><?php echo $row_CategoriaSub['nombre']; ?></i></small></p><?php

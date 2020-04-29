@@ -48,7 +48,7 @@ if (!((isset($_SESSION['MM_Username_Panel'])) && (isAuthorized("",$MM_authorized
   exit;
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Otros = "SELECT
 productos_otros.id,
 productos_otros.sku,
@@ -75,9 +75,9 @@ INNER JOIN cat_otros ON cat_otros.id = productos_otros.tipo
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 
 where productos_otros.prendido=1 and productos_otros.id=".$_GET['id_producto_otro'];
-$Otros = mysql_query($query_Otros, $conexion) or die(mysql_error());
-$row_Otros = mysql_fetch_assoc($Otros);
-$totalRows_Otros = mysql_num_rows($Otros);
+$Otros = mysqli_query($conexion,$query_Otros) or die(mysqli_error($conexion));
+$row_Otros = mysqli_fetch_assoc($Otros);
+$totalRows_Otros = mysqli_num_rows($Otros);
 
 
 ?>
@@ -89,7 +89,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -113,73 +113,73 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Precios = "SELECT * FROM precios where clave!='".$row_Otros['clave_precio']."'";
-$Precios = mysql_query($query_Precios, $conexion) or die(mysql_error());
-$row_Precios = mysql_fetch_assoc($Precios);
-$totalRows_Precios = mysql_num_rows($Precios);
+$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error($conexion));
+$row_Precios = mysqli_fetch_assoc($Precios);
+$totalRows_Precios = mysqli_num_rows($Precios);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Tipo = "SELECT * FROM cat_otros where id!=".$row_Otros['tipo'];
-$Tipo = mysql_query($query_Tipo, $conexion) or die(mysql_error());
-$row_Tipo = mysql_fetch_assoc($Tipo);
-$totalRows_Tipo = mysql_num_rows($Tipo);
+$Tipo = mysqli_query($conexion,$query_Tipo) or die(mysqli_error($conexion));
+$row_Tipo = mysqli_fetch_assoc($Tipo);
+$totalRows_Tipo = mysqli_num_rows($Tipo);
 
 
 
 /*=================================inicio de modifica un producto ===========================*/
 if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 {
-	
-		/* no agrego imagen de portada, deja la misma*/
-	if($_FILES['ruta_img']['name']=='')
-	{
-		$ruta_img=$_POST['ruta_img_default'];
-	}
-	/* si agrego imagen de portada, se la asigna a la variable*/
-	else
-	{
-		include_once("sube_foto_portada.php");
-		$ruta_img="img/caratulas/".$nuevo_nombre_ruta_img;//esta variable viene del archivo sube_foto_portada.php
-	}
-	
-	
-	/* no agrego imagen secundaria, deja la misma*/
-	if($_FILES['ruta_img_2']['name']=='')
-	{
-		$ruta_img_2=$_POST['ruta_img_2_default'];
-	}
-	/* si agrego imagen secundaria, se la asigna a la variable*/
-	else
-	{
-		include_once("sube_foto_secundaria.php");
-		$ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
-	}
-	
+  
+    /* no agrego imagen de portada, deja la misma*/
+  if($_FILES['ruta_img']['name']=='')
+  {
+    $ruta_img=$_POST['ruta_img_default'];
+  }
+  /* si agrego imagen de portada, se la asigna a la variable*/
+  else
+  {
+    include_once("sube_foto_portada.php");
+    $ruta_img="img/caratulas/".$nuevo_nombre_ruta_img;//esta variable viene del archivo sube_foto_portada.php
+  }
+  
+  
+  /* no agrego imagen secundaria, deja la misma*/
+  if($_FILES['ruta_img_2']['name']=='')
+  {
+    $ruta_img_2=$_POST['ruta_img_2_default'];
+  }
+  /* si agrego imagen secundaria, se la asigna a la variable*/
+  else
+  {
+    include_once("sube_foto_secundaria.php");
+    $ruta_img_2="img/caratulas/".$nuevo_nombre_ruta_img_2;//esta variable viene del archivo sube_foto_secundaria.php
+  }
+  
  $updateSQL = sprintf("UPDATE productos_otros SET sku=%s, id_fonarte=%s, clave_precio=%s, artista=%s, tipo=%s, s=%s, m=%s, l=%s, ruta_img=%s, ruta_img_2=%s, descripcion=%s, fecha_alta=%s, hora_alta=%s, prendido=%s, estatus=%s WHERE id=%s",
-	GetSQLValueString($_POST['sku'], "text"),
-	GetSQLValueString($_POST['id_fonarte'], "text"),
-	GetSQLValueString($_POST['clave_precio'], "text"),
-	GetSQLValueString(utf8_decode($_POST['artista']), "text"),
-	GetSQLValueString(utf8_decode($_POST['tipo']), "int"),
-	GetSQLValueString($_POST['s'], "int"),
-	GetSQLValueString($_POST['m'], "int"),
-	GetSQLValueString($_POST['l'], "int"),
-	GetSQLValueString($ruta_img, "text"),
-	GetSQLValueString($ruta_img_2, "text"),
-	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
-	GetSQLValueString($_POST['fecha_alta'], "date"),
-	GetSQLValueString($_POST['hora_alta'], "date"),
-	GetSQLValueString($_POST['prendido'], "int"),
-	GetSQLValueString($_POST['estatus'], "text"),
-	GetSQLValueString($_POST['id'], "int"));
-	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+  GetSQLValueString($_POST['sku'], "text"),
+  GetSQLValueString($_POST['id_fonarte'], "text"),
+  GetSQLValueString($_POST['clave_precio'], "text"),
+  GetSQLValueString(utf8_decode($_POST['artista']), "text"),
+  GetSQLValueString(utf8_decode($_POST['tipo']), "int"),
+  GetSQLValueString($_POST['s'], "int"),
+  GetSQLValueString($_POST['m'], "int"),
+  GetSQLValueString($_POST['l'], "int"),
+  GetSQLValueString($ruta_img, "text"),
+  GetSQLValueString($ruta_img_2, "text"),
+  GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
+  GetSQLValueString($_POST['fecha_alta'], "date"),
+  GetSQLValueString($_POST['hora_alta'], "date"),
+  GetSQLValueString($_POST['prendido'], "int"),
+  GetSQLValueString($_POST['estatus'], "text"),
+  GetSQLValueString($_POST['id'], "int"));
+  
+  mysqli_select_db($conexion,$database_conexion);
+  $Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 
 
-	?><script type="text/javascript">window.location="admin_ver_producto_otro.php?alerta=6&id_producto_otro=<?php echo $_POST['id'] ?>";</script><?php
-	
+  ?><script type="text/javascript">window.location="admin_ver_producto_otro.php?alerta=6&id_producto_otro=<?php echo $_POST['id'] ?>";</script><?php
+  
 }
 ?>
 <?php include("alertas.php"); ?>
@@ -187,7 +187,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 <html lang="en">
 
 <head>
-	<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
+  <link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
     <meta charset="ISO-8859-1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -220,7 +220,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 
     <!-- Page Content -->
     <div class="container">
-		
+    
          <?php include("pinta_alerta.php"); ?>
         <!-- Inicio de titulo de la pagina -->
         <div class="row">
@@ -239,9 +239,9 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
                             
 <div class="row">
   <div class="col-sm-4 tipografia2">
-  	<center>
-  	<h4>Imagen de portada</h4>
-  	<img src="<?php echo $row_Otros['ruta_img'] ?>" class="img-rounded" alt="" width="80%" height="80%"><br><br>
+    <center>
+    <h4>Imagen de portada</h4>
+    <img src="<?php echo $row_Otros['ruta_img'] ?>" class="img-rounded" alt="" width="80%" height="80%"><br><br>
     <h4>Imagen secundaria</h4>
     <img src="<?php echo $row_Otros['ruta_img_2'] ?>" class="img-rounded" alt="" width="80%" height="80%">
     </center>
@@ -274,11 +274,11 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   
   
    <?php 
-    mysql_select_db($database_conexion, $conexion);
+    mysqli_select_db($conexion,$database_conexion);
     $query_Precio2 = "SELECT * FROM precios where clave='".$row_Otros['clave_precio']."'";
-    $Precio2 = mysql_query($query_Precio2, $conexion) or die(mysql_error());
-    $row_Precio2 = mysql_fetch_assoc($Precio2);
-    $totalRows_Precio2= mysql_num_rows($Precio2); 
+    $Precio2 = mysqli_query($conexion,$query_Precio2) or die(mysqli_error($conexion));
+    $row_Precio2 = mysqli_fetch_assoc($Precio2);
+    $totalRows_Precio2= mysqli_num_rows($Precio2); 
     ?>
    <div class="form-group">
     <label class="control-label col-sm-2" for="">Clave Precio:</label>
@@ -290,11 +290,11 @@ do {
 ?>
       <option value="<?php echo $row_Precios['clave']?>"><?php echo $row_Precios['clave']." - $".$row_Precios['precio'].".00"?></option>
       <?php
-} while ($row_Precios = mysql_fetch_assoc($Precios));
-  $rows = mysql_num_rows($Precios);
+} while ($row_Precios = mysqli_fetch_assoc($Precios));
+  $rows = mysqli_num_rows($Precios);
   if($rows > 0) {
-      mysql_data_seek($Precios, 0);
-	  $row_Precios = mysql_fetch_assoc($Precios);
+      mysqli_data_seek($Precios, 0);
+    $row_Precios = mysqli_fetch_assoc($Precios);
   }
 ?>
     </select>
@@ -304,12 +304,12 @@ do {
   
 
   
-	<?php 
-    mysql_select_db($database_conexion, $conexion);
+  <?php 
+    mysqli_select_db($conexion,$database_conexion);
     $query_Tipo2 = "SELECT * FROM cat_otros where id=".$row_Otros['tipo'];
-    $Tipo2 = mysql_query($query_Tipo2, $conexion) or die(mysql_error());
-    $row_Tipo2 = mysql_fetch_assoc($Tipo2);
-    $totalRows_Tipo2= mysql_num_rows($Tipo2); 
+    $Tipo2 = mysqli_query($conexion,$query_Tipo2) or die(mysqli_error($conexion));
+    $row_Tipo2 = mysqli_fetch_assoc($Tipo2);
+    $totalRows_Tipo2= mysqli_num_rows($Tipo2); 
     ?>
     
   <div class="form-group">
@@ -323,11 +323,11 @@ do {
 ?>
         <option value="<?php echo $row_Tipo['id']?>"><?php echo utf8_encode($row_Tipo['nombre']); ?></option>
         <?php
-} while ($row_Tipo = mysql_fetch_assoc($Tipo));
-  $rows = mysql_num_rows($Tipo);
+} while ($row_Tipo = mysqli_fetch_assoc($Tipo));
+  $rows = mysqli_num_rows($Tipo);
   if($rows > 0) {
-      mysql_data_seek($Tipo, 0);
-	  $row_Tipo = mysql_fetch_assoc($Tipo);
+      mysqli_data_seek($Tipo, 0);
+    $row_Tipo = mysqli_fetch_assoc($Tipo);
   }
 ?>
       </select>
@@ -346,7 +346,7 @@ do {
   <?php
   if($row_Otros['tipo']==2 or $row_ProductosOtros['tipo']==3)//es playera o sudadera, muestra tallas
   {
-	  ?>
+    ?>
       <div class="form-group">
     <label class="control-label col-sm-2" for="" >Talla:</label>
     <div class="col-sm-10">
@@ -366,7 +366,7 @@ do {
   }
   else//no es playera ni sudadera
   {
-	  ?>
+    ?>
       <input type="hidden" value="0" name="s">
       <input type="hidden" value="0" name="m">
       <input type="hidden" value="0" name="l">
@@ -407,29 +407,29 @@ do {
       <select class="form-control" id="" name="estatus">
             <option value="<?php echo $row_Otros['estatus']; ?>"><?php echo $row_Otros['estatus']; ?></option>
             <?php
-			if($row_Otros['estatus']=='ACTIVO')
-			{
-				?>
+      if($row_Otros['estatus']=='ACTIVO')
+      {
+        ?>
                 <option value="INACTIVO">INACTIVO</option>
                 <option value="DIGITAL">DIGITAL</option>
                 <?php
-			}
-			if($row_Otros['estatus']=='INACTIVO')
-			{
-				?>
+      }
+      if($row_Otros['estatus']=='INACTIVO')
+      {
+        ?>
                 <option value="ACTIVO">ACTIVO</option>
                 <option value="DIGITAL">DIGITAL</option>
                 <?php
-			}
-			if($row_Otros['estatus']=='DIGITAL')
-			{
-				?>
+      }
+      if($row_Otros['estatus']=='DIGITAL')
+      {
+        ?>
                 <option value="ACTIVO">ACTIVO</option>
                 <option value="INACTIVO">INACTIVO</option>
                 <?php
-			}
-			
-			?>
+      }
+      
+      ?>
            
         </select>
     </div>
@@ -495,9 +495,9 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($Precios);
+mysqli_free_result($Precios);
 
-mysql_free_result($Tipo);
+mysqli_free_result($Tipo);
 
 
 ?>

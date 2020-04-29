@@ -55,7 +55,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -100,8 +100,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 		GetSQLValueString("0000-00-00", "date"),
 		GetSQLValueString("DISPONIBLE", "text"));
 		
-		mysql_select_db($database_conexion, $conexion);
-		$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+		mysqli_select_db($conexion,$database_conexion);
+		$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
 		
 		$insertGoTo = "admin_cupon.php?alerta=205";
 		if (isset($_SERVER['QUERY_STRING'])) {
@@ -114,23 +114,23 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 //fin de crea el cupon
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_artistas = "SELECT distinct(artista) FROM productos order by artista asc";
-$artistas = mysql_query($query_artistas, $conexion) or die(mysql_error());
-$row_artistas = mysql_fetch_assoc($artistas);
-$totalRows_artistas = mysql_num_rows($artistas);
+$artistas = mysqli_query($conexion,$query_artistas) or die(mysqli_error());
+$row_artistas = mysqli_fetch_assoc($artistas);
+$totalRows_artistas = mysqli_num_rows($artistas);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Genero = "SELECT * FROM genero order by nombre asc";
-$Genero = mysql_query($query_Genero, $conexion) or die(mysql_error());
-$row_Genero = mysql_fetch_assoc($Genero);
-$totalRows_Genero = mysql_num_rows($Genero);
+$Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error());
+$row_Genero = mysqli_fetch_assoc($Genero);
+$totalRows_Genero = mysqli_num_rows($Genero);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Cupones = "select COUNT(codigo) as cantidad, fecha_creacion, codigo, medida, descuento, vencimiento, mas_de from cupon GROUP BY codigo order by fecha_creacion DESC"; 
-$Cupones = mysql_query($query_Cupones, $conexion) or die(mysql_error());
-$row_Cupones = mysql_fetch_assoc($Cupones);
-$totalRows_Cupones = mysql_num_rows($Cupones);
+$Cupones = mysqli_query($conexion,$query_Cupones) or die(mysqli_error());
+$row_Cupones = mysqli_fetch_assoc($Cupones);
+$totalRows_Cupones = mysqli_num_rows($Cupones);
 
 
 if ((isset($_GET["delete"])) && ($_GET["delete"] == 1)) 
@@ -138,8 +138,8 @@ if ((isset($_GET["delete"])) && ($_GET["delete"] == 1))
 	$deleteSQL = sprintf("DELETE FROM cupon WHERE codigo=%s and estatus='DISPONIBLE'",
 	GetSQLValueString($_GET['codigo_cupon'], "text"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
 	
 	?><script type="text/javascript">window.location="admin_cupon.php?alerta=7";</script><?php
 	
@@ -322,11 +322,11 @@ if ((isset($_GET["delete"])) && ($_GET["delete"] == 1))
         <td><?php echo "<i>".$row_Cupones['mas_de']."</i> PRODUCTOS"; ?></td>
         <?php
 		
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_CuponesDisp = "select * FROM cupon where codigo='".$row_Cupones['codigo']."' and estatus='DISPONIBLE'";
-		$CuponesDisp = mysql_query($query_CuponesDisp, $conexion) or die(mysql_error());
-		$row_CuponesDisp = mysql_fetch_assoc($CuponesDisp);
-		$totalRows_CuponesDisp = mysql_num_rows($CuponesDisp);
+		$CuponesDisp = mysqli_query($conexion,$query_CuponesDisp) or die(mysqli_error());
+		$row_CuponesDisp = mysqli_fetch_assoc($CuponesDisp);
+		$totalRows_CuponesDisp = mysqli_num_rows($CuponesDisp);
 		
 		?> 
         <td><?php echo "<i>".$totalRows_CuponesDisp."</i> DISPONIBLES DE <i>".$row_Cupones['cantidad']."</i>"; ?></td>  
@@ -341,7 +341,7 @@ if ((isset($_GET["delete"])) && ($_GET["delete"] == 1))
      </tr>
   <?php 
 
-  } while ($row_Cupones = mysql_fetch_assoc($Cupones)); ?>
+  } while ($row_Cupones = mysqli_fetch_assoc($Cupones)); ?>
 
 </tbody>
 </table>
@@ -420,11 +420,11 @@ $(document).ready(function() {
 
 </html>
 <?php
-mysql_free_result($artistas);
+mysqli_free_result($artistas);
 
-mysql_free_result($Genero);
+mysqli_free_result($Genero);
 
-mysql_free_result($Cupones);
+mysqli_free_result($Cupones);
 
 
 ?>

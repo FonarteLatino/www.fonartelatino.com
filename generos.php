@@ -36,7 +36,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Genero = "SELECT * FROM genero where id=".$_GET['genero'];
-$Genero = mysqli_query($conexion,$query_Genero) or die(mysql_error());
+$Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error($conexion));
 $row_Genero = mysqli_fetch_assoc($Genero);
 $totalRows_Genero = mysqli_num_rows($Genero);
 
@@ -45,7 +45,7 @@ $totalRows_Genero = mysqli_num_rows($Genero);
 // paso 1/7 generas query
 mysqli_select_db($conexion,$database_conexion);
 $query_ProductosPagination = "SELECT * FROM productos where genero=".$_GET['genero'];
-$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysqli_error($conexion));
 $row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
 $totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 // paso 2/7 asignas cuatos resultados se veran por pagina
@@ -88,7 +88,7 @@ INNER JOIN genero ON genero.id = productos.genero
 WHERE productos.prendido=1
 AND productos.genero=".$_GET['genero']."  order by productos.artista
 limit ".$inicio.",".$fin;
-$ProductosPorGeneros = mysqli_query($conexion,$query_ProductosPorGeneros) or die(mysql_error());
+$ProductosPorGeneros = mysqli_query($conexion,$query_ProductosPorGeneros) or die(mysqli_error($conexion));
 $row_ProductosPorGeneros = mysqli_fetch_assoc($ProductosPorGeneros);
 $totalRows_ProductosPorGeneros = mysqli_num_rows($ProductosPorGeneros);
 

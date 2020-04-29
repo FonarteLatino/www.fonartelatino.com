@@ -122,8 +122,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	GetSQLValueString($_POST['clave'], "text"),
 	GetSQLValueString($_POST['precio'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
 	
 	$insertGoTo = "admin_precios.php?alerta=5";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -134,11 +134,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 }
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_PreciosEnvios = "SELECT * FROM envios";
-$PreciosEnvios = mysql_query($query_PreciosEnvios, $conexion) or die(mysql_error());
-$row_PreciosEnvios = mysql_fetch_assoc($PreciosEnvios);
-$totalRows_PreciosEnvios = mysql_num_rows($PreciosEnvios);
+$PreciosEnvios = mysqli_query($conexion,$query_PreciosEnvios) or die(mysqli_error());
+$row_PreciosEnvios = mysqli_fetch_assoc($PreciosEnvios);
+$totalRows_PreciosEnvios = mysqli_num_rows($PreciosEnvios);
 
 
 ?>
@@ -250,7 +250,7 @@ $totalRows_PreciosEnvios = mysql_num_rows($PreciosEnvios);
          <td><?php echo utf8_encode($row_PreciosEnvios['descripcion']); ?></td>
         <td data-toggle="modal" data-target="#edita_precio_envio" onclick="carga_modal_1(<?php echo $row_PreciosEnvios['id'] ?>)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
     </tr>
-    <?php } while ($row_PreciosEnvios = mysql_fetch_assoc($PreciosEnvios)); ?>
+    <?php } while ($row_PreciosEnvios = mysqli_fetch_assoc($PreciosEnvios)); ?>
 
 </tbody>
 </table>
@@ -356,7 +356,7 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($PreciosEnvios);
+mysqli_free_result($PreciosEnvios);
 
 
 ?>

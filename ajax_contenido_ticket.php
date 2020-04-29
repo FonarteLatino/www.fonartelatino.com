@@ -31,7 +31,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ProductosPedidos = "SELECT
 pedido.id,
 pedido.id_usuario,
@@ -65,13 +65,13 @@ pedido
 LEFT JOIN pedido_productos ON pedido.id = pedido_productos.id_pedido
 LEFT JOIN envios ON pedido.id_envio = envios.id
 where pedido.id=".$_GET['id_pedido'];
-$ProductosPedidos = mysql_query($query_ProductosPedidos, $conexion) or die(mysql_error());
-$row_ProductosPedidos = mysql_fetch_assoc($ProductosPedidos);
-$totalRows_ProductosPedidos = mysql_num_rows($ProductosPedidos);
+$ProductosPedidos = mysqli_query($conexion,$query_ProductosPedidos) or die(mysqli_error($conexion));
+$row_ProductosPedidos = mysqli_fetch_assoc($ProductosPedidos);
+$totalRows_ProductosPedidos = mysqli_num_rows($ProductosPedidos);
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ProductosPedidos2 = "SELECT
 pedido.id,
 pedido.id_usuario,
@@ -98,9 +98,9 @@ pedido
 LEFT JOIN pedido_productos ON pedido.id = pedido_productos.id_pedido
 LEFT JOIN productos ON productos.id = pedido_productos.id_producto
 where pedido.id=".$_GET['id_pedido'];
-$ProductosPedidos2 = mysql_query($query_ProductosPedidos2, $conexion) or die(mysql_error());
-$row_ProductosPedidos2 = mysql_fetch_assoc($ProductosPedidos2);
-$totalRows_ProductosPedidos2 = mysql_num_rows($ProductosPedidos2);
+$ProductosPedidos2 = mysqli_query($conexion,$query_ProductosPedidos2) or die(mysqli_error($conexion));
+$row_ProductosPedidos2 = mysqli_fetch_assoc($ProductosPedidos2);
+$totalRows_ProductosPedidos2 = mysqli_num_rows($ProductosPedidos2);
 
 //datos de envio
 
@@ -108,27 +108,27 @@ $desc=utf8_encode($row_ProductosPedidos['descripcion']);
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Direccion = "SELECT * FROM direcciones where id=".$row_ProductosPedidos2['id_direccion'];
-$Direccion = mysql_query($query_Direccion, $conexion) or die(mysql_error());
-$row_Direccion = mysql_fetch_assoc($Direccion);
-$totalRows_Direccion = mysql_num_rows($Direccion);
+$Direccion = mysqli_query($conexion,$query_Direccion) or die(mysqli_error($conexion));
+$row_Direccion = mysqli_fetch_assoc($Direccion);
+$totalRows_Direccion = mysqli_num_rows($Direccion);
 
 // datos del usuario
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Usuario = "SELECT * FROM usuarios_ecommerce where id=".$row_ProductosPedidos2['id_usuario'];
-$Usuario = mysql_query($query_Usuario, $conexion) or die(mysql_error());
-$row_Usuario = mysql_fetch_assoc($Usuario);
-$totalRows_Usuario = mysql_num_rows($Usuario);
+$Usuario = mysqli_query($conexion,$query_Usuario) or die(mysqli_error($conexion));
+$row_Usuario = mysqli_fetch_assoc($Usuario);
+$totalRows_Usuario = mysqli_num_rows($Usuario);
 
 //¿utilizo un cupon de descuento?
 if($row_ProductosPedidos2['cupon_aplicado']!='')//si uso cupon de descuento
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_DatosCupon = "SELECT * FROM cupon where codigo='".$row_ProductosPedidos2['cupon_aplicado']."'";
-	$DatosCupon = mysql_query($query_DatosCupon, $conexion) or die(mysql_error());
-	$row_DatosCupon = mysql_fetch_assoc($DatosCupon);
-	$totalRows_DatosCupon = mysql_num_rows($DatosCupon);
+	$DatosCupon = mysqli_query($conexion,$query_DatosCupon) or die(mysqli_error($conexion));
+	$row_DatosCupon = mysqli_fetch_assoc($DatosCupon);
+	$totalRows_DatosCupon = mysqli_num_rows($DatosCupon);
 	
 }
 if(isset($row_DatosCupon['descuento']))
@@ -155,8 +155,8 @@ if(isset($_GET['pagado']) and ($_GET['pagado']==1))
 	GetSQLValueString('PAGADO', "text"),
 	GetSQLValueString($_GET['id_pedido'], "int"));
 	 
-	mysql_select_db($database_conexion, $conexion);	
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);	
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	$correo_comprador=$_GET['email'];
 	/* envia correo de que el pago fue recibido correctamente*/
@@ -209,7 +209,7 @@ if(isset($_GET['pagado']) and ($_GET['pagado']==1))
         </tr>
         <?php
 		$i++;
-        }while($row_ProductosPedidos = mysql_fetch_assoc($ProductosPedidos))
+        }while($row_ProductosPedidos = mysqli_fetch_assoc($ProductosPedidos))
         ?>
         
          <tr>
@@ -334,5 +334,5 @@ if($row_ProductosPedidos2['estatus']==2)
 
 
 <?php
-mysql_free_result($ProductosPedidos);
+mysqli_free_result($ProductosPedidos);
 ?>

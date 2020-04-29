@@ -56,7 +56,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -80,7 +80,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Productos = "SELECT
 productos.id as id_tabla,
 productos.sku,
@@ -94,7 +94,7 @@ productos.spotify,
 productos.itunes,
 productos.amazon,
 productos.google,
-productos.claro,
+productos.amazon_mu,
 productos.youtube,
 productos.deezer,
 productos.tidal,
@@ -114,9 +114,9 @@ LEFT JOIN precios ON precios.clave = productos.clave_precio
 WHERE productos.prendido=1 and productos.categoria = 5
 
 ";
-$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
-$row_Productos = mysql_fetch_assoc($Productos);
-$totalRows_Productos = mysql_num_rows($Productos);
+$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error($conexion));
+$row_Productos = mysqli_fetch_assoc($Productos);
+$totalRows_Productos = mysqli_num_rows($Productos);
 ?>
 <?php include("alertas.php"); ?>
 <!DOCTYPE html>
@@ -214,11 +214,11 @@ $totalRows_Productos = mysql_num_rows($Productos);
      <td><?php echo utf8_encode($row_Productos['artista']); ?></td>
      <td><?php echo utf8_encode($row_Productos['album']); ?></td>
 	<?php
-    mysql_select_db($database_conexion, $conexion);
+    mysqli_select_db($conexion,$database_conexion);
     $query_Genero = "select * from genero where id=".$row_Productos['genero'];  
-    $Genero = mysql_query($query_Genero, $conexion) or die(mysql_error());
-    $row_Genero = mysql_fetch_assoc($Genero);
-    $totalRows_Genero = mysql_num_rows($Genero);
+    $Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error());
+    $row_Genero = mysqli_fetch_assoc($Genero);
+    $totalRows_Genero = mysqli_num_rows($Genero);
     ?>
      <td><?php echo utf8_encode($row_Genero['nombre']); ?></td>
      <td><?php echo utf8_encode($row_Productos['cat_nombre']); ?></td>
@@ -239,7 +239,7 @@ $totalRows_Productos = mysql_num_rows($Productos);
 	 if($row_Productos['google']!=''){ $goo="<i class='fa fa-check' aria-hidden='true'></i>"; }
 	 else { $goo=''; }
 
-   if($row_Productos['claro']!=''){ $cla="<i class='fa fa-check' aria-hidden='true'></i>"; }
+   if($row_Productos['amazon_mu']!=''){ $cla="<i class='fa fa-check' aria-hidden='true'></i>"; }
    else { $cla=''; }
 
    if($row_Productos['youtube']!=''){ $you="<i class='fa fa-check' aria-hidden='true'></i>"; }
@@ -266,7 +266,7 @@ $totalRows_Productos = mysql_num_rows($Productos);
      <td data-toggle="modal" data-target="#borra_producto" onclick="carga_modal_1(<?php echo  $row_Productos['id_tabla']; ?>)"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
      
      </tr>
-     <?php } while ($row_Productos = mysql_fetch_assoc($Productos)); ?>
+     <?php } while ($row_Productos = mysqli_fetch_assoc($Productos)); ?>
 
 </tbody>
 </table>
@@ -359,5 +359,5 @@ function carga_modal_1(id_producto)
 
 </html>
 <?php
-mysql_free_result($Productos);
+mysqli_free_result($Productos);
 ?>

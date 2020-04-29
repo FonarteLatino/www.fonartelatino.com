@@ -42,8 +42,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	GetSQLValueString($_POST['nombre'], "text"),
 	GetSQLValueString($_POST['id'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	$updateGoTo = "admin_categorias.php?alerta=6";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -54,17 +54,17 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	?><script type="text/javascript">window.location="<?php echo $updateGoTo; ?>";</script><?php
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_UpdateCategoria = "SELECT * FROM categoria";
-$UpdateCategoria = mysql_query($query_UpdateCategoria, $conexion) or die(mysql_error());
-$row_UpdateCategoria = mysql_fetch_assoc($UpdateCategoria);
-$totalRows_UpdateCategoria = mysql_num_rows($UpdateCategoria);
+$UpdateCategoria = mysqli_query($conexion,$query_UpdateCategoria) or die(mysqli_error($conexion));
+$row_UpdateCategoria = mysqli_fetch_assoc($UpdateCategoria);
+$totalRows_UpdateCategoria = mysqli_num_rows($UpdateCategoria);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Categoria = "SELECT * FROM categoria where id=".$_GET['id_cateoria'];
-$Categoria = mysql_query($query_Categoria, $conexion) or die(mysql_error());
-$row_Categoria = mysql_fetch_assoc($Categoria);
-$totalRows_Categoria = mysql_num_rows($Categoria);
+$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error($conexion));
+$row_Categoria = mysqli_fetch_assoc($Categoria);
+$totalRows_Categoria = mysqli_num_rows($Categoria);
 
 
 
@@ -102,7 +102,7 @@ $totalRows_Categoria = mysql_num_rows($Categoria);
 </form>
 
 <?php
-mysql_free_result($Categoria);
+mysqli_free_result($Categoria);
 
-mysql_free_result($UpdateCategoria);
+mysqli_free_result($UpdateCategoria);
 ?>

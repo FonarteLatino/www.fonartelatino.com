@@ -44,7 +44,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Generos = "SELECT * FROM genero order by nombre ASC";
-$Generos = mysqli_query($conexion,$query_Generos) or die(mysql_error());
+$Generos = mysqli_query($conexion,$query_Generos) or die(mysqli_error($conexion));
 $row_Generos = mysqli_fetch_assoc($Generos);
 $totalRows_Generos = mysqli_num_rows($Generos);
 
@@ -53,7 +53,7 @@ if(isset($_SESSION['CARRITO_TEMP']))
 {
   mysqli_select_db($conexion,$database_conexion);
   $query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['CARRITO_TEMP'];
-  $Carrito = mysqli_query($conexion,$query_Carrito) or die(mysql_error());
+  $Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
   $row_Carrito = mysqli_fetch_assoc($Carrito);
   $totalRows_Carrito = mysqli_num_rows($Carrito);
 }
@@ -62,7 +62,7 @@ if(isset($_SESSION['USUARIO_ECOMMERCE']))
 {
   mysqli_select_db($conexion,$database_conexion);
   $query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-  $Carrito = mysqli_query($conexion,$query_Carrito) or die(mysql_error());
+  $Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
   $row_Carrito = mysqli_fetch_assoc($Carrito);
   $totalRows_Carrito = mysqli_num_rows($Carrito);
 }
@@ -71,7 +71,7 @@ if(isset($_SESSION['USUARIO_ECOMMERCE']))
 //muestra todas las categorias que no sean merchandisign  PARA EL SUBTITULO
 mysqli_select_db($conexion,$database_conexion);
 $query_CategoriaSub = "SELECT * FROM categoria WHERE id!=4  order by nombre ASC";
-$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysql_error());
+$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysqli_error($conexion));
 $row_CategoriaSub = mysqli_fetch_assoc($CategoriaSub);
 $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 

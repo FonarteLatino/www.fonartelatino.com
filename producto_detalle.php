@@ -114,7 +114,7 @@ productos
 INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
 INNER JOIN precios ON precios.clave = productos.clave_precio WHERE productos.id=".$id_producto;*/
-$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysql_error());
+$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysqli_error($conexion));
 $row_DetalleProducto = mysqli_fetch_assoc($DetalleProducto);
 $totalRows_DetalleProducto = mysqli_num_rows($DetalleProducto);
 
@@ -183,7 +183,7 @@ INNER JOIN genero ON genero.id = productos.genero
 WHERE productos.prendido=1 and productos.genero=".$row_DetalleProducto['genero']."
 ORDER BY RAND()
 limit 7";*/
-$TePuedeInteresar = mysqli_query($conexion,$query_TePuedeInteresar) or die(mysql_error());
+$TePuedeInteresar = mysqli_query($conexion,$query_TePuedeInteresar) or die(mysqli_error($conexion));
 $row_TePuedeInteresar = mysqli_fetch_assoc($TePuedeInteresar);
 $totalRows_TePuedeInteresar = mysqli_num_rows($TePuedeInteresar);
 /* ******************** fin de te puede interesar *************************** */
@@ -215,7 +215,7 @@ if(isset($_GET['add_carrito']) and ($_GET['add_carrito']==1))
 	GetSQLValueString(date("H:i:d"), "date"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysql_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$redirecciona="producto_detalle/".$_GET['id_producto']."/".$_GET['url_seo'];
 	?><script type="text/javascript">window.location="<?php echo $redirecciona; ?>";</script><?php

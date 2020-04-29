@@ -56,7 +56,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -86,32 +86,32 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Precios = "SELECT * FROM precios order by clave ASC";
-$Precios = mysql_query($query_Precios, $conexion) or die(mysql_error());
-$row_Precios = mysql_fetch_assoc($Precios);
-$totalRows_Precios = mysql_num_rows($Precios);
+$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error());
+$row_Precios = mysqli_fetch_assoc($Precios);
+$totalRows_Precios = mysqli_num_rows($Precios);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Generos = "SELECT * FROM genero order by nombre ASC";
-$Generos = mysql_query($query_Generos, $conexion) or die(mysql_error());
-$row_Generos = mysql_fetch_assoc($Generos);
-$totalRows_Generos = mysql_num_rows($Generos);
+$Generos = mysqli_query($conexion,$query_Generos) or die(mysqli_error());
+$row_Generos = mysqli_fetch_assoc($Generos);
+$totalRows_Generos = mysqli_num_rows($Generos);
 
 
 //muestra todas las categorias que no sean merchandisign 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Categoria = "SELECT * FROM categoria WHERE id!=4  order by nombre ASC";
-$Categoria = mysql_query($query_Categoria, $conexion) or die(mysql_error());
-$row_Categoria = mysql_fetch_assoc($Categoria);
-$totalRows_Categoria = mysql_num_rows($Categoria);
+$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error());
+$row_Categoria = mysqli_fetch_assoc($Categoria);
+$totalRows_Categoria = mysqli_num_rows($Categoria);
 
 //muestra todas las categorias que no sean merchandisign  PARA EL SUBTITULO
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_CategoriaSub = "SELECT * FROM categoria WHERE id!=4  order by nombre ASC";
-$CategoriaSub = mysql_query($query_CategoriaSub, $conexion) or die(mysql_error());
-$row_CategoriaSub = mysql_fetch_assoc($CategoriaSub);
-$totalRows_CategoriaSub = mysql_num_rows($CategoriaSub);
+$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysqli_error());
+$row_CategoriaSub = mysqli_fetch_assoc($CategoriaSub);
+$totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 
 
 if(isset($_POST['inserta']) and ($_POST['inserta']==1))
@@ -208,8 +208,8 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
   GetSQLValueString($_POST['firelink'], "text"));*/
 	
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
 	
 	?><script type="text/javascript">window.location="admin_nuevo_producto.php?alerta=5";</script><?php
 	
@@ -264,7 +264,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 					do
 					{
 						echo " - ".$row_CategoriaSub['nombre'];
-					}while($row_CategoriaSub = mysql_fetch_assoc($CategoriaSub));
+					}while($row_CategoriaSub = mysqli_fetch_assoc($CategoriaSub));
 					?></small>
             </div>
         </div>
@@ -308,11 +308,11 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     ?>
     <option value="<?php echo $row_Precios['clave']?>"><?php echo $row_Precios['clave']." - $".$row_Precios['precio'].".00"?></option>
     <?php
-    } while ($row_Precios = mysql_fetch_assoc($Precios));
-    $rows = mysql_num_rows($Precios);
+    } while ($row_Precios = mysqli_fetch_assoc($Precios));
+    $rows = mysqli_num_rows($Precios);
     if($rows > 0) {
-    mysql_data_seek($Precios, 0);
-    $row_Precios = mysql_fetch_assoc($Precios);
+    mysqli_data_seek($Precios, 0);
+    $row_Precios = mysqli_fetch_assoc($Precios);
     }
     ?>
     </select>
@@ -326,11 +326,11 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     ?>
     <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
     <?php
-    } while ($row_Generos = mysql_fetch_assoc($Generos));
-    $rows = mysql_num_rows($Generos);
+    } while ($row_Generos = mysqli_fetch_assoc($Generos));
+    $rows = mysqli_num_rows($Generos);
     if($rows > 0) {
-    mysql_data_seek($Generos, 0);
-    $row_Generos = mysql_fetch_assoc($Generos);
+    mysqli_data_seek($Generos, 0);
+    $row_Generos = mysqli_fetch_assoc($Generos);
     }
     ?>
     </select>
@@ -353,11 +353,11 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     ?>
     <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
     <?php
-    } while ($row_Generos = mysql_fetch_assoc($Generos));
-    $rows = mysql_num_rows($Generos);
+    } while ($row_Generos = mysqli_fetch_assoc($Generos));
+    $rows = mysqli_num_rows($Generos);
     if($rows > 0) {
-    mysql_data_seek($Generos, 0);
-    $row_Generos = mysql_fetch_assoc($Generos);
+    mysqli_data_seek($Generos, 0);
+    $row_Generos = mysqli_fetch_assoc($Generos);
     }
     ?>
     </select>
@@ -373,11 +373,11 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     ?>
     <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
     <?php
-    } while ($row_Generos = mysql_fetch_assoc($Generos));
-    $rows = mysql_num_rows($Generos);
+    } while ($row_Generos = mysqli_fetch_assoc($Generos));
+    $rows = mysqli_num_rows($Generos);
     if($rows > 0) {
-    mysql_data_seek($Generos, 0);
-    $row_Generos = mysql_fetch_assoc($Generos);
+    mysqli_data_seek($Generos, 0);
+    $row_Generos = mysqli_fetch_assoc($Generos);
     }
     ?>
     </select>
@@ -471,12 +471,12 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     <?php
     do {  
     ?><option value="<?php echo $row_Categoria['id']?>"><?php echo $row_Categoria['nombre']?></option><?php
-    } while ($row_Categoria = mysql_fetch_assoc($Categoria));
-    $rows = mysql_num_rows($Categoria);
+    } while ($row_Categoria = mysqli_fetch_assoc($Categoria));
+    $rows = mysqli_num_rows($Categoria);
     if($rows > 0) 
     {
-    mysql_data_seek($Categoria, 0);
-    $row_Categoria = mysql_fetch_assoc($Categoria);
+    mysqli_data_seek($Categoria, 0);
+    $row_Categoria = mysqli_fetch_assoc($Categoria);
     }
     ?>
     </select>
@@ -620,9 +620,9 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($Precios);
+mysqli_free_result($Precios);
 
-mysql_free_result($Generos);
+mysqli_free_result($Generos);
 
-mysql_free_result($Categoria);
+mysqli_free_result($Categoria);
 ?>

@@ -55,7 +55,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -121,8 +121,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	GetSQLValueString(utf8_decode($_POST['nombre']), "text"),
 	GetSQLValueString('1', "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$insertGoTo = "admin_generos.php?alerta=5";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -133,11 +133,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	?><script type="text/javascript">window.location="<?php echo $insertGoTo ?>";</script><?php
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Generos = "SELECT * FROM genero";
-$Generos = mysql_query($query_Generos, $conexion) or die(mysql_error());
-$row_Generos = mysql_fetch_assoc($Generos);
-$totalRows_Generos = mysql_num_rows($Generos);
+$Generos = mysqli_query($conexion,$query_Generos) or die(mysqli_error($conexion));
+$row_Generos = mysqli_fetch_assoc($Generos);
+$totalRows_Generos = mysqli_num_rows($Generos);
 ?>
 <?php include("alertas.php"); ?>
 <!DOCTYPE html>
@@ -230,11 +230,11 @@ $totalRows_Generos = mysql_num_rows($Generos);
 
 	<?php do { 
 	
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosAsignados = "SELECT * FROM productos where genero=".$row_Generos['id'];;
-	$ProductosAsignados = mysql_query($query_ProductosAsignados, $conexion) or die(mysql_error());
-	$row_ProductosAsignados = mysql_fetch_assoc($ProductosAsignados);
-	$totalRows_ProductosAsignados = mysql_num_rows($ProductosAsignados);
+	$ProductosAsignados = mysqli_query($conexion,$query_ProductosAsignados) or die(mysqli_error($conexion));
+	$row_ProductosAsignados = mysqli_fetch_assoc($ProductosAsignados);
+	$totalRows_ProductosAsignados = mysqli_num_rows($ProductosAsignados);
 	
 	?>
     <tr class="letra_admin_prod2">
@@ -242,7 +242,7 @@ $totalRows_Generos = mysql_num_rows($Generos);
         <td><?php echo "<strong>".utf8_encode($row_Generos['nombre'])."</strong> (".$totalRows_ProductosAsignados." productos asignados)"; ?></td>
         <td data-toggle="modal" data-target="#edita_genero" onclick="carga_modal_1(<?php echo $row_Generos['id'] ?>)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
     </tr>
-    <?php } while ($row_Generos = mysql_fetch_assoc($Generos)); ?>
+    <?php } while ($row_Generos = mysqli_fetch_assoc($Generos)); ?>
 
 </tbody>
 </table>
@@ -348,5 +348,5 @@ function carga_modal_1(id_genero)
 
 </html>
 <?php
-mysql_free_result($Generos);
+mysqli_free_result($Generos);
 ?>

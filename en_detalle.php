@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -31,7 +31,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_EnDetalle = "SELECT
 productos.id,
 productos.sku,
@@ -58,9 +58,9 @@ en_detalle.id_producto
 FROM
 productos
 INNER JOIN en_detalle ON productos.id = en_detalle.id_producto";
-$EnDetalle = mysql_query($query_EnDetalle, $conexion) or die(mysql_error());
-$row_EnDetalle = mysql_fetch_assoc($EnDetalle);
-$totalRows_EnDetalle = mysql_num_rows($EnDetalle);
+$EnDetalle = mysqli_query($conexion,$query_EnDetalle) or die(mysqli_error());
+$row_EnDetalle = mysqli_fetch_assoc($EnDetalle);
+$totalRows_EnDetalle = mysqli_num_rows($EnDetalle);
 
 
 if(isset($_GET['borra']) and $_GET['borra']==1)
@@ -68,8 +68,8 @@ if(isset($_GET['borra']) and $_GET['borra']==1)
 	$deleteSQL = sprintf("DELETE FROM en_detalle WHERE id_producto=%s",
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
 
 	?><script type="text/javascript">window.location="admin_home.php?alerta=7&activa=4";</script><?php
 }
@@ -150,7 +150,7 @@ do{
     </tr>
     <?php
 	$x++;
-}while($row_EnDetalle = mysql_fetch_assoc($EnDetalle));
+}while($row_EnDetalle = mysqli_fetch_assoc($EnDetalle));
 ?>
 
 </tbody>
@@ -166,5 +166,5 @@ do{
 
 
 <?php
-mysql_free_result($EnDetalle);
+mysqli_free_result($EnDetalle);
 ?>

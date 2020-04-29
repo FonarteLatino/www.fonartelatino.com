@@ -80,11 +80,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Categoria = "SELECT * FROM categoria where id=4";
-$Categoria = mysql_query($query_Categoria, $conexion) or die(mysql_error());
-$row_Categoria = mysql_fetch_assoc($Categoria);
-$totalRows_Categoria = mysql_num_rows($Categoria);
+$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error());
+$row_Categoria = mysqli_fetch_assoc($Categoria);
+$totalRows_Categoria = mysqli_num_rows($Categoria);
 
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -117,7 +117,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ProductosOtros = "SELECT
 productos_otros.id,
 productos_otros.sku,
@@ -144,9 +144,9 @@ INNER JOIN cat_otros ON cat_otros.id = productos_otros.tipo
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 where productos_otros.prendido=1
 ";
-$ProductosOtros = mysql_query($query_ProductosOtros, $conexion) or die(mysql_error());
-$row_ProductosOtros = mysql_fetch_assoc($ProductosOtros);
-$totalRows_ProductosOtros = mysql_num_rows($ProductosOtros);
+$ProductosOtros = mysqli_query($conexion,$query_ProductosOtros) or die(mysqli_error());
+$row_ProductosOtros = mysqli_fetch_assoc($ProductosOtros);
+$totalRows_ProductosOtros = mysqli_num_rows($ProductosOtros);
 
 
 
@@ -264,7 +264,7 @@ $totalRows_ProductosOtros = mysql_num_rows($ProductosOtros);
      <td data-toggle="modal" data-target="#borra_producto_otro" onclick="carga_modal_1(<?php echo  $row_ProductosOtros['id']; ?>)"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
      
      </tr>
-     <?php } while ($row_ProductosOtros = mysql_fetch_assoc($ProductosOtros)); ?>
+     <?php } while ($row_ProductosOtros = mysqli_fetch_assoc($ProductosOtros)); ?>
 
 </tbody>
 </table>
@@ -357,7 +357,7 @@ function carga_modal_1(id_producto_otro)
 
 </html>
 <?php
-mysql_free_result($Categoria);
+mysqli_free_result($Categoria);
 
-mysql_free_result($ProductosOtros);
+mysqli_free_result($ProductosOtros);
 ?>

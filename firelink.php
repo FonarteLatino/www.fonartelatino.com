@@ -45,7 +45,7 @@ if(isset($_GET['letra']))
 	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosPagination = "SELECT * FROM productos where firelink = \"Si\" and prendido=1 and artista like '".$_GET['letra']."%' UNION SELECT * FROM productos where categoria = 5 and prendido=1 and album like '".$_GET['letra']."%'";
 
-	$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+	$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysqli_error($conexion));
 	$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
 	$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 	// paso 2/7 asignas cuatos resultados se veran por pagina
@@ -82,7 +82,7 @@ if(isset($_GET['letra']))
 	INNER JOIN categoria ON categoria.id = productos.categoria
 	INNER JOIN genero ON genero.id = productos.genero where categoria = 5 and prendido=1 and album like '".$_GET['letra']."%' ORDER BY `productos`.`album` ASC limit ".$inicio.",".$fin.")";
 	
-	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error($conexion));
 	$row_Productos = mysqli_fetch_assoc($Productos);
 	$totalRows_Productos = mysqli_num_rows($Productos);
 }
@@ -95,7 +95,7 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
 		// paso 1/7 generas query
 		mysqli_select_db($conexion,$database_conexion);
 		$query_ProductosPagination = "SELECT * FROM productos where categoria = 5 or firelink = \"Si\" and categoria=".$_GET['categoria']." and prendido=1";
-		$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysql_error());
+		$ProductosPagination = mysqli_query($conexion,$query_ProductosPagination) or die(mysqli_error($conexion));
 		$row_ProductosPagination = mysqli_fetch_assoc($ProductosPagination);
 		$totalRows_ProductosPagination = mysqli_num_rows($ProductosPagination);
 		// paso 2/7 asignas cuatos resultados se veran por pagina
@@ -124,7 +124,7 @@ else if(!isset($_GET['categoria']) or $_GET['letra']==1)
 	WHERE productos.categoria = 5 or productos.firelink = \"Si\" and productos.categoria=".$_GET['categoria']." and productos.prendido=1
 	 ORDER BY `productos`.`artista` ASC
 	limit ".$inicio.",".$fin;  
-	$Productos = mysqli_query($conexion,$query_Productos) or die(mysql_error());
+	$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error($conexion));
 	$row_Productos = mysqli_fetch_assoc($Productos);
 	$totalRows_Productos = mysqli_num_rows($Productos);
 }
