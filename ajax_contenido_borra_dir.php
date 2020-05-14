@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -37,11 +37,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 require_once('Connections/conexion.php'); 
 
 //existen direcciones de este usuario
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Direccion = "SELECT * FROM direcciones where id=".$_GET['id_dir'];
-$Direccion  = mysql_query($query_Direccion, $conexion) or die(mysql_error());
-$row_Direccion  = mysql_fetch_assoc($Direccion );
-$totalRows_Direccion  = mysql_num_rows($Direccion );
+$Direccion  = mysqli_query($conexion,$query_Direccion) or die(mysqli_error($conexion));
+$row_Direccion  = mysqli_fetch_assoc($Direccion );
+$totalRows_Direccion  = mysqli_num_rows($Direccion );
 
 if(isset($_POST['query_delete'])  and ($_POST['query_delete']==1))
 {
@@ -49,8 +49,8 @@ if(isset($_POST['query_delete'])  and ($_POST['query_delete']==1))
 	$deleteSQL = sprintf("DELETE FROM direcciones WHERE id=%s",
 	GetSQLValueString($_POST['id_dir'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 	
 	$deleteGoTo = "direcciones_envio.php?alerta=204";
 	if (isset($_SERVER['QUERY_STRING'])) {

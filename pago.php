@@ -30,7 +30,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -63,23 +63,23 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 
 //selecciona pedido
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Pedido1 = "SELECT * from pedido where id=".$_SESSION['PEDIDO_NUEVO'];
-$Pedido1 = mysql_query($query_Pedido1, $conexion) or die(mysql_error());
-$row_Pedido1 = mysql_fetch_assoc($Pedido1);
-$totalRows_Pedido1 = mysql_num_rows($Pedido1);
+$Pedido1 = mysqli_query($conexion,$query_Pedido1) or die(mysqli_error($conexion));
+$row_Pedido1 = mysqli_fetch_assoc($Pedido1);
+$totalRows_Pedido1 = mysqli_num_rows($Pedido1);
 
 
 
 //selecciona productos de este pedido
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_PedidoProductos = "SELECT * from pedido_productos where id_pedido=".$_SESSION['PEDIDO_NUEVO'];
-$PedidoProductos = mysql_query($query_PedidoProductos, $conexion) or die(mysql_error());
-$row_PedidoProductos = mysql_fetch_assoc($PedidoProductos);
-$totalRows_PedidoProductos = mysql_num_rows($PedidoProductos);
+$PedidoProductos = mysqli_query($conexion,$query_PedidoProductos) or die(mysqli_error($conexion));
+$row_PedidoProductos = mysqli_fetch_assoc($PedidoProductos);
+$totalRows_PedidoProductos = mysqli_num_rows($PedidoProductos);
 	
 	//seleccciona la direccion que escogio este usuario para este pedido
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Direccion = "SELECT
 direcciones.id,
 direcciones.id_usr,
@@ -101,9 +101,9 @@ FROM
 direcciones
 INNER JOIN pedido ON pedido.id_direccion = direcciones.id
 where pedido.id=".$_SESSION['PEDIDO_NUEVO'];
-$Direccion = mysql_query($query_Direccion, $conexion) or die(mysql_error());
-$row_Direccion = mysql_fetch_assoc($Direccion);
-$totalRows_Direccion = mysql_num_rows($Direccion);
+$Direccion = mysqli_query($conexion,$query_Direccion) or die(mysqli_error($conexion));
+$row_Direccion = mysqli_fetch_assoc($Direccion);
+$totalRows_Direccion = mysqli_num_rows($Direccion);
 	
 
 
@@ -111,11 +111,11 @@ $totalRows_Direccion = mysql_num_rows($Direccion);
 if(isset($_POST['aplica_cupon']) and ($_POST['aplica_cupon']==21))
 {
 	//1----VERIFICA SI EXISTE UN CUPON CON ESTE CODIGO 
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ExisteCupon = "SELECT * from cupon where codigo='".$_POST['cupon']."'";
-	$ExisteCupon = mysql_query($query_ExisteCupon, $conexion) or die(mysql_error());
-	$row_ExisteCupon = mysql_fetch_assoc($ExisteCupon);
-	$totalRows_ExisteCupon = mysql_num_rows($ExisteCupon);
+	$ExisteCupon = mysqli_query($conexion,$query_ExisteCupon) or die(mysqli_error($conexion));
+	$row_ExisteCupon = mysqli_fetch_assoc($ExisteCupon);
+	$totalRows_ExisteCupon = mysqli_num_rows($ExisteCupon);
 	
 	if($totalRows_ExisteCupon==0)//el codigo no existe
 	{
@@ -124,11 +124,11 @@ if(isset($_POST['aplica_cupon']) and ($_POST['aplica_cupon']==21))
 	else
 	{
 		// 2-----VERIFICA SI EXISTE UN CUPON DISPONIBLE 
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_ExisteCuponDiponible = "SELECT * from cupon where codigo='".$_POST['cupon']."' and  estatus='DISPONIBLE'";
-		$ExisteCuponDiponible = mysql_query($query_ExisteCuponDiponible, $conexion) or die(mysql_error());
-		$row_ExisteCuponDiponible = mysql_fetch_assoc($ExisteCuponDiponible);
-		$totalRows_ExisteCuponDiponible = mysql_num_rows($ExisteCuponDiponible);
+		$ExisteCuponDiponible = mysqli_query($conexion,$query_ExisteCuponDiponible) or die(mysqli_error($conexion));
+		$row_ExisteCuponDiponible = mysqli_fetch_assoc($ExisteCuponDiponible);
+		$totalRows_ExisteCuponDiponible = mysqli_num_rows($ExisteCuponDiponible);
 
 		
 		if($totalRows_ExisteCuponDiponible==0)//cupon si existe pero ya esta agotado
@@ -147,16 +147,16 @@ if(isset($_POST['aplica_cupon']) and ($_POST['aplica_cupon']==21))
 			else
 			{
 				//  4-----PREGUNTA CUANTOS PRODUCTOS COMPRO, SI SON MAYORES A LOS QUE ESPECIFICA EL CUPON, LO APLICA
-				mysql_select_db($database_conexion, $conexion);
+				mysqli_select_db($conexion,$database_conexion);
 				$query_CatidadProductos = "SELECT * from pedido_productos where id_pedido=".$_SESSION['PEDIDO_NUEVO'];
-				$CatidadProductos = mysql_query($query_CatidadProductos, $conexion) or die(mysql_error());
-				$row_CatidadProductos= mysql_fetch_assoc($CatidadProductos);
-				$totalRows_CatidadProductos = mysql_num_rows($CatidadProductos);
+				$CatidadProductos = mysqli_query($conexion,$query_CatidadProductos) or die(mysqli_error($conexion));
+				$row_CatidadProductos= mysqli_fetch_assoc($CatidadProductos);
+				$totalRows_CatidadProductos = mysqli_num_rows($CatidadProductos);
 				
 				$total_productos=0;
 				do{
 					$total_productos=$total_productos+$row_CatidadProductos['cantidad'];
-				}while($row_CatidadProductos= mysql_fetch_assoc($CatidadProductos));
+				}while($row_CatidadProductos= mysqli_fetch_assoc($CatidadProductos));
 				
 				if($total_productos<$row_ExisteCupon['mas_de'])//los productos son igual o mayor a los requeridos
 				{
@@ -174,17 +174,17 @@ if(isset($_POST['aplica_cupon']) and ($_POST['aplica_cupon']==21))
 	GetSQLValueString('PENDIENTE', "text"),
 	GetSQLValueString($row_ExisteCuponDiponible['id'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 							
 				
 	//Selecciona el pedido comprar
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_PedidoCupon = "SELECT * from pedido where id=".$_SESSION['PEDIDO_NUEVO'];
-	$PedidoCupon  = mysql_query($query_PedidoCupon, $conexion) or die(mysql_error());
-	$row_PedidoCupon = mysql_fetch_assoc($PedidoCupon );
-	$totalRows_PedidoCupon  = mysql_num_rows($PedidoCupon );	
+	$PedidoCupon  = mysqli_query($conexion,$query_PedidoCupon) or die(mysqli_error($conexion));
+	$row_PedidoCupon = mysqli_fetch_assoc($PedidoCupon );
+	$totalRows_PedidoCupon  = mysqli_num_rows($PedidoCupon );	
 
 	 
 	// verifica que tipo de descuento realizara, porcentaje o en pesos
@@ -205,15 +205,15 @@ if(isset($_POST['aplica_cupon']) and ($_POST['aplica_cupon']==21))
 	GetSQLValueString($_POST['cupon'], "text"),
 	GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	//toma el detalle del cupon
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_CuponDetalle = "SELECT * from cupon where codigo='".$_POST['cupon']."'";
-	$CuponDetalle  = mysql_query($query_CuponDetalle, $conexion) or die(mysql_error());
-	$row_CuponDetalle= mysql_fetch_assoc($CuponDetalle );
-	$totalRows_CuponDetalle  = mysql_num_rows($CuponDetalle );
+	$CuponDetalle  = mysqli_query($conexion,$query_CuponDetalle) or die(mysqli_error($conexion));
+	$row_CuponDetalle= mysqli_fetch_assoc($CuponDetalle );
+	$totalRows_CuponDetalle  = mysqli_num_rows($CuponDetalle );
 
 					
 ?><script type="text/javascript">window.location="pago.php?alerta=210&desc=<?php echo $row_CuponDetalle['descuento']; ?>&medida=<?php echo $row_CuponDetalle['medida']; ?>";</script><?php
@@ -370,7 +370,7 @@ do{
     $subtotal_pedido=$subtotal_pedido+$subtotal_producto;
     $contador=$contador+1;
     
-}while($row_PedidoProductos= mysql_fetch_assoc($PedidoProductos)); 
+}while($row_PedidoProductos= mysqli_fetch_assoc($PedidoProductos)); 
 
 
 
@@ -401,21 +401,21 @@ if(isset($_GET['desc']))
 <?php
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DatoEnvio = "SELECT * from envios where id=".$row_Pedido1['id_envio'];
-$DatoEnvio  = mysql_query($query_DatoEnvio, $conexion) or die(mysql_error());
-$row_DatoEnvio = mysql_fetch_assoc($DatoEnvio );
-$totalRows_DatoEnvio = mysql_num_rows($DatoEnvio );
+$DatoEnvio  = mysqli_query($conexion,$query_DatoEnvio) or die(mysqli_error($conexion));
+$row_DatoEnvio = mysqli_fetch_assoc($DatoEnvio );
+$totalRows_DatoEnvio = mysqli_num_rows($DatoEnvio );
 	
 	
 // toma la descripcion del envio cuando el precio de envio es 0 o diferente a 0
 if($row_Direccion['id_pais']==42)//envio en MEXICO
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_DescripEnvio = "SELECT * from envios where id=1";
-	$DescripEnvio = mysql_query($query_DescripEnvio, $conexion) or die(mysql_error());
-	$row_DescripEnvio= mysql_fetch_assoc($DescripEnvio);
-	$totalRows_DescripEnvio = mysql_num_rows($DescripEnvio);
+	$DescripEnvio = mysqli_query($conexion,$query_DescripEnvio) or die(mysqli_error($conexion));
+	$row_DescripEnvio= mysqli_fetch_assoc($DescripEnvio);
+	$totalRows_DescripEnvio = mysqli_num_rows($DescripEnvio);
 	
 	$des=$row_DescripEnvio['descripcion'];
 	$pre="$".$row_DescripEnvio['precio'].".00";
@@ -423,11 +423,11 @@ if($row_Direccion['id_pais']==42)//envio en MEXICO
 }
 else if($row_Direccion['id_pais']==55 or $row_Direccion['id_pais']==32)//ENVIO estados unidos y canada
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_DescripEnvio = "SELECT * from envios where id=2";
-	$DescripEnvio = mysql_query($query_DescripEnvio, $conexion) or die(mysql_error());
-	$row_DescripEnvio= mysql_fetch_assoc($DescripEnvio);
-	$totalRows_DescripEnvio = mysql_num_rows($DescripEnvio);
+	$DescripEnvio = mysqli_query($conexion,$query_DescripEnvio) or die(mysqli_error($conexion));
+	$row_DescripEnvio= mysqli_fetch_assoc($DescripEnvio);
+	$totalRows_DescripEnvio = mysqli_num_rows($DescripEnvio);
 	
 	$des=$row_DescripEnvio['descripcion'];
 	$pre="$".$row_DescripEnvio['precio'].".00";
@@ -435,11 +435,11 @@ else if($row_Direccion['id_pais']==55 or $row_Direccion['id_pais']==32)//ENVIO e
 }
 else//fuera de Mexico, Estados Unidos y Canada
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_DescripEnvio = "SELECT * from envios where id=3";
-	$DescripEnvio = mysql_query($query_DescripEnvio, $conexion) or die(mysql_error());
-	$row_DescripEnvio= mysql_fetch_assoc($DescripEnvio);
-	$totalRows_DescripEnvio = mysql_num_rows($DescripEnvio);
+	$DescripEnvio = mysqli_query($conexion,$query_DescripEnvio) or die(mysqli_error($conexion));
+	$row_DescripEnvio= mysqli_fetch_assoc($DescripEnvio);
+	$totalRows_DescripEnvio = mysqli_num_rows($DescripEnvio);
 	
 	$des="<span style='color:red;'>".utf8_encode($row_DescripEnvio['descripcion'])."</span>";
 	$pre="<span style='color:red; font-size:12px;'>PENDIENTE</span>";
@@ -657,7 +657,7 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-//mysql_free_result($ExisteCupon);
+//mysqli_free_result($ExisteCupon);
 
-//mysql_free_result($JuegoUpdatePedidoProductos);
+//mysqli_free_result($JuegoUpdatePedidoProductos);
 ?>

@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -70,8 +70,8 @@ if(isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'])
 		GetSQLValueString(date('Y-m-d H:i:s'), "date"),
 		GetSQLValueString(1, "int"));
 		
-		mysql_select_db($database_conexion, $conexion);
-		$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+		mysqli_select_db($conexion,$database_conexion);
+		$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 		
 		$insertGoTo = "cuenta.php?alerta=202";
 		if (isset($_SERVER['QUERY_STRING'])) {

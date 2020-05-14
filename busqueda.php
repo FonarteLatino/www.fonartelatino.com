@@ -10,7 +10,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -44,7 +44,7 @@ $a=utf8_decode($_GET['artista']);
 //$a='cañ';
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DetalleProducto = "SELECT
 productos.id as id_producto,
 productos.sku,
@@ -75,13 +75,13 @@ INNER JOIN categoria ON categoria.id = productos.categoria
 INNER JOIN genero ON genero.id = productos.genero
 INNER JOIN precios ON precios.clave = productos.clave_precio 
 WHERE productos.prendido and  (productos. `artista` LIKE '%".$a."%' or productos. album LIKE '%".$a."%' ) order by productos.artista ASC";
-$DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
-$row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
-$totalRows_DetalleProducto = mysql_num_rows($DetalleProducto);
+$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysqli_error($conexion));
+$row_DetalleProducto = mysqli_fetch_assoc($DetalleProducto);
+$totalRows_DetalleProducto = mysqli_num_rows($DetalleProducto);
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Otros = "SELECT
 productos_otros.id,
 productos_otros.sku,
@@ -106,9 +106,9 @@ productos_otros
 INNER JOIN cat_otros ON productos_otros.tipo = cat_otros.id
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 where productos_otros.prendido=1 and productos_otros.artista like '%".$a."%' order by productos_otros.artista ASC";
-$Otros = mysql_query($query_Otros, $conexion) or die(mysql_error());
-$row_Otros = mysql_fetch_assoc($Otros);
-$totalRows_Otros = mysql_num_rows($Otros);
+$Otros = mysqli_query($conexion,$query_Otros) or die(mysqli_error($conexion));
+$row_Otros = mysqli_fetch_assoc($Otros);
+$totalRows_Otros = mysqli_num_rows($Otros);
 
 ?>
  <?php include("alertas.php"); ?>
@@ -229,7 +229,7 @@ do
 
 
 <?php	
-}while($row_DetalleProducto = mysql_fetch_assoc($DetalleProducto));
+}while($row_DetalleProducto = mysqli_fetch_assoc($DetalleProducto));
 
 ?>
 </div>
@@ -313,7 +313,7 @@ do
 
 
 <?php	
-}while($row_Otros = mysql_fetch_assoc($Otros));
+}while($row_Otros = mysqli_fetch_assoc($Otros));
 
 ?>
 </div>

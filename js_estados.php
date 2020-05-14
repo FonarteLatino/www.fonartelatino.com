@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -31,11 +31,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_CatCiudades = "SELECT * FROM estado where ubicacionpaisid=".$_GET['pais']." order by estadonombre asc";
-$CatCiudades = mysql_query($query_CatCiudades, $conexion) or die(mysql_error());
-$row_CatCiudades = mysql_fetch_assoc($CatCiudades);
-$totalRows_CatCiudades = mysql_num_rows($CatCiudades);
+$CatCiudades = mysqli_query($conexion,$query_CatCiudades) or die(mysqli_error($conexion));
+$row_CatCiudades = mysqli_fetch_assoc($CatCiudades);
+$totalRows_CatCiudades = mysqli_num_rows($CatCiudades);
 
 
 //
@@ -49,16 +49,16 @@ do {
 ?>
       <option value="<?php echo $row_CatCiudades['id']?>"><?php echo utf8_encode($row_CatCiudades['estadonombre']) ?></option>
       <?php
-} while ($row_CatCiudades = mysql_fetch_assoc($CatCiudades));
-  $rows = mysql_num_rows($CatCiudades);
+} while ($row_CatCiudades = mysqli_fetch_assoc($CatCiudades));
+  $rows = mysqli_num_rows($CatCiudades);
   if($rows > 0) {
-      mysql_data_seek($CatCiudades, 0);
-	  $row_CatCiudades = mysql_fetch_assoc($CatCiudades);
+      mysqli_data_seek($CatCiudades, 0);
+	  $row_CatCiudades = mysqli_fetch_assoc($CatCiudades);
   }
 ?>
   </select>
   <span class="help-block"></span><!-- muestra texto de ayuda -->
 </div>
 <?php
-mysql_free_result($CatCiudades);
+mysqli_free_result($CatCiudades);
 ?>

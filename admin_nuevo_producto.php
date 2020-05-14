@@ -88,13 +88,13 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Precios = "SELECT * FROM precios order by clave ASC";
-$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error());
+$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error($conexion));
 $row_Precios = mysqli_fetch_assoc($Precios);
 $totalRows_Precios = mysqli_num_rows($Precios);
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Generos = "SELECT * FROM genero order by nombre ASC";
-$Generos = mysqli_query($conexion,$query_Generos) or die(mysqli_error());
+$Generos = mysqli_query($conexion,$query_Generos) or die(mysqli_error($conexion));
 $row_Generos = mysqli_fetch_assoc($Generos);
 $totalRows_Generos = mysqli_num_rows($Generos);
 
@@ -102,14 +102,14 @@ $totalRows_Generos = mysqli_num_rows($Generos);
 //muestra todas las categorias que no sean merchandisign 
 mysqli_select_db($conexion,$database_conexion);
 $query_Categoria = "SELECT * FROM categoria WHERE id!=4  order by nombre ASC";
-$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error());
+$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error($conexion));
 $row_Categoria = mysqli_fetch_assoc($Categoria);
 $totalRows_Categoria = mysqli_num_rows($Categoria);
 
 //muestra todas las categorias que no sean merchandisign  PARA EL SUBTITULO
 mysqli_select_db($conexion,$database_conexion);
 $query_CategoriaSub = "SELECT * FROM categoria WHERE id!=4  order by nombre ASC";
-$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysqli_error());
+$CategoriaSub = mysqli_query($conexion,$query_CategoriaSub) or die(mysqli_error($conexion));
 $row_CategoriaSub = mysqli_fetch_assoc($CategoriaSub);
 $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 
@@ -209,7 +209,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	?><script type="text/javascript">window.location="admin_nuevo_producto.php?alerta=5";</script><?php
 	

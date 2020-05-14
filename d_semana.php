@@ -58,7 +58,7 @@ d_semana.id_producto
 FROM
 productos
 INNER JOIN d_semana ON productos.id = d_semana.id_producto";
-$DiscoSemana = mysqli_query($conexion,$query_DiscoSemana) or die(mysqli_error());
+$DiscoSemana = mysqli_query($conexion,$query_DiscoSemana) or die(mysqli_error($conexion));
 $row_DiscoSemana = mysqli_fetch_assoc($DiscoSemana);
 $totalRows_DiscoSemana = mysqli_num_rows($DiscoSemana);
 
@@ -68,7 +68,7 @@ if(isset($_GET['borra']) and $_GET['borra']==1)
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 
 	?><script type="text/javascript">window.location="admin_home.php?alerta=7&activa=3";</script><?php
 }

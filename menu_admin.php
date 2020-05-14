@@ -5,7 +5,7 @@
 //quierey categorias todas menos Merchandisign
 mysqli_select_db($conexion,$database_conexion);
 $query_Categorias = "SELECT * FROM categoria where id!=4 order by nombre ASC";
-$Categorias = mysqli_query($conexion,$query_Categorias) or die(mysql_error($database_conexion));
+$Categorias = mysqli_query($conexion,$query_Categorias) or die(mysql_error($conexion));
 $row_Categorias = mysqli_fetch_assoc($Categorias);
 $totalRows_Categorias = mysqli_num_rows($Categorias);
 

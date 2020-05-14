@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -39,18 +39,18 @@ if (isset($_SERVER['QUERY_STRING'])) {
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) 
 {
 	//toma el pais
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Pais = "SELECT * FROM pais where id=".$_POST['pais'];
-	$Pais = mysql_query($query_Pais, $conexion) or die(mysql_error());
-	$row_Pais = mysql_fetch_assoc($Pais);
-	$totalRows_Pais = mysql_num_rows($Pais);
+	$Pais = mysqli_query($conexion,$query_Pais) or die(mysqli_error($conexion));
+	$row_Pais = mysqli_fetch_assoc($Pais);
+	$totalRows_Pais = mysqli_num_rows($Pais);
 	
 	//toma el estado
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Estado = "SELECT * FROM estado where id=".$_POST['estado'];
-	$Estado = mysql_query($query_Estado, $conexion) or die(mysql_error());
-	$row_Estado = mysql_fetch_assoc($Estado);
-	$totalRows_Estado = mysql_num_rows($Estado);
+	$Estado = mysqli_query($conexion,$query_Estado) or die(mysqli_error($conexion));
+	$row_Estado = mysqli_fetch_assoc($Estado);
+	$totalRows_Estado = mysqli_num_rows($Estado);
     
     
 $insertSQL = sprintf("INSERT INTO direcciones (id_usr, calle, colonia, muni_dele, cp, n_ext, n_int, id_pais, pais, id_estado, estado, entre_calle_1, entre_calle_2, nombre_recibe, tel_recibe, estatus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -71,8 +71,8 @@ $insertSQL = sprintf("INSERT INTO direcciones (id_usr, calle, colonia, muni_dele
 	GetSQLValueString($_POST['tel_recibe'], "text"),
 	GetSQLValueString(1, "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$insertGoTo = "direcciones_envio.php?alerta=203";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -173,11 +173,11 @@ $('#estado').load('js_estados.php?pais='+pais);//enviamos las 2 variables
                 ?>
                 <option value="<?php echo $row_CatPais['id']?>"><?php echo utf8_encode($row_CatPais['paisnombre']); ?></option>
                 <?php
-                } while ($row_CatPais = mysql_fetch_assoc($CatPais));
-                $rows = mysql_num_rows($CatPais);
+                } while ($row_CatPais = mysqli_fetch_assoc($CatPais));
+                $rows = mysqli_num_rows($CatPais);
                 if($rows > 0) {
-                mysql_data_seek($CatPais, 0);
-                $row_CatPais = mysql_fetch_assoc($CatPais);
+                mysqli_data_seek($CatPais, 0);
+                $row_CatPais = mysqli_fetch_assoc($CatPais);
                 }
                 ?>
             </select>

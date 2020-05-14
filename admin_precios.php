@@ -123,7 +123,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	GetSQLValueString($_POST['precio'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$insertGoTo = "admin_precios.php?alerta=5";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -136,7 +136,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Precios = "SELECT * FROM precios";
-$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error());
+$Precios = mysqli_query($conexion,$query_Precios) or die(mysqli_error($conexion));
 $row_Precios = mysqli_fetch_assoc($Precios);
 $totalRows_Precios = mysqli_num_rows($Precios);
 
@@ -241,7 +241,7 @@ $totalRows_Precios = mysqli_num_rows($Precios);
 	
 	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductosAsignados = "SELECT * FROM productos where clave_precio='".$row_Precios['clave']."'";;
-	$ProductosAsignados = mysqli_query($conexion,$query_ProductosAsignados) or die(mysqli_error());
+	$ProductosAsignados = mysqli_query($conexion,$query_ProductosAsignados) or die(mysqli_error($conexion));
 	$row_ProductosAsignados = mysqli_fetch_assoc($ProductosAsignados);
 	$totalRows_ProductosAsignados = mysqli_num_rows($ProductosAsignados);
 		

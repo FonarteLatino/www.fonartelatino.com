@@ -12,7 +12,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+ #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -36,29 +36,29 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Generos = "SELECT * FROM genero order by nombre ASC";
-$Generos = mysql_query($query_Generos, $conexion) or die(mysql_error());
-$row_Generos = mysql_fetch_assoc($Generos);
-$totalRows_Generos = mysql_num_rows($Generos);
+$Generos = mysqli_query($conexion,$query_Generos) or die(mysqli_error($conexion));
+$row_Generos = mysqli_fetch_assoc($Generos);
+$totalRows_Generos = mysqli_num_rows($Generos);
 
 //SI EXISTE LA SESION TEMPORAL
 if(isset($_SESSION['CARRITO_TEMP']))
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['CARRITO_TEMP'];
-	$Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-	$row_Carrito = mysql_fetch_assoc($Carrito);
-	$totalRows_Carrito = mysql_num_rows($Carrito);
+	$Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
+	$row_Carrito = mysqli_fetch_assoc($Carrito);
+	$totalRows_Carrito = mysqli_num_rows($Carrito);
 }
 //SI EXISTE LA SESION DEL USUARIO(AL CREARSE ESTA, SE ELIMINA LA TEMPORAL)
 if(isset($_SESSION['USUARIO_ECOMMERCE']))
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-	$Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-	$row_Carrito = mysql_fetch_assoc($Carrito);
-	$totalRows_Carrito = mysql_num_rows($Carrito);
+	$Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
+	$row_Carrito = mysqli_fetch_assoc($Carrito);
+	$totalRows_Carrito = mysqli_num_rows($Carrito);
 }
 
 ?>
@@ -193,7 +193,7 @@ if(isset($_SESSION['USUARIO_ECOMMERCE']))
         do
         {
             ?><li><a href="<?php echo $ruta_absoluta; ?>generos.php?genero=<?php echo $row_Generos['id']; ?>"><?php echo $row_Generos['nombre'];  ?></a></li><?php
-        }while($row_Generos = mysql_fetch_assoc($Generos));
+        }while($row_Generos = mysqli_fetch_assoc($Generos));
     ?>
     
 </ul>
@@ -293,6 +293,6 @@ if(isset($_SESSION['USUARIO_ECOMMERCE']))
     <!-- /.container -->
 </nav>
 <?php
-mysql_free_result($Generos);
+mysqli_free_result($Generos);
 
 ?>

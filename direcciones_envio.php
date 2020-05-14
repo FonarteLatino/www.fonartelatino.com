@@ -63,7 +63,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -94,18 +94,18 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_CatPais = "SELECT * FROM pais order by paisnombre asc";
-$CatPais = mysql_query($query_CatPais, $conexion) or die(mysql_error());
-$row_CatPais = mysql_fetch_assoc($CatPais);
-$totalRows_CatPais = mysql_num_rows($CatPais);
+$CatPais = mysqli_query($conexion,$query_CatPais) or die(mysqli_error($conexion));
+$row_CatPais = mysqli_fetch_assoc($CatPais);
+$totalRows_CatPais = mysqli_num_rows($CatPais);
 
 //existen direcciones de este usuario
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ExisteDireccion = "SELECT * FROM direcciones where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id']."";
-$ExisteDireccion  = mysql_query($query_ExisteDireccion, $conexion) or die(mysql_error());
-$row_ExisteDireccion  = mysql_fetch_assoc($ExisteDireccion );
-$totalRows_ExisteDireccion  = mysql_num_rows($ExisteDireccion );
+$ExisteDireccion  = mysqli_query($conexion,$query_ExisteDireccion) or die(mysqli_error($conexion));
+$row_ExisteDireccion  = mysqli_fetch_assoc($ExisteDireccion );
+$totalRows_ExisteDireccion  = mysqli_num_rows($ExisteDireccion );
 
 
 
@@ -293,7 +293,7 @@ $contador=1;
     </div>
     <?php
 			$contador=$contador+1;
-			}while($row_ExisteDireccion  = mysql_fetch_assoc($ExisteDireccion ));
+			}while($row_ExisteDireccion  = mysqli_fetch_assoc($ExisteDireccion ));
 		}
 		?>
 </div>
@@ -394,5 +394,5 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-//mysql_free_result($UpdateCarrito);
+//mysqli_free_result($UpdateCarrito);
 ?>

@@ -216,7 +216,7 @@ $totalRows_Productos = mysqli_num_rows($Productos);
 	<?php
     mysqli_select_db($conexion,$database_conexion);
     $query_Genero = "select * from genero where id=".$row_Productos['genero'];  
-    $Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error());
+    $Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error($conexion));
     $row_Genero = mysqli_fetch_assoc($Genero);
     $totalRows_Genero = mysqli_num_rows($Genero);
     ?>

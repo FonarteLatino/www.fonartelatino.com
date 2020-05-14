@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -31,11 +31,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_usuarios = "SELECT * FROM usuarios";
-$usuarios = mysql_query($query_usuarios, $conexion) or die(mysql_error());
-$row_usuarios = mysql_fetch_assoc($usuarios);
-$totalRows_usuarios = mysql_num_rows($usuarios);
+$usuarios = mysqli_query($conexion,$query_usuarios) or die(mysqli_error($conexion));
+$row_usuarios = mysqli_fetch_assoc($usuarios);
+$totalRows_usuarios = mysqli_num_rows($usuarios);
 
 
 $cant_array=array();
@@ -45,7 +45,7 @@ do{
 	$cant_array[$i]=$row_usuarios['nombre'];
 	
 	$i++;
-}while($row_usuarios = mysql_fetch_assoc($usuarios));
+}while($row_usuarios = mysqli_fetch_assoc($usuarios));
 
 
 print_r($cant_array);
@@ -54,5 +54,5 @@ print_r($cant_array);
 
 
 <?php
-mysql_free_result($usuarios);
+mysqli_free_result($usuarios);
 ?>

@@ -59,7 +59,7 @@ FROM
 productos
 INNER JOIN novedades ON productos.id = novedades.id_producto
 ";
-$Novedades = mysqli_query($conexion,$query_Novedades) or die(mysqli_error());
+$Novedades = mysqli_query($conexion,$query_Novedades) or die(mysqli_error($conexion));
 $row_Novedades = mysqli_fetch_assoc($Novedades);
 $totalRows_Novedades = mysqli_num_rows($Novedades);
 
@@ -70,7 +70,7 @@ if(isset($_GET['borra']) and $_GET['borra']==1)
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 
 	?><script type="text/javascript">window.location="admin_home.php?alerta=7&activa=2";</script><?php
 }

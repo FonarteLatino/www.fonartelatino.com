@@ -21,7 +21,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #S$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -49,25 +49,25 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 switch($_POST['tipo'])
 {
 	//TODOS LOS PEDIDOS(PENDIENTES Y PAGADAS)
-	case 1:mysql_select_db($database_conexion, $conexion);
+	case 1:mysqli_select_db($conexion,$database_conexion);
 		 $query_Pedido = "SELECT * FROM pedido where fecha BETWEEN '".$_POST['fecha_inicio']."' and '".$_POST['fecha_final']."'";
-		$Pedido = mysql_query($query_Pedido, $conexion) or die(mysql_error());
-		$row_Pedido = mysql_fetch_assoc($Pedido);
-		$totalRows_Pedido = mysql_num_rows($Pedido);
+		$Pedido = mysqli_query($conexion,$query_Pedido) or die(mysqli_error($conexion));
+		$row_Pedido = mysqli_fetch_assoc($Pedido);
+		$totalRows_Pedido = mysqli_num_rows($Pedido);
 		break;
 	//LOS PEDIDOS PENDIENTES
-	case 2:mysql_select_db($database_conexion, $conexion);
+	case 2:mysqli_select_db($conexion,$database_conexion);
 		$query_Pedido = "SELECT * FROM pedido where estatus=2 and (fecha BETWEEN '".$_POST['fecha_inicio']."' and '".$_POST['fecha_final']."')";
-		$Pedido = mysql_query($query_Pedido, $conexion) or die(mysql_error());
-		$row_Pedido = mysql_fetch_assoc($Pedido);
-		$totalRows_Pedido = mysql_num_rows($Pedido);
+		$Pedido = mysqli_query($conexion,$query_Pedido) or die(mysqli_error($conexion));
+		$row_Pedido = mysqli_fetch_assoc($Pedido);
+		$totalRows_Pedido = mysqli_num_rows($Pedido);
 		break;
 	//LOS PEDIDOS PAGADOS
-	case 3:mysql_select_db($database_conexion, $conexion);
+	case 3:mysqli_select_db($conexion,$database_conexion);
 		$query_Pedido = "SELECT * FROM pedido where estatus=3 and (fecha BETWEEN '".$_POST['fecha_inicio']."' and '".$_POST['fecha_final']."')";
-		$Pedido = mysql_query($query_Pedido, $conexion) or die(mysql_error());
-		$row_Pedido = mysql_fetch_assoc($Pedido);
-		$totalRows_Pedido = mysql_num_rows($Pedido);
+		$Pedido = mysqli_query($conexion,$query_Pedido) or die(mysqli_error($conexion));
+		$row_Pedido = mysqli_fetch_assoc($Pedido);
+		$totalRows_Pedido = mysqli_num_rows($Pedido);
 		break;
 }
 
@@ -107,21 +107,21 @@ switch($_POST['tipo'])
   
 //**************************** tomamos los datos del usuario
 $query_Usuario = "SELECT * FROM usuarios_ecommerce where id=".$row_Pedido['id_usuario'];
-$Usuario = mysql_query($query_Usuario, $conexion) or die(mysql_error());
-$row_Usuario = mysql_fetch_assoc($Usuario);
-$totalRows_Usuario = mysql_num_rows($Usuario);
+$Usuario = mysqli_query($conexion,$query_Usuario) or die(mysqli_error($conexion));
+$row_Usuario = mysqli_fetch_assoc($Usuario);
+$totalRows_Usuario = mysqli_num_rows($Usuario);
 
 //**************************** tomamos los datos de la direccion
 $query_Direccion = "SELECT * FROM direcciones where id=".$row_Pedido['id_direccion'];
-$Direccion = mysql_query($query_Direccion, $conexion) or die(mysql_error());
-$row_Direccion = mysql_fetch_assoc($Direccion);
-$totalRows_Direccion = mysql_num_rows($Direccion);
+$Direccion = mysqli_query($conexion,$query_Direccion) or die(mysqli_error($conexion));
+$row_Direccion = mysqli_fetch_assoc($Direccion);
+$totalRows_Direccion = mysqli_num_rows($Direccion);
 
 //**************************** tomamos los datos del cupon(en caso de que haya aplciado alguno)
 $query_Cupon = "SELECT * FROM cupon where codigo='".$row_Pedido['cupon_aplicado']."'";
-$Cupon = mysql_query($query_Cupon, $conexion) or die(mysql_error());
-$row_Cupon = mysql_fetch_assoc($Cupon);
-$totalRows_Cupon = mysql_num_rows($Cupon);
+$Cupon = mysqli_query($conexion,$query_Cupon) or die(mysqli_error($conexion));
+$row_Cupon = mysqli_fetch_assoc($Cupon);
+$totalRows_Cupon = mysqli_num_rows($Cupon);
 
 if($row_Cupon['medida']=='PORCENTAJE')
 {
@@ -163,9 +163,9 @@ pedido
 INNER JOIN pedido_productos ON pedido.id = pedido_productos.id_pedido
 
 where pedido_productos.id_pedido=".$row_Pedido['id'];
-$ProductosDetalle = mysql_query($query_ProductosDetalle, $conexion) or die(mysql_error());
-$row_ProductosDetalle= mysql_fetch_assoc($ProductosDetalle);
-$totalRows_ProductosDetalle = mysql_num_rows($ProductosDetalle);
+$ProductosDetalle = mysqli_query($conexion,$query_ProductosDetalle) or die(mysqli_error($conexion));
+$row_ProductosDetalle= mysqli_fetch_assoc($ProductosDetalle);
+$totalRows_ProductosDetalle = mysqli_num_rows($ProductosDetalle);
 
 
 
@@ -192,7 +192,7 @@ $totalRows_ProductosDetalle = mysql_num_rows($ProductosDetalle);
 		  
 		  ?><li><?php echo "<strong>".$row_ProductosDetalle['id_producto_fonarte']."</strong> - ".$row_ProductosDetalle['artista'].", ".$row_ProductosDetalle['album']." - Cantidad: ".$row_ProductosDetalle['cantidad']." - $".$row_ProductosDetalle['precio'].".00"; ?></li><?php
 
-		}while($row_ProductosDetalle= mysql_fetch_assoc($ProductosDetalle));
+		}while($row_ProductosDetalle= mysqli_fetch_assoc($ProductosDetalle));
 	  ?>
       </ul>
       </td>
@@ -206,7 +206,7 @@ $totalRows_ProductosDetalle = mysql_num_rows($ProductosDetalle);
 	  ?>
       
     </tr>
-    <?php } while ($row_Pedido = mysql_fetch_assoc($Pedido)); ?>
+    <?php } while ($row_Pedido = mysqli_fetch_assoc($Pedido)); ?>
     <tr>
     	<td colspan="11" style="text-align:right;"><strong>TOTAL DE VENTAS <?php echo "$".$total_ventas.".00"; ?></td>
     </tr>
@@ -217,5 +217,5 @@ $totalRows_ProductosDetalle = mysql_num_rows($ProductosDetalle);
 
 <?php
 
-mysql_free_result($Pedido);
+mysqli_free_result($Pedido);
 ?>

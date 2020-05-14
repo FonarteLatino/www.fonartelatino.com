@@ -56,7 +56,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -82,7 +82,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Categoria = "SELECT * FROM categoria where id=4";
-$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error());
+$Categoria = mysqli_query($conexion,$query_Categoria) or die(mysqli_error($conexion));
 $row_Categoria = mysqli_fetch_assoc($Categoria);
 $totalRows_Categoria = mysqli_num_rows($Categoria);
 
@@ -93,7 +93,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -144,7 +144,7 @@ INNER JOIN cat_otros ON cat_otros.id = productos_otros.tipo
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 where productos_otros.prendido=1
 ";
-$ProductosOtros = mysqli_query($conexion,$query_ProductosOtros) or die(mysqli_error());
+$ProductosOtros = mysqli_query($conexion,$query_ProductosOtros) or die(mysqli_error($conexion));
 $row_ProductosOtros = mysqli_fetch_assoc($ProductosOtros);
 $totalRows_ProductosOtros = mysqli_num_rows($ProductosOtros);
 

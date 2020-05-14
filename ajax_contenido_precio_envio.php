@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -44,7 +44,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	GetSQLValueString($_POST['id_envio'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	$updateGoTo = "admin_precio_envios.php?alerta=6";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -58,13 +58,13 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 
 mysqli_select_db($conexion,$database_conexion);
 $query_UpdatePrecio = "SELECT * FROM envios";
-$UpdatePrecio = mysqli_query($conexion,$query_UpdatePrecio) or die(mysqli_error());
+$UpdatePrecio = mysqli_query($conexion,$query_UpdatePrecio) or die(mysqli_error($conexion));
 $row_UpdatePrecio = mysqli_fetch_assoc($UpdatePrecio);
 $totalRows_UpdatePrecio = mysqli_num_rows($UpdatePrecio);
 
 mysqli_select_db($conexion,$database_conexion);
 $query_DatosPrecio = "SELECT * FROM envios where id=".$_GET['id_precio_envio'];
-$DatosPrecio = mysqli_query($conexion,$query_DatosPrecio) or die(mysqli_error());
+$DatosPrecio = mysqli_query($conexion,$query_DatosPrecio) or die(mysqli_error($conexion));
 $row_DatosPrecio = mysqli_fetch_assoc($DatosPrecio);
 $totalRows_DatosPrecio = mysqli_num_rows($DatosPrecio);
 ?>

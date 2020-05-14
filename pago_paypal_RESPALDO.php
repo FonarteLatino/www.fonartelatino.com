@@ -27,7 +27,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -57,22 +57,22 @@ GetSQLValueString('PAYPAL', "text"),
 GetSQLValueString(3, "int"),
 GetSQLValueString('PAGO', "text"),
 GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
-mysql_select_db($database_conexion, $conexion);
-$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+mysqli_select_db($conexion,$database_conexion);
+$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 
 
 //3.- Borramos los productos que tenia este usuario en la tabla de CARRITO 
 $deleteSQL = sprintf("DELETE FROM carrito WHERE id_usr=%s",
 GetSQLValueString($_SESSION['USUARIO_ECOMMERCE']['id'], "int"));
-mysql_select_db($database_conexion, $conexion);
-$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+mysqli_select_db($conexion,$database_conexion);
+$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 
 
  
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
  $query_Pedido = "SELECT
 pedido.id,
 pedido.id_usuario,
@@ -99,28 +99,28 @@ pedido
 LEFT JOIN pedido_productos ON pedido.id = pedido_productos.id_pedido
 LEFT JOIN productos ON productos.id = pedido_productos.id_producto
 WHERE  pedido.id=".$_SESSION['PEDIDO_NUEVO'];
-$Pedido = mysql_query($query_Pedido, $conexion) or die(mysql_error());
-$row_Pedido = mysql_fetch_assoc($Pedido);
-$totalRows_Pedido = mysql_num_rows($Pedido);
+$Pedido = mysqli_query($conexion,$query_Pedido) or die(mysqli_error($conexion));
+$row_Pedido = mysqli_fetch_assoc($Pedido);
+$totalRows_Pedido = mysqli_num_rows($Pedido);
  
  
  //datos del usuario
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
  $query_UsuarioEcommerce = "SELECT * FROM usuarios_ecommerce WHERE id=".$row_Pedido['id_usuario'];
-$UsuarioEcommerce = mysql_query($query_UsuarioEcommerce, $conexion) or die(mysql_error());
-$row_UsuarioEcommerce = mysql_fetch_assoc($UsuarioEcommerce);
-$totalRows_UsuarioEcommerce = mysql_num_rows($UsuarioEcommerce);
+$UsuarioEcommerce = mysqli_query($conexion,$query_UsuarioEcommerce) or die(mysqli_error($conexion));
+$row_UsuarioEcommerce = mysqli_fetch_assoc($UsuarioEcommerce);
+$totalRows_UsuarioEcommerce = mysqli_num_rows($UsuarioEcommerce);
 
 
 //toma datos el descuento si es que lo tiene
 if($row_Pedido['cupon_aplicado']!='')
 {
 	//datos del descuento(si existiera)
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_cupon = "SELECT * FROM cupon WHERE codigo='".$row_Pedido['cupon_aplicado']."'";
-	$cupon = mysql_query($query_cupon, $conexion) or die(mysql_error());
-	$row_cupon = mysql_fetch_assoc($cupon);
-	$totalRows_cupon = mysql_num_rows($cupon);
+	$cupon = mysqli_query($conexion,$query_cupon) or die(mysqli_error($conexion));
+	$row_cupon = mysqli_fetch_assoc($cupon);
+	$totalRows_cupon = mysqli_num_rows($cupon);
 	
 	if($row_cupon['medida']=='PORCENTAJE')
 	{
@@ -190,7 +190,7 @@ do{
 
 	<?php
 	$x=$x+1;
-}while($row_Pedido = mysql_fetch_assoc($Pedido));
+}while($row_Pedido = mysqli_fetch_assoc($Pedido));
 
 
 ?>
@@ -219,5 +219,5 @@ unset($_SESSION['PEDIDO_NUEVO']);
 // ***fin de  matamos las sesiones temporales
 
 
-mysql_free_result($Pedido);
+mysqli_free_result($Pedido);
 ?>

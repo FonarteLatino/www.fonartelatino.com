@@ -3,11 +3,11 @@
 $_GET['cupon'];
 ?>
 <?php
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_cupon2 = "SELECT * FROM cupon where codigo='".$_GET['cupon']."' and estatus='DISPONIBLE'";
-$cupon2 = mysql_query($query_cupon2, $conexion) or die(mysql_error());
-$row_cupon2 = mysql_fetch_assoc($cupon2);
-$totalRows_cupon2 = mysql_num_rows($cupon2);
+$cupon2 = mysqli_query($conexion,$query_cupon2) or die(mysqli_error($conexion));
+$row_cupon2 = mysqli_fetch_assoc($cupon2);
+$totalRows_cupon2 = mysqli_num_rows($cupon2);
 ?>
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

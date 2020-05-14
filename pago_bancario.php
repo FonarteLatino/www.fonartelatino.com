@@ -27,7 +27,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -55,21 +55,21 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 //juego de registros para hacer update a esta tabla
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_PedidoFinal = "SELECT * FROM pedido WHERE id=".$_SESSION['PEDIDO_NUEVO'];
-$PedidoFinal = mysql_query($query_PedidoFinal, $conexion) or die(mysql_error());
-$row_PedidoFinal = mysql_fetch_assoc($PedidoFinal);
-$totalRows_PedidoFinal = mysql_num_rows($PedidoFinal);
+$PedidoFinal = mysqli_query($conexion,$query_PedidoFinal) or die(mysqli_error($conexion));
+$row_PedidoFinal = mysqli_fetch_assoc($PedidoFinal);
+$totalRows_PedidoFinal = mysqli_num_rows($PedidoFinal);
 
 if($row_PedidoFinal['cupon_aplicado']!='')//si el pedido tiene un cupon aplicado
 {
 	
 	//detalle del cupon de descuento 
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_DetalleCupon = "SELECT * FROM cupon WHERE codigo='".$row_PedidoFinal['cupon_aplicado']."'";
-	$DetalleCupon = mysql_query($query_DetalleCupon, $conexion) or die(mysql_error());
-	$row_DetalleCupon = mysql_fetch_assoc($DetalleCupon);
-	$totalRows_DetalleCupon = mysql_num_rows($DetalleCupon);
+	$DetalleCupon = mysqli_query($conexion,$query_DetalleCupon) or die(mysqli_error($conexion));
+	$row_DetalleCupon = mysqli_fetch_assoc($DetalleCupon);
+	$totalRows_DetalleCupon = mysqli_num_rows($DetalleCupon);
 	
 	if($row_DetalleCupon['medida']=='PESOS')
 	{ 
@@ -88,18 +88,18 @@ GetSQLValueString('VENTANILLA', "text"),
 GetSQLValueString(2, "int"),
 GetSQLValueString('TERMINO DE COMPRAR - SELECCIONO FORMA DE PAGO', "text"),
 GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
-mysql_select_db($database_conexion, $conexion);
-$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+mysqli_select_db($conexion,$database_conexion);
+$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 
 
 //3.- Borramos los productos que tenia este usuario en la tabla de CARRITO 
 $deleteSQL = sprintf("DELETE FROM carrito WHERE id_usr=%s",
 GetSQLValueString($_SESSION['USUARIO_ECOMMERCE']['id'], "int"));
-mysql_select_db($database_conexion, $conexion);
-$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+mysqli_select_db($conexion,$database_conexion);
+$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 
 //tomamos los productos de su compra
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ProductosPedido = "SELECT
 pedido.id,
 pedido.id_usuario,
@@ -127,12 +127,12 @@ FROM
 pedido
 INNER JOIN pedido_productos ON pedido.id = pedido_productos.id_pedido
 where pedido_productos.id_pedido=".$_SESSION['PEDIDO_NUEVO'];
-$UpdateProductosPedido = mysql_query($query_ProductosPedido, $conexion) or die(mysql_error());
-$row_ProductosPedido = mysql_fetch_assoc($UpdateProductosPedido);
-$totalRows_ProductosPedido = mysql_num_rows($UpdateProductosPedido);
+$UpdateProductosPedido = mysqli_query($conexion,$query_ProductosPedido) or die(mysqli_error($conexion));
+$row_ProductosPedido = mysqli_fetch_assoc($UpdateProductosPedido);
+$totalRows_ProductosPedido = mysqli_num_rows($UpdateProductosPedido);
 
 //direccion de envio
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DireccionEnvio = "SELECT
 pedido.id,
 pedido.id_usuario,
@@ -160,9 +160,9 @@ FROM
 pedido
 LEFT JOIN direcciones ON pedido.id_direccion = direcciones.id
 where pedido.id=".$_SESSION['PEDIDO_NUEVO'];
-$DireccionEnvio = mysql_query($query_DireccionEnvio, $conexion) or die(mysql_error());
-$row_DireccionEnvio = mysql_fetch_assoc($DireccionEnvio);
-$totalRows_DireccionEnvio = mysql_num_rows($DireccionEnvio);
+$DireccionEnvio = mysqli_query($conexion,$query_DireccionEnvio) or die(mysqli_error($conexion));
+$row_DireccionEnvio = mysqli_fetch_assoc($DireccionEnvio);
+$totalRows_DireccionEnvio = mysqli_num_rows($DireccionEnvio);
 
 
 //le aparta este cupon a este pedido
@@ -170,8 +170,8 @@ $updateSQL = sprintf("UPDATE cupon SET estatus=%s WHERE usado_por_pedido=%s",
 GetSQLValueString('USADO', "text"),
 GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
  
-mysql_select_db($database_conexion, $conexion);
-$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+mysqli_select_db($conexion,$database_conexion);
+$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 
 include_once("mail_confirmacion_compra.php");//confirma su pedido al comprador
 include_once("mail_confirmacion_compra_respaldo.php");//envia una copia del detalle de la compra a usuariostienda@fonartelatino.com
@@ -323,7 +323,7 @@ include_once("mail_nuevo_pedido_admin.php");
         <?php $subtotal=$subtotal+($row_ProductosPedido['precio_final']* $row_ProductosPedido['cantidad']); ?>
 	</tr>
 	<?php
-	}while($row_ProductosPedido = mysql_fetch_assoc($UpdateProductosPedido));
+	}while($row_ProductosPedido = mysqli_fetch_assoc($UpdateProductosPedido));
 	
 	?>
     

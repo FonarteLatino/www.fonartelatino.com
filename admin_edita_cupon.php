@@ -88,7 +88,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 mysqli_select_db($conexion,$database_conexion);
 $query_cupon2 = "SELECT * FROM cupon where codigo='".$_GET['cupon']."' and estatus='DISPONIBLE'";
-$cupon2 = mysqli_query($conexion,$query_cupon2) or die(mysqli_error());
+$cupon2 = mysqli_query($conexion,$query_cupon2) or die(mysqli_error($conexion));
 $row_cupon2 = mysqli_fetch_assoc($cupon2);
 $totalRows_cupon2 = mysqli_num_rows($cupon2);
 
@@ -108,7 +108,7 @@ if ((isset($_POST["edita_cupon"])) && ($_POST["edita_cupon"] == 1))
 		GetSQLValueString($_POST['codigo_old'], "text"));
 
 		mysqli_select_db($conexion,$database_conexion);
-		$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
+		$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 		
 	}
 	//SI SUBE EL NUMERO DE CUPONES CREADOS, EDITA LOS YA EXISTENTES Y CREA LOS RESTANTES
@@ -129,7 +129,7 @@ if ((isset($_POST["edita_cupon"])) && ($_POST["edita_cupon"] == 1))
 			GetSQLValueString("DISPONIBLE", "text"));
 			
 			mysqli_select_db($conexion,$database_conexion);
-			$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+			$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 			
 		}
 	}
@@ -144,7 +144,7 @@ if ((isset($_POST["edita_cupon"])) && ($_POST["edita_cupon"] == 1))
 	GetSQLValueString($_POST['codigo_old'], "text"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	?><script type="text/javascript">window.location="admin_cupon.php?alerta=6";</script><?php
 	

@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -35,11 +35,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_UpdateCant = "SELECT * FROM carrito";
-$UpdateCant = mysql_query($query_UpdateCant, $conexion) or die(mysql_error());
-$row_UpdateCant = mysql_fetch_assoc($UpdateCant);
-$totalRows_UpdateCant = mysql_num_rows($UpdateCant);
+$UpdateCant = mysqli_query($conexion,$query_UpdateCant) or die(mysqli_error($conexion));
+$row_UpdateCant = mysqli_fetch_assoc($UpdateCant);
+$totalRows_UpdateCant = mysqli_num_rows($UpdateCant);
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -56,8 +56,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form2"))
 	GetSQLValueString($_POST['cantidad'], "int"),
 	GetSQLValueString($_POST['id'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	header("Location: mi_perfil.php");
 }
 //fin de modifica cantidad
@@ -69,19 +69,19 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form2"))
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Carrito = "SELECT * from carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-$Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-$row_Carrito = mysql_fetch_assoc($Carrito);
-$totalRows_Carrito = mysql_num_rows($Carrito);
+$Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
+$row_Carrito = mysqli_fetch_assoc($Carrito);
+$totalRows_Carrito = mysqli_num_rows($Carrito);
 
 
 /* =========================== inicio query de pago para paypa ================================= */
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Paypal = "SELECT * from carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-$Paypal = mysql_query($query_Paypal, $conexion) or die(mysql_error());
-$row_Paypal = mysql_fetch_assoc($Paypal);
-$totalRows_Paypal = mysql_num_rows($Paypal);
+$Paypal = mysqli_query($conexion,$query_Paypal) or die(mysqli_error($conexion));
+$row_Paypal = mysqli_fetch_assoc($Paypal);
+$totalRows_Paypal = mysqli_num_rows($Paypal);
 /* =========================== fin query de pago para paypa ================================= */
 
 
@@ -171,7 +171,7 @@ $contador=1;
 $total=0;
 do{
 	//toma datos del producto
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_DatosProducto = "SELECT
 	productos.id as id_producto,
 	productos.sku,
@@ -202,9 +202,9 @@ do{
 	INNER JOIN precios ON productos.clave_precio = precios.clave
 	INNER JOIN genero ON productos.genero = genero.id
 	INNER JOIN categoria ON productos.categoria = categoria.id where productos.id=".$row_Carrito['id_producto'];
-	$DatosProducto = mysql_query($query_DatosProducto, $conexion) or die(mysql_error());
-	$row_DatosProducto = mysql_fetch_assoc($DatosProducto);
-	$totalRows_DatosProducto = mysql_num_rows($DatosProducto);
+	$DatosProducto = mysqli_query($conexion,$query_DatosProducto) or die(mysqli_error($conexion));
+	$row_DatosProducto = mysqli_fetch_assoc($DatosProducto);
+	$totalRows_DatosProducto = mysqli_num_rows($DatosProducto);
 	
 	
 	
@@ -238,7 +238,7 @@ do{
 	?>
 	
 	<?php
-}while($row_Carrito = mysql_fetch_assoc($Carrito)); 
+}while($row_Carrito = mysqli_fetch_assoc($Carrito)); 
 ?>
 
 	<tr>
@@ -273,7 +273,7 @@ $x=1;
 do{	
 
 //toma datos del producto
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_DatosProductoPaypal = "SELECT
 	productos.id as id_producto,
 	productos.sku,
@@ -304,9 +304,9 @@ do{
 	INNER JOIN precios ON productos.clave_precio = precios.clave
 	INNER JOIN genero ON productos.genero = genero.id
 	INNER JOIN categoria ON productos.categoria = categoria.id where productos.id=".$row_Paypal['id_producto'];
-	$DatosProductoPaypal = mysql_query($query_DatosProductoPaypal, $conexion) or die(mysql_error());
-	$row_DatosProductoPaypal = mysql_fetch_assoc($DatosProductoPaypal);
-	$totalRows_DatosProductoPaypal = mysql_num_rows($DatosProductoPaypal);
+	$DatosProductoPaypal = mysqli_query($conexion,$query_DatosProductoPaypal) or die(mysqli_error($conexion));
+	$row_DatosProductoPaypal = mysqli_fetch_assoc($DatosProductoPaypal);
+	$totalRows_DatosProductoPaypal = mysqli_num_rows($DatosProductoPaypal);
 	
 ?>
     <input type="hidden" name="item_name_<?php echo $x; ?>" value="<?php echo $row_DatosProductoPaypal['artista'].", ".$row_DatosProductoPaypal['album']; ?>">
@@ -314,7 +314,7 @@ do{
     <input type="hidden" name="amount_<?php echo $x; ?>" value="<?php echo $row_DatosProductoPaypal['precio']; ?>">
 <?php	
 $x=$x+1;
-}while($row_Paypal = mysql_fetch_assoc($Paypal));
+}while($row_Paypal = mysqli_fetch_assoc($Paypal));
 ?>
 <input type="image" src="http://www.paypal.com/es_XC/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 
@@ -363,11 +363,11 @@ j.garcia.e1987@gmail.com
 </html>
 
 <?php
-mysql_free_result($UpdateCant);
+mysqli_free_result($UpdateCant);
 
 
 
-mysql_free_result($DatosProducto);
+mysqli_free_result($DatosProducto);
 
-mysql_free_result($Carrito);
+mysqli_free_result($Carrito);
 ?>

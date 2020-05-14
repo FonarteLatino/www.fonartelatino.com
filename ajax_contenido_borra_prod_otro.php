@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -31,7 +31,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DatosProductoOtro = "SELECT
 productos_otros.id,
 productos_otros.sku,
@@ -57,9 +57,9 @@ productos_otros
 INNER JOIN cat_otros ON cat_otros.id = productos_otros.tipo
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 where productos_otros.prendido=1 and productos_otros.id=".$_GET['id_producto_otro'];
-$DatosProductoOtro = mysql_query($query_DatosProductoOtro, $conexion) or die(mysql_error());
-$row_DatosProductoOtro = mysql_fetch_assoc($DatosProductoOtro);
-$totalRows_DatosProductoOtro = mysql_num_rows($DatosProductoOtro);
+$DatosProductoOtro = mysqli_query($conexion,$query_DatosProductoOtro) or die(mysqli_error($conexion));
+$row_DatosProductoOtro = mysqli_fetch_assoc($DatosProductoOtro);
+$totalRows_DatosProductoOtro = mysqli_num_rows($DatosProductoOtro);
 
 
 if(isset($_POST['update']) and $_POST['update']==1)
@@ -69,8 +69,8 @@ if(isset($_POST['update']) and $_POST['update']==1)
 	GetSQLValueString(0, "int"),
 	GetSQLValueString($_POST['id_producto'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	$updateGoTo = "admin_productos_otros.php?alerta=7";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -120,5 +120,5 @@ if(isset($_POST['update']) and $_POST['update']==1)
 
 </div>
 <?php
-mysql_free_result($DatosProductoOtro);
+mysqli_free_result($DatosProductoOtro);
 ?>

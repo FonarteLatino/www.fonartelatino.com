@@ -48,7 +48,7 @@ if(isset($_GET['agrega']) and $_GET['agrega']=='lanzamientos')
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	//header("Location: admin_home.php?alerta=7&activa=1");
 	?><script>window.location="admin_home.php?alerta=7&activa=1";</script><?php
@@ -61,7 +61,7 @@ if(isset($_GET['agrega']) and $_GET['agrega']=='novedades')
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	//header("Location: admin_home.php?alerta=5&activa=2");
 	?><script type="text/javascript">window.location="admin_home.php?alerta=5&activa=2";</script><?php
@@ -74,7 +74,7 @@ if(isset($_GET['agrega']) and $_GET['agrega']=='disco_semana')
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	//header("Location: admin_home.php?alerta=5&activa=3");
 	?><script type="text/javascript">window.location="admin_home.php?alerta=5&activa=3";</script><?php
@@ -86,7 +86,7 @@ if(isset($_GET['agrega']) and $_GET['agrega']=='en_detalle')
 	//toma todos los albums de ese artista
 	mysqli_select_db($conexion,$database_conexion);
 	$query_ProductoArtista = "select * from productos where prendido=1 and  artista='".$_GET['artista']."'";
-	$ProductoArtista = mysqli_query($conexion,$query_ProductoArtista) or die(mysqli_error());
+	$ProductoArtista = mysqli_query($conexion,$query_ProductoArtista) or die(mysqli_error($conexion));
 	$row_ProductoArtista= mysqli_fetch_assoc($ProductoArtista); 
 	$totalRows_ProductoArtista = mysqli_num_rows($ProductoArtista);
 	
@@ -97,7 +97,7 @@ if(isset($_GET['agrega']) and $_GET['agrega']=='en_detalle')
 	GetSQLValueString($row_ProductoArtista['id'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 
 	}while($row_ProductoArtista= mysqli_fetch_assoc($ProductoArtista));
@@ -124,7 +124,7 @@ if(isset($_GET['nombre_lanzamientos']) and $_GET['nombre_lanzamientos']!='')
 	
 	mysqli_select_db($conexion,$database_conexion);
 	$query_Producto = "SELECT * FROM productos where prendido=1 and (artista like '%".$_GET['nombre_lanzamientos']."%' or album like '%".$_GET['nombre_lanzamientos']."%') order by artista, album";
-	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error());
+	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error($conexion));
 	$row_Producto = mysqli_fetch_assoc($Producto); 
 	$totalRows_Producto = mysqli_num_rows($Producto);
 	
@@ -145,7 +145,7 @@ if(isset($_GET['nombre_novedad']) and $_GET['nombre_novedad']!='')
 	
 	 mysqli_select_db($conexion,$database_conexion);
 	$query_Producto = "SELECT * FROM productos where prendido=1 and (artista like '%".$_GET['nombre_novedad']."%' or album like '%".$_GET['nombre_novedad']."%')  order by artista, album";
-	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error());
+	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error($conexion));
 	$row_Producto = mysqli_fetch_assoc($Producto); 
 	$totalRows_Producto = mysqli_num_rows($Producto);
 	
@@ -164,7 +164,7 @@ if(isset($_GET['nombre_d_semana']) and $_GET['nombre_d_semana']!='')
 	
 	 mysqli_select_db($conexion,$database_conexion);
 	$query_Producto = "SELECT * FROM productos where prendido=1 and (artista like '%".$_GET['nombre_d_semana']."%' or album like '%".$_GET['nombre_d_semana']."%')  order by artista, album";
-	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error());
+	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error($conexion));
 	$row_Producto = mysqli_fetch_assoc($Producto); 
 	$totalRows_Producto = mysqli_num_rows($Producto);
 	 
@@ -185,7 +185,7 @@ if(isset($_GET['nombre_detalle']) and $_GET['nombre_detalle']!='')
 	
 	 mysqli_select_db($conexion,$database_conexion);
 	$query_Producto = "SELECT DISTINCT(artista) FROM productos where prendido=1 and (artista like '%".$_GET['nombre_detalle']."%' )  order by artista, album";
-	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error());
+	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error($conexion));
 	$row_Producto = mysqli_fetch_assoc($Producto); 
 	$totalRows_Producto = mysqli_num_rows($Producto);
 	 
@@ -217,7 +217,7 @@ if(isset($_GET['buscar']) and $_GET['buscar']!='')
 	
 	 mysqli_select_db($conexion,$database_conexion);
 	$query_Producto = "SELECT DISTINCT(artista) FROM productos where prendido=1 and (artista like '%".$_GET['buscar']."%' )  order by artista, album";
-	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error());
+	$Producto = mysqli_query($conexion,$query_Producto) or die(mysqli_error($conexion));
 	$row_Producto = mysqli_fetch_assoc($Producto); 
 	$totalRows_Producto = mysqli_num_rows($Producto);
 	 ?><ul type="square"><?php

@@ -56,7 +56,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -147,7 +147,7 @@ LEFT JOIN precios ON precios.clave = productos.clave_precio
 WHERE productos.prendido=1 and productos.categoria != 5
 
 ";*/
-$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error());
+$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error($conexion));
 $row_Productos = mysqli_fetch_assoc($Productos);
 $totalRows_Productos = mysqli_num_rows($Productos);
 ?>
@@ -250,7 +250,7 @@ $totalRows_Productos = mysqli_num_rows($Productos);
 	<?php
     mysqli_select_db($conexion,$database_conexion);
     $query_Genero = "select * from genero where id=".$row_Productos['genero'];  
-    $Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error());
+    $Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error($conexion));
     $row_Genero = mysqli_fetch_assoc($Genero);
     $totalRows_Genero = mysqli_num_rows($Genero);
     ?>

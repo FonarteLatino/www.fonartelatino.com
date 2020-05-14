@@ -19,7 +19,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -50,7 +50,7 @@ $id_producto_otro=$_GET['id_producto_otro'];
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DetalleProducto = "SELECT
 productos_otros.id,
 productos_otros.sku,
@@ -76,13 +76,13 @@ productos_otros
 INNER JOIN cat_otros ON productos_otros.tipo = cat_otros.id
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
  WHERE productos_otros.id=".$id_producto_otro;
-$DetalleProducto = mysql_query($query_DetalleProducto, $conexion) or die(mysql_error());
-$row_DetalleProducto = mysql_fetch_assoc($DetalleProducto);
-$totalRows_DetalleProducto = mysql_num_rows($DetalleProducto);
+$DetalleProducto = mysqli_query($conexion,$query_DetalleProducto) or die(mysqli_error($conexion));
+$row_DetalleProducto = mysqli_fetch_assoc($DetalleProducto);
+$totalRows_DetalleProducto = mysqli_num_rows($DetalleProducto);
 
 
 /* ******************** inicio de te puede interesar *************************** */
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_TePuedeInteresar = "SELECT
 productos.id as id_prod,
 productos.sku,
@@ -110,16 +110,16 @@ INNER JOIN genero ON genero.id = productos.genero
 WHERE productos.prendido=1 and productos.genero=1
 ORDER BY RAND()
 limit 6";
-$TePuedeInteresar = mysql_query($query_TePuedeInteresar, $conexion) or die(mysql_error());
-$row_TePuedeInteresar = mysql_fetch_assoc($TePuedeInteresar);
-$totalRows_TePuedeInteresar = mysql_num_rows($TePuedeInteresar);
+$TePuedeInteresar = mysqli_query($conexion,$query_TePuedeInteresar) or die(mysqli_error($conexion));
+$row_TePuedeInteresar = mysqli_fetch_assoc($TePuedeInteresar);
+$totalRows_TePuedeInteresar = mysqli_num_rows($TePuedeInteresar);
 /* ******************** fin de te puede interesar *************************** */
 
 
 
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Otros = "SELECT
 productos_otros.id,
 productos_otros.sku,
@@ -145,9 +145,9 @@ INNER JOIN cat_otros ON productos_otros.tipo = cat_otros.id
 INNER JOIN precios ON productos_otros.clave_precio = precios.clave
 
 where productos_otros.id=".$id_producto_otro;
-$Otros = mysql_query($query_Otros, $conexion) or die(mysql_error());
-$row_Otros = mysql_fetch_assoc($Otros);
-$totalRows_Otros = mysql_num_rows($Otros);
+$Otros = mysqli_query($conexion,$query_Otros) or die(mysqli_error($conexion));
+$row_Otros = mysqli_fetch_assoc($Otros);
+$totalRows_Otros = mysqli_num_rows($Otros);
 
 
 
@@ -179,8 +179,8 @@ if(isset($_GET['add_carrito']) and ($_GET['add_carrito']==1))
 	GetSQLValueString(date("Y-m-d"), "date"),
 	GetSQLValueString(date("H:i:d"), "date"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$redirecciona="producto_detalle_otro/".$_GET['id_producto']."/".$_GET['url_seo'];
 	?><script type="text/javascript">window.location="<?php echo $redirecciona; ?>";</script><?php
@@ -470,7 +470,7 @@ do
 
 	
 	<?php
-}while($row_TePuedeInteresar = mysql_fetch_assoc($TePuedeInteresar));
+}while($row_TePuedeInteresar = mysqli_fetch_assoc($TePuedeInteresar));
 ?>
 </div>
 
@@ -509,7 +509,7 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($TePuedeInteresar);
+mysqli_free_result($TePuedeInteresar);
 
-mysql_free_result($DetalleProducto);
+mysqli_free_result($DetalleProducto);
 ?>

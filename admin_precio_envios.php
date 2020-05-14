@@ -123,7 +123,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 	GetSQLValueString($_POST['precio'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$insertGoTo = "admin_precios.php?alerta=5";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -136,7 +136,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 
 mysqli_select_db($conexion,$database_conexion);
 $query_PreciosEnvios = "SELECT * FROM envios";
-$PreciosEnvios = mysqli_query($conexion,$query_PreciosEnvios) or die(mysqli_error());
+$PreciosEnvios = mysqli_query($conexion,$query_PreciosEnvios) or die(mysqli_error($conexion));
 $row_PreciosEnvios = mysqli_fetch_assoc($PreciosEnvios);
 $totalRows_PreciosEnvios = mysqli_num_rows($PreciosEnvios);
 

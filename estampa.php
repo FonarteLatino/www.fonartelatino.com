@@ -50,11 +50,11 @@ if (!((isset($_SESSION['MM_Username_Panel'])) && (isAuthorized("",$MM_authorized
 
 
 //datos PEDIDO
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Pedido = "SELECT * from pedido where id=".$_GET['id_pedido'];
-$Pedido = mysql_query($query_Pedido, $conexion) or die(mysql_error());
-$row_Pedido = mysql_fetch_assoc($Pedido);
-$totalRows_Pedido = mysql_num_rows($Pedido);
+$Pedido = mysqli_query($conexion,$query_Pedido) or die(mysqli_error($conexion));
+$row_Pedido = mysqli_fetch_assoc($Pedido);
+$totalRows_Pedido = mysqli_num_rows($Pedido);
 
 //si el pedido aun no esta en estatus de PAGADO no permite ver la estampa
 if($row_Pedido['estatus']!=3)
@@ -65,11 +65,11 @@ if($row_Pedido['estatus']!=3)
 //datos CUPON (si aplico uno)
 if($row_Pedido['cupon_aplicado']!='')
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Cupon = "SELECT * from cupon where codigo='".$row_Pedido['cupon_aplicado']."'";
-	$Cupon = mysql_query($query_Cupon, $conexion) or die(mysql_error());
-	$row_Cupon = mysql_fetch_assoc($Cupon);
-	$totalRows_Cupon = mysql_num_rows($Cupon);
+	$Cupon = mysqli_query($conexion,$query_Cupon) or die(mysqli_error($conexion));
+	$row_Cupon = mysqli_fetch_assoc($Cupon);
+	$totalRows_Cupon = mysqli_num_rows($Cupon);
 	
 	if($row_Cupon['medida']=='PORCENTAJE')
 	{
@@ -84,21 +84,21 @@ if($row_Pedido['cupon_aplicado']!='')
 
 					
 //datos USUARIO
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Usuario = "SELECT * from usuarios_ecommerce where id=".$row_Pedido['id_usuario'];
-$Usuario = mysql_query($query_Usuario, $conexion) or die(mysql_error());
-$row_Usuario = mysql_fetch_assoc($Usuario);
-$totalRows_Usuario = mysql_num_rows($Usuario);
+$Usuario = mysqli_query($conexion,$query_Usuario) or die(mysqli_error($conexion));
+$row_Usuario = mysqli_fetch_assoc($Usuario);
+$totalRows_Usuario = mysqli_num_rows($Usuario);
 
 //datos DIRECCION
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Direccion = "SELECT * from direcciones where id=".$row_Pedido['id_direccion'];
-$Direccion = mysql_query($query_Direccion, $conexion) or die(mysql_error());
-$row_Direccion = mysql_fetch_assoc($Direccion);
-$totalRows_Direccion = mysql_num_rows($Direccion);
+$Direccion = mysqli_query($conexion,$query_Direccion) or die(mysqli_error($conexion));
+$row_Direccion = mysqli_fetch_assoc($Direccion);
+$totalRows_Direccion = mysqli_num_rows($Direccion);
 
 //tomamos los productos de su compra
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Productos = "SELECT
 pedido.id,
 pedido.id_usuario,
@@ -127,9 +127,9 @@ FROM
 pedido
 INNER JOIN pedido_productos ON pedido.id = pedido_productos.id_pedido
 where id_pedido=".$_GET['id_pedido'];
-$Productos = mysql_query($query_Productos, $conexion) or die(mysql_error());
-$row_Productos = mysql_fetch_assoc($Productos);
-$totalRows_Productos = mysql_num_rows($Productos);
+$Productos = mysqli_query($conexion,$query_Productos) or die(mysqli_error($conexion));
+$row_Productos = mysqli_fetch_assoc($Productos);
+$totalRows_Productos = mysqli_num_rows($Productos);
 
 
 
@@ -242,7 +242,7 @@ $totalRows_Productos = mysql_num_rows($Productos);
                         <td style="border:1px solid #000000; text-align:right;"><?php echo "$".$sub.".00"; ?></td>
                     </tr> 
                     <?php
-				}while($row_Productos = mysql_fetch_assoc($Productos));
+				}while($row_Productos = mysqli_fetch_assoc($Productos));
 				?>
                 <!-- ===== total de los productos ==== -->
                 <tr>

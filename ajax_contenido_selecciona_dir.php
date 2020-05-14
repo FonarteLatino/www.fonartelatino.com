@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -46,49 +46,49 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 
 //existen direcciones de este usuario
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_Direccion = "SELECT * FROM direcciones where id=".$_GET['id_dir2'];
-$Direccion  = mysql_query($query_Direccion, $conexion) or die(mysql_error());
-$row_Direccion  = mysql_fetch_assoc($Direccion );
-$totalRows_Direccion  = mysql_num_rows($Direccion );
+$Direccion  = mysqli_query($conexion,$query_Direccion) or die(mysqli_error($conexion));
+$row_Direccion  = mysqli_fetch_assoc($Direccion );
+$totalRows_Direccion  = mysqli_num_rows($Direccion );
 
 
 //envio expres Mexico
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ExpresMexico = "SELECT * FROM envios where id=1";
-$ExpresMexico  = mysql_query($query_ExpresMexico, $conexion) or die(mysql_error());
-$row_ExpresMexico  = mysql_fetch_assoc($ExpresMexico );
-$totalRows_ExpresMexico  = mysql_num_rows($ExpresMexico );
+$ExpresMexico  = mysqli_query($conexion,$query_ExpresMexico) or die(mysqli_error($conexion));
+$row_ExpresMexico  = mysqli_fetch_assoc($ExpresMexico );
+$totalRows_ExpresMexico  = mysqli_num_rows($ExpresMexico );
 //envio expres USA y Canada
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ExpresUSACanada = "SELECT * FROM envios where id=2";
-$ExpresUSACanada  = mysql_query($query_ExpresUSACanada, $conexion) or die(mysql_error());
-$row_ExpresUSACanada  = mysql_fetch_assoc($ExpresUSACanada );
-$totalRows_ExpresUSACanada  = mysql_num_rows($ExpresUSACanada );
+$ExpresUSACanada  = mysqli_query($conexion,$query_ExpresUSACanada) or die(mysqli_error($conexion));
+$row_ExpresUSACanada  = mysqli_fetch_assoc($ExpresUSACanada );
+$totalRows_ExpresUSACanada  = mysqli_num_rows($ExpresUSACanada );
 //envio expres RESTO DEL MUNDO
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_ExpresRestoMundo = "SELECT * FROM envios where id=3";
-$ExpresRestoMundo  = mysql_query($query_ExpresRestoMundo, $conexion) or die(mysql_error());
-$row_ExpresRestoMundo  = mysql_fetch_assoc($ExpresRestoMundo );
-$totalRows_ExpresRestoMundo  = mysql_num_rows($ExpresRestoMundo );
+$ExpresRestoMundo  = mysqli_query($conexion,$query_ExpresRestoMundo) or die(mysqli_error($conexion));
+$row_ExpresRestoMundo  = mysqli_fetch_assoc($ExpresRestoMundo );
+$totalRows_ExpresRestoMundo  = mysqli_num_rows($ExpresRestoMundo );
 //envio local Mexico
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_LocalMexico = "SELECT * FROM envios where id=4";
-$LocalMexico  = mysql_query($query_LocalMexico, $conexion) or die(mysql_error());
-$row_LocalMexico  = mysql_fetch_assoc($LocalMexico );
-$totalRows_LocalMexico  = mysql_num_rows($LocalMexico );
+$LocalMexico  = mysqli_query($conexion,$query_LocalMexico) or die(mysqli_error($conexion));
+$row_LocalMexico  = mysqli_fetch_assoc($LocalMexico );
+$totalRows_LocalMexico  = mysqli_num_rows($LocalMexico );
 //envio local USA Y CANADA
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_LocalUSACanada = "SELECT * FROM envios where id=5";
-$LocalUSACanada  = mysql_query($query_LocalUSACanada, $conexion) or die(mysql_error());
-$row_LocalUSACanada  = mysql_fetch_assoc($LocalUSACanada );
-$totalRows_LocalUSACanada  = mysql_num_rows($LocalUSACanada );
+$LocalUSACanada  = mysqli_query($conexion,$query_LocalUSACanada) or die(mysqli_error($conexion));
+$row_LocalUSACanada  = mysqli_fetch_assoc($LocalUSACanada );
+$totalRows_LocalUSACanada  = mysqli_num_rows($LocalUSACanada );
 //envio local RESTO DEL MUNDO
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_LocalRestoMundo = "SELECT * FROM envios where id=6";
-$LocalRestoMundo  = mysql_query($query_LocalRestoMundo, $conexion) or die(mysql_error());
-$row_LocalRestoMundo  = mysql_fetch_assoc($LocalRestoMundo );
-$totalRows_LocalRestoMundo  = mysql_num_rows($LocalRestoMundo );
+$LocalRestoMundo  = mysqli_query($conexion,$query_LocalRestoMundo) or die(mysqli_error($conexion));
+$row_LocalRestoMundo  = mysqli_fetch_assoc($LocalRestoMundo );
+$totalRows_LocalRestoMundo  = mysqli_num_rows($LocalRestoMundo );
 
 
 
@@ -101,22 +101,22 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 	if($_POST['tipo_envio']==1 and $row_Direccion['id_pais']==42)//es direccion de la republica mexicana
 	{
 		//toma el costo de envio de mexico
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_CostoEnvio = "SELECT * FROM envios where id=1";
-		$CostoEnvio  = mysql_query($query_CostoEnvio, $conexion) or die(mysql_error());
-		$row_CostoEnvio = mysql_fetch_assoc($CostoEnvio );
-		$totalRows_CostoEnvio = mysql_num_rows($CostoEnvio );
+		$CostoEnvio  = mysqli_query($conexion,$query_CostoEnvio) or die(mysqli_error($conexion));
+		$row_CostoEnvio = mysqli_fetch_assoc($CostoEnvio );
+		$totalRows_CostoEnvio = mysqli_num_rows($CostoEnvio );
 
 	}
 	//ENVIO A MEXICO LOCAL
 	else if($_POST['tipo_envio']==2 and $row_Direccion['id_pais']==42)//es direccion de la republica mexicana
 	{
 		//toma el costo de envio de mexico
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_CostoEnvio = "SELECT * FROM envios where id=4";
-		$CostoEnvio  = mysql_query($query_CostoEnvio, $conexion) or die(mysql_error());
-		$row_CostoEnvio = mysql_fetch_assoc($CostoEnvio );
-		$totalRows_CostoEnvio = mysql_num_rows($CostoEnvio );
+		$CostoEnvio  = mysqli_query($conexion,$query_CostoEnvio) or die(mysqli_error($conexion));
+		$row_CostoEnvio = mysqli_fetch_assoc($CostoEnvio );
+		$totalRows_CostoEnvio = mysqli_num_rows($CostoEnvio );
 
 	}
 	
@@ -126,21 +126,21 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 	else if($_POST['tipo_envio']==1 and ($row_Direccion['id_pais']==55 or $row_Direccion['id_pais']==32))
 	{
 		//estados unidos y canada
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_CostoEnvio = "SELECT * FROM envios where id=2";
-		$CostoEnvio  = mysql_query($query_CostoEnvio, $conexion) or die(mysql_error());
-		$row_CostoEnvio = mysql_fetch_assoc($CostoEnvio );
-		$totalRows_CostoEnvio = mysql_num_rows($CostoEnvio );
+		$CostoEnvio  = mysqli_query($conexion,$query_CostoEnvio) or die(mysqli_error($conexion));
+		$row_CostoEnvio = mysqli_fetch_assoc($CostoEnvio );
+		$totalRows_CostoEnvio = mysqli_num_rows($CostoEnvio );
 	}
 	//ENVIO A ESTADOS UNIDOS O CANADA LOCAL
 	else if($_POST['tipo_envio']==2 and ($row_Direccion['id_pais']==55 or $row_Direccion['id_pais']==32))
 	{
 		//estados unidos y canada
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_CostoEnvio = "SELECT * FROM envios where id=5";
-		$CostoEnvio  = mysql_query($query_CostoEnvio, $conexion) or die(mysql_error());
-		$row_CostoEnvio = mysql_fetch_assoc($CostoEnvio );
-		$totalRows_CostoEnvio = mysql_num_rows($CostoEnvio );
+		$CostoEnvio  = mysqli_query($conexion,$query_CostoEnvio) or die(mysqli_error($conexion));
+		$row_CostoEnvio = mysqli_fetch_assoc($CostoEnvio );
+		$totalRows_CostoEnvio = mysqli_num_rows($CostoEnvio );
 	}
 	
 	
@@ -148,22 +148,22 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 	else if($_POST['tipo_envio']==1 and ($row_Direccion['id_pais']!=55 or $row_Direccion['id_pais']!=32))
 	{
 		//resto del mundo
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_CostoEnvio = "SELECT * FROM envios where id=3";
-		$CostoEnvio  = mysql_query($query_CostoEnvio, $conexion) or die(mysql_error());
-		$row_CostoEnvio = mysql_fetch_assoc($CostoEnvio );
-		$totalRows_CostoEnvio = mysql_num_rows($CostoEnvio );
+		$CostoEnvio  = mysqli_query($conexion,$query_CostoEnvio) or die(mysqli_error($conexion));
+		$row_CostoEnvio = mysqli_fetch_assoc($CostoEnvio );
+		$totalRows_CostoEnvio = mysqli_num_rows($CostoEnvio );
 	}
 	
 	//ENVIO A EL RESTO DEL MUNDO LOCAL
 	else if($_POST['tipo_envio']==2 and ($row_Direccion['id_pais']!=55 or $row_Direccion['id_pais']!=32))
 	{
 		//resto del mundo
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_CostoEnvio = "SELECT * FROM envios where id=6";
-		$CostoEnvio  = mysql_query($query_CostoEnvio, $conexion) or die(mysql_error());
-		$row_CostoEnvio = mysql_fetch_assoc($CostoEnvio );
-		$totalRows_CostoEnvio = mysql_num_rows($CostoEnvio );
+		$CostoEnvio  = mysqli_query($conexion,$query_CostoEnvio) or die(mysqli_error($conexion));
+		$row_CostoEnvio = mysqli_fetch_assoc($CostoEnvio );
+		$totalRows_CostoEnvio = mysqli_num_rows($CostoEnvio );
 	}
 		
 		
@@ -183,15 +183,15 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 		GetSQLValueString('ESTA COMPRANDO', "text"),
 		GetSQLValueString(date('Y-m-d'), "date"),
 		GetSQLValueString(date('H:i:s'), "date"));
-		mysql_select_db($database_conexion, $conexion);
-		$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+		mysqli_select_db($conexion,$database_conexion);
+		$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 		
 		//tomamos el numero de pedido que se genero
-		mysql_select_db($database_conexion, $conexion);
+		mysqli_select_db($conexion,$database_conexion);
 		$query_NumPedido = "SELECT max(id) as id_pedido FROM pedido where id_usuario=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-		$SelectNumPedido = mysql_query($query_NumPedido, $conexion) or die(mysql_error());
-		$row_NumPedido  = mysql_fetch_assoc($SelectNumPedido);
-		$totalRows_NumPedido  = mysql_num_rows($SelectNumPedido);
+		$SelectNumPedido = mysqli_query($conexion,$query_NumPedido) or die(mysqli_error($conexion));
+		$row_NumPedido  = mysqli_fetch_assoc($SelectNumPedido);
+		$totalRows_NumPedido  = mysqli_num_rows($SelectNumPedido);
 		
 		$_SESSION['PEDIDO_NUEVO']  = $row_NumPedido['id_pedido']; 	
 	}
@@ -201,35 +201,35 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 		GetSQLValueString($_GET['id_dir2'], "int"),
 		GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
 		
-		mysql_select_db($database_conexion, $conexion);
-		$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+		mysqli_select_db($conexion,$database_conexion);
+		$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	}
 	
 	//¿Existen productos de este pedidos? (en caso de que ya que iba a pagar  y regresa a agrega otro producto al carrito o a cambiar la direccion)
 	
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ExisteProductosPedido = "SELECT * FROM pedido_productos where id_pedido=".$_SESSION['PEDIDO_NUEVO'];
-	$ExisteProductosPedido  = mysql_query($query_ExisteProductosPedido, $conexion) or die(mysql_error());
-	$row_ExisteProductosPedido = mysql_fetch_assoc($ExisteProductosPedido );
-	$totalRows_ExisteProductosPedido  = mysql_num_rows($ExisteProductosPedido );
+	$ExisteProductosPedido  = mysqli_query($conexion,$query_ExisteProductosPedido) or die(mysqli_error($conexion));
+	$row_ExisteProductosPedido = mysqli_fetch_assoc($ExisteProductosPedido );
+	$totalRows_ExisteProductosPedido  = mysqli_num_rows($ExisteProductosPedido );
 	//si ya tiene pedidos este usuario se los borra para despues insertar las modificaciones
 	if($row_ExisteProductosPedido>=1)
 	{
 		$deleteSQL = sprintf("DELETE FROM pedido_productos WHERE id_pedido=%s",
 		GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
-		mysql_select_db($database_conexion, $conexion);
-		$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+		mysqli_select_db($conexion,$database_conexion);
+		$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 	
 	}
 	
 	
 	//¿Existen algun cupon usado por este pedido? (en caso de que ya que iba a pagar  y regresa a agrega otro producto al carrito o a cambiar la direccion)
 	
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_ExisteCuponPedido = "SELECT * FROM cupon where usado_por_pedido=".$_SESSION['PEDIDO_NUEVO'];
-	$ExisteCuponPedido  = mysql_query($query_ExisteCuponPedido, $conexion) or die(mysql_error());
-	$row_ExisteCuponPedido = mysql_fetch_assoc($ExisteCuponPedido );
-	$totalRows_ExisteCuponPedido  = mysql_num_rows($ExisteCuponPedido );
+	$ExisteCuponPedido  = mysqli_query($conexion,$query_ExisteCuponPedido) or die(mysqli_error($conexion));
+	$row_ExisteCuponPedido = mysqli_fetch_assoc($ExisteCuponPedido );
+	$totalRows_ExisteCuponPedido  = mysqli_num_rows($ExisteCuponPedido );
 	//si ya tiene pedidos este usuario se los borra para despues insertar las modificaciones
 	if($totalRows_ExisteCuponPedido>=1)
 	{
@@ -238,17 +238,17 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 		GetSQLValueString('DISPONIBLE', "text"),
 		GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
 		
-		mysql_select_db($database_conexion, $conexion);
-		$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+		mysqli_select_db($conexion,$database_conexion);
+		$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	}
 	
 	//toma los productos del carrito
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-	$Carrito  = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-	$row_Carrito = mysql_fetch_assoc($Carrito );
-	$totalRows_Carrito  = mysql_num_rows($Carrito );
+	$Carrito  = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
+	$row_Carrito = mysqli_fetch_assoc($Carrito );
+	$totalRows_Carrito  = mysqli_num_rows($Carrito );
 	
 	$subtotal_productos=0;
 	do
@@ -267,12 +267,12 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 	GetSQLValueString(date('Y-m-d H:i:s'), "date"));
 	
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($insertSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 	
 	$subtotal_productos=$subtotal_productos+($row_Carrito['cantidad']*$row_Carrito['precio']);
 		
-	}while($row_Carrito = mysql_fetch_assoc($Carrito ));
+	}while($row_Carrito = mysqli_fetch_assoc($Carrito ));
 	
 	
 	$insertGoTo = "pago.php";
@@ -293,8 +293,8 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
 	GetSQLValueString('', "text"),
 	GetSQLValueString($_SESSION['PEDIDO_NUEVO'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 		
 		
 	?><script type="text/javascript">window.location="<?php echo $insertGoTo; ?>";</script><?php

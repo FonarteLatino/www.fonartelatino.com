@@ -11,7 +11,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -36,11 +36,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_UpdateCant = "SELECT * FROM carrito";
-$UpdateCant = mysql_query($query_UpdateCant, $conexion) or die(mysql_error());
-$row_UpdateCant = mysql_fetch_assoc($UpdateCant);
-$totalRows_UpdateCant = mysql_num_rows($UpdateCant);
+$UpdateCant = mysqli_query($conexion,$query_UpdateCant) or die(mysqli_error($conexion));
+$row_UpdateCant = mysqli_fetch_assoc($UpdateCant);
+$totalRows_UpdateCant = mysqli_num_rows($UpdateCant);
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -57,8 +57,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form2"))
 	GetSQLValueString($_POST['cantidad'], "int"),
 	GetSQLValueString($_POST['id'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 
 	?><script type="text/javascript">window.location="carrito.php";</script><?php
 }
@@ -79,20 +79,20 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form2"))
 //SI EXISTE LA SESION TEMPORAL
 if(isset($_SESSION['CARRITO_TEMP']))
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Carrito = "SELECT * from carrito where id_usr=".$_SESSION['CARRITO_TEMP'];
-	$Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-	$row_Carrito = mysql_fetch_assoc($Carrito);
-	$totalRows_Carrito = mysql_num_rows($Carrito);
+	$Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
+	$row_Carrito = mysqli_fetch_assoc($Carrito);
+	$totalRows_Carrito = mysqli_num_rows($Carrito);
 }
 //SI EXISTE LA SESION DEL USUARIO(AL CREARSE ESTA, SE ELIMINA LA TEMPORAL)
 else if(isset($_SESSION['USUARIO_ECOMMERCE']))
 {
-	mysql_select_db($database_conexion, $conexion);
+	mysqli_select_db($conexion,$database_conexion);
 	$query_Carrito = "SELECT * from carrito where  id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
-	$Carrito = mysql_query($query_Carrito, $conexion) or die(mysql_error());
-	$row_Carrito = mysql_fetch_assoc($Carrito);
-	$totalRows_Carrito = mysql_num_rows($Carrito);
+	$Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
+	$row_Carrito = mysqli_fetch_assoc($Carrito);
+	$totalRows_Carrito = mysqli_num_rows($Carrito);
 }
 
 else if(isset($totalRows_Carrito) and ($totalRows_Carrito==0))
@@ -110,8 +110,8 @@ if(isset($_GET['borra_prod']) and ($_GET['borra_prod']==1))
 	$deleteSQL = sprintf("DELETE FROM carrito WHERE id=%s",
 	GetSQLValueString($_GET['id'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($deleteSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 	?><script type="text/javascript">window.location="carrito.php";</script><?php
 }
 
@@ -250,7 +250,7 @@ do{
  
  
 <?php
-}while($row_Carrito = mysql_fetch_assoc($Carrito)); 
+}while($row_Carrito = mysqli_fetch_assoc($Carrito)); 
 ?>
 
     
@@ -304,11 +304,11 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysql_free_result($UpdateCant);
+mysqli_free_result($UpdateCant);
 
 
 
-//mysql_free_result($DatosProducto);
+//mysqli_free_result($DatosProducto);
 
-mysql_free_result($Carrito);
+mysqli_free_result($Carrito);
 ?>

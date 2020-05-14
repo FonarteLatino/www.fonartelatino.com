@@ -101,7 +101,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 		GetSQLValueString("DISPONIBLE", "text"));
 		
 		mysqli_select_db($conexion,$database_conexion);
-		$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error());
+		$Result1 = mysqli_query($conexion,$insertSQL) or die(mysqli_error($conexion));
 		
 		$insertGoTo = "admin_cupon.php?alerta=205";
 		if (isset($_SERVER['QUERY_STRING'])) {
@@ -116,19 +116,19 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1"))
 
 mysqli_select_db($conexion,$database_conexion);
 $query_artistas = "SELECT distinct(artista) FROM productos order by artista asc";
-$artistas = mysqli_query($conexion,$query_artistas) or die(mysqli_error());
+$artistas = mysqli_query($conexion,$query_artistas) or die(mysqli_error($conexion));
 $row_artistas = mysqli_fetch_assoc($artistas);
 $totalRows_artistas = mysqli_num_rows($artistas);
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Genero = "SELECT * FROM genero order by nombre asc";
-$Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error());
+$Genero = mysqli_query($conexion,$query_Genero) or die(mysqli_error($conexion));
 $row_Genero = mysqli_fetch_assoc($Genero);
 $totalRows_Genero = mysqli_num_rows($Genero);
 
 mysqli_select_db($conexion,$database_conexion);
 $query_Cupones = "select COUNT(codigo) as cantidad, fecha_creacion, codigo, medida, descuento, vencimiento, mas_de from cupon GROUP BY codigo order by fecha_creacion DESC"; 
-$Cupones = mysqli_query($conexion,$query_Cupones) or die(mysqli_error());
+$Cupones = mysqli_query($conexion,$query_Cupones) or die(mysqli_error($conexion));
 $row_Cupones = mysqli_fetch_assoc($Cupones);
 $totalRows_Cupones = mysqli_num_rows($Cupones);
 
@@ -139,7 +139,7 @@ if ((isset($_GET["delete"])) && ($_GET["delete"] == 1))
 	GetSQLValueString($_GET['codigo_cupon'], "text"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 	
 	?><script type="text/javascript">window.location="admin_cupon.php?alerta=7";</script><?php
 	
@@ -324,7 +324,7 @@ if ((isset($_GET["delete"])) && ($_GET["delete"] == 1))
 		
 		mysqli_select_db($conexion,$database_conexion);
 		$query_CuponesDisp = "select * FROM cupon where codigo='".$row_Cupones['codigo']."' and estatus='DISPONIBLE'";
-		$CuponesDisp = mysqli_query($conexion,$query_CuponesDisp) or die(mysqli_error());
+		$CuponesDisp = mysqli_query($conexion,$query_CuponesDisp) or die(mysqli_error($conexion));
 		$row_CuponesDisp = mysqli_fetch_assoc($CuponesDisp);
 		$totalRows_CuponesDisp = mysqli_num_rows($CuponesDisp);
 		

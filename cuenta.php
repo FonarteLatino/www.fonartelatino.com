@@ -22,7 +22,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -62,15 +62,15 @@ if (isset($_POST['email'])) {
   $MM_redirectLoginSuccess = "direcciones_envio.php";
   $MM_redirectLoginFailed = "cuenta.php?alerta=2";
   $MM_redirecttoReferrer = false;
-  mysql_select_db($database_conexion, $conexion);
+  mysqli_select_db($conexion,$database_conexion);
   
   $LoginRS__query=sprintf("SELECT * FROM usuarios_ecommerce WHERE email=%s AND psw=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
    
-  $LoginRS = mysql_query($LoginRS__query, $conexion) or die(mysql_error());
-  $loginFoundUser = mysql_num_rows($LoginRS);
+  $LoginRS = mysqli_query($conexion,$LoginRS__query) or die(mysqli_error($conexion));
+  $loginFoundUser = mysqli_num_rows($LoginRS);
    //********************PASO 2 SESION --- agregamos la siguiente linea para imprimir todo el registro
-  	$row_LoginRS = mysql_fetch_array($LoginRS);
+  	$row_LoginRS = mysqli_fetch_array($LoginRS);
 	
 	
   if ($loginFoundUser) {
@@ -95,8 +95,8 @@ if (isset($_POST['email'])) {
 	GetSQLValueString($_SESSION['USUARIO_ECOMMERCE']['id'], "int"),
 	GetSQLValueString($_SESSION['CARRITO_TEMP'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	$updateGoTo = "direcciones_envio.php";
 	if (isset($_SERVER['QUERY_STRING'])) {

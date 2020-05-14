@@ -58,7 +58,7 @@ en_detalle.id_producto
 FROM
 productos
 INNER JOIN en_detalle ON productos.id = en_detalle.id_producto";
-$EnDetalle = mysqli_query($conexion,$query_EnDetalle) or die(mysqli_error());
+$EnDetalle = mysqli_query($conexion,$query_EnDetalle) or die(mysqli_error($conexion));
 $row_EnDetalle = mysqli_fetch_assoc($EnDetalle);
 $totalRows_EnDetalle = mysqli_num_rows($EnDetalle);
 
@@ -69,7 +69,7 @@ if(isset($_GET['borra']) and $_GET['borra']==1)
 	GetSQLValueString($_GET['id_producto'], "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
-	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error());
+	$Result1 = mysqli_query($conexion,$deleteSQL) or die(mysqli_error($conexion));
 
 	?><script type="text/javascript">window.location="admin_home.php?alerta=7&activa=4";</script><?php
 }

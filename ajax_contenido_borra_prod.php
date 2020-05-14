@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -44,8 +44,8 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	GetSQLValueString(0, "int"),
 	GetSQLValueString($_POST['id_producto'], "int"));
 	
-	mysql_select_db($database_conexion, $conexion);
-	$Result1 = mysql_query($updateSQL, $conexion) or die(mysql_error());
+	mysqli_select_db($conexion,$database_conexion);
+	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));
 	
 	$updateGoTo = "admin_productos.php?alerta=7";
 	if (isset($_SERVER['QUERY_STRING'])) {
@@ -57,13 +57,13 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	
 }
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_UpdateBorraProducto = "SELECT * FROM productos";
-$UpdateBorraProducto = mysql_query($query_UpdateBorraProducto, $conexion) or die(mysql_error());
-$row_UpdateBorraProducto = mysql_fetch_assoc($UpdateBorraProducto);
-$totalRows_UpdateBorraProducto = mysql_num_rows($UpdateBorraProducto);
+$UpdateBorraProducto = mysqli_query($conexion,$query_UpdateBorraProducto) or die(mysqli_error($conexion));
+$row_UpdateBorraProducto = mysqli_fetch_assoc($UpdateBorraProducto);
+$totalRows_UpdateBorraProducto = mysqli_num_rows($UpdateBorraProducto);
 
-mysql_select_db($database_conexion, $conexion);
+mysqli_select_db($conexion,$database_conexion);
 $query_DatosProducto = "SELECT
 productos.id as id_tabla,
 productos.sku,
@@ -91,9 +91,9 @@ LEFT JOIN categoria ON categoria.id = productos.categoria
 LEFT JOIN genero ON genero.id = productos.genero
 LEFT JOIN precios ON precios.clave = productos.clave_precio
 WHERE productos.id=".$_GET['id_producto'];
-$DatosProducto = mysql_query($query_DatosProducto, $conexion) or die(mysql_error());
-$row_DatosProducto = mysql_fetch_assoc($DatosProducto);
-$totalRows_DatosProducto = mysql_num_rows($DatosProducto);
+$DatosProducto = mysqli_query($conexion,$query_DatosProducto) or die(mysqli_error($conexion));
+$row_DatosProducto = mysqli_fetch_assoc($DatosProducto);
+$totalRows_DatosProducto = mysqli_num_rows($DatosProducto);
 
 
 
@@ -139,7 +139,7 @@ $_GET['id_producto'];
 
 </div>
 <?php
-mysql_free_result($DatosProducto);
+mysqli_free_result($DatosProducto);
 
-mysql_free_result($UpdateBorraProducto);
+mysqli_free_result($UpdateBorraProducto);
 ?>
