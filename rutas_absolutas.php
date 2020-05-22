@@ -1,7 +1,7 @@
 <?php
 
 //local
-//$ruta_absoluta='http://localhost/fonarte_v2/';
+//$ruta_absoluta='http://localhost/www.fonartelatino.com/';
 
 
 //produccion

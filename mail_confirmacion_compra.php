@@ -129,7 +129,7 @@ $foo = '
 <div class="col-sm-12" style="text-align:justify; padding-top: 5px; padding-bottom: 5px;">
 <br><br>
 <p style="font-size:10px;">Tu pedido se encuentra en espera hasta que hayamos confirmado que se ha recibido tu pago. Los datos de tu pedido se encuentran abajo para mayor referencia:</p>
-<p style="font-size:10px;">Realiza tu pago directamente en nuestra cuenta bancaria. Por favor env&iacute;a la copia de tu ficha de dep&oacute;sito al siguiente correo: ventas@fonartelatino.com.mx. </p>
+<p style="font-size:10px;">Realiza tu pago directamente en nuestra cuenta bancaria. Por favor env&iacute;a la copia de tu ficha de dep&oacute;sito al siguiente correo: ventas@fonartelatino.com o fer.ramirez@fonartelatino.com.mx </p>
 </div>
 
 <div class="col-sm-12 table tipografia2">    
@@ -166,7 +166,7 @@ $foo = '
 </tr>
 
 <tr>
-<td colspan="2" style="text-align:center;"><br />NOTA: Es importante que al realizar tu pago incluyas como referencia tu n&uacute;mero de pedido y que una vez realizado el pago nos envies un correo de confirmaci&oacute;n para agilizar tu env&iacute;o a ventas@fonartelatino.com.mx</td>
+<td colspan="2" style="text-align:center;"><br />NOTA: Es importante que al realizar tu pago incluyas como referencia tu n&uacute;mero de pedido y que una vez realizado el pago nos envies un correo de confirmaci&oacute;n para agilizar tu env&iacute;o a ventas@fonartelatino.com o fer.ramirez@fonartelatino.com.mx</td>
 </tr>
 
 </table>
