@@ -257,7 +257,7 @@ include_once("mail_nuevo_pedido_admin.php");
   <div class="col-sm-12" style="text-align:justify; padding-top: 5px; padding-bottom: 5px;">
   <br><br>
   <p>Tu pedido se encuentra en espera hasta que hayamos confirmado que se ha recibido tu pago. Los datos de tu pedido se encuentran abajo para mayor referencia:</p>
-  <p>Realiza tu pago directamente en nuestra cuenta bancaria. Por favor env&iacute;a la copia de tu ficha de dep&oacute;sito al siguiente corre: ventas@fonartelatino.com.mx. </p>
+  <p>Realiza tu pago directamente en nuestra cuenta bancaria. Por favor env&iacute;a la copia de tu ficha de dep&oacute;sito al siguiente corre: ventas@fonartelatino.com o fer.ramirez@fonartelatino.com.mx </p>
   </div>
   
     
@@ -295,7 +295,7 @@ include_once("mail_nuevo_pedido_admin.php");
     </tr>
     
     <tr>
-    	<td colspan="2" style="text-align:center;">NOTA: Es importante que al realizar tu pago incluyas como referencia tu n&uacute;mero de orden y que una vez realizado el pago nos env&aacute;es un correo de confirmaci&oacute;n para agilizar tu env&iacute;o a ventas@fonartelatino.com.mx</td>
+    	<td colspan="2" style="text-align:center;">NOTA: Es importante que al realizar tu pago incluyas como referencia tu n&uacute;mero de orden y que una vez realizado el pago nos env&aacute;es un correo de confirmaci&oacute;n para agilizar tu env&iacute;o a ventas@fonartelatino.com o fer.ramirez@fonartelatino.com.mx</td>
     </tr>
 
 </table>
