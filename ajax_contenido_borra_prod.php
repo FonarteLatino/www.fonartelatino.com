@@ -7,7 +7,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
   }
 
-  $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
+  #$theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
 
   switch ($theType) {
     case "text":
@@ -43,6 +43,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1"))
 	$updateSQL = sprintf("UPDATE productos SET prendido=%s WHERE id=%s",
 	GetSQLValueString(0, "int"),
 	GetSQLValueString($_POST['id_producto'], "int"));
+
 	
 	mysqli_select_db($conexion,$database_conexion);
 	$Result1 = mysqli_query($conexion,$updateSQL) or die(mysqli_error($conexion));

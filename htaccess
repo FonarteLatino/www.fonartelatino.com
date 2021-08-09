@@ -9,6 +9,7 @@ RewriteRule ^catalogo?$ catalogo.php
 RewriteRule ^fonarte_latino?$ fonarte_latino.php
 
 
+
 RewriteRule ^contacto?$ contacto.php
 
 RewriteRule ^panel-admin?$ login.php

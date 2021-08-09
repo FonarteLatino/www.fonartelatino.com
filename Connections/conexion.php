@@ -26,12 +26,12 @@ $conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_con
 */
 
 
-
+/*
 # SERVIDOR DE PRODUCCION
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
 # HTTP="true"
-/*
+
 $hostname_conexion = "mysql.fonartelatino.com";
 $database_conexion = "fonartecommerce";
 $username_conexion = "usrfonartebjf";

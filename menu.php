@@ -51,20 +51,26 @@ $totalRows_Generos = mysqli_num_rows($Generos);
 //SI EXISTE LA SESION TEMPORAL
 if(isset($_SESSION['CARRITO_TEMP']))
 {
+
   mysqli_select_db($conexion,$database_conexion);
   $query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['CARRITO_TEMP'];
   $Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
   $row_Carrito = mysqli_fetch_assoc($Carrito);
   $totalRows_Carrito = mysqli_num_rows($Carrito);
+
+
+
 }
 //SI EXISTE LA SESION DEL USUARIO(AL CREARSE ESTA, SE ELIMINA LA TEMPORAL)
 if(isset($_SESSION['USUARIO_ECOMMERCE']))
 {
+
   mysqli_select_db($conexion,$database_conexion);
   $query_Carrito = "SELECT * FROM carrito where id_usr=".$_SESSION['USUARIO_ECOMMERCE']['id'];
   $Carrito = mysqli_query($conexion,$query_Carrito) or die(mysqli_error($conexion));
   $row_Carrito = mysqli_fetch_assoc($Carrito);
   $totalRows_Carrito = mysqli_num_rows($Carrito);
+
 }
 
 
