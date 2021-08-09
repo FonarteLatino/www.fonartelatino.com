@@ -382,9 +382,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                                         <div class=\"col-xs-6 col-md-7\">
                                             <center><h4>".$nombreArtista."</h4></center>
                                             <center><p>".$Album."</p></center>";
-                                            if ($fonarte != "") {
-                                                echo "<center><a onclick=\"ga('send', 'event', 'Firelink', 'Store', 'LinkFonarteStore');\" class=\"img-btn redirect\" href=\"".$fonarte."\" target=\"_blank\" data-player=\"fonartelatino\" data-servicetype=\"play\" data-apptype=\"manual\">Disponible Aqui</a></center>";
-                                            } 
+                                            
                                             
                                         echo "</div>";
                             }
@@ -551,15 +549,6 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                     } ?>
                     
                     
-                    <?php if ($google != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Google', 'LinkGoogle');\" class=\"img-btn redirect\" href=\"".$google."\" target=\"_blank\" data-player=\"googlemusic\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/google.jpeg\" alt=\"googlemusic\"></span>
-                                
-                                </a></center>
-                            </div>";
-                    } ?>
-                    
                     <?php if ($amazon_mu != "") {
                         echo "<div class=\"row div-img\">
                                 <center><a onclick=\"ga('send', 'event', 'Firelink', 'Amazon_music', 'LinkAmazon_Music');\" class=\"img-btn redirect\" href=\"".$amazon_mu."\" target=\"_blank\" data-player=\"amazonmmusic\" data-servicetype=\"play\" data-apptype=\"manual\">
@@ -568,14 +557,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                                 </a></center>
                             </div>";
                     } 
-                    /*if ($claro != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Claro', 'LinkClaro');\" class=\"img-btn redirect\" href=\"".$claro."\" target=\"_blank\" data-player=\"claromusic\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\" src=\"".$ruta_absoluta."img/claro.jpeg\" alt=\"claromusic\"></span>
-                                
-                                </a></center>
-                            </div>";
-                    } */?>
+                    ?>
                     
                     <?php if ($amazon != "") {
                         echo "<div class=\"row div-img\">
@@ -603,6 +585,28 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                         </a></center>
                     </div>";
                     } ?>
+
+                    <?php if ($google != ""||$fonarte != "") {
+                        echo "<div class=\"row div-img\">
+                                <center>
+                                  <div class=\"dropdown\">
+                                    <button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    <span><img class=\" \" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/tidal.jpeg\" alt=\"tidal\"></span>
+                                    </button>
+                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">
+                                      <a onclick=\"ga('send', 'event', 'Firelink', 'Google', 'LinkGoogle');\" class=\"img-btn redirect\" href=\"".$google."\" target=\"_blank\" data-player=\"googlemusic\" data-servicetype=\"play\" data-apptype=\"manual\">
+                                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/google.jpeg\" alt=\"googlemusic\"></span>
+                                      </a>
+                                      <a onclick=\"ga('send', 'event', 'Firelink', 'Store', 'LinkFonarteStore');\" class=\"img-btn redirect\" href=\"".$fonarte."\" target=\"_blank\" data-player=\"fonartelatino\" data-servicetype=\"play\" data-apptype=\"manual\">
+                                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/google.jpeg\" alt=\"googlemusic\"></span>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </center>
+                              </div>";
+                    } ?>
+  
+
                     <?php } ?>
                     <br>
                     <?php if ($play != 0) {

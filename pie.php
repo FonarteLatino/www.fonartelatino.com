@@ -14,13 +14,13 @@
 &nbsp;&nbsp;<a href="https://www.facebook.com/Fonarte/" target="new"  style="color:#FFF"><span class="fa fa-facebook"></span></a>
 </p>
 
-
+<?php include_once("rutas_absolutas.php"); ?>
 <p>
-<a href="https://www.fonartelatino.com/index.php" class="tipografia_pie">Home </a>
-| <a href="https://www.fonartelatino.com/fonarte_latino.php" class="tipografia_pie">Fonarte Latino</a>
-| <a href="https://www.fonartelatino.com/catalogo.php"  class="tipografia_pie">Cat&aacute;logo</a>
-| <a href="https://www.fonartelatino.com/contacto.php" class="tipografia_pie">Contacto</a>
-| <a href="https://www.fonartelatino.com/firelink.php" class="tipografia_pie">Firelink</a>
+<a href="<?php echo $ruta_absoluta; ?>index.php" class="tipografia_pie">Home </a>
+| <a href="<?php echo $ruta_absoluta; ?>fonarte_latino.php" class="tipografia_pie">Fonarte Latino</a>
+| <a href="<?php echo $ruta_absoluta; ?>catalogo.php"  class="tipografia_pie">Cat&aacute;logo</a>
+| <a href="<?php echo $ruta_absoluta; ?>contacto.php" class="tipografia_pie">Contacto</a>
+| <a href="<?php echo $ruta_absoluta; ?>firelink.php" class="tipografia_pie">Firelink</a>
 <!--
 | <a href="#" class="tipografia_pie">Pol&iacute;ticas de Env&iacute;o</a>
 | <a href="#" class="tipografia_pie">Pagos Bancarios</a>-->
