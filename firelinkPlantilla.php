@@ -593,18 +593,18 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                                     <button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
                                     <span><img class=\" \" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/tidal.jpeg\" alt=\"tidal\"></span>
                                     </button>
-                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">"
-                                  } ?>
-                                  <?php if ($google != ""||$fonarte != "") {
+                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">";
+                                    if ($google != "") {
                                       echo"<a onclick=\"ga('send', 'event', 'Firelink', 'Google', 'LinkGoogle');\" class=\"img-btn redirect\" href=\"".$google."\" target=\"_blank\" data-player=\"googlemusic\" data-servicetype=\"play\" data-apptype=\"manual\">
                                         <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/google.jpeg\" alt=\"googlemusic\"></span>
-                                      </a>"} ?>
-                                  <?php if ($google != ""||$fonarte != "") {
+                                      </a>";
+                                    };
+                                  if ($fonarte != "") {
                                       echo"<a onclick=\"ga('send', 'event', 'Firelink', 'Store', 'LinkFonarteStore');\" class=\"img-btn redirect\" href=\"".$fonarte."\" target=\"_blank\" data-player=\"fonartelatino\" data-servicetype=\"play\" data-apptype=\"manual\">
                                         <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/google.jpeg\" alt=\"googlemusic\"></span>
-                                      </a>"
-                                  } ?>
-                                    <?php echo"</div>
+                                      </a>";
+                                  };
+                                    echo"</div>
                                   </div>
                                 </center>
                               </div>";
