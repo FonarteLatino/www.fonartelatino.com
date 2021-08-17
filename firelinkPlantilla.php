@@ -343,16 +343,16 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
      <div style="margin-top: -30px">   
 
 
-    
+  
     
     <!-- /.container -->
     <div class="container" >
         <div class="row">
-            <div class="col-xs-0 col-sm-3 col-md-3 col-lg-4"></div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" style="background-color: white; display:inline-block; opacity: 0.8; filter: alpha(opacity=80);">
+            <div class="col-xs-0 col-sm-3 col-md-4 col-lg-4"></div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="background-color: white; display:inline-block; opacity: 0.8; filter: alpha(opacity=80);">
                 <div class="row" >
                    
-                   <div class="row" style="border:solid 1.5px #000; border-radius:15px; box-shadow: 8px 8px 10px 0px #818181; margin: 16px;">
+                   <div class="row" style="margin: 16px;">
                         
                         <?php  
                             if ($tipo == 0) {
@@ -374,17 +374,20 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             }
                             else
                             {
-                                echo "<br>
-                                        <div class=\"col-xs-6 col-md-5\">
-                                            <center><img class=\"img-rounded\" width=\"120\" height=\"120\" class=\"img-responsive  \" src=".$ruta_imagen."></center>
-                                            <br>
-                                        </div>
-                                        <div class=\"col-xs-6 col-md-7\">
-                                            <center><h4>".$nombreArtista."</h4></center>
-                                            <center><p>".$Album."</p></center>";
-                                            
-                                            
-                                        echo "</div>";
+                                echo "
+                                <div class=\"row\">        
+                                  <div class=\"col-xs-12\">
+                                    <center><img class=\"img-rounded\" width=\"270\" height=\"270\" class=\"img-responsive  \" src=".$ruta_imagen."></center>
+                                    
+                                  </div>
+                                </div>
+                                <div class=\"row\" style=\"background-color:black; color: white;\">
+                                  <div class=\"col-xs-12\">
+                                    <center><h4>".$nombreArtista."</h4></center>
+                                    <center><p>".$Album."</p></center>
+                                  </div> 
+                                </div>    
+                                            ";
                             }
                         ?>
                         
@@ -409,8 +412,8 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                     }
                 ?>
                
-                <div style="border:solid 1.5px #000; border-radius:15px; box-shadow: 8px 8px 10px 0px #818181;">
-                    <br>
+                <div style="">
+                    
                     <?php if (($row_DetalleProducto['sku'] == '7509841317702')||($row_DetalleProducto['sku'] == '7509841277372')) { ?>
 
                       <?php if ($amazon != "") {
@@ -514,101 +517,113 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                     </div>";
                     } ?>
                     <?php } else {?>
-
+                      <hr style="height:2px;border:none;color:#333;background-color:#333;"/>
                     <?php if ($spotify != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Spotify', 'LinkSpotify');\" class=\"img-btn redirect\" href=\"".$spotify."\" target=\"_blank\" data-player=\"spotify\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/spoti.jpeg\" alt=\"spotify\"></span>
+                        echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                                <center>
+                                <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/spoti-mini.jpeg\" alt=\"spotify\"></span>
                                 
-                                </a></center>
-                            </div>";
+                                <a onclick=\"ga('send', 'event', 'Firelink', 'Spotify', 'LinkSpotify');\" class=\"img-btn redirect\" href=\"".$spotify."\" target=\"_blank\" data-player=\"spotify\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Play</button></a></center>
+                            </div>
+                            <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
                     } ?>
-
+        
                     <?php if ($youtube != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'YouTube', 'LinkYouTube');\" class=\"img-btn redirect\" href=\"".$youtube."\" target=\"_blank\" data-player=\"youtube\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/you.jpeg\" alt=\"youtube\"></span>
-                                
-                                </a></center>
-                            </div>";
+                        echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/you.jpeg\" alt=\"youtube\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'YouTube', 'LinkYouTube');\" class=\"img-btn redirect\" href=\"".$youtube."\" target=\"_blank\" data-player=\"youtube\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Play</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
                     } ?>
                     
                     <?php if ($appleItunes != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Itunes', 'LinkItunes');\" class=\"img-btn redirect\" href=\"".$appleItunes."?app=itunes\" target=\"_blank\" data-player=\"itunes\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                    <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/itunes.jpeg\" alt=\"itunes\"></span>
-                                </a></center>
-                            </div>";
-                   
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Apple', 'LinkApple');\" class=\"img-btn redirect\" href=\"".$appleItunes."\" target=\"_blank\" data-player=\"applemusic\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/apple.jpeg\" alt=\"applemusic\"></span>
-                                
-                                </a></center>
-                            </div>";
+                        echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/itunes.jpeg\" alt=\"itunes\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Itunes', 'LinkItunes');\" class=\"img-btn redirect\" href=\"".$appleItunes."?app=itunes\" target=\"_blank\" data-player=\"itunes\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Download</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
+                        
+                        echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/apple.jpeg\" alt=\"applemusic\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Apple', 'LinkApple');\" class=\"img-btn redirect\" href=\"".$appleItunes."\" target=\"_blank\" data-player=\"applemusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Play</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
+                        
                     } ?>
                     
                     
                     <?php if ($amazon_mu != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Amazon_music', 'LinkAmazon_Music');\" class=\"img-btn redirect\" href=\"".$amazon_mu."\" target=\"_blank\" data-player=\"amazonmmusic\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/amazon_mu.jpeg\" alt=\"amazonmmusic\"></span>
-                                
-                                </a></center>
-                            </div>";
+                        echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/amazon_mu.jpeg\" alt=\"amazonmmusic\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon_music', 'LinkAmazon_Music');\" class=\"img-btn redirect\" href=\"".$amazon_mu."\" target=\"_blank\" data-player=\"amazonmmusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Play</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
+                        
                     } 
                     ?>
                     
                     <?php if ($amazon != "") {
-                        echo "<div class=\"row div-img\">
-                                <center><a onclick=\"ga('send', 'event', 'Firelink', 'Amazon', 'LinkAmazon');\" class=\"img-btn redirect\" href=\"".$amazon."\" target=\"_blank\" data-player=\"amazonmusic\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/amazon.jpeg\" alt=\"amazonmusic\"></span>
-                                
-                                </a></center>
-                            </div>";
+                        echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/amazon.jpeg\" alt=\"amazonmusic\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon', 'LinkAmazon');\" class=\"img-btn redirect\" href=\"".$amazon."\" target=\"_blank\" data-player=\"amazonmusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Download</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
+                        
                     } ?>
                     
                     <?php if ($deezer != "") {
-                        echo "<div class=\"row div-img\">
-                        <center><a onclick=\"ga('send', 'event', 'Firelink', 'Deezer', 'LinkDeezer');\" class=\"img-btn redirect\" href=\"".$deezer."\" target=\"_blank\" data-player=\"deezer\" data-servicetype=\"play\" data-apptype=\"manual\">
-                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/deezer.jpeg\" alt=\"deezer\"></span>
+                      echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                          <center>
+                          <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/deezer.jpeg\" alt=\"deezer\"></span>
+                          
+                          <a onclick=\"ga('send', 'event', 'Firelink', 'Deezer', 'LinkDeezer');\" class=\"img-btn redirect\" href=\"".$deezer."\" target=\"_blank\" data-player=\"deezer\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Play</button></a></center>
+                      </div>
+                      <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
                         
-                        </a></center>
-                    </div>";
                     } ?>
 
                     <?php if ($tidal != "") {
-                        echo "<div class=\"row div-img\">
-                        <center><a onclick=\"ga('send', 'event', 'Firelink', 'Tidal', 'LinkTidal');\" class=\"img-btn redirect\" href=\"".$tidal."\" target=\"_blank\" data-player=\"tidal\" data-servicetype=\"play\" data-apptype=\"manual\">
-                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/tidal.jpeg\" alt=\"tidal\"></span>
+                        echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/tidal.jpeg\" alt=\"tidal\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Tidal', 'LinkTidal');\" class=\"img-btn redirect\" href=\"".$tidal."\" target=\"_blank\" data-player=\"tidal\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Play</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
                         
-                        </a></center>
-                    </div>";
                     } ?>
-
-                    <?php if ($google != ""||$fonarte != "") {
-                        echo "<div class=\"row div-img\">
-                                <center>
-                                  <div class=\"dropdown\">
-                                    <button class=\"btn btn-secondary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                                    <span><img class=\" \" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/tidal.jpeg\" alt=\"tidal\"></span>
-                                    </button>
-                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\">";
-                                    if ($google != "") {
-                                      echo"<a onclick=\"ga('send', 'event', 'Firelink', 'Google', 'LinkGoogle');\" class=\"img-btn redirect\" href=\"".$google."\" target=\"_blank\" data-player=\"googlemusic\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/google.jpeg\" alt=\"googlemusic\"></span>
-                                      </a>";
-                                    };
-                                  if ($fonarte != "") {
-                                      echo"<a onclick=\"ga('send', 'event', 'Firelink', 'Store', 'LinkFonarteStore');\" class=\"img-btn redirect\" href=\"".$fonarte."\" target=\"_blank\" data-player=\"fonartelatino\" data-servicetype=\"play\" data-apptype=\"manual\">
-                                        <span><img class=\"img img-rounded\" width=\"250\" height=\"63\"  src=\"".$ruta_absoluta."img/google.jpeg\" alt=\"googlemusic\"></span>
-                                      </a>";
-                                  };
-                                    echo"</div>
-                                  </div>
-                                </center>
-                              </div>";
-                    } ?>
+                    
+                    <?php 
+                        if ($google != "") {
+                          echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/AmazonStore.jpeg\" alt=\"amazonstore\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'AmazonS', 'LinkAmazonS');\" class=\"img-btn redirect\" href=\"".$google."\" target=\"_blank\" data-player=\"amazonstore\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Buy</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
+                         }
+                        if ($fonarte != ""){
+                          echo "<div style=\"margin-left:-140px;\" class=\"row div-img\">
+                            <center>
+                            <span><img class=\"img img-rounded\" width=\"125\" height=\"44\"  src=\"".$ruta_absoluta."img/FonarteStore.jpeg\" alt=\"fonarte\"></span>
+                            
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Fonarte', 'LinkFonarte');\" class=\"img-btn redirect\" href=\"".$fonarte."\" target=\"_blank\" data-player=\"fonarte\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-40px;margin-left:290px;\" class=\"btn\" type=\"button\">Buy</button></a></center>
+                        </div>
+                        <hr style=\"height:2px;border:none;color:#333;background-color:#333;\"/>";
+                        }
+                        
+                     ?>
   
 
                     <?php } ?>

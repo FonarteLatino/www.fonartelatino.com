@@ -418,14 +418,14 @@ if(!isset($_SESSION['CARRITO_TEMP']))
             <div class="col-xs-6 col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle.php?add_carrito=1&id_producto=<?php echo $id_producto; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode(addslashes($row_DetalleProducto['artista'])); ?>&album=<?php echo utf8_encode(addslashes($row_DetalleProducto['album'])); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; margin-left: -14px; background-color:transparent; border:#ffffff;   font-size:11px;"><img src="<?php echo $ruta_absoluta; ?>img/carrito.jpeg" width="100" height="31" alt="carrito"></button></center></div> <?php
 						
 					}
+                    if($row_DetalleProducto['google']!='')//tiene link de amazonS
+					{
+						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['google'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/google-mini.jpeg" width="100" height="31" alt="google"></a></center></div>    <?php
+					}
 					if($row_DetalleProducto['itunes']!='')//tiene link de itunes
 					{
 						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['itunes'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/apple-mini.jpeg" width="100" height="31" alt="itunes"></a></center></div>
-<?php
-					}
-					if($row_DetalleProducto['google']!='')//tiene link de google
-					{
-						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['google'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/google-mini.jpeg" width="100" height="31" alt="google"></a></center></div>    <?php
+                    <?php
 					}
 					if($row_DetalleProducto['amazon']!='')//tiene link de amazon
 					{
