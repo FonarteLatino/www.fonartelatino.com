@@ -578,7 +578,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                                 <center>
                                 <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Spotify.png\" alt=\"spotify\"></span>
                                 
-                                <a onclick=\"ga('send', 'event', 'Firelink', 'Spotify', 'LinkSpotify');\" class=\"img-btn redirect\" href=\"".$spotify."\" target=\"_blank\" data-player=\"spotify\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" hover class=\"btn btn-default\" type=\"button\">Play</button></a></center>
+                                <a onclick=\"ga('send', 'event', 'Firelink', 'Spotify', 'LinkSpotify');\" class=\"img-btn redirect\" href=\"".$spotify."\" target=\"_blank\" data-player=\"spotify\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" hover class=\"btn btn-default\" type=\"button\">Play</button></a></center>
                             </div>
                             <hr/>";
                     } ?>
@@ -594,7 +594,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Youtube.png\" alt=\"youtube\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'YouTube', 'LinkYouTube');\" class=\"img-btn redirect\" href=\"".$youtube."\" target=\"_blank\" data-player=\"youtube\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'YouTube', 'LinkYouTube');\" class=\"img-btn redirect\" href=\"".$youtube."\" target=\"_blank\" data-player=\"youtube\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
                         </div>
                         <hr/>";
                     } ?>
@@ -610,7 +610,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/itunes.png\" alt=\"itunes\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'Itunes', 'LinkItunes');\" class=\"img-btn redirect\" href=\"".$appleItunes."?app=itunes\" target=\"_blank\" data-player=\"itunes\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Download</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Itunes', 'LinkItunes');\" class=\"img-btn redirect\" href=\"".$appleItunes."?app=itunes\" target=\"_blank\" data-player=\"itunes\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Download</button></a></center>
                         </div>
                         <hr/>";
                         
@@ -624,7 +624,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Apple.png\" alt=\"applemusic\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'Apple', 'LinkApple');\" class=\"img-btn redirect\" href=\"".$appleItunes."\" target=\"_blank\" data-player=\"applemusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Apple', 'LinkApple');\" class=\"img-btn redirect\" href=\"".$appleItunes."\" target=\"_blank\" data-player=\"applemusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
                         </div>
                         <hr/>";
                         
@@ -642,7 +642,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Amazon Music.png\" alt=\"amazonmmusic\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon_music', 'LinkAmazon_Music');\" class=\"img-btn redirect\" href=\"".$amazon_mu."\" target=\"_blank\" data-player=\"amazonmmusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon_music', 'LinkAmazon_Music');\" class=\"img-btn redirect\" href=\"".$amazon_mu."\" target=\"_blank\" data-player=\"amazonmmusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
                         </div>
                         <hr/>";
                         
@@ -660,7 +660,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Amazon-MP3.png\" alt=\"amazonmusic\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon', 'LinkAmazon');\" class=\"img-btn redirect\" href=\"".$amazon."\" target=\"_blank\" data-player=\"amazonmusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Download</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon', 'LinkAmazon');\" class=\"img-btn redirect\" href=\"".$amazon."\" target=\"_blank\" data-player=\"amazonmusic\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Download</button></a></center>
                         </div>
                         <hr/>";
                         
@@ -677,7 +677,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           <center>
                           <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Deezer.png\" alt=\"deezer\"></span>
                           
-                          <a onclick=\"ga('send', 'event', 'Firelink', 'Deezer', 'LinkDeezer');\" class=\"img-btn redirect\" href=\"".$deezer."\" target=\"_blank\" data-player=\"deezer\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
+                          <a onclick=\"ga('send', 'event', 'Firelink', 'Deezer', 'LinkDeezer');\" class=\"img-btn redirect\" href=\"".$deezer."\" target=\"_blank\" data-player=\"deezer\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
                       </div>
                       <hr/>";
                         
@@ -694,7 +694,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Tidal.png\" alt=\"tidal\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'Tidal', 'LinkTidal');\" class=\"img-btn redirect\" href=\"".$tidal."\" target=\"_blank\" data-player=\"tidal\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Tidal', 'LinkTidal');\" class=\"img-btn redirect\" href=\"".$tidal."\" target=\"_blank\" data-player=\"tidal\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Play</button></a></center>
                         </div>
                         <hr/>";
                         
@@ -712,7 +712,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Amazon Fisico.png\" alt=\"amazonstore\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'AmazonS', 'LinkAmazonS');\" class=\"img-btn redirect\" href=\"".$google."\" target=\"_blank\" data-player=\"amazonstore\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Buy</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'AmazonS', 'LinkAmazonS');\" class=\"img-btn redirect\" href=\"".$google."\" target=\"_blank\" data-player=\"amazonstore\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Buy</button></a></center>
                         </div>
                         <hr/>";
                          }
@@ -727,7 +727,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                             <center>
                             <span><img class=\"img img-rounded\" width=\"125\" height=\"61\"  src=\"".$ruta_absoluta."img/Fonarte Store.png\" alt=\"fonarte\"></span>
                             
-                            <a onclick=\"ga('send', 'event', 'Firelink', 'Fonarte', 'LinkFonarte');\" class=\"img-btn redirect\" href=\"".$fonarte."\" target=\"_blank\" data-player=\"fonarte\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:400px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Buy</button></a></center>
+                            <a onclick=\"ga('send', 'event', 'Firelink', 'Fonarte', 'LinkFonarte');\" class=\"img-btn redirect\" href=\"".$fonarte."\" target=\"_blank\" data-player=\"fonarte\" data-servicetype=\"play\" data-apptype=\"manual\"><button style=\"margin-top:-52px;margin-left:445px; width:100px; height:44px;\" class=\"btn btn-default\" type=\"button\">Buy</button></a></center>
                         </div>
                         <hr/>";
                         }
