@@ -1,8 +1,8 @@
 <?php 
 
 
-require_once('Connections/conexion.php'); ?>
-<?php
+require_once('Connections/conexion.php'); 
+
 
 include_once("rutas_absolutas.php");
 include_once("estilos.php"); 
@@ -38,7 +38,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 }
-$id_producto=145;//$_GET['id_producto'];
+$id_producto=549;
 
 
 
@@ -184,7 +184,7 @@ if($row_DetalleProducto['estatus']!='DIGITAL')
 {
   $fi = explode("firelink", $_SERVER["REQUEST_URI"]);
   //$fonarte = "https://www.fonartelatino.com/producto_detalle".$fi[1];
-  $fonarte = "https://www.fonartelatino.com/producto_detalle/145/Carlos_Macz�as-Las_Joyas_del_Prz�ncipe";
+  $fonarte = "https://www.fonartelatino.com/producto_detalle/549/Los_Folkloristas-50_az�os_(2CDs)";
 } 
 else {$fonarte = "";}
 
@@ -247,10 +247,12 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
 
 <!DOCTYPE html>
 <!-- saved from url=(0030)https://orcd.co/katylaorugapre -->
-<html class="wf-montserrat-n4-active wf-montserrat-n7-active wf-montserrat-n1-active wf-montserrat-n2-active wf-montserrat-n3-active wf-montserrat-n8-active wf-montserrat-n6-active wf-montserrat-n5-active wf-active">
+<html lang="es" class="wf-montserrat-n4-active wf-montserrat-n7-active wf-montserrat-n1-active wf-montserrat-n2-active wf-montserrat-n3-active wf-montserrat-n8-active wf-montserrat-n6-active wf-montserrat-n5-active wf-active">
   <head>
+    <link rel="icon" type="image/png" href="https://www.fonartelatino.com/img/favicon.png" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Katy la Oruga (Pre Save)</title>
+    
+
     <meta data-n-head="ssr" name="viewport" content="width=device-width, initial-scale=1">
     
     <meta data-n-head="ssr" property="twitter:card" content="">
@@ -263,7 +265,29 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
     <link href="./css/estiloFirelink1.css" rel="stylesheet" type="text/css">
     <link href="./css/estiloFirelink2.css" rel="stylesheet" type="text/css">
     <link href="./css/estiloFirelink3.css" rel="stylesheet" type="text/css">
-      
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-57590021-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <?php if ($tipo == 2) { ?>
+    <title><?php echo utf8_encode($row_DetalleProducto['artista']); ?> | <?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
+    <?php
+    }
+    else if ($tipo == 1) { 
+    ?>
+    <title><?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
+    <?php
+    }
+    else if ($tipo == 0) { 
+    ?>
+    <title><?php echo utf8_encode($row_DetalleProducto['artista']); ?> | Fonarte Latino</title>
+    <?php } ?>
   </head>
 
   <body>
@@ -292,7 +316,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                         <ul class="services" data-v-5038608e="">
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="spotify" target="_blank" href="<?php echo $spotify; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Spotify.png\""?> class="logo" data-v-5038608e=""> <!----> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Spotify', 'LinkSpotify');\" service="spotify" target="_blank" href="<?php echo $spotify; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Spotify.png\""?> class="logo" data-v-5038608e=""> <!----> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -309,7 +333,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="apple" target="_blank" href="<?php echo $youtube; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Youtube.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'YouTube', 'LinkYouTube');\" service="apple" target="_blank" href="<?php echo $youtube; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Youtube.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -326,7 +350,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="apple" target="_blank" href="<?php echo $appleItunes; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Apple.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Apple', 'LinkApple');\" service="apple" target="_blank" href="<?php echo $appleItunes; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Apple.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -343,7 +367,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="itunes" target="_blank" href="<?php echo $appleItunes."?app=itunes"; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/itunes.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Itunes', 'LinkItunes');\" service="itunes" target="_blank" href="<?php echo $appleItunes."?app=itunes"; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/itunes.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -360,7 +384,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="amazonstore" target="_blank" href="<?php echo $amazon_mu; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Amazon Music.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon_music', 'LinkAmazon_Music');\" service="amazonstore" target="_blank" href="<?php echo $amazon_mu; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Amazon Music.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -377,7 +401,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="amazon" target="_blank" href="<?php echo $amazon; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Amazon-MP3.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Amazon', 'LinkAmazon');\" service="amazon" target="_blank" href="<?php echo $amazon; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Amazon-MP3.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -394,7 +418,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="deezer" target="_blank" href="<?php echo $deezer; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Deezer.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Deezer', 'LinkDeezer');\" service="deezer" target="_blank" href="<?php echo $deezer; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Deezer.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -411,7 +435,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="tidal" target="_blank" href="<?php echo $tidal; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Tidal.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Tidal', 'LinkTidal');\" service="tidal" target="_blank" href="<?php echo $tidal; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Tidal.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -428,7 +452,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="tidal" target="_blank" href="<?php echo $google; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Amazon Fisico.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'AmazonFisico', 'LinkAmazonFisico');\" service="amazonF" target="_blank" href="<?php echo $google; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Amazon Fisico.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
@@ -445,7 +469,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                           </li>
                           <li data-v-5038608e="">
                             <div class="service" data-v-5038608e="">
-                              <a service="tidal" target="_blank" href="<?php echo $fonarte; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Fonarte Store.png\""?> class="logo" data-v-5038608e=""> 
+                              <a onclick=\"ga('send', 'event', 'Firelink', 'Fonarte', 'LinkFonarte');\" service="Fonarte" target="_blank" href="<?php echo $fonarte; ?>" class="service service-link" data-v-5038608e=""><img src=<?php echo"\"".$ruta_absoluta."img/Fonarte Store.png\""?> class="logo" data-v-5038608e=""> 
                                 <div class="music-service-cta" data-v-78022448="" data-v-5038608e="">
                                   <div class="tooltip-container" data-v-3147eada="" data-v-78022448="">
                                     <div class="tooltip-item" data-v-3147eada="">
