@@ -310,8 +310,8 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                   </div> 
                     
                       <div class="song-info" data-v-7c7e10c6="">
+                      <p class="choose-service" data-v-7c7e10c6=""><?php echo $nombreArtista; ?></p>
                         <h4 data-v-7c7e10c6=""><?php echo $Album; ?></h4> 
-                        <p class="choose-service" data-v-7c7e10c6="">Elija su servicio de música preferido</p>
                       </div> 
                       <div class="music-services-section" data-v-5038608e="" data-v-7c7e10c6=""> 
                         <ul class="services" data-v-5038608e="">
@@ -495,7 +495,20 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                               </a>
                             </div>
                           </li>";
-                          }?>
+                          }
+                          if ($video != "") {
+                            $aux = explode("?v=", $video);
+
+                            echo "
+                            <li data-v-5038608e=\"\">
+                              <div style=\"height:190px\" class=\"service\" data-v-5038608e=\"\">
+                                <div style=\"margin-left: 15px;\" class=\"row\">
+                                  <center><iframe width=\"250\" height=\"150\" src=\"https://www.youtube.com/embed/".$aux[1]."\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></center>
+                                </div>
+                              </div>
+                            </li>";
+                          }
+                          ?>
                         </ul>
                       </div>
                     </div> 
