@@ -310,7 +310,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                   </div> 
                     
                       <div class="song-info" data-v-7c7e10c6="">
-                      <p class="choose-service" data-v-7c7e10c6=""><?php echo $nombreArtista; ?></p>
+                        <h4 class="" data-v-7c7e10c6=""><?php echo $nombreArtista; ?></h4>
                         <h4 data-v-7c7e10c6=""><?php echo $Album; ?></h4> 
                       </div> 
                       <div class="music-services-section" data-v-5038608e="" data-v-7c7e10c6=""> 
