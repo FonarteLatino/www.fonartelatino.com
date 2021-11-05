@@ -1,15 +1,17 @@
 Servidor: fonarte2.database.windows.net
 User: Dataguys2
 Pass: Fonarte2018
+DB: Reporteador
 
 Power BI
 diegoavila@fonartelatino.com.mx
-F0n@rt3.Lat1no.11
+F0n@rt3.Lat1no.12
 
 Web Panel DreamHost
 webmaster@fonartelatino.com
 y0gvbkOcqJ4m1LetJbsH
 
+Azure
 diegoavila4@gmail.com
 yeyo1979
 
