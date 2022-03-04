@@ -893,7 +893,7 @@ a:focus {
 
 .causes .causes-img img {
     width: 100%;
-    transition: .3s;
+    transition: .1s;
 }
 
 .causes .causes-item:hover img {
