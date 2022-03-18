@@ -37,8 +37,8 @@ a:focus {
     font-weight: 500;
     color: #777777;
     border-radius: 0;
-    border: 2px solid #FDBE33;
-    box-shadow: inset 0 0 0 0 #FDBE33;
+    border: 2px solid #004d58;
+    box-shadow: inset 0 0 0 0 #004d58;
     transition: ease-out 0.3s;
     -webkit-transition: ease-out 0.3s;
     -moz-transition: ease-out 0.3s;
@@ -118,7 +118,7 @@ a:focus {
 .back-to-top {
     position: fixed;
     display: none;
-    background: #FDBE33;
+    background: #004d58;
     width: 44px;
     height: 44px;
     text-align: center;
@@ -131,16 +131,16 @@ a:focus {
 }
 
 .back-to-top i {
-    color: #4a4c70;
+    color: #fff;
     padding-top: 10px;
 }
 
 .back-to-top:hover {
-    background: #4a4c70;
+    background: #fff;
 }
 
 .back-to-top:hover i {
-    color: #FDBE33;
+    color: #004d58;
 }
 
 
@@ -260,7 +260,7 @@ a:focus {
 
 .navbar .navbar-brand img {
     max-width: 100%;
-    max-height: 40px;
+    max-height: 100%;
 }
 
 .navbar-dark .navbar-nav .nav-link,
@@ -286,17 +286,16 @@ a:focus {
 
 @media (min-width: 992px) {
     .navbar {
-        position: absolute;
+        position: relative;
         width: 100%;
-        top: 45px;
-        padding: 20px 60px;
-        background: transparent !important;
+        top: 0px;
+        padding: 20px 120px;
         border-bottom: 1px solid rgba(255, 255, 255, .3);
         z-index: 9;
     }
     
     .navbar.nav-sticky {
-        padding: 10px 60px;
+        padding: 10px 120px;
         background: #20212B !important;
         border-bottom: none;
     }
@@ -334,9 +333,9 @@ a:focus {
 .carousel {
     position: relative;
     width: 100%;
-    min-height: 300px;
+    min-height: 220px;
     background: #ffffff;
-    margin-bottom: 45px;
+    margin-bottom: -20px;
 }
 
 .carousel .container-fluid {
@@ -346,7 +345,7 @@ a:focus {
 .carousel .carousel-item {
     position: relative;
     width: 100%;
-    min-height: 300px;
+    min-height: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -357,7 +356,7 @@ a:focus {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 300px;
+    min-height: 0px;
     text-align: right;
     overflow: hidden;
 }
@@ -369,7 +368,6 @@ a:focus {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, .5);
     z-index: 1;
 }
 
@@ -455,6 +453,8 @@ a:focus {
     animation-duration: 1s;
 }
 
+
+
 #videoModal .modal-dialog {
     position: relative;
     max-width: 800px;
@@ -526,10 +526,10 @@ a:focus {
 /*******************************/
 .page-header {
     position: relative;
-    margin-bottom: 45px;
+    margin-bottom: 0px;
     padding: 210px 0 90px 0;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(../img/page-header.jpg);
+    background: linear-gradient(rgba(1, 1, 1, .5), rgba(1, 1, 1, .5)), url(../img/page-header.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -538,7 +538,7 @@ a:focus {
 
 .page-header h2 {
     position: relative;
-    color: #FDBE33;
+    color: #fff;
     font-size: 60px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -552,7 +552,7 @@ a:focus {
     height: 2px;
     left: calc(50% - 50px);
     bottom: 0;
-    background: #FDBE33;
+    background: #004d58;
 }
 
 .page-header a {
@@ -621,35 +621,46 @@ a:focus {
 }
 
 .section-header p {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     position: relative;
     font-size: 22px;
     font-weight: 600;
-    text-transform: capitalize;
-    color: #FDBE33;
+    
+    color: #004d58;
 }
 
 .section-header h2 {
-    margin: 0;
-    font-size: 45px;
+    margin: 5px;
+    font-size: 35px;
     font-weight: 700;
+}
+
+.section-header li {
+    margin: 15px;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 @media (max-width: 991.98px) {
     .section-header h2 {
-        font-size: 45px;
+        font-size: 35px;
     }
 }
 
 @media (max-width: 767.98px) {
     .section-header h2 {
-        font-size: 40px;
+        font-size: 30px;
     }
 }
 
 @media (max-width: 575.98px) {
     .section-header h2 {
-        font-size: 35px;
+        font-size: 25px;
+    }
+    .section-header p {
+        margin: 10px;
+        font-size: 15px;
+        font-weight: 600;
     }
 }
 
@@ -727,6 +738,12 @@ a:focus {
     transition: .3s;
 }
 
+@media (max-width: 700px) {
+    .service .service-item {
+        margin-bottom: 20px;
+    }
+}
+
 .service .service-icon {
     position: relative;
     width: 60px;
@@ -735,7 +752,7 @@ a:focus {
 .service .service-icon i {
     position: relative;
     display: block;
-    color: #FDBE33;
+    color: #004d58;
     font-size: 60px;
     line-height: 60px;
     margin-top: 5px;
@@ -764,7 +781,7 @@ a:focus {
     height: 40px;
     top: calc(50% - 20px);
     left: -1px;
-    background: #FDBE33;
+    background: #004d58;
 }
 
 .service .service-text h3 {
@@ -873,6 +890,13 @@ a:focus {
     position: relative;
     width: 100%;
     padding: 45px 0;
+}
+@media (max-width: 575.98px) {
+    .causes {
+        position: relative;
+        width: 100%;
+        padding: 10px 0;
+    }
 }
 
 .causes .causes-carousel {
@@ -996,7 +1020,7 @@ a:focus {
     position: relative;
     width: 100%;
     min-height: 400px;
-    margin: 45px 0;
+    margin: 0px 0;
     display: flex;
     align-items: center;
     background: rgba(0, 0, 0, .5);
@@ -1012,11 +1036,12 @@ a:focus {
     margin-top: 10px;
     font-size: 60px;
     line-height: 60px;
-    color: #FDBE33;
+    color: #fff;
 }
 
 .facts .facts-text {
     padding-left: 20px;
+    -webkit-text-stroke: 0.1px black;
 }
 
 .facts .facts-text h3 {
@@ -1141,7 +1166,7 @@ a:focus {
 .testimonial {
     position: relative;
     width: 100%;
-    padding: 45px 0;
+    padding: 0px 0;
 }
 
 .testimonial .testimonials-carousel {
@@ -2025,8 +2050,8 @@ a:focus {
 /*******************************/
 .footer {
     position: relative;
-    margin-top: 45px;
-    padding-top: 90px;
+    margin-top: 15px;
+    padding-top: 30px;
     background: #20212B;
 }
 
@@ -2142,5 +2167,24 @@ a:focus {
     .footer .copyright .col-md-6:last-child p {
         margin: 5px 0;
         text-align: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #img-p{
+        max-width: 70%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #plataformas{
+        margin-top: -35px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #t-1{
+        margin-bottom: 10px;
     }
 }

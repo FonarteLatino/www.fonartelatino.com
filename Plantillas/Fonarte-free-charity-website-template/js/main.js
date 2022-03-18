@@ -59,11 +59,13 @@
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
         items: 1,
-        smartSpeed: 250,
+        smartSpeed: 100,
         dots: false,
         loop: true,
         
     });
+
+    
     
     
     // Modal Video
@@ -89,25 +91,25 @@
         autoplay: true,
         animateIn: 'slideInDown',
         animateOut: 'slideOutDown',
-        items: 1,
-        slideSpeed: 1,
-        paginationSpeed:1,
-        autoPlay:1,
-        smartSpeed:1,
+        items: 6,
+        slideSpeed: 500,
+        paginationSpeed:500,
+        autoPlay:500,
+        smartSpeed:500,
         dots: false,
         loop: true,
         responsive: {
             0:{
-                items:1
+                items:3
             },
             576:{
-                items:1
+                items:4
             },
             768:{
-                items:2
+                items:5
             },
             992:{
-                items:3
+                items:6
             }
         }
     });
