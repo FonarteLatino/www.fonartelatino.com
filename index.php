@@ -328,7 +328,7 @@ do
 
 	$url=$row_lanzamientos['artista']."-".$row_lanzamientos['album'];//une las dos con un guion medio
 	
-	$para_buscar = " A������������O������������E����������I��������U�����������BCDFGHJKLMNPQRSTVWXYZ";
+	$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
 	$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 	$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 	
@@ -340,8 +340,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=substr($row_lanzamientos['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
-	$album_2=substr($row_lanzamientos['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_lanzamientos['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_lanzamientos['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
@@ -380,7 +380,7 @@ do
 
 	$url=$row_novedades['artista']."-".$row_novedades['album'];//une las dos con un guion medio
 	
-	$para_buscar = " A������������O������������E����������I��������U�����������BCDFGHJKLMNPQRSTVWXYZ";
+	$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
 	$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 	$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 	
@@ -390,8 +390,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=substr($row_novedades['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
-	$album_2=substr($row_novedades['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_novedades['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_novedades['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
@@ -434,7 +434,7 @@ do
 
 	$url=$row_disco_semana['artista']."-".$row_disco_semana['album'];//une las dos con un guion medio
 	
-	$para_buscar = " A������������O������������E����������I��������U�����������BCDFGHJKLMNPQRSTVWXYZ";
+	$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
 	$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 	$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 	
@@ -444,8 +444,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=substr($row_disco_semana['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
-	$album_2=substr($row_disco_semana['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_disco_semana['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_disco_semana['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
@@ -461,7 +461,7 @@ do
  
    <!-- =========================== inicio de DISCO DE LA SEMANA =========================== -->   
  
- <p class="subtitulo_carrusel_index subtitulo_enDetalle" style="text-transform:uppercase">EN DETALLE <?php echo utf8_encode($row_endetalle['artista']); ?></p> 
+ <p class="subtitulo_carrusel_index subtitulo_enDetalle" style="text-transform:uppercase">EN DETALLE <?php echo utf8_encode(utf8_decode($row_endetalle['artista'])); ?></p> 
 <div class="carrusel_index" >
 <?php
 do
@@ -482,7 +482,7 @@ do
 
 	$url=$row_endetalle['artista']."-".$row_endetalle['album'];//une las dos con un guion medio
 	
-	$para_buscar = " A������������O������������E����������I��������U�����������BCDFGHJKLMNPQRSTVWXYZ";
+	$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
 	$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 	$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 	
@@ -493,8 +493,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=substr($row_endetalle['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
-	$album_2=substr($row_endetalle['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_endetalle['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_endetalle['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
@@ -602,6 +602,6 @@ j.garcia.e1987@gmail.com
 
 </html>
 <?php
-mysqli_free_result($lanzamientos);
+mysql_free_result($lanzamientos);
 ?>
 

@@ -276,17 +276,17 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
     </script>
 
   <?php if ($tipo == 2) { ?>
-    <title><?php echo utf8_encode($row_DetalleProducto['artista']); ?> | <?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
+    <title><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?> | <?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
     <?php
     }
     else if ($tipo == 1) { 
     ?>
-    <title><?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
+    <title><?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?> | Fonarte Latino</title>
     <?php
     }
     else if ($tipo == 0) { 
     ?>
-    <title><?php echo utf8_encode($row_DetalleProducto['artista']); ?> | Fonarte Latino</title>
+    <title><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?> | Fonarte Latino</title>
     <?php } ?>
       
   </head>
@@ -310,8 +310,8 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
                   </div> 
                     
                       <div class="song-info" data-v-7c7e10c6="">
-                        <h4 class="" data-v-7c7e10c6=""><?php echo $nombreArtista; ?></h4>
-                        <h4 data-v-7c7e10c6=""><?php echo $Album; ?></h4> 
+                        <h4 class="" data-v-7c7e10c6=""><?php echo utf8_decode($nombreArtista); ?></h4>
+                        <h4 data-v-7c7e10c6=""><?php echo utf8_decode($Album); ?></h4> 
                       </div> 
                       <div class="music-services-section" data-v-5038608e="" data-v-7c7e10c6=""> 
                         <ul class="services" data-v-5038608e="">

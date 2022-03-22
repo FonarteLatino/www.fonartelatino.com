@@ -237,14 +237,14 @@ if(isset($_GET['add_carrito']) and ($_GET['add_carrito']==1))
 	<?php //include_once("estilos_producto_detalle.php"); 
 	
 	?>  
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo utf8_encode($row_DetalleProducto['artista']); ?> | <?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
+    <title><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?> | <?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?> | Fonarte Latino</title>
   
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo $ruta_absoluta; ?>css/bootstrap.min.css" rel="stylesheet">
@@ -277,7 +277,7 @@ if(isset($_GET['add_carrito']) and ($_GET['add_carrito']==1))
         <div class="row franja" >
             <div class="col-lg-12">
                 <div class="container">
-                    <p class="page-header"><?php echo utf8_encode($row_DetalleProducto['artista']); ?><small> &nbsp;&nbsp; <?php echo utf8_encode($row_DetalleProducto['album']); ?></small></p>
+                    <p class="page-header"><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?><small> &nbsp;&nbsp; <?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?></small></p>
                 </div>
             </div>
         </div>
@@ -315,8 +315,8 @@ if(!isset($_SESSION['CARRITO_TEMP']))
                  <!-- ============== inicio de descripcion====================== -->
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3 class="tipografia2"><?php echo utf8_encode($row_DetalleProducto['album']); ?></h3>
-                        <h4 class="tipografia2"><?php echo utf8_encode($row_DetalleProducto['artista']); ?></h4>
+                        <h3 class="tipografia2"><?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?></h3>
+                        <h4 class="tipografia2"><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?></h4>
                     </div>
                     <div class="col-sm-6">
                     <?php
@@ -407,25 +407,22 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 						
 						$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
 						$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
-						$url_seo_final = addslashes(strtr($url,$para_buscar,$para_remplazar));
+						$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 						
 						//fin de genera URL SEO
 
 						
-						?>
-            
-            
-            <div class="col-xs-6 col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle.php?add_carrito=1&id_producto=<?php echo $id_producto; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode(addslashes($row_DetalleProducto['artista'])); ?>&album=<?php echo utf8_encode(addslashes($row_DetalleProducto['album'])); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; margin-left: -14px; background-color:transparent; border:#ffffff;   font-size:11px;"><img src="<?php echo $ruta_absoluta; ?>img/carrito.jpeg" width="100" height="31" alt="carrito"></button></center></div> <?php
+						?><div class="col-xs-6 col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle.php?add_carrito=1&id_producto=<?php echo $id_producto; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?>&album=<?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; margin-left: -14px; background-color:transparent; border:#ffffff;   font-size:11px;"><img src="<?php echo $ruta_absoluta; ?>img/carrito.jpeg" width="100" height="31" alt="carrito"></button></center></div> <?php
 						
-					}
-                    if($row_DetalleProducto['google']!='')//tiene link de amazonS
-					{
-						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['google'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/google-mini.jpeg" width="100" height="31" alt="google"></a></center></div>    <?php
 					}
 					if($row_DetalleProducto['itunes']!='')//tiene link de itunes
 					{
 						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['itunes'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/apple-mini.jpeg" width="100" height="31" alt="itunes"></a></center></div>
-                    <?php
+<?php
+					}
+					if($row_DetalleProducto['google']!='')//tiene link de google
+					{
+						?><div class="col-xs-6 col-sm-3"><center><a href="<?php echo $row_DetalleProducto['google'] ?>" target="new"><img src="<?php echo $ruta_absoluta; ?>img/google-mini.jpeg" width="100" height="31" alt="google"></a></center></div>    <?php
 					}
 					if($row_DetalleProducto['amazon']!='')//tiene link de amazon
 					{
@@ -476,7 +473,7 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 <div class="tab-content tipografia_tabs" style="border:1px solid #ddd; padding:20px;">
     <div id="desc" class="tab-pane fade in active">
     <br>
-        <p><?php echo utf8_encode($row_DetalleProducto['descripcion']) ?></p>
+        <p><?php echo utf8_encode(utf8_decode($row_DetalleProducto['descripcion'])) ?></p>
     </div>
     
     <!--div id="coment" class="tab-pane fade">
@@ -525,8 +522,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=substr($row_TePuedeInteresar['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
-	$album_2=substr($row_TePuedeInteresar['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_TePuedeInteresar['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_TePuedeInteresar['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     

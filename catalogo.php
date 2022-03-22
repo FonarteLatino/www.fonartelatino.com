@@ -1,4 +1,4 @@
- <?php require_once('Connections/conexion.php'); ?>
+<?php require_once('Connections/conexion.php'); ?>
 <?php
 
 include_once("zebra_pagination/Zebra_Pagination.php");
@@ -157,7 +157,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 
 <head>
  	<link rel="icon" type="image/png" href="https://www.fonartelatino.com/img/favicon.png" />
-    <meta charset="ISO-8859-1" />
+    <meta charset="UTF-8" />
 
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -287,8 +287,8 @@ do
     	
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=substr($row_Productos['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
-	$album_2=substr($row_Productos['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_Productos['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_Productos['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
