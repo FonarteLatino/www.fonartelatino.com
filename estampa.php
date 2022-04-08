@@ -216,7 +216,7 @@ $totalRows_Productos = mysqli_num_rows($Productos);
     </thead>
     <tbody>
       <tr>
-        <td style="border:1px solid #000000;"><?php echo utf8_encode($row_Direccion['pais']); ?></td>
+        <td style="border:1px solid #000000;"><?php echo utf8_encode(utf8_decode($row_Direccion['pais'])); ?></td>
         <td style="border:1px solid #000000;"><?php echo "$".$row_Pedido['precio_envio'].".00"; ?></td>
         <td style="border:1px solid #000000;">
         <!-- -->
@@ -282,7 +282,7 @@ $totalRows_Productos = mysqli_num_rows($Productos);
         <td colspan="4" style="border:1px solid #000000;">
         <p>Datos del Usuario</p>
         <ul style="font-size:10px;">
-			<li><?php echo utf8_encode($row_Usuario['nombre'])." ".utf8_encode($row_Usuario['apepat'])." ".utf8_encode($row_Usuario['apemat']); ?></li>
+			<li><?php echo utf8_encode(utf8_decode($row_Usuario['nombre']))." ".utf8_encode(utf8_decode($row_Usuario['apepat']))." ".utf8_encode(utf8_decode($row_Usuario['apemat'])); ?></li>
             <li><?php echo $row_Usuario['email']; ?></li>
         </ul>
         </td>
@@ -292,9 +292,9 @@ $totalRows_Productos = mysqli_num_rows($Productos);
         <td colspan="4" style="border:1px solid #000000;">
         <p>Datos de Entrega</p>
         <ul style="font-size:10px;">
-        	<li><?php echo utf8_encode($row_Direccion['nombre_recibe']); ?></li>
+        	<li><?php echo utf8_encode(utf8_decode($row_Direccion['nombre_recibe'])); ?></li>
             <li><?php echo $row_Direccion['tel_recibe'] ?></li>
-            <li><?php echo utf8_encode($row_Direccion['calle'])." N/E ".utf8_encode($row_Direccion['n_ext'])." N/I ".utf8_encode($row_Direccion['n_int'])." ".utf8_encode($row_Direccion['colonia'])." ".utf8_encode($row_Direccion['muni_dele'])." ".utf8_encode($row_Direccion['estado']).", ".utf8_encode($row_Direccion['pais'])." C.P. ".$row_Direccion['cp']." ".$row_Direccion['calle']." ".utf8_encode($row_Direccion['calle'])."<br>ENTRE LA CALLE ".utf8_encode($row_Direccion['entre_calle_1'])." Y LA CALLE ".$row_Direccion['entre_calle_2'] ?></li>
+            <li><?php echo utf8_encode(utf8_decode($row_Direccion['calle']))." N/E ".utf8_encode(utf8_decode($row_Direccion['n_ext']))." N/I ".utf8_encode(utf8_decode($row_Direccion['n_int']))." ".utf8_encode(utf8_decode($row_Direccion['colonia']))." ".utf8_encode(utf8_decode($row_Direccion['muni_dele']))." ".utf8_encode(utf8_decode($row_Direccion['estado'])).", ".utf8_encode(utf8_decode($row_Direccion['pais']))." C.P. ".$row_Direccion['cp']." ".$row_Direccion['calle']." ".utf8_encode(utf8_decode($row_Direccion['calle']))."<br>ENTRE LA CALLE ".utf8_encode(utf8_decode($row_Direccion['entre_calle_1']))." Y LA CALLE ".$row_Direccion['entre_calle_2'] ?></li>
         </ul>
         </td>
       </tr>

@@ -59,10 +59,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 $insertSQL = sprintf("INSERT INTO contacto (nombre, email, telefono, comentario, fecha, hora) VALUES (%s, %s, %s, %s, %s, %s)",
-GetSQLValueString(utf8_decode($_POST['nombre']), "text"),
+GetSQLValueString(utf8_decode(utf8_encode($_POST['nombre'])), "text"),
 GetSQLValueString($_POST['email'], "text"),
 GetSQLValueString($_POST['telefono'], "text"),
-GetSQLValueString(utf8_decode($_POST['comentario']), "text"),
+GetSQLValueString(utf8_decode(utf8_encode($_POST['comentario'])), "text"),
 GetSQLValueString(date("Y-m-d"), "date"),
 GetSQLValueString(date("H:i:s"), "date"));
 

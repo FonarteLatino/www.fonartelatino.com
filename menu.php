@@ -239,7 +239,7 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
     <?php
         do
         {
-            ?><li><a href="<?php echo $ruta_absoluta; ?>generos.php?genero=<?php echo $row_Generos['id']; ?>"><?php echo utf8_encode($row_Generos['nombre']);  ?></a></li><?php
+            ?><li><a href="<?php echo $ruta_absoluta; ?>generos.php?genero=<?php echo $row_Generos['id']; ?>"><?php echo utf8_encode(utf8_decode($row_Generos['nombre']));  ?></a></li><?php
         }while($row_Generos = mysqli_fetch_assoc($Generos));
     ?>
     

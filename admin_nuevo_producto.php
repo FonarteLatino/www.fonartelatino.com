@@ -154,11 +154,11 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
-	GetSQLValueString(utf8_decode($_POST['artista']), "text"),
-	GetSQLValueString(utf8_decode($_POST['album']), "text"),
-	GetSQLValueString(utf8_decode($_POST['genero']), "text"),
-	GetSQLValueString(utf8_decode($_POST['genero2']), "text"),
-	GetSQLValueString(utf8_decode($_POST['genero3']), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['artista'])), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['album'])), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['genero'])), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['genero2'])), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['genero3'])), "text"),
 	GetSQLValueString($_POST['categoria'], "int"),
 	GetSQLValueString($_POST['spotify'], "text"),
 	GetSQLValueString($_POST['itunes'], "text"),
@@ -170,7 +170,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
   GetSQLValueString($_POST['tidal'], "text"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
-	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['descripcion'])), "text"),
 	GetSQLValueString($_POST['fecha_alta'], "date"),
 	GetSQLValueString($_POST['hora_alta'], "date"),
 	GetSQLValueString($_POST['prendido'], "int"),
@@ -222,7 +222,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 
 <head>
 	<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
-	<meta charset="ISO-8859-1" />
+	<meta charset="UTF8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -324,7 +324,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     <?php
     do {  
     ?>
-    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
+    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode(utf8_decode($row_Generos['nombre'])); ?></option>
     <?php
     } while ($row_Generos = mysqli_fetch_assoc($Generos));
     $rows = mysqli_num_rows($Generos);
@@ -351,7 +351,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     <?php
     do {  
     ?>
-    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
+    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode(utf8_decode($row_Generos['nombre'])); ?></option>
     <?php
     } while ($row_Generos = mysqli_fetch_assoc($Generos));
     $rows = mysqli_num_rows($Generos);
@@ -371,7 +371,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     <?php
     do {  
     ?>
-    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option>
+    <option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode(utf8_decode($row_Generos['nombre'])); ?></option>
     <?php
     } while ($row_Generos = mysqli_fetch_assoc($Generos));
     $rows = mysqli_num_rows($Generos);

@@ -104,7 +104,7 @@ $totalRows_ProductosPedidos2 = mysqli_num_rows($ProductosPedidos2);
 
 //datos de envio
 
-$desc=utf8_encode($row_ProductosPedidos['descripcion']); 
+$desc=utf8_encode(utf8_decode($row_ProductosPedidos['descripcion'])); 
 
 
 
@@ -202,7 +202,7 @@ if(isset($_GET['pagado']) and ($_GET['pagado']==1))
         ?>
         <tr>
         	<td><?php echo $i; ?></td>
-            <td><?php echo $row_ProductosPedidos['id_producto_fonarte']."-".utf8_encode($row_ProductosPedidos['artista']).", ".utf8_encode($row_ProductosPedidos['album']); ?></td>
+            <td><?php echo $row_ProductosPedidos['id_producto_fonarte']."-".utf8_encode(utf8_decode($row_ProductosPedidos['artista'])).", ".utf8_encode(utf8_decode($row_ProductosPedidos['album'])); ?></td>
             <td><?php echo $row_ProductosPedidos['cantidad']; ?></td>
             <td><?php echo "$".$row_ProductosPedidos['precio'].".00"; ?></td>
             
@@ -267,7 +267,7 @@ if(isset($_GET['pagado']) and ($_GET['pagado']==1))
 	<!-- ======================== datos del usuario ============================================= -->
   <div class="col-sm-6">
       <p style="font-size:11px; text-align:left;"><strong>Datos de usuario</strong></p>
-      <p style="font-size:11px;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo utf8_encode($row_Usuario['nombre'])." ".$row_Usuario['apepat']." ".$row_Usuario['apemat']; ?></p> 
+      <p style="font-size:11px;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo utf8_encode(utf8_decode($row_Usuario['nombre']))." ".$row_Usuario['apepat']." ".$row_Usuario['apemat']; ?></p> 
       <p style="font-size:11px;"><span class="glyphicon glyphicon-envelope"></span>&nbsp;<?php echo $row_Usuario['email']; ?></p>
   </div>
   
@@ -276,10 +276,10 @@ if(isset($_GET['pagado']) and ($_GET['pagado']==1))
   <div class="col-sm-6">
   <p style="font-size:11px; text-align:left;"><strong>Datos de envio</strong></p>
   <ul>
-  <li><p style="font-size:11px;"><?php echo "PARA: ".utf8_encode($row_Direccion['nombre_recibe']); ?></p></li>
+  <li><p style="font-size:11px;"><?php echo "PARA: ".utf8_encode(utf8_decode($row_Direccion['nombre_recibe'])); ?></p></li>
   <li><p style="font-size:11px;"><?php echo "TELEFONO: ".$row_Direccion['tel_recibe']; ?></p></li>
   <li><p style="font-size:11px;">
-  <?php echo "DIRECCI&Oacute;N: ".$row_Direccion['calle']." # EXT ".$row_Direccion['n_ext']." # INT ".$row_Direccion['n_int']." ".utf8_encode($row_Direccion['colonia'])." ".utf8_encode($row_Direccion['muni_dele']).", ".utf8_encode($row_Direccion['estado']).", ".utf8_encode($row_Direccion['pais'])." CP ".$row_Direccion['cp']; ?>
+  <?php echo "DIRECCI&Oacute;N: ".$row_Direccion['calle']." # EXT ".$row_Direccion['n_ext']." # INT ".$row_Direccion['n_int']." ".utf8_encode(utf8_decode($row_Direccion['colonia']))." ".utf8_encode(utf8_decode($row_Direccion['muni_dele'])).", ".utf8_encode(utf8_decode($row_Direccion['estado'])).", ".utf8_encode(utf8_decode($row_Direccion['pais']))." CP ".$row_Direccion['cp']; ?>
   </p>
   <p style="font-size:11px;">
   <?php echo "ENTRE LA CALLE ".$row_Direccion['entre_calle_1']." Y LA CALLE ".$row_Direccion['entre_calle_2']; ?>

@@ -318,17 +318,17 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
         	<tr>
                 <td style="padding:1%; width:10%;"><?php echo "$".$row_ExpresMexico['precio'].".00"; ?></td>
                 <td style="padding:1%; width:20%;"><?php echo $row_ExpresMexico['region']; ?></td>
-                <td style="padding:1%"><?php echo utf8_encode($row_ExpresMexico['descripcion']); ?></td>
+                <td style="padding:1%"><?php echo utf8_encode(utf8_decode($row_ExpresMexico['descripcion'])); ?></td>
             </tr>
             <tr>
                 <td style="padding:1%;"><?php echo "$".$row_ExpresUSACanada['precio'].".00"; ?></td>
                 <td style="padding:1%"><?php echo $row_ExpresUSACanada['region']; ?></td>
-                <td style="padding:1%"><?php echo utf8_encode($row_ExpresUSACanada['descripcion']); ?></td>
+                <td style="padding:1%"><?php echo utf8_encode(utf8_decode($row_ExpresUSACanada['descripcion'])); ?></td>
             </tr>
             <tr>
                 <td style="padding:1%"><?php echo "$".$row_ExpresRestoMundo['precio'].".00"; ?></td>
                 <td style="padding:1%"><?php echo $row_ExpresRestoMundo['region']; ?></td>
-                <td style="padding:1%"><?php echo utf8_encode($row_ExpresRestoMundo['descripcion']); ?></td>
+                <td style="padding:1%"><?php echo utf8_encode(utf8_decode($row_ExpresRestoMundo['descripcion'])); ?></td>
             </tr>
         </table>
     </label>
@@ -340,17 +340,17 @@ if(isset($_POST['insert_dir']) and ($_POST['insert_dir']==1))
         	<tr>
                 <td style="padding:1%; width:10%;"><?php echo "$".$row_LocalMexico['precio'].".00"; ?></td>
                 <td style="padding:1%; width:20%;"><?php echo $row_LocalMexico['region']; ?></td>
-                <td style="padding:1%"><?php echo utf8_encode($row_LocalMexico['descripcion']); ?></td>
+                <td style="padding:1%"><?php echo utf8_encode(utf8_decode($row_LocalMexico['descripcion'])); ?></td>
             </tr>
             <tr>
                 <td style="padding:1%;"><?php echo "$".$row_LocalUSACanada['precio'].".00"; ?></td>
                 <td style="padding:1%"><?php echo $row_LocalUSACanada['region']; ?></td>
-                <td style="padding:1%"><?php echo utf8_encode($row_LocalUSACanada['descripcion']); ?></td>
+                <td style="padding:1%"><?php echo utf8_encode(utf8_decode($row_LocalUSACanada['descripcion'])); ?></td>
             </tr>
             <tr>
                 <td style="padding:1%"><?php echo "$".$row_LocalRestoMundo['precio'].".00"; ?></td>
                 <td style="padding:1%"><?php echo $row_LocalRestoMundo['region']; ?></td>
-                <td style="padding:1%"><?php echo utf8_encode($row_LocalRestoMundo['descripcion']); ?></td>
+                <td style="padding:1%"><?php echo utf8_encode(utf8_decode($row_LocalRestoMundo['descripcion'])); ?></td>
             </tr>
         </table>
     </label>

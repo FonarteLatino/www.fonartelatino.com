@@ -140,7 +140,7 @@ $totalRows_ProductosPorGeneros = mysqli_num_rows($ProductosPorGeneros);
         <div class="row franja" >
             <div class="col-lg-12">
                 <div class="container">
-                    <p class="page-header"><?php echo utf8_encode($row_Genero['nombre']); ?><small>&nbsp;</small></p>
+                    <p class="page-header"><?php echo utf8_encode(utf8_decode($row_Genero['nombre'])); ?><small>&nbsp;</small></p>
                 </div>
             </div>
         </div>
@@ -159,7 +159,7 @@ $totalRows_ProductosPorGeneros = mysqli_num_rows($ProductosPorGeneros);
 <?php
 if($totalRows_ProductosPorGeneros==0)//no existen resultados
 {
-   ?><h4 class="tipografia2">No se encontraron resultados de "<?php echo utf8_encode($row_Genero['nombre']); ?>"</h4><br><br><br><br><br><br><br><?php
+   ?><h4 class="tipografia2">No se encontraron resultados de "<?php echo utf8_encode(utf8_decode($row_Genero['nombre'])); ?>"</h4><br><br><br><br><br><br><br><?php
 }
 else//si existen resultados
 {
@@ -188,20 +188,20 @@ do
 	//inicio de genera URL SEO
 	$artista=strtolower($row_ProductosPorGeneros['artista']);//convierte la cadena en minusculas
 	$album=strtolower($row_ProductosPorGeneros['album']);//convierte la cadena en minusculas
-	$url=utf8_encode($artista)."-".utf8_encode($album);//une las dos con un guion medio
+	$url=utf8_encode(utf8_decode($artista))."-".utf8_encode(utf8_decode($album));//une las dos con un guion medio
 	$quita_esp=str_replace(" ","_",$url);//remplaza espacios por guion bajo
-	$sustituye1=str_replace("á","a",$quita_esp);//remplaza á por a
-	$sustituye2=str_replace("é","e",$sustituye1);//remplaza é por e
-	$sustituye3=str_replace("í","i",$sustituye2);//remplaza í por i
-	$sustituye4=str_replace("ó","o",$sustituye3);//remplaza ó por o
-	$sustituye5=str_replace("ú","u",$sustituye4);//remplaza ú por u
-	$sustituye6=str_replace("Á","A",$sustituye5);//remplaza Á por A
-	$sustituye7=str_replace("É","E",$sustituye6);//remplaza É por E
-	$sustituye8=str_replace("Í","I",$sustituye7);//remplaza Í por I
-	$sustituye9=str_replace("Ó","O",$sustituye8);//remplaza Ó por O
-	$sustituye10=str_replace("Ú","U",$sustituye9);//remplaza Ú por U
-	$sustituye11=str_replace("ñ","n",$sustituye10);//remplaza ñ por n
-	$sustituye11=str_replace("Ñ","N",$sustituye10);//remplaza Ñ por N
+	$sustituye1=str_replace("ï¿½","a",$quita_esp);//remplaza ï¿½ por a
+	$sustituye2=str_replace("ï¿½","e",$sustituye1);//remplaza ï¿½ por e
+	$sustituye3=str_replace("ï¿½","i",$sustituye2);//remplaza ï¿½ por i
+	$sustituye4=str_replace("ï¿½","o",$sustituye3);//remplaza ï¿½ por o
+	$sustituye5=str_replace("ï¿½","u",$sustituye4);//remplaza ï¿½ por u
+	$sustituye6=str_replace("ï¿½","A",$sustituye5);//remplaza ï¿½ por A
+	$sustituye7=str_replace("ï¿½","E",$sustituye6);//remplaza ï¿½ por E
+	$sustituye8=str_replace("ï¿½","I",$sustituye7);//remplaza ï¿½ por I
+	$sustituye9=str_replace("ï¿½","O",$sustituye8);//remplaza ï¿½ por O
+	$sustituye10=str_replace("ï¿½","U",$sustituye9);//remplaza ï¿½ por U
+	$sustituye11=str_replace("ï¿½","n",$sustituye10);//remplaza ï¿½ por n
+	$sustituye11=str_replace("ï¿½","N",$sustituye10);//remplaza ï¿½ por N
 	$sustituye12=str_replace(",","",$sustituye11);//remplaza , por nada
 	$sustituye13=str_replace(".","",$sustituye12);//remplaza . por nada
 	$sustituye14=str_replace("(","",$sustituye13);//remplaza ( por nada
@@ -217,7 +217,7 @@ do
 	$artista_2=substr($row_ProductosPorGeneros['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
 	$album_2=substr($row_ProductosPorGeneros['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
 	?>
-    <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
+    <p class="tipografia_catalogo"><strong><?php echo utf8_encode(utf8_decode($artista_2)); ?></strong><br><?php echo utf8_encode(utf8_decode($album_2)); ?></p>
     
 </div>
 

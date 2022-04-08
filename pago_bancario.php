@@ -317,7 +317,7 @@ include_once("mail_nuevo_pedido_admin.php");
 	do{
 	?>
 	<tr>
-		<td><?php echo utf8_encode($row_ProductosPedido['artista']).", ".utf8_encode($row_ProductosPedido['album']); ?></td>
+		<td><?php echo utf8_encode(utf8_decode($row_ProductosPedido['artista'])).", ".utf8_encode(utf8_decode($row_ProductosPedido['album'])); ?></td>
 		<td align="right"><?php echo $row_ProductosPedido['cantidad']; ?></td>
 		<td align="right"><?php echo "$".$row_ProductosPedido['precio_final'].".00"; ?></td>
         <?php $subtotal=$subtotal+($row_ProductosPedido['precio_final']* $row_ProductosPedido['cantidad']); ?>
@@ -375,16 +375,16 @@ $signo
   <h3>Enviar a</h3>
   <p class="tipografia2" style="font-size:12px;">
   
-  	<?php echo utf8_encode($row_DireccionEnvio['nombre_recibe']); ?>	<br>
+  	<?php echo utf8_encode(utf8_decode($row_DireccionEnvio['nombre_recibe'])); ?>	<br>
     <?php echo $row_DireccionEnvio['tel_recibe']; ?> <br>
-    <?php echo utf8_encode($row_DireccionEnvio['calle']); ?>	
-    <?php echo utf8_encode($row_DireccionEnvio['n_ext']); ?>	
-    <?php echo utf8_encode($row_DireccionEnvio['n_int']); ?>	<br>
-    <?php echo utf8_encode($row_DireccionEnvio['colonia']); ?>	<br>
-    <?php echo utf8_encode($row_DireccionEnvio['muni_dele']).", ".utf8_encode($row_DireccionEnvio['estado']); ?>	<br>
-    <?php echo utf8_encode($row_DireccionEnvio['pais'])." C.P.".$row_DireccionEnvio['cp']; ?>	<br>
-    <?php echo "Entre la calle ".utf8_encode($row_DireccionEnvio['entre_calle_1']); ?><br>
-	<?php echo " y la calle ".utf8_encode($row_DireccionEnvio['entre_calle_2']); ?>	
+    <?php echo utf8_encode(utf8_decode($row_DireccionEnvio['calle'])); ?>	
+    <?php echo utf8_encode(utf8_decode($row_DireccionEnvio['n_ext'])); ?>	
+    <?php echo utf8_encode(utf8_decode($row_DireccionEnvio['n_int'])); ?>	<br>
+    <?php echo utf8_encode(utf8_decode($row_DireccionEnvio['colonia'])); ?>	<br>
+    <?php echo utf8_encode(utf8_decode($row_DireccionEnvio['muni_dele'])).", ".utf8_encode(utf8_decode($row_DireccionEnvio['estado'])); ?>	<br>
+    <?php echo utf8_encode(utf8_decode($row_DireccionEnvio['pais']))." C.P.".$row_DireccionEnvio['cp']; ?>	<br>
+    <?php echo "Entre la calle ".utf8_encode(utf8_decode($row_DireccionEnvio['entre_calle_1'])); ?><br>
+	<?php echo " y la calle ".utf8_encode(utf8_decode($row_DireccionEnvio['entre_calle_2'])); ?>	
 
   </p>
 

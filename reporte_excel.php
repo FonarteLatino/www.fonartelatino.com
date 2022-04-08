@@ -173,13 +173,13 @@ $totalRows_ProductosDetalle = mysqli_num_rows($ProductosDetalle);
 
     <tr>
       <td><?php echo $row_Pedido['id']; ?></td>
-      <td><?php echo utf8_encode($row_Usuario['nombre'])." ".utf8_encode($row_Usuario['apepat'])." ".utf8_encode($row_Usuario['apemat'])." <br />".$row_Usuario['email']; ?></td>
+      <td><?php echo utf8_encode(utf8_decode($row_Usuario['nombre']))." ".utf8_encode(utf8_decode($row_Usuario['apepat']))." ".utf8_encode(utf8_decode($row_Usuario['apemat']))." <br />".$row_Usuario['email']; ?></td>
       
       <td><?php echo $row_Pedido['forma_pago']; ?></td>
       <td>
 	  	<ul>
-        	<li><?php echo utf8_encode($row_Direccion['nombre_recibe']); ?></li>
-            <li><?php echo utf8_encode($row_Direccion['tel_recibe']); ?></li>
+        	<li><?php echo utf8_encode(utf8_decode($row_Direccion['nombre_recibe'])); ?></li>
+            <li><?php echo utf8_encode(utf8_decode($row_Direccion['tel_recibe'])); ?></li>
             <li><?php echo $row_Direccion['calle']." N/E ".$row_Direccion['n_ext']." N/I ".$row_Direccion['n_int']." ".$row_Direccion['colonia']." ".$row_Direccion['muni_dele']." ".$row_Direccion['estado'].", ".$row_Direccion['pais']." C.P. ".$row_Direccion['cp']; ?></li>
         </ul>
 	  </td>

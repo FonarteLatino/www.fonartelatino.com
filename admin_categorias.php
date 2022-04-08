@@ -90,7 +90,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) 
 {
 	$insertSQL = sprintf("INSERT INTO categoria (nombre, estatus) VALUES (%s, %s)",
-	GetSQLValueString(utf8_decode($_POST['nombre']), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['nombre'])), "text"),
 	GetSQLValueString(1, "int"));
 	/*
 	mysqli_select_db($conexion,$database_conexion);
@@ -166,7 +166,7 @@ $totalRows_Categoria = mysqli_num_rows($Categoria);
                <!-- Inicio 212121212121212121212121212121212121212121212121212121212121 -->
                
                
-  <!--h3 class="tipografia2">Agregar Categorías</h3-->             
+  <!--h3 class="tipografia2">Agregar Categorï¿½as</h3-->             
 <div class="row">
     <!-- inicio de formulario de agregar genero -->
     <div class="col-sm-4">

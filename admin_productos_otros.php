@@ -236,7 +236,7 @@ $totalRows_ProductosOtros = mysqli_num_rows($ProductosOtros);
      <td><?php echo $row_ProductosOtros['sku']; ?></td>
      <td><?php echo $row_ProductosOtros['id_fonarte']; ?></td>
      <td><?php echo "$".$row_ProductosOtros['precio'].".00"; ?></td>
-     <td><?php echo utf8_encode($row_ProductosOtros['artista']); ?></td>
+     <td><?php echo utf8_encode(utf8_decode($row_ProductosOtros['artista'])); ?></td>
      <?php
 	 if($row_ProductosOtros['s']==1){ $talla_s='S'; }
 	 else{ $talla_s='';}
@@ -254,7 +254,7 @@ $totalRows_ProductosOtros = mysqli_num_rows($ProductosOtros);
 		$tallas_disp=''; 
 	 }
 	 ?>
-     <td><?php echo utf8_decode($row_ProductosOtros['nombre'])." ".$tallas_disp; ?></td>
+     <td><?php echo utf8_decode(utf8_encode($row_ProductosOtros['nombre']))." ".$tallas_disp; ?></td>
 
 
 

@@ -40,8 +40,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 
 
-$a=utf8_decode($_GET['artista']);
-//$a='cañ';
+$a=utf8_decode(utf8_encode($_GET['artista']));
+//$a='caï¿½';
 
 
 mysqli_select_db($conexion,$database_conexion);
@@ -207,7 +207,7 @@ do
 
 	$url=$row_DetalleProducto['artista']."-".$row_DetalleProducto['album'];//une las dos con un guion medio
 	
-	$para_buscar = " AÀÁÂÃÄÅàáâãäåOÒÓÔÕÖØòóôõöøEÈÉÊËèéêëÇçIÌÍÎÏìíîïUÙÚÛÜùúûüÿÑñBCDFGHJKLMNPQRSTVWXYZ";
+	$para_buscar = " Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BCDFGHJKLMNPQRSTVWXYZ";
 	$para_remplazar   = "_aaaaaaaaaaaaaoooooooooooooeeeeeeeeeCciiiiiiiiiuuuuuuuuuynnbcdfghjklmnpqrstvwxyz";
 	$url_seo_final = strtr($url,$para_buscar,$para_remplazar);
 	
@@ -223,7 +223,7 @@ do
 	$artista_2=substr($row_DetalleProducto['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
 	$album_2=substr($row_DetalleProducto['album'], 0, 20);  // los primeros 20 caracteres de ALBUM
 	?>
-    <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
+    <p class="tipografia_catalogo"><strong><?php echo utf8_encode(utf8_decode($artista_2)); ?></strong><br><?php echo utf8_encode(utf8_decode($album_2)); ?></p>
     
 </div>
 
@@ -279,18 +279,18 @@ do
 	$album=strtolower($row_Otros['nombre']);//convierte la cadena en minusculas
 	$url=$artista."-".$album;//une las dos con un guion medio
 	$quita_esp=str_replace(" ","_",$url);//remplaza espacios por guion bajo
-	$sustituye1=str_replace("á","a",$quita_esp);//remplaza á por a
-	$sustituye2=str_replace("é","e",$sustituye1);//remplaza é por e
-	$sustituye3=str_replace("í","i",$sustituye2);//remplaza í por i
-	$sustituye4=str_replace("ó","o",$sustituye3);//remplaza ó por o
-	$sustituye5=str_replace("ú","u",$sustituye4);//remplaza ú por u
-	$sustituye6=str_replace("Á","A",$sustituye5);//remplaza Á por A
-	$sustituye7=str_replace("É","E",$sustituye6);//remplaza É por E
-	$sustituye8=str_replace("Í","I",$sustituye7);//remplaza Í por I
-	$sustituye9=str_replace("Ó","O",$sustituye8);//remplaza Ó por O
-	$sustituye10=str_replace("Ú","U",$sustituye9);//remplaza Ú por U
-	$sustituye11=str_replace("ñ","n",$sustituye10);//remplaza ñ por n
-	$sustituye11=str_replace("Ñ","N",$sustituye10);//remplaza Ñ por N
+	$sustituye1=str_replace("ï¿½","a",$quita_esp);//remplaza ï¿½ por a
+	$sustituye2=str_replace("ï¿½","e",$sustituye1);//remplaza ï¿½ por e
+	$sustituye3=str_replace("ï¿½","i",$sustituye2);//remplaza ï¿½ por i
+	$sustituye4=str_replace("ï¿½","o",$sustituye3);//remplaza ï¿½ por o
+	$sustituye5=str_replace("ï¿½","u",$sustituye4);//remplaza ï¿½ por u
+	$sustituye6=str_replace("ï¿½","A",$sustituye5);//remplaza ï¿½ por A
+	$sustituye7=str_replace("ï¿½","E",$sustituye6);//remplaza ï¿½ por E
+	$sustituye8=str_replace("ï¿½","I",$sustituye7);//remplaza ï¿½ por I
+	$sustituye9=str_replace("ï¿½","O",$sustituye8);//remplaza ï¿½ por O
+	$sustituye10=str_replace("ï¿½","U",$sustituye9);//remplaza ï¿½ por U
+	$sustituye11=str_replace("ï¿½","n",$sustituye10);//remplaza ï¿½ por n
+	$sustituye11=str_replace("ï¿½","N",$sustituye10);//remplaza ï¿½ por N
 	$sustituye12=str_replace(",","",$sustituye11);//remplaza , por nada
 	$sustituye13=str_replace(".","",$sustituye12);//remplaza . por nada
 	$sustituye14=str_replace("(","",$sustituye13);//remplaza ( por nada

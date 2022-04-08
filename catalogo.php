@@ -1,4 +1,4 @@
-<?php require_once('Connections/conexion.php'); ?>
+ <?php require_once('Connections/conexion.php'); ?>
 <?php
 
 include_once("zebra_pagination/Zebra_Pagination.php");

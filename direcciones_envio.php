@@ -232,17 +232,17 @@ $contador=1;
             <div class="caption"  style="min-height: 220px;">
             	<!--input type="radio" name="direccion" style=" border: 0px;width: 100%;height: 2em;"-->
 
-                <h4 style="text-align:center;"><?php echo utf8_encode($row_ExisteDireccion['pais']); ?></h4>
+                <h4 style="text-align:center;"><?php echo utf8_encode(utf8_decode($row_ExisteDireccion['pais'])); ?></h4>
                <?php
                 
-                echo "CALLE: ".utf8_encode($row_ExisteDireccion['calle']);
-				echo "<br>COLONIA: ".utf8_encode($row_ExisteDireccion['colonia']);
-				echo "<br>DELEGACION O MUNICIPIO: ".utf8_encode($row_ExisteDireccion['muni_dele']).", ".utf8_encode($row_ExisteDireccion['n_ext']).", ".utf8_encode($row_ExisteDireccion['n_int']);
-				echo "<br>PAIS: ".utf8_encode($row_ExisteDireccion['pais']);
-				echo "<br> ESTADO: ".utf8_encode($row_ExisteDireccion['estado']);
+                echo "CALLE: ".utf8_encode(utf8_decode($row_ExisteDireccion['calle']));
+				echo "<br>COLONIA: ".utf8_encode(utf8_decode($row_ExisteDireccion['colonia']));
+				echo "<br>DELEGACION O MUNICIPIO: ".utf8_encode(utf8_decode($row_ExisteDireccion['muni_dele'])).", ".utf8_encode(utf8_decode($row_ExisteDireccion['n_ext'])).", ".utf8_encode(utf8_decode($row_ExisteDireccion['n_int']));
+				echo "<br>PAIS: ".utf8_encode(utf8_decode($row_ExisteDireccion['pais']));
+				echo "<br> ESTADO: ".utf8_encode(utf8_decode($row_ExisteDireccion['estado']));
 				echo "<br> CP: ".$row_ExisteDireccion['cp'];
-				echo "<br>ENTRE LA CALLE ".utf8_encode($row_ExisteDireccion['entre_calle_1'])." Y LA CALLE ".utf8_encode($row_ExisteDireccion['entre_calle_2']);
-				echo "<br><span class='glyphicon glyphicon-user'></span>PARA: ".utf8_encode($row_ExisteDireccion['nombre_recibe']);
+				echo "<br>ENTRE LA CALLE ".utf8_encode(utf8_decode($row_ExisteDireccion['entre_calle_1']))." Y LA CALLE ".utf8_encode(utf8_decode($row_ExisteDireccion['entre_calle_2']));
+				echo "<br><span class='glyphicon glyphicon-user'></span>PARA: ".utf8_encode(utf8_decode($row_ExisteDireccion['nombre_recibe']));
 				echo "<br><span class='glyphicon glyphicon-earphone'></span>TELEFONO: ".$row_ExisteDireccion['tel_recibe'];
 
         		?>

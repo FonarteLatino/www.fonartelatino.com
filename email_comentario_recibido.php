@@ -39,10 +39,10 @@ $mail->Subject = 'Comentario nuevo';
 
 
 $cuerpo= '
-Nombre: '.utf8_decode($_POST['nombre']).'<br />
+Nombre: '.utf8_decode(utf8_encode($_POST['nombre'])).'<br />
 Email: '.$_POST['email'].'<br />
 Telefono: '.$_POST['telefono'].'<br />
-Comentario: '.utf8_decode($_POST['comentario']).'
+Comentario: '.utf8_decode(utf8_encode($_POST['comentario'])).'
 ';
 
 

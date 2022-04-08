@@ -150,8 +150,8 @@ do{
     <tr class="letra_admin_prod2">
         <td><?php echo $x; ?></td>
         <td><img src="<?php echo $row_Lanzamientos['ruta_img']; ?>" class="img-rounded" alt="" width="40" height="40"></td>
-        <td><?php echo utf8_encode($row_Lanzamientos['artista']); ?></td>
-        <td><?php echo utf8_encode($row_Lanzamientos['album']); ?></td>
+        <td><?php echo utf8_encode(utf8_decode($row_Lanzamientos['artista'])); ?></td>
+        <td><?php echo utf8_encode(utf8_decode($row_Lanzamientos['album'])); ?></td>
         <td><a href="lanzamientos.php?borra=1&id_producto=<?php echo $row_Lanzamientos['id_producto']; ?>" ><i class="fa fa-times" aria-hidden="true"></i></a></td>
     </tr>
     <?php

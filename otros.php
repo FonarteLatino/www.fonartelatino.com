@@ -172,12 +172,12 @@ do
 	$album=strtolower($row_Otros['nombre']);//convierte la cadena en minusculas
 	$url=$artista."-".$album;//une las dos con un guion medio
 	$quita_esp=str_replace(" ","_",$url);//remplaza espacios por guion bajo
-	$quita_a_acento=str_replace("á","a",$quita_esp);//remplaza á por a
-	$quita_e_acento=str_replace("é","e",$quita_a_acento);//remplaza é por e
-	$quita_i_acento=str_replace("í","i",$quita_e_acento);//remplaza í por i
-	$quita_o_acento=str_replace("ó","o",$quita_i_acento);//remplaza ó por o
-	$quita_u_acento=str_replace("ú","u",$quita_o_acento);//remplaza ú por u
-	$quita_n_acento=str_replace("ñ","n",$quita_u_acento);//remplaza ñ por n
+	$quita_a_acento=str_replace("ï¿½","a",$quita_esp);//remplaza ï¿½ por a
+	$quita_e_acento=str_replace("ï¿½","e",$quita_a_acento);//remplaza ï¿½ por e
+	$quita_i_acento=str_replace("ï¿½","i",$quita_e_acento);//remplaza ï¿½ por i
+	$quita_o_acento=str_replace("ï¿½","o",$quita_i_acento);//remplaza ï¿½ por o
+	$quita_u_acento=str_replace("ï¿½","u",$quita_o_acento);//remplaza ï¿½ por u
+	$quita_n_acento=str_replace("ï¿½","n",$quita_u_acento);//remplaza ï¿½ por n
 
 	$url_seo_final=$quita_n_acento;//url final
 	//fin de genera URL SEO
@@ -191,7 +191,7 @@ do
 	$artista_2=substr($row_Otros['artista'], 0, 20);  // los primeros 20 caracteres de ARTISTA
 	$album_2=substr($row_Otros['nombre'], 0, 20);  // los primeros 20 caracteres de ALBUM
 	?>
-    <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
+    <p class="tipografia_catalogo"><strong><?php echo utf8_encode(utf8_decode($artista_2)); ?></strong><br><?php echo utf8_encode(utf8_decode($album_2)); ?></p>
     
 </div>
 

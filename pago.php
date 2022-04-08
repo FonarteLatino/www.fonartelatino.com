@@ -354,7 +354,7 @@ do{
 
       <tr>
         <td><?php echo $contador; ?></td>
-        <td><?php echo utf8_encode($row_PedidoProductos['artista']).", ".utf8_encode($row_PedidoProductos['album']); ?></td>
+        <td><?php echo utf8_encode(utf8_decode($row_PedidoProductos['artista'])).", ".utf8_encode(utf8_decode($row_PedidoProductos['album'])); ?></td>
         <td><?php echo $row_PedidoProductos['cantidad']; ?></td>
 		<?php
         $subtotal_producto=$row_PedidoProductos['precio_final']*$row_PedidoProductos['cantidad'];
@@ -441,7 +441,7 @@ else//fuera de Mexico, Estados Unidos y Canada
 	$row_DescripEnvio= mysqli_fetch_assoc($DescripEnvio);
 	$totalRows_DescripEnvio = mysqli_num_rows($DescripEnvio);
 	
-	$des="<span style='color:red;'>".utf8_encode($row_DescripEnvio['descripcion'])."</span>";
+	$des="<span style='color:red;'>".utf8_encode(utf8_decode($row_DescripEnvio['descripcion']))."</span>";
 	$pre="<span style='color:red; font-size:12px;'>PENDIENTE</span>";
 	$envio_a='resto_mundo';
 }
@@ -449,7 +449,7 @@ else//fuera de Mexico, Estados Unidos y Canada
 ?>
 
 <tr>
-    <td colspan="3" style="font-size:10px; font-style:italic; font-weight:bold;"><?php echo utf8_encode($row_DatoEnvio['descripcion']); ?></td>
+    <td colspan="3" style="font-size:10px; font-style:italic; font-weight:bold;"><?php echo utf8_encode(utf8_decode($row_DatoEnvio['descripcion'])); ?></td>
     <td style="text-align:right">Envio:</td>
     <td><?php echo "$".$row_DatoEnvio['precio'].".00"; ?> </td>
 </tr>
@@ -496,11 +496,11 @@ $total=$subtotal_pedido+$row_Pedido1['precio_envio'];
     
     <div class="col-sm-6 tipografia2" style="border:3px solid #ffffff;background-color: #eee; padding-left: 3%; padding-right: 3%;padding-bottom: 2%;padding-top: 2%;border-radius: 15px 15px 15px 15px;">
    <center><label>Datos de env&iacute;o</label></center>
-    <p><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo utf8_encode($row_Direccion['nombre_recibe']); ?></p>
+    <p><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo utf8_encode(utf8_decode($row_Direccion['nombre_recibe'])); ?></p>
     
     <p><span class="glyphicon glyphicon-earphone"></span>&nbsp;<?php echo $row_Direccion['tel_recibe']; ?></p>
     
-    <p><span class="glyphicon glyphicon-home"></span>&nbsp;<?php echo utf8_encode($row_Direccion['calle'])." Ext. ".utf8_encode($row_Direccion['n_ext'])." Int. ".utf8_encode($row_Direccion['n_int'])." ".utf8_encode($row_Direccion['colonia'])." ".utf8_encode($row_Direccion['muni_dele'])." ,".utf8_encode($row_Direccion['estado'])." ,".utf8_encode($row_Direccion['pais'])." C.P.".$row_Direccion['cp'] ; ?>.<br>&nbsp;ENTRE LA CALLE <?php echo utf8_encode($row_Direccion['entre_calle_1'])." Y ".utf8_encode($row_Direccion['entre_calle_2']); ?></p>
+    <p><span class="glyphicon glyphicon-home"></span>&nbsp;<?php echo utf8_encode(utf8_decode($row_Direccion['calle']))." Ext. ".utf8_encode(utf8_decode($row_Direccion['n_ext']))." Int. ".utf8_encode(utf8_decode($row_Direccion['n_int']))." ".utf8_encode(utf8_decode($row_Direccion['colonia']))." ".utf8_encode(utf8_decode($row_Direccion['muni_dele']))." ,".utf8_encode(utf8_decode($row_Direccion['estado']))." ,".utf8_encode(utf8_decode($row_Direccion['pais']))." C.P.".$row_Direccion['cp'] ; ?>.<br>&nbsp;ENTRE LA CALLE <?php echo utf8_encode(utf8_decode($row_Direccion['entre_calle_1']))." Y ".utf8_encode(utf8_decode($row_Direccion['entre_calle_2'])); ?></p>
     <p></p>
     
     

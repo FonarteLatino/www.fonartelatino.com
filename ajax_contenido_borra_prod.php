@@ -121,8 +121,8 @@ $_GET['id_producto'];
   	<p><strong>SKU</strong>: <?php echo $row_DatosProducto['sku']; ?></p>
     <p><strong>ID:</strong> <?php echo $row_DatosProducto['id_fonarte']; ?></p>
     <p><strong>PRECIO:</strong> <?php echo "$".$row_DatosProducto['precio'].".00"; ?></p>
-    <p><strong>ARTISTA:</strong> <?php echo utf8_encode($row_DatosProducto['artista']); ?></p>
-    <p><strong>ALBUM:</strong> <?php echo utf8_encode($row_DatosProducto['album']); ?></p>
+    <p><strong>ARTISTA:</strong> <?php echo utf8_encode(utf8_decode($row_DatosProducto['artista'])); ?></p>
+    <p><strong>ALBUM:</strong> <?php echo utf8_encode(utf8_decode($row_DatosProducto['album'])); ?></p>
   </div>
 </div>
 

@@ -101,7 +101,7 @@ if(isset($_POST['update']) and $_POST['update']==1)
   	<p><strong>SKU</strong>: <?php echo $row_DatosProductoOtro['sku']; ?></p>
     <p><strong>ID:</strong> <?php echo $row_DatosProductoOtro['id_fonarte']; ?></p>
     <p><strong>PRECIO:</strong> <?php echo "$".$row_DatosProductoOtro['precio'].".00"; ?></p>
-    <p><strong>TITULO:</strong> <?php echo utf8_encode($row_DatosProductoOtro['artista']); ?></p>
+    <p><strong>TITULO:</strong> <?php echo utf8_encode(utf8_decode($row_DatosProductoOtro['artista'])); ?></p>
 
   </div>
 </div>

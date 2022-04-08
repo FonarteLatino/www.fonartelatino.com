@@ -276,7 +276,7 @@ if($row_DetalleProducto['play']!='')//tiene link de itunes
     </script>
 
   <?php if ($tipo == 2) { ?>
-    <title><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?> | <?php echo utf8_encode($row_DetalleProducto['album']); ?> | Fonarte Latino</title>
+    <title><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?> | <?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?> | Fonarte Latino</title>
     <?php
     }
     else if ($tipo == 1) { 

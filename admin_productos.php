@@ -157,7 +157,7 @@ $totalRows_Productos = mysqli_num_rows($Productos);
 
 <head>
 	<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
-    <meta charset="ISO-8859-1" />
+    <meta charset="UTF8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -245,8 +245,8 @@ $totalRows_Productos = mysqli_num_rows($Productos);
      <td><?php echo $row_Productos['sku']; ?></td>
      <td><?php echo $row_Productos['id_fonarte']; ?></td>
      <td><?php echo "$".$row_Productos['precio'].".00"; ?></td>
-     <td><?php echo utf8_decode($row_Productos['artista']); ?></td>
-     <td><?php echo utf8_decode($row_Productos['album']); ?></td>
+     <td><?php echo utf8_encode(utf8_decode($row_Productos['artista'])); ?></td>
+     <td><?php echo utf8_encode(utf8_decode($row_Productos['album'])); ?></td>
 	<?php
     mysqli_select_db($conexion,$database_conexion);
     $query_Genero = "select * from genero where id=".$row_Productos['genero'];  
@@ -254,8 +254,8 @@ $totalRows_Productos = mysqli_num_rows($Productos);
     $row_Genero = mysqli_fetch_assoc($Genero);
     $totalRows_Genero = mysqli_num_rows($Genero);
     ?>
-     <td><?php echo utf8_encode($row_Genero['nombre']); ?></td>
-     <td><?php echo utf8_encode($row_Productos['cat_nombre']); ?></td>
+     <td><?php echo utf8_encode(utf8_decode($row_Genero['nombre'])); ?></td>
+     <td><?php echo utf8_encode(utf8_decode($row_Productos['cat_nombre'])); ?></td>
      <?php
 	 //si tiene link de spootify, pone una palomita, de lo contrario no pone nada
 	 if($row_Productos['spotify']!=''){ $spo="<i class='fa fa-check' aria-hidden='true'></i>"; }

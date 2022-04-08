@@ -183,14 +183,14 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
 	GetSQLValueString($sku, "text"),
 	GetSQLValueString($id_fonarte, "text"),
 	GetSQLValueString($clave_precio, "text"),
-	GetSQLValueString(utf8_decode($artista), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($artista)), "text"),
 	GetSQLValueString($tipo, "int"),
 	GetSQLValueString($s, "int"),
 	GetSQLValueString($m, "int"),
 	GetSQLValueString($l, "int"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
-	GetSQLValueString(utf8_decode($descripcion), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($descripcion)), "text"),
 	GetSQLValueString($fecha_alta, "date"),
 	GetSQLValueString($hora_alta, "date"),
 	GetSQLValueString($prendido, "int"),
@@ -355,7 +355,7 @@ if(isset($_POST['inserta']) and ($_POST['inserta']==1))
     <?php
     do {  
     ?>
-    <option value="<?php echo utf8_encode($row_Artistas['artista']); ?>"><?php echo utf8_encode($row_Artistas['artista']); ?></option>
+    <option value="<?php echo utf8_encode(utf8_decode($row_Artistas['artista'])); ?>"><?php echo utf8_encode(utf8_decode($row_Artistas['artista'])); ?></option>
     <?php
     } while ($row_Artistas = mysqli_fetch_assoc($Artistas));
     $rows = mysqli_num_rows($Artistas);

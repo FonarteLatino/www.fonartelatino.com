@@ -73,15 +73,15 @@ if(isset($_POST['query_delete'])  and ($_POST['query_delete']==1))
 
  <?php
                 
-echo "CALLE: ".utf8_encode($row_Direccion['calle']);
-echo "<br>COLONIA: ".utf8_encode($row_Direccion['colonia']);
-echo "<br>DELEGACION O MUNICIPIO: ".utf8_encode($row_Direccion['muni_dele']).", ".utf8_encode($row_Direccion['n_ext']).", ".utf8_encode($row_Direccion['n_int']);
-echo "<br>PAIS: ".utf8_encode($row_Direccion['pais']);
-echo "<br> ESTADO: ".utf8_encode($row_Direccion['estado']);
+echo "CALLE: ".utf8_encode(utf8_decode($row_Direccion['calle']));
+echo "<br>COLONIA: ".utf8_encode(utf8_decode($row_Direccion['colonia']));
+echo "<br>DELEGACION O MUNICIPIO: ".utf8_encode(utf8_decode($row_Direccion['muni_dele'])).", ".utf8_encode(utf8_decode($row_Direccion['n_ext'])).", ".utf8_encode(utf8_decode($row_Direccion['n_int']));
+echo "<br>PAIS: ".utf8_encode(utf8_decode($row_Direccion['pais']));
+echo "<br> ESTADO: ".utf8_encode(utf8_decode($row_Direccion['estado']));
 echo "<br> CP: ".$row_Direccion['cp'];
-echo "<br>ENTRE LA CALLE ".utf8_encode($row_Direccion['entre_calle_1'])." Y LA CALLE ".utf8_encode($row_Direccion['entre_calle_2']);
-echo "<br>PARA: ".utf8_encode($row_Direccion['nombre_recibe']);
-echo "<br>TELEFONO: ".utf8_encode($row_Direccion['tel_recibe']);
+echo "<br>ENTRE LA CALLE ".utf8_encode(utf8_decode($row_Direccion['entre_calle_1']))." Y LA CALLE ".utf8_encode(utf8_decode($row_Direccion['entre_calle_2']));
+echo "<br>PARA: ".utf8_encode(utf8_decode($row_Direccion['nombre_recibe']));
+echo "<br>TELEFONO: ".utf8_encode(utf8_decode($row_Direccion['tel_recibe']));
 
 ?>
                 

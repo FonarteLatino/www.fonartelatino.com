@@ -171,7 +171,7 @@ $('#estado').load('js_estados.php?pais='+pais);//enviamos las 2 variables
                 <?php
                 do {  
                 ?>
-                <option value="<?php echo $row_CatPais['id']?>"><?php echo utf8_encode($row_CatPais['paisnombre']); ?></option>
+                <option value="<?php echo $row_CatPais['id']?>"><?php echo utf8_encode(utf8_decode($row_CatPais['paisnombre'])); ?></option>
                 <?php
                 } while ($row_CatPais = mysqli_fetch_assoc($CatPais));
                 $rows = mysqli_num_rows($CatPais);

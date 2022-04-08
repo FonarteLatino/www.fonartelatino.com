@@ -247,7 +247,7 @@ $totalRows_PreciosEnvios = mysqli_num_rows($PreciosEnvios);
         <td><?php echo $row_PreciosEnvios['id']; ?></td>
         <td><?php echo $row_PreciosEnvios['region']; ?></td>
          <td><?php echo "$".$row_PreciosEnvios['precio'].".00"; ?></td>
-         <td><?php echo utf8_encode($row_PreciosEnvios['descripcion']); ?></td>
+         <td><?php echo utf8_encode(utf8_decode($row_PreciosEnvios['descripcion'])); ?></td>
         <td data-toggle="modal" data-target="#edita_precio_envio" onclick="carga_modal_1(<?php echo $row_PreciosEnvios['id'] ?>)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
     </tr>
     <?php } while ($row_PreciosEnvios = mysqli_fetch_assoc($PreciosEnvios)); ?>

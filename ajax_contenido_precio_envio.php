@@ -87,7 +87,7 @@ $totalRows_DatosPrecio = mysqli_num_rows($DatosPrecio);
 
 <div class="form-group">
     <label>Descripcion:</label>
-    <input type="text" class="form-control" name="descripcion" id="" value="<?php echo utf8_encode($row_DatosPrecio['descripcion']); ?>" required >
+    <input type="text" class="form-control" name="descripcion" id="" value="<?php echo utf8_encode(utf8_decode($row_DatosPrecio['descripcion'])); ?>" required >
 </div>
 
 

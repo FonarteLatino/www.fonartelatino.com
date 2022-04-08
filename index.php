@@ -253,7 +253,7 @@ $totalRows_endetalle = mysqli_num_rows($endetalle);
 
 
 <div class="item active">
-<img src="img/slider/banner_logos.jpg" width="100%" alt="slider-1">
+<img src="img/slider/banner_logos.png" width="100%" alt="slider-1">
 </div>
 
 
@@ -340,8 +340,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=utf8_decode(substr($row_lanzamientos['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
-	$album_2=utf8_decode(substr($row_lanzamientos['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_lanzamientos['artista'], 0, 25));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_lanzamientos['album'], 0, 25));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
@@ -390,8 +390,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=utf8_decode(substr($row_novedades['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
-	$album_2=utf8_decode(substr($row_novedades['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_novedades['artista'], 0, 25));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_novedades['album'], 0, 25));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
@@ -444,8 +444,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=utf8_decode(substr($row_disco_semana['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
-	$album_2=utf8_decode(substr($row_disco_semana['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_disco_semana['artista'], 0, 25));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_disco_semana['album'], 0, 25));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     
@@ -493,8 +493,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=utf8_decode(substr($row_endetalle['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
-	$album_2=utf8_decode(substr($row_endetalle['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_endetalle['artista'], 0, 25));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_endetalle['album'], 0, 25));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     

@@ -160,14 +160,14 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   GetSQLValueString($_POST['sku'], "text"),
   GetSQLValueString($_POST['id_fonarte'], "text"),
   GetSQLValueString($_POST['clave_precio'], "text"),
-  GetSQLValueString(utf8_decode($_POST['artista']), "text"),
-  GetSQLValueString(utf8_decode($_POST['tipo']), "int"),
+  GetSQLValueString(utf8_decode(utf8_encode($_POST['artista'])), "text"),
+  GetSQLValueString(utf8_decode(utf8_encode($_POST['tipo'])), "int"),
   GetSQLValueString($_POST['s'], "int"),
   GetSQLValueString($_POST['m'], "int"),
   GetSQLValueString($_POST['l'], "int"),
   GetSQLValueString($ruta_img, "text"),
   GetSQLValueString($ruta_img_2, "text"),
-  GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
+  GetSQLValueString(utf8_decode(utf8_encode($_POST['descripcion'])), "text"),
   GetSQLValueString($_POST['fecha_alta'], "date"),
   GetSQLValueString($_POST['hora_alta'], "date"),
   GetSQLValueString($_POST['prendido'], "int"),
@@ -225,8 +225,8 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
         <!-- Inicio de titulo de la pagina -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><?php echo utf8_encode($row_Otros['artista']); ?>
-                    <small><?php echo utf8_encode($row_Otros['nombre']); ?></small>
+                <h1 class="page-header"><?php echo utf8_encode(utf8_decode($row_Otros['artista'])); ?>
+                    <small><?php echo utf8_encode(utf8_decode($row_Otros['nombre'])); ?></small>
             </div>
         </div>
         <!-- Fin de titulo de la pagina -->
@@ -317,11 +317,11 @@ do {
     <div class="col-sm-10">
       <select class="form-control" id="sel1" name="tipo">
 
-        <option value="<?php echo $row_Tipo2['id']; ?>"><?php echo utf8_encode($row_Tipo2['nombre']); ?></option> 
+        <option value="<?php echo $row_Tipo2['id']; ?>"><?php echo utf8_encode(utf8_decode($row_Tipo2['nombre'])); ?></option> 
         <?php
 do {   
 ?>
-        <option value="<?php echo $row_Tipo['id']?>"><?php echo utf8_encode($row_Tipo['nombre']); ?></option>
+        <option value="<?php echo $row_Tipo['id']?>"><?php echo utf8_encode(utf8_decode($row_Tipo['nombre'])); ?></option>
         <?php
 } while ($row_Tipo = mysqli_fetch_assoc($Tipo));
   $rows = mysqli_num_rows($Tipo);
@@ -339,7 +339,7 @@ do {
   <div class="form-group">
     <label class="control-label col-sm-2" for="">Artista:</label>
     <div class="col-sm-10">
-      <input type="text" name="artista" class="form-control" id="" value="<?php echo utf8_encode($row_Otros['artista']); ?>"  required>
+      <input type="text" name="artista" class="form-control" id="" value="<?php echo utf8_encode(utf8_decode($row_Otros['artista'])); ?>"  required>
     </div>
   </div>
   
@@ -380,7 +380,7 @@ do {
   <div class="form-group">
     <label class="control-label col-sm-2" for="">Descripcion:</label>
     <div class="col-sm-10">
-      <textarea class="form-control" rows="5" id="comment" name="descripcion"><?php echo utf8_encode($row_Otros['descripcion']); ?></textarea>
+      <textarea class="form-control" rows="5" id="comment" name="descripcion"><?php echo utf8_encode(utf8_decode($row_Otros['descripcion'])); ?></textarea>
     </div>
   </div>
   

@@ -314,18 +314,18 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 			$album=strtolower($row_Otros['nombre']);//convierte la cadena en minusculas
 			$url=$artista."-".$album;//une las dos con un guion medio
 			$quita_esp=str_replace(" ","_",$url);//remplaza espacios por guion bajo
-			$quita_a_acento=str_replace("á","a",$quita_esp);//remplaza á por a
-			$quita_e_acento=str_replace("é","e",$quita_a_acento);//remplaza é por e
-			$quita_i_acento=str_replace("í","i",$quita_e_acento);//remplaza í por i
-			$quita_o_acento=str_replace("ó","o",$quita_i_acento);//remplaza ó por o
-			$quita_u_acento=str_replace("ú","u",$quita_o_acento);//remplaza ú por u
-			$quita_n_acento=str_replace("ñ","n",$quita_u_acento);//remplaza ñ por n
+			$quita_a_acento=str_replace("ï¿½","a",$quita_esp);//remplaza ï¿½ por a
+			$quita_e_acento=str_replace("ï¿½","e",$quita_a_acento);//remplaza ï¿½ por e
+			$quita_i_acento=str_replace("ï¿½","i",$quita_e_acento);//remplaza ï¿½ por i
+			$quita_o_acento=str_replace("ï¿½","o",$quita_i_acento);//remplaza ï¿½ por o
+			$quita_u_acento=str_replace("ï¿½","u",$quita_o_acento);//remplaza ï¿½ por u
+			$quita_n_acento=str_replace("ï¿½","n",$quita_u_acento);//remplaza ï¿½ por n
 		
 			$url_seo_final=$quita_n_acento;//url final
 			
 			//fin de genera URL SEO
 		?>
-		<form method="post" action="<?php echo $ruta_absoluta; ?>producto_detalle_otro.php?add_carrito=1&id_producto=<?php echo $row_DetalleProducto['id']; ?>&id_producto_otro=<?php echo $row_DetalleProducto['id']; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode($row_Otros['artista']); ?>&album=<?php echo utf8_encode($row_Otros['nombre']); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>">
+		<form method="post" action="<?php echo $ruta_absoluta; ?>producto_detalle_otro.php?add_carrito=1&id_producto=<?php echo $row_DetalleProducto['id']; ?>&id_producto_otro=<?php echo $row_DetalleProducto['id']; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode(utf8_decode($row_Otros['artista'])); ?>&album=<?php echo utf8_encode(utf8_decode($row_Otros['nombre'])); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>">
         
 		<div class="form-group tipografia2" style="margin-top:12px;">
 		<label for="sel1">Talla:</label>
@@ -357,12 +357,12 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 						$album=strtolower($row_Otros['nombre']);//convierte la cadena en minusculas
 						$url=$artista."-".$album;//une las dos con un guion medio
 						$quita_esp=str_replace(" ","_",$url);//remplaza espacios por guion bajo
-						$quita_a_acento=str_replace("á","a",$quita_esp);//remplaza á por a
-						$quita_e_acento=str_replace("é","e",$quita_a_acento);//remplaza é por e
-						$quita_i_acento=str_replace("í","i",$quita_e_acento);//remplaza í por i
-						$quita_o_acento=str_replace("ó","o",$quita_i_acento);//remplaza ó por o
-						$quita_u_acento=str_replace("ú","u",$quita_o_acento);//remplaza ú por u
-						$quita_n_acento=str_replace("ñ","n",$quita_u_acento);//remplaza ñ por n
+						$quita_a_acento=str_replace("ï¿½","a",$quita_esp);//remplaza ï¿½ por a
+						$quita_e_acento=str_replace("ï¿½","e",$quita_a_acento);//remplaza ï¿½ por e
+						$quita_i_acento=str_replace("ï¿½","i",$quita_e_acento);//remplaza ï¿½ por i
+						$quita_o_acento=str_replace("ï¿½","o",$quita_i_acento);//remplaza ï¿½ por o
+						$quita_u_acento=str_replace("ï¿½","u",$quita_o_acento);//remplaza ï¿½ por u
+						$quita_n_acento=str_replace("ï¿½","n",$quita_u_acento);//remplaza ï¿½ por n
 					
 						$url_seo_final=$quita_n_acento;//url final
 						
@@ -371,7 +371,7 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 						if($row_DetalleProducto['id_cat_otros']!=3 and $row_DetalleProducto['id_cat_otros']!=2)
 						{
 							?>
-      <div class="col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle_otro.php?add_carrito=1&id_producto=<?php echo $row_DetalleProducto['id']; ?>&id_producto_otro=<?php echo $row_DetalleProducto['id']; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode($row_Otros['artista']); ?>&album=<?php echo utf8_encode($row_Otros['nombre']); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; border:#244e58; background-color:#244e58; color:#ffffff; font-size:11px;">Agregar al carrito</button></center></div> <?php
+      <div class="col-sm-3"><center><button type="button" onClick="location.href='<?php echo $ruta_absoluta; ?>producto_detalle_otro.php?add_carrito=1&id_producto=<?php echo $row_DetalleProducto['id']; ?>&id_producto_otro=<?php echo $row_DetalleProducto['id']; ?>&url_seo=<?php echo $url_seo_final; ?>&artista=<?php echo utf8_encode(utf8_decode($row_Otros['artista'])); ?>&album=<?php echo utf8_encode(utf8_decode($row_Otros['nombre'])); ?>&precio=<?php echo $row_DetalleProducto['precio']; ?>&id_producto_fonarte=<?php echo $row_DetalleProducto['id_fonarte']; ?>'" class="tipografia2" style="width:100px; height:33px; border:#244e58; background-color:#244e58; color:#ffffff; font-size:11px;">Agregar al carrito</button></center></div> <?php
 						}
 						
 						
@@ -436,18 +436,18 @@ do
 	$album=strtolower($row_TePuedeInteresar['album']);//convierte la cadena en minusculas
 	$url=$artista."-".$album;//une las dos con un guion medio
 	$quita_esp=str_replace(" ","_",$url);//remplaza espacios por guion bajo
-	$sustituye1=str_replace("á","a",$quita_esp);//remplaza á por a
-	$sustituye2=str_replace("é","e",$sustituye1);//remplaza é por e
-	$sustituye3=str_replace("í","i",$sustituye2);//remplaza í por i
-	$sustituye4=str_replace("ó","o",$sustituye3);//remplaza ó por o
-	$sustituye5=str_replace("ú","u",$sustituye4);//remplaza ú por u
-	$sustituye6=str_replace("Á","A",$sustituye5);//remplaza Á por A
-	$sustituye7=str_replace("É","E",$sustituye6);//remplaza É por E
-	$sustituye8=str_replace("Í","I",$sustituye7);//remplaza Í por I
-	$sustituye9=str_replace("Ó","O",$sustituye8);//remplaza Ó por O
-	$sustituye10=str_replace("Ú","U",$sustituye9);//remplaza Ú por U
-	$sustituye11=str_replace("ñ","n",$sustituye10);//remplaza ñ por n
-	$sustituye11=str_replace("Ñ","N",$sustituye10);//remplaza Ñ por N
+	$sustituye1=str_replace("ï¿½","a",$quita_esp);//remplaza ï¿½ por a
+	$sustituye2=str_replace("ï¿½","e",$sustituye1);//remplaza ï¿½ por e
+	$sustituye3=str_replace("ï¿½","i",$sustituye2);//remplaza ï¿½ por i
+	$sustituye4=str_replace("ï¿½","o",$sustituye3);//remplaza ï¿½ por o
+	$sustituye5=str_replace("ï¿½","u",$sustituye4);//remplaza ï¿½ por u
+	$sustituye6=str_replace("ï¿½","A",$sustituye5);//remplaza ï¿½ por A
+	$sustituye7=str_replace("ï¿½","E",$sustituye6);//remplaza ï¿½ por E
+	$sustituye8=str_replace("ï¿½","I",$sustituye7);//remplaza ï¿½ por I
+	$sustituye9=str_replace("ï¿½","O",$sustituye8);//remplaza ï¿½ por O
+	$sustituye10=str_replace("ï¿½","U",$sustituye9);//remplaza ï¿½ por U
+	$sustituye11=str_replace("ï¿½","n",$sustituye10);//remplaza ï¿½ por n
+	$sustituye11=str_replace("ï¿½","N",$sustituye10);//remplaza ï¿½ por N
 	$sustituye12=str_replace(",","",$sustituye11);//remplaza , por nada
 	$sustituye13=str_replace(".","",$sustituye12);//remplaza . por nada
 	$sustituye14=str_replace("(","",$sustituye13);//remplaza ( por nada

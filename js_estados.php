@@ -47,7 +47,7 @@ $totalRows_CatCiudades = mysqli_num_rows($CatCiudades);
       <?php
 do {  
 ?>
-      <option value="<?php echo $row_CatCiudades['id']?>"><?php echo utf8_encode($row_CatCiudades['estadonombre']) ?></option>
+      <option value="<?php echo $row_CatCiudades['id']?>"><?php echo utf8_encode(utf8_decode($row_CatCiudades['estadonombre'])) ?></option>
       <?php
 } while ($row_CatCiudades = mysqli_fetch_assoc($CatCiudades));
   $rows = mysqli_num_rows($CatCiudades);

@@ -245,12 +245,12 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 	GetSQLValueString($_POST['sku'], "text"),
 	GetSQLValueString($_POST['id_fonarte'], "text"),
 	GetSQLValueString($_POST['clave_precio'], "text"),
-	GetSQLValueString(utf8_decode($_POST['artista']), "text"),
-	GetSQLValueString(utf8_decode($_POST['album']), "text"),
-	GetSQLValueString(utf8_decode($_POST['genero']), "int"),
-	GetSQLValueString(utf8_decode($_POST['genero2']), "int"),
-	GetSQLValueString(utf8_decode($_POST['genero3']), "int"),
-	GetSQLValueString(utf8_decode($_POST['categoria']), "int"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['artista'])), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['album'])), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['genero'])), "int"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['genero2'])), "int"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['genero3'])), "int"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['categoria'])), "int"),
   GetSQLValueString($_POST['play'], "text"),
 	GetSQLValueString($_POST['spotify'], "text"),
 	GetSQLValueString($_POST['itunes'], "text"),
@@ -260,11 +260,11 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   GetSQLValueString($_POST['youtube'], "text"),
   GetSQLValueString($_POST['deezer'], "text"),
   GetSQLValueString($_POST['tidal'], "text"),
-  GetSQLValueString(utf8_decode($_POST['promo']), "text"),
-  GetSQLValueString(utf8_decode($_POST['p']), "text"),
+  GetSQLValueString(utf8_decode(utf8_encode($_POST['promo'])), "text"),
+  GetSQLValueString(utf8_decode(utf8_encode($_POST['p'])), "text"),
 	GetSQLValueString($ruta_img, "text"),
 	GetSQLValueString($ruta_img_2, "text"),
-	GetSQLValueString(utf8_decode($_POST['descripcion']), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['descripcion'])), "text"),
 	GetSQLValueString($_POST['fecha_alta'], "date"),
 	GetSQLValueString($_POST['hora_alta'], "date"),
 	GetSQLValueString($_POST['prendido'], "int"),
@@ -319,7 +319,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 
 <head>
 	<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
-	<meta charset="ISO-8859-1" />
+	<meta charset="UTF8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -356,8 +356,8 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
         <!-- Inicio de titulo de la pagina -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header tipografia2"><?php echo utf8_encode($row_DetalleProducto['artista']); ?>
-                    <small><?php echo utf8_encode($row_DetalleProducto['album']); ?></small>
+                <h1 class="page-header tipografia2"><?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?>
+                    <small><?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?></small>
             </div>
         </div>
         <!-- Fin de titulo de la pagina -->
@@ -430,14 +430,14 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   <div class="form-group">
     <label class="control-label col-sm-2" for="">Artista:</label>
     <div class="col-sm-10">
-      <input type="text" name="artista" class="form-control" id="" value="<?php echo utf8_encode($row_DetalleProducto['artista']); ?>"  required>
+      <input type="text" name="artista" class="form-control" id="" value="<?php echo utf8_encode(utf8_decode($row_DetalleProducto['artista'])); ?>"  required>
     </div>
   </div>
   
   <div class="form-group">
     <label class="control-label col-sm-2" for="">Album:</label>
     <div class="col-sm-10">
-      <input type="text" name="album" class="form-control" id="" value="<?php echo utf8_encode($row_DetalleProducto['album']); ?>" required>
+      <input type="text" name="album" class="form-control" id="" value="<?php echo utf8_encode(utf8_decode($row_DetalleProducto['album'])); ?>" required>
     </div>
   </div>
   
@@ -454,10 +454,10 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 		$row_GenerosSelect = mysqli_fetch_assoc($GenerosSelect);
 		$totalRows_GenerosSelect = mysqli_num_rows($GenerosSelect);
 		?>
-            <option value="<?php echo $row_GenerosSelect['id'];?>"><?php echo utf8_encode($row_GenerosSelect['nombre']);?></option>
+            <option value="<?php echo $row_GenerosSelect['id'];?>"><?php echo utf8_encode(utf8_decode($row_GenerosSelect['nombre']));?></option>
             <?php
             do {  
-            	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option><?php
+            	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode(utf8_decode($row_Generos['nombre'])); ?></option><?php
             } while ($row_Generos = mysqli_fetch_assoc($Generos));
             $rows = mysqli_num_rows($Generos);
             if($rows > 0) 
@@ -483,10 +483,10 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 		$row_GenerosSelect2 = mysqli_fetch_assoc($GenerosSelect2);
 		$totalRows_GenerosSelect2 = mysqli_num_rows($GenerosSelect2);
 		?>
-            <option value="<?php echo $row_GenerosSelect2['id'];?>"><?php echo utf8_encode($row_GenerosSelect2['nombre']);?></option>
+            <option value="<?php echo $row_GenerosSelect2['id'];?>"><?php echo utf8_encode(utf8_decode($row_GenerosSelect2['nombre']));?></option>
             <?php
             do {  
-            	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option><?php
+            	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode(utf8_decode($row_Generos['nombre'])); ?></option><?php
             } while ($row_Generos = mysqli_fetch_assoc($Generos));
             $rows = mysqli_num_rows($Generos);
             if($rows > 0) 
@@ -514,10 +514,10 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
 		$row_GenerosSelect3 = mysqli_fetch_assoc($GenerosSelect3);
 		$totalRows_GenerosSelect3 = mysqli_num_rows($GenerosSelect3);
 		?>
-            <option value="<?php echo $row_GenerosSelect3['id'];?>"><?php echo utf8_encode($row_GenerosSelect3['nombre']);?></option>
+            <option value="<?php echo $row_GenerosSelect3['id'];?>"><?php echo utf8_encode(utf8_decode($row_GenerosSelect3['nombre']));?></option>
             <?php
             do {  
-            	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode($row_Generos['nombre']); ?></option><?php
+            	?><option value="<?php echo $row_Generos['id']?>"><?php echo utf8_encode(utf8_decode($row_Generos['nombre'])); ?></option><?php
             } while ($row_Generos = mysqli_fetch_assoc($Generos));
             $rows = mysqli_num_rows($Generos);
             if($rows > 0) 
@@ -536,7 +536,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
     <div class="col-sm-10">
 
     <select class="form-control" id="sel1" name="categoria">
-    	<option value="<?php echo $row_DetalleProducto['categoria']; ?>"><?php echo utf8_encode($row_DetalleProducto['cat_nombre']); ?></option>
+    	<option value="<?php echo $row_DetalleProducto['categoria']; ?>"><?php echo utf8_encode(utf8_decode($row_DetalleProducto['cat_nombre'])); ?></option>
     <?php
     do {  
     ?><option value="<?php echo $row_Categoria['id']?>"><?php echo $row_Categoria['nombre']?></option><?php
@@ -614,7 +614,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   <div class="form-group">
     <label class="control-label col-sm-2" for="">Descripcion:</label>
     <div class="col-sm-10">
-      <textarea class="form-control" rows="5" id="comment" name="descripcion"><?php echo utf8_encode($row_DetalleProducto['descripcion']); ?></textarea>
+      <textarea class="form-control" rows="5" id="comment" name="descripcion"><?php echo utf8_encode(utf8_decode($row_DetalleProducto['descripcion'])); ?></textarea>
     </div>
   </div>
   
@@ -787,7 +787,7 @@ if(isset($_POST['modifica']) and ($_POST['modifica']==1))
   <div class="form-group">
     <label class="control-label col-sm-2" for="">Promocional:</label>
     <div class="col-sm-10">
-      <textarea class="form-control" rows="5" id="promo" name="promo"><?php echo utf8_encode($row_DetalleProducto['promo']); ?></textarea>
+      <textarea class="form-control" rows="5" id="promo" name="promo"><?php echo utf8_encode(utf8_decode($row_DetalleProducto['promo'])); ?></textarea>
     </div>
   </div>
    

@@ -131,7 +131,7 @@ if(isset($_GET['nombre_lanzamientos']) and $_GET['nombre_lanzamientos']!='')
 	do
 	{
 	
-	?><a href="js_despliega_art.php?agrega=lanzamientos&id_producto=<?php echo $row_Producto ['id'] ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode($row_Producto ['artista'])." - ".utf8_encode($row_Producto ['album']); ?><br></a><?php
+	?><a href="js_despliega_art.php?agrega=lanzamientos&id_producto=<?php echo $row_Producto ['id'] ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode(utf8_decode($row_Producto ['artista']))." - ".utf8_encode(utf8_decode($row_Producto ['album'])); ?><br></a><?php
 	
 	}while($row_Producto = mysqli_fetch_assoc($Producto));
 
@@ -152,7 +152,7 @@ if(isset($_GET['nombre_novedad']) and $_GET['nombre_novedad']!='')
 	do
 	{
 	
-	?><a href="js_despliega_art.php?agrega=novedades&id_producto=<?php echo $row_Producto ['id'] ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode($row_Producto ['artista'])." - ".utf8_encode($row_Producto ['album']); ?><br></a><?php
+	?><a href="js_despliega_art.php?agrega=novedades&id_producto=<?php echo $row_Producto ['id'] ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode(utf8_decode($row_Producto ['artista']))." - ".utf8_encode(utf8_decode($row_Producto ['album'])); ?><br></a><?php
 	
 	}while($row_Producto = mysqli_fetch_assoc($Producto));
 
@@ -171,7 +171,7 @@ if(isset($_GET['nombre_d_semana']) and $_GET['nombre_d_semana']!='')
 	do
 	{
 	
-	?><a href="js_despliega_art.php?agrega=disco_semana&id_producto=<?php echo $row_Producto ['id'] ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode($row_Producto ['artista'])." - ".utf8_encode($row_Producto ['album']); ?><br></a><?php
+	?><a href="js_despliega_art.php?agrega=disco_semana&id_producto=<?php echo $row_Producto ['id'] ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode(utf8_decode($row_Producto ['artista']))." - ".utf8_encode(utf8_decode($row_Producto ['album'])); ?><br></a><?php
 	
 	}while($row_Producto = mysqli_fetch_assoc($Producto));
 
@@ -192,7 +192,7 @@ if(isset($_GET['nombre_detalle']) and $_GET['nombre_detalle']!='')
 	do
 	{
 		/*le quita los acentos a los artistas*/
-		$sustituye1=str_replace("á","a",utf8_encode($row_Producto['artista']));//remplaza á por a
+		$sustituye1=str_replace("á","a",utf8_encode(utf8_decode($row_Producto['artista'])));//remplaza á por a
 		$sustituye2=str_replace("é","e",$sustituye1);//remplaza é por e
 		$sustituye3=str_replace("í","i",$sustituye2);//remplaza í por i
 		$sustituye4=str_replace("ó","o",$sustituye3);//remplaza ó por o
@@ -203,7 +203,7 @@ if(isset($_GET['nombre_detalle']) and $_GET['nombre_detalle']!='')
 		$sustituye9=str_replace("Ó","O",$sustituye8);//remplaza Ó por O 
 		$sustituye10=str_replace("Ú","U",$sustituye9);//remplaza Ú por U
 	
-	?><a href="js_despliega_art.php?agrega=en_detalle&artista=<?php echo $sustituye10 ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode($row_Producto ['artista']); ?><br></a><?php
+	?><a href="js_despliega_art.php?agrega=en_detalle&artista=<?php echo $sustituye10 ?>" class="tipografia2" style="color:#244e58;"><?php echo utf8_encode(utf8_decode($row_Producto ['artista'])); ?><br></a><?php
 	
 	}while($row_Producto = mysqli_fetch_assoc($Producto));
 
@@ -224,7 +224,7 @@ if(isset($_GET['buscar']) and $_GET['buscar']!='')
 	do
 	{
 	
-	?><li><a href="<?php echo $ruta_absoluta; ?>busqueda.php?artista=<?php echo utf8_encode($row_Producto ['artista']); ?>" class="tipografia2" style="color:#244e58; font-size:11px;"><?php echo utf8_encode($row_Producto ['artista']); ?><br></a></li><?php
+	?><li><a href="<?php echo $ruta_absoluta; ?>busqueda.php?artista=<?php echo utf8_encode(utf8_decode($row_Producto ['artista'])); ?>" class="tipografia2" style="color:#244e58; font-size:11px;"><?php echo utf8_encode(utf8_decode($row_Producto ['artista'])); ?><br></a></li><?php
 	
 	}while($row_Producto = mysqli_fetch_assoc($Producto));
 

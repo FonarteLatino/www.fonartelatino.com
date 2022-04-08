@@ -522,8 +522,8 @@ do
     
     <!-- muestra la descripcion del producto -->
     <?php
-	$artista_2=utf8_decode(substr($row_TePuedeInteresar['artista'], 0, 20));  // los primeros 20 caracteres de ARTISTA
-	$album_2=utf8_decode(substr($row_TePuedeInteresar['album'], 0, 20));  // los primeros 20 caracteres de ALBUM
+	$artista_2=utf8_decode(substr($row_TePuedeInteresar['artista'], 0, 25));  // los primeros 20 caracteres de ARTISTA
+	$album_2=utf8_decode(substr($row_TePuedeInteresar['album'], 0, 25));  // los primeros 20 caracteres de ALBUM
 	?>
     <p class="tipografia_catalogo"><strong><?php echo utf8_encode($artista_2); ?></strong><br><?php echo utf8_encode($album_2); ?></p>
     

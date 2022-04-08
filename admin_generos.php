@@ -118,7 +118,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) 
 {
 	$insertSQL = sprintf("INSERT INTO genero (nombre, estatus) VALUES (%s,%s)",
-	GetSQLValueString(utf8_decode($_POST['nombre']), "text"),
+	GetSQLValueString(utf8_decode(utf8_encode($_POST['nombre'])), "text"),
 	GetSQLValueString('1', "int"));
 	
 	mysqli_select_db($conexion,$database_conexion);
@@ -239,7 +239,7 @@ $totalRows_Generos = mysqli_num_rows($Generos);
 	?>
     <tr class="letra_admin_prod2">
         <td><?php echo $row_Generos['id']; ?></td>
-        <td><?php echo "<strong>".utf8_encode($row_Generos['nombre'])."</strong> (".$totalRows_ProductosAsignados." productos asignados)"; ?></td>
+        <td><?php echo "<strong>".utf8_encode(utf8_decode($row_Generos['nombre']))."</strong> (".$totalRows_ProductosAsignados." productos asignados)"; ?></td>
         <td data-toggle="modal" data-target="#edita_genero" onclick="carga_modal_1(<?php echo $row_Generos['id'] ?>)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
     </tr>
     <?php } while ($row_Generos = mysqli_fetch_assoc($Generos)); ?>

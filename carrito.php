@@ -220,7 +220,7 @@ do{
 
     <div class="col-sm-1"  >#&nbsp;<?php echo $contador; ?></div>
 
-    <div class="col-sm-5" ><?php echo utf8_encode($row_Carrito['artista']).", ".utf8_encode($row_Carrito['album']); ?></div>
+    <div class="col-sm-5" ><?php echo utf8_encode(utf8_decode($row_Carrito['artista'])).", ".utf8_encode(utf8_decode($row_Carrito['album'])); ?></div>
     
     <div class="col-sm-3" >
     <span style="font-size:10px;font-weight: bold;">Cantidad</span>
