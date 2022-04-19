@@ -6,7 +6,7 @@ RewriteRule ^index?$ index.php
 
 RewriteRule ^otros?$ otros.php
 
-RewriteRule ^distribucion?$ distribucion.php
+RewriteRule ^distribucion?$ digital.php
 
 RewriteRule ^catalogo?$ catalogo.php
 

@@ -103,7 +103,7 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 
 
 
-<nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation" style="background-color: #ffffff;border-color: #ffffff;">
+<nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation" style="background-color: #343a40;border-color: #ffffff;">
 <!-- **************************** inicio de redes sociales FRANJA NEGRA********************** -->
 <div class="container" style="background-color:#000; width:100%;">
 
@@ -164,7 +164,7 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
     
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="margin-top:3px;margin-bottom: 3px;">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="margin-top: 4%;">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="margin-top: 2.5%;">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -178,7 +178,7 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
         
         <!-- inicio de menu -->
         <div class="collapse navbar-collapse tipografia" id="bs-example-navbar-collapse-1" >
-            <ul class="nav navbar-nav navbar-right color_menu" style="margin-top: 25px;" >
+            <ul class="nav navbar-nav navbar-right color_menu" style="margin-top: 20px;" >
             
 <!-- ====no llevan el .php por que tienen una regla de SEO en .htaccess -->
 <?php
