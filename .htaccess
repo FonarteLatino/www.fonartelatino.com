@@ -6,6 +6,8 @@ RewriteRule ^index?$ index.php
 
 RewriteRule ^otros?$ otros.php
 
+RewriteRule ^distribucion?$ distribucion.php
+
 RewriteRule ^catalogo?$ catalogo.php
 
 RewriteRule ^fonarte_latino?$ fonarte_latino.php

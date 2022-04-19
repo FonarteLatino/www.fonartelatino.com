@@ -160,7 +160,7 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 </div>
  <!-- **************************** fin de redes sociales FRANJA NEGRA********************** -->   
     
-    <div class="container">
+    <div class="container" style="background-color: #343a40;">
     
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="margin-top:3px;margin-bottom: 3px;">
@@ -190,7 +190,7 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
                
                
                <li>
-                    <a href="<?php echo $ruta_absoluta; ?>otros"  class="tipografia_menu">MERCHANDISING</a>
+                    <a href="<?php echo $ruta_absoluta; ?>distribucion"  class="tipografia_menu">DISTRIBUCION DIGITAL</a>
                 </li>
                           
                <!-- ====no llevan el .php por que tienen una regla de SEO en .htaccess -->
