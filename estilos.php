@@ -335,9 +335,16 @@
 		}
 	
     }
-	@media (min-width : 1201px)
+	.logo{
+		width:197px;
+		height:70px;
+	}
+	@media (max-width : 1366px)
 	{
-		
+		.logo{
+			width:130px;
+			height:46px;
+		}
 	}
 
 </style>  

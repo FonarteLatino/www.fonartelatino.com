@@ -1039,7 +1039,7 @@ a:focus {
 }
 
 .facts .facts-item i {
-    margin-top: 10px;
+    margin-top: 0px;
     font-size: 60px;
     line-height: 60px;
     color: #fff;
@@ -1093,11 +1093,11 @@ a:focus {
         font-size: 40px;
     }
     .facts .facts-text h3 {
-        font-size: 35px;
+        font-size: 25px;
         margin-bottom: 0px;
     }
     .facts .facts-text p {
-        font-size: 18px;
+        font-size: 13px;
     }
 }
 
@@ -2200,17 +2200,33 @@ a:focus {
     }
 }
 @media (max-width: 767.98px) {
-    .i1{
-        
-        margin: -10px 0px 0px -180px;
-    }
-    .i2{
-        margin-left: -10px;
-    }
+    
     body{
-        margin-top: 84px;;
+        margin-top: 84px;
     }
+    
 } 
+
+@media (max-width: 1112px) {
+    body{
+        margin-top: 55px;
+    }
+}
+@media (max-width: 1280px) {
+    body{
+        margin-top: 54px;
+    }
+}
+@media (min-width: 1366px) {
+    body{
+        margin-top: 85px;
+    }
+}
+@media (max-width: 1440px) {
+    body{
+        margin-top: 50px;
+    }
+}
 
 @media (max-width: 767.98px) {
     #plataformas{

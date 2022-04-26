@@ -42,11 +42,109 @@
         <!-- Google Font -->
         <style type="text/css">
             iframe{
-                height:390%;
+                height:350%;
             }
+            @media (min-width: 1280px) {
+                iframe{
+                    height:370%;
+                }
+                @media (min-height:950px) {
+                    iframe{
+                        height:310%;
+                    }
+                }
+                @media (min-height:800px) {
+                    iframe{
+                        height:380%;
+                    }
+                }
+            }
+            @media (min-width: 1440px) {
+                iframe{
+                    height:340%;
+                }
+            }
+            @media (min-width: 1445px) {
+                iframe{
+                    height:360%;
+                }
+            }
+            
             @media (max-width: 767.98px) {
                 iframe{
                     height:515%;
+                }
+            }
+            @media (max-width: 690px){
+                @media (max-height: 1040px){
+                    iframe{
+                        height:560%;
+                    }
+                }
+            }
+            
+            @media (max-width: 1024px){
+                @media (max-height: 1366px){
+                    iframe{
+                        height:220%;
+                    }
+                }
+                @media (max-height: 1112px){
+                    iframe{
+                        height:270%;
+                    }
+                }
+                @media (max-height: 1024px){
+                    iframe{
+                        height:315%;
+                    }
+                }
+                @media (max-height: 1280px){
+                    iframe{
+                        height:230%;
+                    }
+                }
+                @media (max-height: 800px){
+                    iframe{
+                        height:380%;
+                    }
+                }
+            }
+            @media (max-width: 600px){
+                @media (max-height: 960px){
+                    iframe{
+                        height:310%;
+                    }
+                }
+                @media (max-height: 896px){
+                    iframe{
+                        height:360%;
+                    }
+                }
+                @media (max-height: 846px){
+                    iframe{
+                        height:380%;
+                    }
+                }
+                @media (max-height: 812px){
+                    iframe{
+                        height:420%;
+                    }
+                }
+                @media (max-height: 740px){
+                    iframe{
+                        height:470%;
+                    }
+                }
+                @media (max-height: 736px){
+                    iframe{
+                        height:440%;
+                    }
+                }
+                @media (max-height: 667px){
+                    iframe{
+                        height:510%;
+                    }
                 }
             }
         </style>
