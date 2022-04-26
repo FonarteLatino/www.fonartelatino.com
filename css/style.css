@@ -1025,7 +1025,7 @@ a:focus {
 .facts {
     position: relative;
     width: 100%;
-    min-height: 400px;
+    min-height: 300px;
     margin: 0px 0;
     display: flex;
     align-items: center;
@@ -1083,7 +1083,23 @@ a:focus {
     font-weight: 600;
     margin: 0;
 }
-
+@media (max-width: 767.98px) {
+    .facts .facts-item {
+        display: flex;
+        flex-direction: row;
+        margin: 0px 0;
+    }
+    .facts .facts-item i {
+        font-size: 40px;
+    }
+    .facts .facts-text h3 {
+        font-size: 35px;
+        margin-bottom: 0px;
+    }
+    .facts .facts-text p {
+        font-size: 18px;
+    }
+}
 
 /*******************************/
 /*********** Team CSS **********/
@@ -2178,10 +2194,23 @@ a:focus {
 
 @media (max-width: 767.98px) {
     #img-p{
-        max-width: 70%;
-        margin-bottom: 20px;
+        max-width: 100%;
+        margin: -3px 0px 0px -180px;;
+        overflow: hidden;
     }
 }
+@media (max-width: 767.98px) {
+    .i1{
+        
+        margin: -10px 0px 0px -180px;
+    }
+    .i2{
+        margin-left: -10px;
+    }
+    body{
+        margin-top: 84px;;
+    }
+} 
 
 @media (max-width: 767.98px) {
     #plataformas{

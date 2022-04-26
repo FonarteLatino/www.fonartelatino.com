@@ -187,7 +187,8 @@ $totalRows_endetalle = mysqli_num_rows($endetalle);
 <html lang="es">
 
 <head>
-<link rel="icon" type="image/png" href="http://www.fonartelatino.com/img/favicon.png" />
+
+<link href="img/favicon.png" rel="icon">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

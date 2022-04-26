@@ -157,6 +157,7 @@ if(isset($_GET['categoria']) or $_GET['letra']==1)
 
 <head>
  	<link rel="icon" type="image/png" href="https://www.fonartelatino.com/img/favicon.png" />
+	 <link href="img/favicon.png" rel="icon">
     <meta charset="UTF-8" />
 
 

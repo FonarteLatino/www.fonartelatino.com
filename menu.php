@@ -170,7 +170,7 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="" href="<?php echo $ruta_absoluta; ?>index"><img src="<?php echo $ruta_absoluta; ?>img/fonarte-logo.png" width="70" height="70" alt="fonarte" /></a>
+            <a class="" href="<?php echo $ruta_absoluta; ?>index"><img src="<?php echo $ruta_absoluta; ?>img/logo.png" width="197" height="70" alt="fonarte" /></a>
             <!--a class="navbar-brand" href="index.php">Fonartelatino</a-->
         </div>
         
