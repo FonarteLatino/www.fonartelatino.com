@@ -3,18 +3,23 @@ User: Dataguys2
 Pass: Fonarte2018
 DB: Reporteador
 
+
 Power BI
 diegoavila@fonartelatino.com.mx
 F0n@rt3.Lat1no.13
+
 
 Web Panel DreamHost
 webmaster@fonartelatino.com
 y0gvbkOcqJ4m1LetJbsH
 
+
 Azure
 diegoavila4@gmail.com
 yeyo1979
 
+
+Oechard
 aibarra@fonartelatino.com.mx
 allanOrchard2019.
 
@@ -24,11 +29,34 @@ allanOrchard2019.
 balaju01@gmail.com
 Allanorchard2019
 
+
+Canal de YouTube
 fonartesocialmedia@gmail.com
 foN4r73_mail2017*
 
+Correo Fonarte gmail
 fonarte@gmail.com
 fonarte1983
+
+
+Amazon Seller Central
+user: fonarte@gmail.com
+pass: fonarteamazon1983
+
+
+Spotify y Spotify for Artists
+user: fonarte@gmail.com
+pass: fonartespotify1983
+
+
+GitHub
+user: fonartesocialmedia@gmail.com
+pass: fonarteGit2019.
+
+
+TeamViewer
+cuenta: 1039201092
+pass: Fonarte2019
 
 
 Orchard: U2ZQ - KMF4 - QQYY - 2THP - 352Q - JCM6
