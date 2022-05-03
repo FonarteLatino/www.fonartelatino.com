@@ -42,9 +42,10 @@
         <!-- Google Font -->
         <style type="text/css">
             iframe{
-                height:350%;
+                height:500%;
             }
-            @media (min-width: 1280px) {
+            
+            @media (max-width: 1280px) {
                 iframe{
                     height:370%;
                 }
@@ -83,6 +84,7 @@
                 }
             }
             
+
             @media (max-width: 1024px){
                 @media (max-height: 1366px){
                     iframe{

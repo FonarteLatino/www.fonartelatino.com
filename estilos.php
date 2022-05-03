@@ -21,7 +21,7 @@
 	font-family: "Roboto Condensed";
 	font-size:16px;
 	font-weight:400!important;
-	color:#C3DEE5!important;
+	color:#ffffff!important;
 	letter-spacing:-1px;
 }
 
