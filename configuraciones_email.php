@@ -8,6 +8,7 @@ $puerto=587;
 
 
 $correo_admin='diegoavila@fonartelatino.com.mx';//recibe una notificacion cuando se realizo el pedido o se envio un comentario
+$correo_admin2='fonarte@gmail.com';
 $correo_copia='fer.ramirez@fonartelatino.com.mx';
 $correo_copia2='javier.garcia@axisdigital.com.mx';
 

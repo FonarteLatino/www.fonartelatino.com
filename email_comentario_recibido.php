@@ -32,7 +32,7 @@ $mail->Password = $psw_de;
 
 $mail->setFrom($de, $de_mascara);
 
-$correo=$correo_admin;
+$correo=$correo_admin2;
 $mail->addAddress($correo, '');
 
 $mail->Subject = 'Comentario nuevo';

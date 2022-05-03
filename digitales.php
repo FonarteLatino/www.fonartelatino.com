@@ -130,7 +130,7 @@
                             </div>
                             <div class="service-text">
                                 <h3>Distribución Digital a nivel mundial</h3>
-                                <p>Distribuimos en todas las plataformas de Streaming y descarga directa</p>
+                                <p>Distribuimos en todas las plataformas de monetizacion de música y video.</p>
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="service-text">
                                 <h3>Asesoría de marketing digital</h3>
-                                <p>Aclara todas tus dudas y catapulta tu proyecto al siguiente nivel con la ayuda de nuestro equipo especializado</p>
+                                <p>Aclara todas tus dudas y catapulta tu proyecto al siguiente nivel con la ayuda de nuestro equipo especializado.</p>
                             </div>
                         </div>
                     </div>
@@ -151,8 +151,8 @@
                                 <i class="fas fa-music"></i>
                             </div>
                             <div class="service-text">
-                                <h3>Posicionamiento en Playlist</h3>
-                                <p>Buscamos continuamente el posicionamiento de tu música en las Playlists de Spotify, Amazon music, Apple music y muchas otras.</p>
+                                <h3>Posicionamiento en Playlists</h3>
+                                <p>Buscamos contínuamente el posicionamiento de tu música en las Playlists de Spotify, Amazon Music, Apple Music y muchas otras.</p>
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                             </div>
                             <div class="service-text">
                                 <h3>Ten siempre el control de tu música</h3>
-                                <p>Personaliza y optimiza tus perfiles de Spotify, YouTube, Apple music</p>
+                                <p>Personaliza y optimiza tus perfiles de Spotify, YouTube, Apple Music, Amazon Music y otras.</p>
                             </div>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                             <div class="service-text">
                                 <h3>Nuevos espacios de crecimiento</h3>
                                 <p>Monetizamos el audio en Facebook y TikTok.<br>
-                                    Trabajamos continuamente sync de letras en musixmatch para IG Stories, Apple, Spotify, etc.</p>
+                                    Trabajamos contínuamente sync de letras en musixmatch para IG Stories, Apple, Spotify, etc.</p>
                             </div>
                         </div>
                     </div>
@@ -185,8 +185,8 @@
                                 <i class="fas fa-th-list"></i>
                             </div>
                             <div class="service-text">
-                                <h3>Links personalisados a tu música</h3>
-                                <p>Creación de Link Inteligente con conexión a las principales plataformas de consumo digital</p>
+                                <h3>Links personalizados a tu música</h3>
+                                <p>Creación de Link Inteligente con conexión a las principales plataformas de consumo digital y campañas de Pre-Save</p>
                             </div>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
         
         
         <!-- Facts Start -->
-        <div class="facts" style="background-image:url(./img/facts.jpg); background-size: cover;">
+        <div class="facts" style="background-image:url(./img/facts.jpg); background-size: cover; background-blend-mode: darken;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
@@ -213,7 +213,7 @@
                         <div class="facts-item">
                             <i class="fas fa-headphones-alt"></i>
                             <div class="facts-text">
-                                <h3 class="facts-plus" data-toggle="counter-up">21</h3><h3>&nbsp;&nbsp;&nbsp;millones</h3>
+                                <h3 class="facts-plus" data-toggle="counter-up">50</h3><p>millones</p>
                                 <p>Streams Por Mes</p>
                             </div>
                         </div>
@@ -222,8 +222,8 @@
                         <div class="facts-item">
                             <i class="fab fa-youtube"></i>
                             <div class="facts-text">
-                                <h3 class="facts-plus" data-toggle="counter-up">67,000</h3>
-                                <p>Seguidores en YouTube</p>
+                                <h3 class="facts-plus" data-toggle="counter-up">68,000</h3>
+                                <p>Suscriptores en YouTube</p>
                             </div>
                         </div>
                     </div>
@@ -231,7 +231,7 @@
                         <div class="facts-item">
                             <i class="fas fa-guitar"></i>
                             <div class="facts-text">
-                                <h3 class="facts-plus" data-toggle="counter-up">500</h3>
+                                <h3 class="facts-plus" data-toggle="counter-up">550</h3>
                                 <p>Artistas</p>
                             </div>
                         </div>

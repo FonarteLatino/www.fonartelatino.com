@@ -204,7 +204,7 @@
 		}
 		.color_menu
 		{
-			background-color: #eee;	
+			background-color: #343a40;	
 		}
 		.tipografia_pie
 		{
@@ -242,7 +242,7 @@
 		}
 		.color_menu
 		{
-			background-color: #eee;	
+			background-color: #343a40;	
 		}
 		.tipografia_pie
 		{
@@ -278,7 +278,7 @@
 		}
 		.color_menu
 		{
-			background-color: #eee;	
+			background-color: #343a40;	
 		}
 		.tipografia_pie
 		{

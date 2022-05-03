@@ -10,7 +10,7 @@ $m_subject = strip_tags(htmlspecialchars($_POST['subject']));
 $link = strip_tags(htmlspecialchars($_POST['link']));
 $message = strip_tags(htmlspecialchars($_POST['message']));
 
-$to = "aibarra@fonartelatino.com.mx"; // Change this email to your //
+$to = "fonarte@gmail.com"; // Change this email to your //
 $subject = "$m_subject:  $name";
 $body = "Recibiste un nuevo mensaje de tu website.\n\n"."Aquí están los detalles:\n\nNombre: $name\n\n\nEmail: $email\n\nAsunto: $m_subject\n\nMensage: $message";
 $header = "De: $email";
