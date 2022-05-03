@@ -44,17 +44,24 @@
             iframe{
                 height:500%;
             }
-            
-            @media (max-width: 1280px) {
+            @media (max-width: 1270px) {
                 iframe{
-                    height:370%;
+                    height:350%;
                 }
+            }
+            @media (max-width: 1439px) {
+                iframe{
+                    height:355%;
+                }
+            }
+            @media (max-width: 1280px) {
+
                 @media (min-height:950px) {
                     iframe{
                         height:310%;
                     }
                 }
-                @media (min-height:800px) {
+                @media (max-height:800px) {
                     iframe{
                         height:380%;
                     }
@@ -103,7 +110,7 @@
                 }
                 @media (max-height: 1280px){
                     iframe{
-                        height:230%;
+                        height: 360%;
                     }
                 }
                 @media (max-height: 800px){

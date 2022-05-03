@@ -209,8 +209,9 @@ $totalRows_CategoriaSub = mysqli_num_rows($CategoriaSub);
 
     <a href="#" class="dropdown-toggle tipografia_menu" data-toggle="dropdown">CAT&Aacute;LOGO <b class="caret"></b></a>
 <ul class="dropdown-menu" style=" max-height:300px; overflow:auto;">
-
-
+    <li>
+        <a href="<?php echo $ruta_absoluta; ?>otros"  class="tipografia_menu2">MERCHANDISING</a>
+    </li>
     <?php
         do
         {

@@ -24,6 +24,14 @@
 	color:#ffffff!important;
 	letter-spacing:-1px;
 }
+.tipografia_menu2
+{
+	font-family: "Roboto Condensed";
+	font-size:16px;
+	font-weight:400!important;
+	color:!important;
+	letter-spacing:-1px;
+}
 
 .nav > li > a {
   padding: 10px 10px !important;
