@@ -343,13 +343,13 @@
 		}
 	
     }
-	.logo{
+	.logo_mainn{
 		width:197px;
 		height:70px;
 	}
 	@media (max-width : 1366px)
 	{
-		.logo{
+		.logo_mainn{
 			width:130px;
 			height:46px;
 		}
