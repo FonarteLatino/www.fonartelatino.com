@@ -345,8 +345,11 @@ if(!isset($_SESSION['CARRITO_TEMP']))
 				{   
                     $saux="";
                     $ssaux="";
-
+                    
+                    
                     if (count(explode("?si=", $row_DetalleProducto['spotify'])) == 1) {
+                        echo $row_DetalleProducto['spotify'];
+                        echo explode("embed", $row_DetalleProducto['spotify']);
                         $a=explode("embed", $row_DetalleProducto['spotify']);
                         
                         if ((count($a[1])) == 0) {
