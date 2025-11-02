@@ -85,8 +85,8 @@
     <div class="col-sm-6">
     <div class="form-group">
     <p>&nbsp;</p>
-    <div class="g-recaptcha" data-sitekey="6Ld5XxcUAAAAABaNcJGqCSU2dL68Nm5CAReV2QtP"></div>
-    <span class="help-block"></span><!-- muestra texto de ayuda -->
+    <div class="g-recaptcha" data-sitekey="6LemvSgUAAAAADsTVFF1w30R2NRQ-TAqTIzqFSI7"></div>
+    <span id="captcha-error" class="help-block text-danger"></span><!-- muestra texto de ayuda -->
     </div>
     </div>
     

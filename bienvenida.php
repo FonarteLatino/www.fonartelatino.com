@@ -215,25 +215,20 @@ $totalRows_Pedidos = mysqli_num_rows($Pedidos);
 <div class="modal fade" id="ver_ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content" id="contenido_ticket">
-     
-     
-     
+      <!-- El contenido se cargará dinámicamente -->
     </div>
   </div>
 </div>
 
 <!-- ===== fin de modal de ver ticket ====== -->
 
-
-
- <script>
-/* inicio modal rechazo*/
-function carga_modal_1(id_pedido)
-{
-	//alert(id_usuario+'---')
-	$( "#contenido_ticket" ).load( "ajax_contenido_ticket.php?id_pedido="+id_pedido);
+<!-- Agregamos los scripts necesarios -->
+<script src="js/ticket_handler.js"></script>
+<script>
+function carga_modal_1(id_pedido) {
+    TicketHandler.showTicket(id_pedido);
+    $('#ver_ticket').modal('show');
 }
-/* fin modal rechazo*/
 
 </script>
 

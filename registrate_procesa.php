@@ -39,25 +39,35 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 
 //response (required) El valor de "g-recaptcha-response".
-if(isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'])
-{
-	
-	//secret (required) 6LcstRYUAAAAAE-HWHeOhFbZ6cTkM-s0hx7sx2on
-	$secret="6Ld5XxcUAAAAAPBtq09mqyNVVk8_j7Cq7IpU6jfL";
-	
-	$ip=$_SERVER["REMOTE_ADDR"];
-	
-	$captcha=$_POST['g-recaptcha-response']; //es igual al valor del captcha
-	
-	
-	$result=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip=$ip");
-	//echo"<br><br><br>".var_dump($result);
-
-	$array = json_decode($result,TRUE);
-
-
-	if($array["success"]=='true')
-	{
+if(isset($_POST['g-recaptcha-response'])) {
+    $secret = "6LemvSgUAAAAAK9E4atvD2waSDcehM0ocVEnl7Kj";
+    $ip = $_SERVER["REMOTE_ADDR"];
+    $captcha = $_POST['g-recaptcha-response'];
+    
+    // Usar CURL para mayor seguridad y manejo de errores
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+        'secret' => $secret,
+        'response' => $captcha,
+        'remoteip' => $ip
+    ]));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $result = curl_exec($ch);
+    $curlError = curl_error($ch);
+    curl_close($ch);
+    
+    if ($curlError) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Error de validación del captcha']);
+        exit;
+    }
+    
+    $response = json_decode($result, true);
+    
+    if ($response && isset($response['success']) && $response['success'] === true) {
 		/*inicio de insert*/
 		//echo"humano";
 		
