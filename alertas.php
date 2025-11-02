@@ -47,7 +47,20 @@ if(isset($_GET['alerta']))
 		/*ERROR DE USUARIO O CONTRASEÑA*/
 		case 8:$msj='<strong>Error!</strong> No tenemos disponible esa cantidad .';
 				$clase='alert alert-danger';
-				break;		
+				break;
+                
+        // Nuevos mensajes de error para el reCAPTCHA
+        case 203:$msj='<strong>Error!</strong> Por favor complete la verificación de seguridad.';
+                $clase='alert alert-danger';
+                break;
+                
+        case 204:$msj='<strong>Error!</strong> Hubo un problema al verificar el captcha. Por favor, inténtelo de nuevo.';
+                $clase='alert alert-danger';
+                break;
+                
+        case 205:$msj='<strong>Error!</strong> La verificación de seguridad falló. Por favor, inténtelo de nuevo.';
+                $clase='alert alert-danger';
+                break;
 				
 				
 				

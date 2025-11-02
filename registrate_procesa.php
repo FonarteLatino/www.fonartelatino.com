@@ -39,35 +39,45 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 
 //response (required) El valor de "g-recaptcha-response".
-if(isset($_POST['g-recaptcha-response'])) {
-    $secret = "6LemvSgUAAAAAK9E4atvD2waSDcehM0ocVEnl7Kj";
-    $ip = $_SERVER["REMOTE_ADDR"];
-    $captcha = $_POST['g-recaptcha-response'];
-    
-    // Usar CURL para mayor seguridad y manejo de errores
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-        'secret' => $secret,
-        'response' => $captcha,
-        'remoteip' => $ip
-    ]));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $result = curl_exec($ch);
-    $curlError = curl_error($ch);
-    curl_close($ch);
-    
-    if ($curlError) {
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'message' => 'Error de validación del captcha']);
-        exit;
-    }
-    
-    $response = json_decode($result, true);
-    
-    if ($response && isset($response['success']) && $response['success'] === true) {
+if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
+    header('Location: cuenta.php?alerta=203'); // Código de error para captcha vacío
+    exit;
+}
+
+$secret = "6LemvSgUAAAAAK9E4atvD2waSDcehM0ocVEnl7Kj";
+$ip = $_SERVER["REMOTE_ADDR"];
+$captcha = $_POST['g-recaptcha-response'];
+
+// Usar CURL para mayor seguridad y manejo de errores
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
+    'secret' => $secret,
+    'response' => $captcha,
+    'remoteip' => $ip
+]));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+
+$result = curl_exec($ch);
+$curlError = curl_error($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($curlError || $httpCode !== 200) {
+    error_log("Error de reCAPTCHA: " . $curlError . " HTTP Code: " . $httpCode);
+    header('Location: cuenta.php?alerta=204'); // Código de error para error de conexión
+    exit;
+}
+
+$response = json_decode($result, true);
+
+if (!$response || !isset($response['success']) || $response['success'] !== true) {
+    header('Location: cuenta.php?alerta=205'); // Código de error para validación fallida
+    exit;
+}
 		/*inicio de insert*/
 		//echo"humano";
 		
