@@ -1,80 +1,65 @@
-<?php 
-require_once('Connections/conexion.php');
-session_start();
-
-// Verificar que el usuario tiene permisos para ver el ticket
-if (!isset($_SESSION['USUARIO_ECOMMERCE']) && !isset($_SESSION['USUARIO'])) {
-    header('Content-Type: application/json');
-    echo json_encode(['success' => false, 'message' => 'No tiene permiso para ver este ticket']);
-    exit;
-}
-
-// Función mejorada para sanitizar valores SQL
+<?php require_once('Connections/conexion.php'); ?>
+<?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
-    if (empty($theValue)) {
-        return $theType === "text" ? "NULL" : "0";
-    }
-    
-    // Sanitizar el valor usando mysqli_real_escape_string
-    global $conexion;
-    $theValue = mysqli_real_escape_string($conexion, $theValue);
-    
-    switch ($theType) {
-        case "text":
-            return "'" . $theValue . "'";
-        case "long":
-        case "int":
-            return intval($theValue);
-        case "double":
-            return floatval($theValue);
-        case "date":
-            return "'" . $theValue . "'";
-        default:
-            return "'" . $theValue . "'";
-    }
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  #$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
 }
 }
 
 mysqli_select_db($conexion,$database_conexion);
-// Validar el id del pedido
-$id_pedido = isset($_GET['id_pedido']) ? intval($_GET['id_pedido']) : 0;
-if ($id_pedido <= 0) {
-    header('Content-Type: application/json');
-    echo json_encode(['success' => false, 'message' => 'ID de pedido inválido']);
-    exit;
-}
-
-// Consulta optimizada usando JOIN y con manejo de codificación
-$query_ProductosPedidos = "SELECT 
-    pedido.id,
-    pedido.id_usuario,
-    pedido.id_direccion,
-    pedido.forma_pago,
-    pedido.subtotal_productos,
-    pedido.id_envio,
-    pedido.precio_envio,
-    pedido.total,
-    pedido.cupon_aplicado,
-    pedido.estatus,
-    pedido.descripcion_estatus,
-    pedido.fecha,
-    pedido.hora,
-    pedido_productos.id AS producto_id,
-    pedido_productos.id_pedido,
-    pedido_productos.id_producto,
-    pedido_productos.id_producto_fonarte,
-    pedido_productos.tipo,
-    CONVERT(pedido_productos.artista USING utf8) as artista,
-    CONVERT(pedido_productos.album USING utf8) as album,
-    pedido_productos.cantidad,
-    pedido_productos.precio,
-    pedido_productos.precio_final,
-    pedido_productos.fecha_hora,
-    envios.region,
-    envios.precio as precio_envio,
-    CONVERT(envios.descripcion USING utf8) as descripcion_envio
+$query_ProductosPedidos = "SELECT
+pedido.id,
+pedido.id_usuario,
+pedido.id_direccion,
+pedido.forma_pago,
+pedido.subtotal_productos,
+pedido.id_envio,
+pedido.precio_envio,
+pedido.total,
+pedido.cupon_aplicado,
+pedido.estatus,
+pedido.descripcion_estatus,
+pedido.fecha,
+pedido.hora,
+pedido_productos.id,
+pedido_productos.id_pedido,
+pedido_productos.id_producto,
+pedido_productos.id_producto_fonarte,
+pedido_productos.tipo,
+pedido_productos.artista,
+pedido_productos.album,
+pedido_productos.cantidad,
+pedido_productos.precio,
+pedido_productos.precio_final,
+pedido_productos.fecha_hora,
+envios.region,
+envios.precio,
+envios.descripcion
 FROM
 pedido
 LEFT JOIN pedido_productos ON pedido.id = pedido_productos.id_pedido

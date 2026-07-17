@@ -1,1 +1,134 @@
+# ============================================================
+# .gitignore — Fonarte Latino
+# Stack: PHP / MySQL / jQuery / Bootstrap
+# Producción: DreamHost Shared Hosting
+# ============================================================
+
+# ====================
+# Sistema Operativo
+# ====================
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+._*
+
+# ====================
+# Editor / IDE
+# ====================
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+nbproject/
+
+# ====================
+# SEGURIDAD CRÍTICA
+# Credenciales y configuración sensible
+# ====================
+# ¡NUNCA versionar estos archivos!
+pass*.txt
+*.env
+.env*
+config.local.php
+Connections/conexion_produccion.php
+Connections/conexion_prueba.php
+# Nota: Connections/conexion.php SÍ se versiona pero
+#       debe tener SOLO las credenciales locales.
+#       Las de producción van en el servidor vía FTP/SSH.
+
+# ====================
+# Imágenes y assets subidos por usuarios
+# (Contenido dinámico — no versionar, usar FTP/rsync)
+# ====================
+img/caratulas/
+img/slider/uploads/
+img/banners/uploads/
+img/logos/uploads/
+img/temp/
+
+# ====================
+# Archivos temporales y de trabajo
+# ====================
+*.xlsx
+*.xls
+*.csv
+*.bak
+*.tmp
+*.cache
+pasos.txt
+etiquetas\ videos\ Orchard
+"etiquetas videos Orchard"
+
+# ====================
+# Archivos de prueba y desarrollo
+# (no deben ir a producción)
+# ====================
+prueba.php
+pruebas.php
+sdss.php
+blank_2.php
+email_prueba.php
+p.php
+
+# ====================
+# Respaldos inline del código
+# (usar Git para versionar, no duplicados con sufijo)
+# ====================
+*_RESPALDO*.php
+*_respaldo*.php
+*_RESPALDO.css
+*RESPALDO*
+ajax_contenido_selecciona_dir_RESPALDO.php
+pago_paypal_RESPALDO.php
+mail_confirmacion_compra_respaldo.php
+mail_gracias_registro_respaldo.php
+menu_RESPALDO_BUSCADOR.php
+
+# ====================
+# Logs y cache del servidor
+# ====================
+*.log
+php_errors.log
+error_log
+access_log
+.php_cs.cache
+cache/
+
+# ====================
+# Dependencias instaladas localmente
+# (si en algún momento se usa Composer)
+# ====================
+vendor/
+composer.lock
+
+# ====================
+# Node (si se usa para compilar Tailwind/SCSS en local)
+# ====================
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# ====================
+# Archivos de análisis / datos internos
+# (no son parte del código fuente del sitio)
+# ====================
+Analisis\ Belive.xlsx
+Analisis\ Orchard.xlsx
+Comparativa\ Belive\ VS\ Orchard.xlsx
+Actividades\ Allan.xlsx
+Tablas\ Youtube.xlsx
+Copia\ de\ Videos\ \(1\).xlsx
+Videos\ \(1\).xlsx
+tablas_dinamicas/
+
+# ====================
+# Carpetas de contenido especial
+# ====================
+KatyFiles/
+newsLetter/

@@ -39,45 +39,25 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 
 //response (required) El valor de "g-recaptcha-response".
-if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
-    header('Location: cuenta.php?alerta=203'); // Código de error para captcha vacío
-    exit;
-}
+if(isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'])
+{
+	
+	//secret (required) 6LcstRYUAAAAAE-HWHeOhFbZ6cTkM-s0hx7sx2on
+	$secret="6Ld5XxcUAAAAAPBtq09mqyNVVk8_j7Cq7IpU6jfL";
+	
+	$ip=$_SERVER["REMOTE_ADDR"];
+	
+	$captcha=$_POST['g-recaptcha-response']; //es igual al valor del captcha
+	
+	
+	$result=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha&remoteip=$ip");
+	//echo"<br><br><br>".var_dump($result);
 
-$secret = "6LemvSgUAAAAAK9E4atvD2waSDcehM0ocVEnl7Kj";
-$ip = $_SERVER["REMOTE_ADDR"];
-$captcha = $_POST['g-recaptcha-response'];
+	$array = json_decode($result,TRUE);
 
-// Usar CURL para mayor seguridad y manejo de errores
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-    'secret' => $secret,
-    'response' => $captcha,
-    'remoteip' => $ip
-]));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 
-$result = curl_exec($ch);
-$curlError = curl_error($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-if ($curlError || $httpCode !== 200) {
-    error_log("Error de reCAPTCHA: " . $curlError . " HTTP Code: " . $httpCode);
-    header('Location: cuenta.php?alerta=204'); // Código de error para error de conexión
-    exit;
-}
-
-$response = json_decode($result, true);
-
-if (!$response || !isset($response['success']) || $response['success'] !== true) {
-    header('Location: cuenta.php?alerta=205'); // Código de error para validación fallida
-    exit;
-}
+	if($array["success"]=='true')
+	{
 		/*inicio de insert*/
 		//echo"humano";
 		

@@ -84,9 +84,9 @@
     <div class="row">
     <div class="col-sm-6">
     <div class="form-group">
-    <p>Verificación de seguridad: *</p>
-    <div class="g-recaptcha" data-sitekey="6LemvSgUAAAAADsTVFF1w30R2NRQ-TAqTIzqFSI7" data-callback="enableSubmit"></div>
-    <span id="captcha-error" class="help-block text-danger"></span>
+    <p>&nbsp;</p>
+    <div class="g-recaptcha" data-sitekey="6Ld5XxcUAAAAABaNcJGqCSU2dL68Nm5CAReV2QtP"></div>
+    <span class="help-block"></span><!-- muestra texto de ayuda -->
     </div>
     </div>
     
@@ -111,36 +111,13 @@
 
 </div>
 
-<script>
-// Función callback para reCAPTCHA
-function enableSubmit(response) {
-    if(response) {
-        document.getElementById('id_btn_registrar').removeAttribute('disabled');
-        document.getElementById('captcha-error').innerHTML = '';
-    }
-}
 
-// Deshabilitar el botón de registro hasta que se complete el captcha
-document.addEventListener('DOMContentLoaded', function() {
-    var submitBtn = document.getElementById('id_btn_registrar');
-    if(submitBtn) {
-        submitBtn.setAttribute('disabled', 'disabled');
-    }
-});
 
-// Validar el formulario antes de enviar
-document.getElementById('registrate').addEventListener('submit', function(e) {
-    if (!grecaptcha.getResponse()) {
-        e.preventDefault();
-        document.getElementById('captcha-error').innerHTML = 'Por favor, complete la verificación de seguridad';
-        return false;
-    }
-    return true;
-});
-</script>
 
 </body>
 </html>
+
+ 
  
 
    <!-- jQuery -->
