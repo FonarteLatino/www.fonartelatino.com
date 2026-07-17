@@ -23,5 +23,29 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - El campo de estatus actual maneja limitadamente la lógica de formatos (físico/digital), pero no soporta bien formatos híbridos explícitos.
   - Los enlaces de plataformas de streaming apuntan directamente a URL externas desde el frontend, lo que causa links rotos generalizados al compartirlos si la URL destino cambia.
 
+## [0.0.0] - 2019-07-16
 
-## [0.0.0] - 2026-07-16
+### Propósito del Sitio
+El sitio www.fonartelatino.com funciona como el catálogo en línea y plataforma de comercio electrónico de Fonarte Latino, un sello discográfico y distribuidora de música independiente mexicana. Su propósito principal es permitir a los usuarios explorar artistas, álbumes y géneros musicales, adquirir formatos físicos (CDs, Vinilos, DVDs) mediante un carrito de compras tradicional, y proporcionar accesos directos a plataformas de streaming digital para el consumo en línea.
+
+### Estado Presente del Sistema (Evaluación Base)
+
+#### Arquitectura y Código Base
+- **Monolito sin capas:** El código carece de patrones arquitectónicos (como MVC). La lógica de negocio, el acceso a datos y el maquetado HTML están directamente mezclados en los mismos archivos PHP (Spaghetti Code).
+- **Versión de PHP Legacy:** El código presenta funciones y condicionales heredados, como validaciones exclusivas de PHP < 6, el uso de la API procedimental mysqli_* y un extenso uso de funciones como utf8_decode() / utf8_encode() que romperán la aplicación al migrar a PHP 9.
+
+#### Base de Datos (fonartecommerce)
+- **Seguridad Crítica:** Existen múltiples vulnerabilidades a Inyección SQL debido a la concatenación de variables ($_GET, $_POST, $_SESSION) directamente en las sentencias SQL. No se emplean consultas preparadas (Prepared Statements).
+- **Integridad y Desnormalización:** Las tablas carecen de llaves foráneas estrictas (CONSTRAINT FOREIGN KEY), y se utilizan columnas de texto para almacenar IDs (ej. genero, genero2 en la tabla productos), lo que limita la integridad referencial y merma el rendimiento.
+- **Lógica de Formatos Limitada:** El campo de estatus en los productos combina de forma inflexible la lógica de venta física vs disponibilidad digital.
+
+#### Frontend y UI
+- **Dependencias Obsoletas:** El sitio depende de Bootstrap 3 (2013), jQuery 1.11.x, y plugins de validación descontinuados (jqBootstrapValidation.js).
+- **Navegación Tradicional:** Hay ausencia de interacciones asíncronas modernas (fetch o AJAX). Acciones como agregar al carrito o aplicar cupones se manejan mediante recargas completas de la página con inyecciones de window.location.
+- **Estilos CSS Ineficientes:** Abunda el uso de CSS en línea (style="...") y hojas de estilo con bloques duplicados, lo que vuelve casi imposible tematizar el sitio de forma escalable usando variables nativas.
+
+#### Infraestructura, SEO y Seguridad General
+- **SEO Ausente:** Faltan componentes básicos como robots.txt, sitemap.xml, URLs semánticas completas (solo están parcialmente cubiertas en el catálogo) y etiquetas semánticas sociales (Open Graph y Twitter Cards).
+- **Falta de Prevención CSRF:** No se utilizan tokens anti-falsificación en los formularios (carrito, checkout o panel administrativo).
+- **Fugas de Información:** Credenciales de la base de datos se encuentran hardcodeadas en texto claro dentro del historial del archivo de conexión, y existe un archivo pass .txt expuesto en la raíz.
+- **Gestión Frágil de Streaming:** Los enlaces a plataformas como Spotify o Apple Music están incrustados directamente, lo que puede causar fallas ("Link rot") a largo plazo si las URLs externas llegan a modificarse.
