@@ -254,7 +254,7 @@ $totalRows_endetalle = mysqli_num_rows($endetalle);
 
 
 <div class="item active">
-<img src="img/slider/banner_logos.png" width="100%" alt="slider-1">
+<img src="img/slider/banner_logos.jpg" width="100%" alt="slider-1">
 </div>
 
 

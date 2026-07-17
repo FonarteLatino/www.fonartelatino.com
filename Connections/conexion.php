@@ -3,13 +3,13 @@
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
 # HTTP="true"
-
+/*
 $hostname_conexion = "localhost";
 $database_conexion = "fonartecommerce";
 $username_conexion = "root";
 $password_conexion = "";
 #$conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysql_error(),E_USER_ERROR);
-$conexion = mysqli_connect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysqli_error($conexion),E_USER_ERROR); 
+$conexion = mysqli_connect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysqli_error($conexion),E_USER_ERROR); */
 
 
 # SERVIDOR DE PRUBA
@@ -26,7 +26,7 @@ $conexion = mysql_pconnect($hostname_conexion, $username_conexion, $password_con
 */
 
 
-/*
+
 # SERVIDOR DE PRODUCCION
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
@@ -37,6 +37,6 @@ $database_conexion = "fonartecommerce";
 $username_conexion = "usrfonartebjf";
 $password_conexion = "NZojmHb8QyBJf1nk";
 $conexion = mysqli_connect($hostname_conexion, $username_conexion, $password_conexion) or trigger_error(mysqli_error($conexion),E_USER_ERROR);
-*/
+
 
 ?> 

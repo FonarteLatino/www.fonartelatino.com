@@ -1,1 +1,0 @@
-$__MA.captureComplete("");
