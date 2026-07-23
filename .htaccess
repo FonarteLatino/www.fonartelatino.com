@@ -1,5 +1,12 @@
 AddDefaultCharset UTF-8
 
+# Protección del ambiente local de pruebas (rama work).
+# En DreamHost se deberá sustituir esta ruta por la ubicación segura del .htpasswd.
+#AuthType Basic
+#AuthName "Fonarte Work - Acceso restringido"
+#AuthUserFile "C:/xampp/htdocs/configs/.htpasswd"
+#Require valid-user
+
 RewriteEngine on
 
 RewriteRule ^index?$ index.php
